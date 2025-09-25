@@ -16,9 +16,28 @@
     "source": { "type": "string", "minLength": 1 },             // URI/URN of producer
     "type": {
       "type": "string",
-      "minLength": 1,
-      // NHS naming (recommended): lower-dot, namespaced
-      "pattern": "^nhs\\.notify\\.[a-z0-9]+(\\.[a-z0-9]+)*$"
+      "minLength": 1, 
+      /* 1) NHS naming (recommended): lower-dot, namespaced
+         Enforce your lower-dot namespacing and allowed characters.
+         Note: JSON Schema regexes match *anywhere* unless you anchor them,
+         so we anchor ^...$ here. */
+      "pattern": "^nhs\\.notify\\.[a-z0-9]+(\\.[a-z0-9]+)*$",
+
+      /* 2) Ban whole-token words (dot-delimited) you don't allow.
+         We use NOT patterns that look for these tokens as standalone segments.
+         Because JSON Schema uses ECMA‑262 regex dialect, lookaheads/anchors are OK. */
+      "allOf": [
+        { "not": { "pattern": "(?:^|\\.)completed(?:\\.|$)" } },
+        { "not": { "pattern": "(?:^|\\.)finished(?:\\.|$)" } },
+        { "not": { "pattern": "(?:^|\\.)updated(?:\\.|$)" } },
+        { "not": { "pattern": "(?:^|\\.)changed(?:\\.|$)" } },
+        { "not": { "pattern": "(?:^|\\.)processed(?:\\.|$)" } },
+        { "not": { "pattern": "(?:^|\\.)handled(?:\\.|$)" } },
+        { "not": { "pattern": "(?:^|\\.)status(?:\\.|$)" } },
+        { "not": { "pattern": "(?:^|\\.)started(?:\\.|$)" } },
+        { "not": { "pattern": "(?:^|\\.)failed(?:\\.|$)" } }
+      ]
+
     },
     "subject": { "type": "string" },                            // e.g., file/{fileId}
     "time": {
