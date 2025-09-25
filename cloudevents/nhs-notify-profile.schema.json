@@ -1,0 +1,91 @@
+{
+  "$id": "https://standards.notify.nhs.uk/cloudevents/nhs-notify-profile.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NHS Notify CloudEvents Profile (structured JSON mode)",
+  "type": "object",
+  "additionalProperties": true, // CloudEvents allows arbitrary extension attributes
+  "properties": {
+    // ---- Core CloudEvents attributes (CloudEvents v1.0) ----
+    "specversion": {
+      "type": "string",
+      "const": "1.0" // CloudEvents version used
+      // Core attributes: specversion,id,source,type (+ optional subject,time,datacontenttype,dataschema,data)
+      // Ref: CloudEvents core spec
+    },
+    "id": { "type": "string", "minLength": 1 },                 // unique per (source,id)
+    "source": { "type": "string", "minLength": 1 },             // URI/URN of producer
+    "type": {
+      "type": "string",
+      "minLength": 1,
+      // NHS naming (recommended): lower-dot, namespaced
+      "pattern": "^nhs\\.notify\\.[a-z0-9]+(\\.[a-z0-9]+)*$"
+    },
+    "subject": { "type": "string" },                            // e.g., file/{fileId}
+    "time": {
+      "type": "string",
+      "format": "date-time" // RFC3339 UTC occurred-at (NHS profile: REQUIRED)
+    },
+    "datacontenttype": { "type": "string" },                    // usually "application/json"
+    "dataschema": { "type": "string" },                         // URI to event payload schema
+    "data": {},                                                 // domain payload (JSON value)
+    "data_base64": { "type": "string", "contentEncoding": "base64" }, // alternative if transporting binary
+
+    // ---- Extensions you selected ----
+
+    // Distributed Tracing extension (application-level context)
+    // Spec attribute names: traceparent (REQUIRED when used), tracestate (OPTIONAL)
+    // Ref: CloudEvents Distributed Tracing extension
+    "traceparent": { "type": "string", "minLength": 1 },        // W3C Trace Context value
+    "tracestate": { "type": "string" },                         // W3C tracestate (optional)
+
+    // Partitioning extension
+    // A non-empty partition key for scaling/causal grouping (REQUIRED when used)
+    // Ref: partitioning.md
+    "partitionkey": { "type": "string", "minLength": 1 },
+
+    // Recorded Time extension (bitemporal "event created" time)
+    // RFC3339 timestamp; should be >= occurred-at (time)
+    // Ref: recordedtime.md
+    "recordedtime": { "type": "string", "format": "date-time" },
+
+    // Sampled Rate extension
+    // Integer > 0 conveying how many similar occurrences this event represents
+    // Ref: sampledrate.md
+    "sampledrate": {
+      "type": "integer",
+      "minimum": 1
+    },
+
+    // Sequence extension
+    // Lexicographically comparable string for ordering per source
+    // Ref: sequence.md
+    "sequence": { "type": "string", "minLength": 1 },
+
+    // Severity extension
+    // severitytext (TRACE, DEBUG, INFO, WARN, ERROR, FATAL ...) + matching severitynumber
+    // Ref: severity.md
+    "severitytext": { "type": "string", "minLength": 1 },
+    "severitynumber": { "type": "integer" },
+
+    // Data Classification extension
+    // Ref: data-classification.md
+    "dataclassification": { "type": "string", "minLength": 1 }, // e.g., public|internal|confidential|restricted
+    "dataregulation": { "type": "string", "minLength": 1 },     // e.g., "GDPR,HIPAA"
+    "datacategory": { "type": "string", "minLength": 1 }        // e.g., "special-category" (GDPR), "phi" (HIPAA)
+  },
+  "required": [
+    "specversion",
+    "id",
+    "source",
+    "type",
+    "time"          // NHS profile: we make occurred-at mandatory (CloudEvents spec marks it optional)
+  ],
+  "allOf": [
+    // If data_base64 is present, datacontenttype SHOULD still indicate media type
+    {
+      "if": { "required": ["data_base64"] },
+      "then": { "properties": { "datacontenttype": { "type": "string" } } }
+    }
+  ],
+  "description": "NHS Notify profile for CloudEvents 1.0 with selected extensions."
+}
