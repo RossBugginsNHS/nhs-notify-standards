@@ -13,6 +13,10 @@
     "source":{
       "type": "string",
       "const": "/ordering/order-read"
+     },
+      "dataschema":{
+      "type": "string",
+      "const": "https://raw.githubusercontent.com/NHSDigital/nhs-notify-standards/refs/heads/main/cloudevents/example.json"
      }
   },
     "data": { "$ref": "https://raw.githubusercontent.com/NHSDigital/nhs-notify-standards/refs/heads/main/cloudevents/example-data.json" }
