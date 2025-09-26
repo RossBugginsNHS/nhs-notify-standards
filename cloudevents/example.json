@@ -26,5 +26,5 @@
             "$ref": "https://raw.githubusercontent.com/NHSDigital/nhs-notify-standards/refs/heads/main/cloudevents/example-data.json"
         },
     },
-    "required": ["data222"]
+    "required": ["data"]
 }
