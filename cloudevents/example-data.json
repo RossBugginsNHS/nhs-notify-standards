@@ -4,5 +4,5 @@
   "title": "Example data type",
   "description": "Example data type",
    "type": "object",
-  "allOf": [ { "$ref": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/common/nhs/NhsNumber/1-0-0.json" }]
+  "allOf": [ { "$ref": "https://raw.githubusercontent.com/NHSDigital/nhs-notify-standards/refs/heads/main/cloudevents/common/nhs/NhsNumber/1-0-0.json" }]
 }
