@@ -3,7 +3,7 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "title": "NHS Notify CloudEvents Profile",
     "type": "object",
-    "additionalProperties": true,
+    "additionalProperties": false,
     "$comment": "CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.",
     "properties": {
         "specversion": {
@@ -268,6 +268,7 @@
         "NotifyMetadata": {
             "$comment": "Notify Metadata",
             "type": "object",
+            "additionalProperties": false,
             "required": [
                 "metadata"
             ],
