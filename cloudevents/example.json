@@ -1,23 +1,29 @@
 {
-  "$id": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/example.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Example Event",
-  "description": "Example  event",
-   "type": "object",
-  "allOf": [{ "$ref": "https://raw.githubusercontent.com/NHSDigital/nhs-notify-standards/refs/heads/main/cloudevents/nhs-notify-profile.schema.json" }],
-  "properties": {
-     "type": {
-      "type": "string",
-      "const": "uk.nhs.notify.ordering.order.read"
-     },
-    "source":{
-      "type": "string",
-      "const": "/ordering/order-read"
-     },
-      "dataschema":{
-      "type": "string",
-      "const": "https://raw.githubusercontent.com/NHSDigital/nhs-notify-standards/refs/heads/main/cloudevents/example.json"
-     }
-  },
-    "data": { "$ref": "https://raw.githubusercontent.com/NHSDigital/nhs-notify-standards/refs/heads/main/cloudevents/example-data.json" }
-  }
+    "$id": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/example.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Example Event",
+    "description": "Example  event",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "https://raw.githubusercontent.com/NHSDigital/nhs-notify-standards/refs/heads/main/cloudevents/nhs-notify-profile.schema.json"
+        }
+    ],
+    "properties": {
+        "type": {
+            "type": "string",
+            "const": "uk.nhs.notify.ordering.order.read"
+        },
+        "source": {
+            "type": "string",
+            "const": "/ordering/order-read"
+        },
+        "dataschema": {
+            "type": "string",
+            "const": "https://raw.githubusercontent.com/NHSDigital/nhs-notify-standards/refs/heads/main/cloudevents/example.json"
+        },
+        "data": {
+            "$ref": "https://raw.githubusercontent.com/NHSDigital/nhs-notify-standards/refs/heads/main/cloudevents/example-data.json"
+        }
+    }
+}
