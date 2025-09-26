@@ -1,0 +1,29 @@
+{
+  "type": "uk.nhs.notify.ordering.order.read",
+  "source": "/ordering/order-read",
+  "dataschema": "https://raw.githubusercontent.com/NHSDigital/nhs-notify-standards/refs/heads/main/cloudevents/example-data.json",
+  "data": {
+    "nhsNumber": "9490975581",
+    "metadata": {
+      "teamResponsible": "ea",
+      "version": "98462539542.2534575.0+QNmI.E2nzWdt.7I"
+    }
+  },
+  "specversion": "1.0",
+  "id": "fab465ef-1c66-5d2b-fe11-ff5837f42612",
+  "subject": "culpa eu nulla dolor laboris",
+  "time": "1954-11-06T01:43:43.0Z",
+  "datacontenttype": "ex ut esse",
+  "data_base64": "minim ullamco adipisicing esse",
+  "traceparent": "00-03a7cde0323b003245708dc1d4f59843-a73c37f4b4ebee3d-d7",
+  "tracestate": "in ullamco et",
+  "partitionkey": "ut laboris",
+  "recordedtime": "1903-08-30T06:04:30.0Z",
+  "sampledrate": 34377382,
+  "sequence": "culpa elit sint Duis",
+  "severitytext": "ERROR",
+  "severitynumber": 6,
+  "dataclassification": "internal",
+  "dataregulation": "HIPAA",
+  "datacategory": "special-category"
+}
