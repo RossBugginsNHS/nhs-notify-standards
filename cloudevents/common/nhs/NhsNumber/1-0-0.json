@@ -3,6 +3,8 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "NHS Common Types v1.0.0",
   "description": "Reusable types for NHS Notify payload schemas.",
+   "properties": {
+     "NhsNumber":  { "oneOf": [{"$ref": "#/$defs/NhsNumber10"},{"$ref": "#/$defs/NhsNumberFormatted"}] }},
   "$defs": {
     /* Canonical stored form: exactly 10 digits (no spaces/hyphens). */
     "NhsNumber10": {
