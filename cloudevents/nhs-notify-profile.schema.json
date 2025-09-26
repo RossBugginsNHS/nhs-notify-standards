@@ -1,7 +1,7 @@
 {
   "$id": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-profile.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "NHS Notify CloudEvents Profile (structured JSON mode)",
+  "title": "NHS Notify CloudEvents Profile",
   "type": "object",
   "additionalProperties": true,
   "$comment": "CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.",
