@@ -27,15 +27,26 @@
       "allOf": [
         {
           "$ref": "https://raw.githubusercontent.com/NHSDigital/nhs-notify-standards/refs/heads/main/cloudevents/example-data.json"
+        },
+        {
+          "$ref": "#/$defs/TeamAlphaBravoMetadata"
         }
-      ],
+      ]
+    }
+  },
+  
+  "$defs": {
+    "TeamAlphaBravoMetadata": {
+      "$comment": "Notify Metadata",
+      "type": "object",
+      "description": "Notify Metadata",
       "properties": {
         "metadata": {
           "type": "object",
           "properties": {
             "teamResponsible": {
               "type": "string",
-              "const": "Team Alpha Bravo"
+              "const": "Team Alpha Bravo Own This"
             }
           }
         }
