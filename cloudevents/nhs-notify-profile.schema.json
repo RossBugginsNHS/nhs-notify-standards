@@ -94,7 +94,7 @@
         },
         "data": {
             "type": "object",
-            "allOf": [{ "$ref": "#/$defs/NotifyMetadata"}]
+            "allOf": [{ "$ref": "#/$defs/NotifyMetadata"}],
             "$comment": "Domain payload (arbitrary JSON value)."
         },
         "data_base64": {
