@@ -1,0 +1,6 @@
+{
+  "allOf": [{ "$ref": "/nhs-notify-profile.schema.json" }],
+  "properties": {
+    "data": { "$ref": "/common/nhs/NhsNumber/1-0-0.json" }{ "type": "string" }
+  }
+}
