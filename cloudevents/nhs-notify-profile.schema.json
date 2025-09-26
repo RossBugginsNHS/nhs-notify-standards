@@ -86,7 +86,7 @@
       "type": "string", 
       "minLength": 1, 
       "oneOf": ["TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL"],      
-      "$comment": "Severity text (TRACE, DEBUG, INFO, WARN, ERROR, FATAL, etc.).",
+      "$comment": "Severity text (TRACE, DEBUG, INFO, WARN, ERROR, FATAL, etc.)."
     },
     "severitynumber": { 
       "type": "integer", 
