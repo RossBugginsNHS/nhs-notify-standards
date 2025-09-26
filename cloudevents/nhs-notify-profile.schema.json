@@ -11,7 +11,7 @@
       "const": "1.0",
       "$comment": "CloudEvents version used. Core attributes: specversion,id,source,type (+ optional subject,time,datacontenttype,dataschema,data). Ref: CloudEvents core spec."
     },
-    "id": { "type": "string", "minLength": 1, "$comment": "Unique per (source,id)." },
+    "id": { "type": "string", { "type": "string", "format": "uuid", "minLength": 1, "$comment": "Unique per (source,id)." },
     "source": { "type": "string", "minLength": 1, "$comment": "URI/URN of producer." },
     "type": {
       "type": "string",
@@ -39,30 +39,87 @@
     "datacontenttype": { "type": "string", "$comment": "Usually application/json." },
     "dataschema": { "type": "string", "$comment": "URI to event payload schema." },
     "data": { "$comment": "Domain payload (arbitrary JSON value)." },
-    "data_base64": { "type": "string", "contentEncoding": "base64", "$comment": "Alternative representation if transporting binary." },
-    "traceparent": { "type": "string", "minLength": 1, "$comment": "W3C Trace Context traceparent (required when tracing used)." },
-    "tracestate": { "type": "string", "$comment": "W3C Trace Context tracestate (optional)." },
-    "partitionkey": { "type": "string", "minLength": 1, "$comment": "Non-empty partition key for scaling / causal grouping." },
-    "recordedtime": { "type": "string", "format": "date-time", "$comment": "Bitemporal created-at; should be >= time." },
+    "data_base64": { 
+      "type": "string",  
+      "contentEncoding": "base64", 
+      "$comment": "Alternative representation if transporting binary." },
+    "traceparent": { 
+      "type": "string", 
+      "minLength": 1, 
+      "pattern": "^00-[0-9a-f]{32}-[0-9a-f]{16}-[0-9a-f]{2}$", 
+      "$comment": "W3C Trace Context traceparent (required when tracing used)." 
+    },
+    "tracestate": { 
+      "type": "string", 
+      "$comment": "W3C Trace Context tracestate (optional)." 
+    },
+    "partitionkey": { 
+      "type": "string", 
+      "minLength": 1, 
+      "$comment": "Non-empty partition key for scaling / causal grouping." 
+    },
+    "recordedtime": { 
+      "type": "string", 
+      "format": "date-time", 
+      "$comment": "Bitemporal created-at; should be >= time." 
+    },
     "sampledrate": {
       "type": "integer",
       "minimum": 1,
       "$comment": "Integer > 0 indicating how many similar occurrences this event represents."
     },
-    "sequence": { "type": "string", "minLength": 1, "$comment": "Lexicographically comparable ordering string per source." },
-    "severitytext": { "type": "string", "minLength": 1, "$comment": "Severity text (TRACE, DEBUG, INFO, WARN, ERROR, FATAL, etc.)." },
-    "severitynumber": { "type": "integer", "$comment": "Numeric severity corresponding to severitytext." },
-    "dataclassification": { "type": "string", "minLength": 1, "$comment": "Data classification e.g. public|internal|confidential|restricted." },
-    "dataregulation": { "type": "string", "minLength": 1, "$comment": "Regulation tags e.g. GDPR, HIPAA." },
-    "datacategory": { "type": "string", "minLength": 1, "$comment": "Example: special-category (GDPR), phi (HIPAA)." }
+    "sequence": { 
+      "type": "string", 
+      "minLength": 1, 
+      "$comment": 
+      "Lexicographically comparable ordering string per source." },
+    "severitytext": { 
+      "type": "string", 
+      "minLength": 1, 
+      "oneOf": ["TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL"],      
+      "$comment": "Severity text (TRACE, DEBUG, INFO, WARN, ERROR, FATAL, etc.).",
+    },
+    "severitynumber": { 
+      "type": "integer", 
+      "minimum": 0,
+      "maximum": 6,
+      "$comment": "Numeric severity corresponding to severitytext." 
+    },
+    "dataclassification": { 
+      "type": "string",
+      "minLength": 1,
+      "oneOf": ["public", "internal", "confidential", "restricted"],
+      "$comment": "Data classification e.g. public|internal|confidential|restricted." 
+    },
+    "dataregulation": { 
+      "type": "string", 
+      "minLength": 1, 
+      "oneOf": ["GDPR", "HIPAA", "PCI-DSS", "ISO-27001", "NIST-800-53", "CCPA"],
+      "$comment": "Regulation tags e.g. GDPR, HIPAA." 
+    },
+    "datacategory": {
+      "type": "string", 
+      "minLength": 1, 
+       "oneOf": ["on-sensitive", "standard", "sensitive", "special-category"],
+      "$comment": "Example: special-category (GDPR), phi (HIPAA)." 
+    }
   },
   "required": [
     "specversion",
     "id",
     "source",
     "type",
-    "time"
+    "time",
+    "severitynumber",
+    "data"
   ],
+  
+  "dependentRequired": {
+    "severitynumber": ["severitytext"]
+  }
+  
+  "oneOf": ["data", "data_base64"],
+  
   "allOf": [
     {
       "if": { "required": ["data_base64"] },
