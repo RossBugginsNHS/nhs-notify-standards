@@ -39,19 +39,32 @@
       ],
       "$comment": "NHS naming: lower-dot namespaced; allowed chars a-z0-9 and dots; banned tokens: completed, finished, updated, changed, processed, handled, status, started, failed."
     },
-    "subject": { "type": "string", "$comment": "Example: file/{fileId}." },
+    "subject": { 
+      "type": "string", 
+      "$comment": "Example: file/{fileId}." 
+    },
     "time": {
       "type": "string",
       "format": "date-time",
       "$comment": "RFC3339 UTC occurred-at (REQUIRED in NHS profile)."
     },
-    "datacontenttype": { "type": "string", "$comment": "Usually application/json." },
-    "dataschema": { "type": "string", "$comment": "URI to event payload schema." },
-    "data": { "$comment": "Domain payload (arbitrary JSON value)." },
-    "data_base64": { 
-      "type": "string",  
-      "contentEncoding": "base64", 
-      "$comment": "Alternative representation if transporting binary." },
+    "datacontenttype": { 
+      "type": "string", 
+      "$comment": "Usually application/json." 
+    },
+    "dataschema": { 
+      "type": "string", 
+      "$comment": "URI to event payload schema." 
+    },
+    "oneOf": [
+      "data": { 
+        "$comment": "Domain payload (arbitrary JSON value)." 
+      },
+      "data_base64": { 
+        "type": "string",  
+        "contentEncoding": "base64", 
+        "$comment": "Alternative representation if transporting binary." }
+    ],
     "traceparent": { 
       "type": "string", 
       "minLength": 1, 
@@ -81,7 +94,8 @@
       "type": "string", 
       "minLength": 1, 
       "$comment": 
-      "Lexicographically comparable ordering string per source." },
+      "Lexicographically comparable ordering string per source." 
+    },
     "severitytext": { 
       "type": "string", 
       "minLength": 1, 
@@ -119,16 +133,14 @@
     "source",
     "type",
     "time",
+    "recordedtime",
     "severitynumber",
+    "traceparent",
     "data"
   ],
   "dependentRequired": {
     "severitynumber": ["severitytext"]
   },
-  "oneOf": [
-    "data", 
-    "data_base64"
-  ],
   "allOf": [
     {
       "if": { "required": ["data_base64"] },
