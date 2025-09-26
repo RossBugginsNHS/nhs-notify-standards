@@ -268,15 +268,21 @@
         "NotifyMetadata": {
             "$comment": "Notify Metadata",
             "type": "object",
+            "required": [
+                "metadata"
+            ],
             "description": "Notify Metadata",
             "properties": {
                 "metadata": {
                     "type": "object",
-                    "required": ["version", "teamResponsible"],
+                    "required": [
+                        "version",
+                        "teamResponsible"
+                    ],
                     "properties": {
                         "teamResponsible": {
                             "type": "string",
-                            "default": "Team A",
+                            "default": "Team A"
                         },
                         "version": {
                             "type": "string",
