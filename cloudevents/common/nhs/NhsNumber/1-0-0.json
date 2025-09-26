@@ -2,33 +2,33 @@
   "$id": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/common/nhs/NhsNumber/1-0-0.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "NHS Common Types v1.0.0",
-   "type": "object",
   "description": "Reusable types for NHS Notify payload schemas.",
-   "properties": {
-     "nhsNumber":  { "oneOf": [{"$ref": "#/$defs/NhsNumber10"},{"$ref": "#/$defs/NhsNumberFormatted"}] }},
-  "required":["nhsNumber"],
+  "properties": {
+    "nhsNumber": {
+      "oneOf": [
+        { "$ref": "#/$defs/NhsNumber10" },
+        { "$ref": "#/$defs/NhsNumberFormatted" }
+      ]
+    }
+  },
+  "required": ["nhsNumber"],
   "$defs": {
-    /* Canonical stored form: exactly 10 digits (no spaces/hyphens). */
     "NhsNumber10": {
+      "$comment": "Canonical stored form: exactly 10 digits (no spaces or hyphens).\n10-digit requirement and check-digit semantics come from the NHS Data Dictionary.\nRef: NHS Number attribute & algorithm (Modulus 11).",
       "type": "string",
       "description": "NHS Number (10 digits; last digit is a Modulus-11 check digit).",
       "pattern": "^[0-9]{10}$"
-      /* 10-digit requirement and check-digit semantics come from NHS Data Dictionary. */
-      /* Ref: NHS Number attribute & algorithm (Modulus 11). */
     },
 
-    /* UI/ingress tolerant form: allows 3-3-4 with optional spaces/hyphens.
-       Still only digits once separators are removed. */
     "NhsNumberFormatted": {
+      "$comment": "UI/ingress tolerant form: allows 3-3-4 with optional spaces/hyphens. Still only digits once separators are removed.\nDisplay guidance to use 3-3-4 spacing; systems should accept flexible input.",
       "type": "string",
       "description": "Human-entered NHS Number (accepts 3-3-4 with optional spaces or hyphens).",
       "pattern": "^(?:[0-9]{3}[- ]?[0-9]{3}[- ]?[0-9]{4})$"
-      /* Display guidance to use 3-3-4 spacing; systems should accept flexible input. */
     },
 
-    /* Strong type: canonical 10 digits + checksum verified via custom format.
-       Note: 'format' requires runtime support to *assert* it. */
     "NhsNumber": {
+      "$comment": "Strong type: canonical 10 digits + checksum verified via custom format. Note: 'format' requires runtime support to assert it.",
       "allOf": [
         { "$ref": "#/$defs/NhsNumber10" },
         { "format": "nhs-number" }
