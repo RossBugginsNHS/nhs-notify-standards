@@ -163,8 +163,7 @@
     "time",
     "recordedtime",
     "severitynumber",
-    "traceparent",
-    "data"
+    "traceparent"
   ],
   "dependentRequired": {
     "severitynumber": ["severitytext"]
