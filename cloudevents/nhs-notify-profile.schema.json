@@ -279,12 +279,40 @@
                     "additionalProperties": false,
                     "required": [
                         "version",
-                        "teamResponsible"
+                        "teamResponsible",
+                        "notifyDomain"
                     ],
                     "properties": {
                         "teamResponsible": {
                             "type": "string",
-                            "default": "Team A"
+                        "oneOf": [
+                                {
+                                    "const": "Team 1"
+                                },
+                                {
+                                    "const": "Team 2"
+                                },
+                                {
+                                    "const": "Team 3"
+                                }
+                            ],
+                        },
+                        "notifyDomain": {
+                            "type": "string",
+                            "oneOf": [
+                                {
+                                    "const": "Ordering"
+                                },
+                                {
+                                    "const": "Delivering"
+                                },
+                                {
+                                    "const": "Reporting"
+                                },
+                                {
+                                    "const": "Enquries"
+                                }
+                            ],
                         },
                         "version": {
                             "type": "string",
