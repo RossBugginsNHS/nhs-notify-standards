@@ -1,6 +1,6 @@
 {
-  "allOf": [{ "$ref": "/nhs-notify-profile.schema.json" }],
+  "allOf": [{ "$ref": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-profile.schema.json" }],
   "properties": {
-    "data": { "$ref": "/common/nhs/NhsNumber/1-0-0.json" }{ "type": "string" }
+    "data": { "$ref": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/common/nhs/NhsNumber/1-0-0.json" }{ "type": "object" }
   }
 }
