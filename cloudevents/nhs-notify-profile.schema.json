@@ -112,7 +112,14 @@
     "severitytext": { 
       "type": "string", 
       "minLength": 1, 
-      "oneOf": ["TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL"],      
+      "oneOf": [
+        {"const": "TRACE"}, 
+        {"const": "DEBUG"}, 
+        {"const": "INFO"}, 
+        {"const": "WARN"}, 
+        {"const": "ERROR"}, 
+        {"const": "FATAL"}
+      ],      
       "$comment": "Severity text (TRACE, DEBUG, INFO, WARN, ERROR, FATAL, etc.)."
     },
     "severitynumber": { 
