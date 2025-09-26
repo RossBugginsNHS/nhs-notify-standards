@@ -46,8 +46,12 @@
           "properties": {
             "teamResponsible": {
               "type": "string",
-              "const": "Team Alpha Bravo Own This"
-            }
+              "const": "Team 1"
+            },
+            "notifyDomain":{
+              "type": "string",
+              "const": "Ordering"
+            },
           }
         }
       }
