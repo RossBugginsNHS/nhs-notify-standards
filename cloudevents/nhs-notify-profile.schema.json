@@ -11,8 +11,17 @@
       "const": "1.0",
       "$comment": "CloudEvents version used. Core attributes: specversion,id,source,type (+ optional subject,time,datacontenttype,dataschema,data). Ref: CloudEvents core spec."
     },
-    "id": { "type": "string", { "type": "string", "format": "uuid", "minLength": 1, "$comment": "Unique per (source,id)." },
-    "source": { "type": "string", "minLength": 1, "$comment": "URI/URN of producer." },
+    "id": { 
+      "type": "string",  
+      "format": "uuid", 
+      "minLength": 1, 
+      "$comment": "Unique per (source,id)." 
+    },
+    "source": { 
+      "type": "string", 
+      "minLength": 1, 
+      "$comment": "URI/URN of producer." 
+    },
     "type": {
       "type": "string",
       "minLength": 1,
