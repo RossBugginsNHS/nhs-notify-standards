@@ -276,6 +276,7 @@
             "properties": {
                 "metadata": {
                     "type": "object",
+                    "additionalProperties": false,
                     "required": [
                         "version",
                         "teamResponsible"
