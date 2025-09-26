@@ -1,179 +1,260 @@
 {
-  "$id": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-profile.schema.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "NHS Notify CloudEvents Profile",
-  "type": "object",
-  "additionalProperties": true,
-  "$comment": "CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.",
-
-  
-
-  
-  "properties": {
-    "specversion": {
-      "type": "string",
-      "const": "1.0",
-      "$comment": "CloudEvents version used. Core attributes: specversion,id,source,type (+ optional subject,time,datacontenttype,dataschema,data). Ref: CloudEvents core spec."
+    "$id": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-profile.schema.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "NHS Notify CloudEvents Profile",
+    "type": "object",
+    "additionalProperties": true,
+    "$comment": "CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.",
+    "properties": {
+        "specversion": {
+            "type": "string",
+            "const": "1.0",
+            "$comment": "CloudEvents version used. Core attributes: specversion,id,source,type (+ optional subject,time,datacontenttype,dataschema,data). Ref: CloudEvents core spec."
+        },
+        "id": {
+            "type": "string",
+            "format": "uuid",
+            "minLength": 1,
+            "$comment": "Unique per (source,id)."
+        },
+        "source": {
+            "type": "string",
+            "minLength": 1,
+            "$comment": "URI/URN of producer."
+        },
+        "type": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^nhs\\.notify\\.[a-z0-9]+(\\.[a-z0-9]+)*$",
+            "allOf": [
+                {
+                    "not": {
+                        "pattern": "(?:^|\\.)completed(?:\\.|$)"
+                    }
+                },
+                {
+                    "not": {
+                        "pattern": "(?:^|\\.)finished(?:\\.|$)"
+                    }
+                },
+                {
+                    "not": {
+                        "pattern": "(?:^|\\.)updated(?:\\.|$)"
+                    }
+                },
+                {
+                    "not": {
+                        "pattern": "(?:^|\\.)changed(?:\\.|$)"
+                    }
+                },
+                {
+                    "not": {
+                        "pattern": "(?:^|\\.)processed(?:\\.|$)"
+                    }
+                },
+                {
+                    "not": {
+                        "pattern": "(?:^|\\.)handled(?:\\.|$)"
+                    }
+                },
+                {
+                    "not": {
+                        "pattern": "(?:^|\\.)status(?:\\.|$)"
+                    }
+                },
+                {
+                    "not": {
+                        "pattern": "(?:^|\\.)started(?:\\.|$)"
+                    }
+                },
+                {
+                    "not": {
+                        "pattern": "(?:^|\\.)failed(?:\\.|$)"
+                    }
+                }
+            ],
+            "$comment": "NHS naming: lower-dot namespaced; allowed chars a-z0-9 and dots; banned tokens: completed, finished, updated, changed, processed, handled, status, started, failed."
+        },
+        "subject": {
+            "type": "string",
+            "$comment": "Example: file/{fileId}."
+        },
+        "time": {
+            "type": "string",
+            "format": "date-time",
+            "$comment": "RFC3339 UTC occurred-at (REQUIRED in NHS profile)."
+        },
+        "datacontenttype": {
+            "type": "string",
+            "$comment": "Usually application/json."
+        },
+        "dataschema": {
+            "type": "string",
+            "$comment": "URI to event payload schema."
+        },
+        "data": {
+            "$comment": "Domain payload (arbitrary JSON value)."
+        },
+        "data_base64": {
+            "type": "string",
+            "contentEncoding": "base64",
+            "$comment": "Alternative representation if transporting binary."
+        },
+        "traceparent": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^00-[0-9a-f]{32}-[0-9a-f]{16}-[0-9a-f]{2}$",
+            "$comment": "W3C Trace Context traceparent (required when tracing used)."
+        },
+        "tracestate": {
+            "type": "string",
+            "$comment": "W3C Trace Context tracestate (optional)."
+        },
+        "partitionkey": {
+            "type": "string",
+            "minLength": 1,
+            "$comment": "Non-empty partition key for scaling / causal grouping."
+        },
+        "recordedtime": {
+            "type": "string",
+            "format": "date-time",
+            "$comment": "Bitemporal created-at; should be >= time."
+        },
+        "sampledrate": {
+            "type": "integer",
+            "minimum": 1,
+            "$comment": "Integer > 0 indicating how many similar occurrences this event represents."
+        },
+        "sequence": {
+            "type": "string",
+            "minLength": 1,
+            "$comment": "Lexicographically comparable ordering string per source."
+        },
+        "severitytext": {
+            "type": "string",
+            "minLength": 1,
+            "oneOf": [
+                {
+                    "const": "TRACE"
+                },
+                {
+                    "const": "DEBUG"
+                },
+                {
+                    "const": "INFO"
+                },
+                {
+                    "const": "WARN"
+                },
+                {
+                    "const": "ERROR"
+                },
+                {
+                    "const": "FATAL"
+                }
+            ],
+            "$comment": "Severity text (TRACE, DEBUG, INFO, WARN, ERROR, FATAL, etc.)."
+        },
+        "severitynumber": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 6,
+            "$comment": "Numeric severity corresponding to severitytext."
+        },
+        "dataclassification": {
+            "type": "string",
+            "minLength": 1,
+            "oneOf": [
+                {
+                    "const": "public"
+                },
+                {
+                    "const": "internal"
+                },
+                {
+                    "const": "confidential"
+                },
+                {
+                    "const": "restricted"
+                }
+            ],
+            "$comment": "Data classification e.g. public|internal|confidential|restricted."
+        },
+        "dataregulation": {
+            "type": "string",
+            "minLength": 1,
+            "oneOf": [
+                {
+                    "const": "GDPR"
+                },
+                {
+                    "const": "HIPAA"
+                },
+                {
+                    "const": "PCI-DSS"
+                },
+                {
+                    "const": "ISO-27001"
+                },
+                {
+                    "const": "NIST-800-53"
+                },
+                {
+                    "const": "CCPA"
+                }
+            ],
+            "$comment": "Regulation tags e.g. GDPR, HIPAA."
+        },
+        "datacategory": {
+            "type": "string",
+            "minLength": 1,
+            "oneOf": [
+                {
+                    "const": "on-sensitive"
+                },
+                {
+                    "const": "standard"
+                },
+                {
+                    "const": "sensitive"
+                },
+                {
+                    "const": "special-category"
+                }
+            ],
+            "$comment": "Example: special-category (GDPR), phi (HIPAA)."
+        }
     },
-    "id": { 
-      "type": "string",  
-      "format": "uuid", 
-      "minLength": 1, 
-      "$comment": "Unique per (source,id)." 
+    "required": [
+        "specversion",
+        "id",
+        "source",
+        "type",
+        "time",
+        "recordedtime",
+        "severitynumber",
+        "traceparent"
+    ],
+    "dependentRequired": {
+        "severitynumber": [
+            "severitytext"
+        ]
     },
-    "source": { 
-      "type": "string", 
-      "minLength": 1, 
-      "$comment": "URI/URN of producer." 
-    },
-    "type": {
-      "type": "string",
-      "minLength": 1,
-      "pattern": "^nhs\\.notify\\.[a-z0-9]+(\\.[a-z0-9]+)*$",
-      "allOf": [
-        { "not": { "pattern": "(?:^|\\.)completed(?:\\.|$)" } },
-        { "not": { "pattern": "(?:^|\\.)finished(?:\\.|$)" } },
-        { "not": { "pattern": "(?:^|\\.)updated(?:\\.|$)" } },
-        { "not": { "pattern": "(?:^|\\.)changed(?:\\.|$)" } },
-        { "not": { "pattern": "(?:^|\\.)processed(?:\\.|$)" } },
-        { "not": { "pattern": "(?:^|\\.)handled(?:\\.|$)" } },
-        { "not": { "pattern": "(?:^|\\.)status(?:\\.|$)" } },
-        { "not": { "pattern": "(?:^|\\.)started(?:\\.|$)" } },
-        { "not": { "pattern": "(?:^|\\.)failed(?:\\.|$)" } }
-      ],
-      "$comment": "NHS naming: lower-dot namespaced; allowed chars a-z0-9 and dots; banned tokens: completed, finished, updated, changed, processed, handled, status, started, failed."
-    },
-    "subject": { 
-      "type": "string", 
-      "$comment": "Example: file/{fileId}." 
-    },
-    "time": {
-      "type": "string",
-      "format": "date-time",
-      "$comment": "RFC3339 UTC occurred-at (REQUIRED in NHS profile)."
-    },
-    "datacontenttype": { 
-      "type": "string", 
-      "$comment": "Usually application/json." 
-    },
-    "dataschema": { 
-      "type": "string", 
-      "$comment": "URI to event payload schema." 
-    },
-    "data": { 
-      "$comment": "Domain payload (arbitrary JSON value)." 
-    },
-    
-    "data_base64": { 
-      "type": "string",  
-      "contentEncoding": "base64", 
-      "$comment": "Alternative representation if transporting binary." 
-    },
-    "traceparent": { 
-      "type": "string", 
-      "minLength": 1, 
-      "pattern": "^00-[0-9a-f]{32}-[0-9a-f]{16}-[0-9a-f]{2}$", 
-      "$comment": "W3C Trace Context traceparent (required when tracing used)." 
-    },
-    "tracestate": { 
-      "type": "string", 
-      "$comment": "W3C Trace Context tracestate (optional)." 
-    },
-    "partitionkey": { 
-      "type": "string", 
-      "minLength": 1, 
-      "$comment": "Non-empty partition key for scaling / causal grouping." 
-    },
-    "recordedtime": { 
-      "type": "string", 
-      "format": "date-time", 
-      "$comment": "Bitemporal created-at; should be >= time." 
-    },
-    "sampledrate": {
-      "type": "integer",
-      "minimum": 1,
-      "$comment": "Integer > 0 indicating how many similar occurrences this event represents."
-    },
-    "sequence": { 
-      "type": "string", 
-      "minLength": 1, 
-      "$comment": 
-      "Lexicographically comparable ordering string per source." 
-    },
-    "severitytext": { 
-      "type": "string", 
-      "minLength": 1, 
-      "oneOf": [
-        {"const": "TRACE"}, 
-        {"const": "DEBUG"}, 
-        {"const": "INFO"}, 
-        {"const": "WARN"}, 
-        {"const": "ERROR"}, 
-        {"const": "FATAL"}
-      ],      
-      "$comment": "Severity text (TRACE, DEBUG, INFO, WARN, ERROR, FATAL, etc.)."
-    },
-    "severitynumber": { 
-      "type": "integer", 
-      "minimum": 0,
-      "maximum": 6,
-      "$comment": "Numeric severity corresponding to severitytext." 
-    },
-    "dataclassification": { 
-      "type": "string",
-      "minLength": 1,
-      "oneOf": [
-        {"const": "public"}, 
-        {"const": "internal"}, 
-        {"const": "confidential"}, 
-        {"const": "restricted"}
-      ],
-      "$comment": "Data classification e.g. public|internal|confidential|restricted." 
-    },
-    "dataregulation": { 
-      "type": "string", 
-      "minLength": 1, 
-      "oneOf": [
-        {"const": "GDPR"}, 
-        {"const": "HIPAA"}, 
-        {"const": "PCI-DSS"}, 
-        {"const": "ISO-27001"}, 
-        {"const": "NIST-800-53"}, 
-        {"const": "CCPA"}
-      ],
-      "$comment": "Regulation tags e.g. GDPR, HIPAA." 
-    },
-    "datacategory": {
-      "type": "string", 
-      "minLength": 1, 
-       "oneOf": [
-         {"const": "on-sensitive"}, 
-         {"const": "standard"}, 
-         {"const": "sensitive"}, 
-         {"const": "special-category"}
-       ],
-      "$comment": "Example: special-category (GDPR), phi (HIPAA)." 
-    }
-  },
-  "required": [
-    "specversion",
-    "id",
-    "source",
-    "type",
-    "time",
-    "recordedtime",
-    "severitynumber",
-    "traceparent"
-  ],
-  "dependentRequired": {
-    "severitynumber": ["severitytext"]
-  },
-  "allOf": [
-    {
-      "if": { "required": ["data_base64"] },
-      "then": { "properties": { "datacontenttype": { "type": "string" } } }
-    }
-  ],
-  "description": "NHS Notify profile for CloudEvents 1.0 with selected extensions."
+    "allOf": [
+        {
+            "if": {
+                "required": [
+                    "data_base64"
+                ]
+            },
+            "then": {
+                "properties": {
+                    "datacontenttype": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    ],
+    "description": "NHS Notify profile for CloudEvents 1.0 with selected extensions."
 }
- 
