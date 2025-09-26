@@ -34,7 +34,6 @@
       ]
     }
   },
-  
   "$defs": {
     "TeamAlphaBravoMetadata": {
       "$comment": "Notify Metadata",
@@ -48,10 +47,10 @@
               "type": "string",
               "const": "Team 1"
             },
-            "notifyDomain":{
+            "notifyDomain": {
               "type": "string",
               "const": "Ordering"
-            },
+            }
           }
         }
       }
