@@ -4,8 +4,8 @@
   "title": "Example Event",
   "description": "Example  event",
    "type": "object",
-  "allOf": [{ "$ref": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-profile.schema.json" }],
+  "allOf": [{ "$ref": "https://raw.githubusercontent.com/NHSDigital/nhs-notify-standards/refs/heads/main/cloudevents/nhs-notify-profile.schema.json" }],
   "properties": {
-    "data": { "$ref": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/example-data.json" }
+    "data": { "$ref": "https://raw.githubusercontent.com/NHSDigital/nhs-notify-standards/refs/heads/main/cloudevents/example-data.json" }
   }
 }
