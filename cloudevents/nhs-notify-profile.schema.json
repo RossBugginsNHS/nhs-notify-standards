@@ -122,13 +122,13 @@
     "severitynumber",
     "data"
   ],
-  
   "dependentRequired": {
     "severitynumber": ["severitytext"]
-  }
-  
-  "oneOf": ["data", "data_base64"],
-  
+  },
+  "oneOf": [
+    "data", 
+    "data_base64"
+  ],
   "allOf": [
     {
       "if": { "required": ["data_base64"] },
