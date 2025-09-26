@@ -6,16 +6,22 @@
   "additionalProperties": true,
   "$comment": "CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.",
       "oneOf": [
-        "properties" :{
-          "data": { 
-            "$comment": "Domain payload (arbitrary JSON value)." 
+        {
+          "type": "object",
+          "properties" :{
+            "data": { 
+              "$comment": "Domain payload (arbitrary JSON value)." 
+            }
           }
         },
-         "properties" :{
-        "data_base64": { 
-          "type": "string",  
-          "contentEncoding": "base64", 
-          "$comment": "Alternative representation if transporting binary." 
+        {
+          "type": "object",
+          "properties" :{
+            "data_base64": { 
+              "type": "string",  
+              "contentEncoding": "base64", 
+              "$comment": "Alternative representation if transporting binary." 
+            }
           }
         }
     ],
