@@ -5,6 +5,6 @@
   "description": "Example data type",
   
   "properties": {
-    "nhsnumber": { "$ref": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/common/nhs/NhsNumber/1-0-0.json#/NhsNumber" }{ "type": "object" }
+    "nhsnumber": { "$ref": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/common/nhs/NhsNumber/1-0-0.json#/NhsNumber" }
   }
 }
