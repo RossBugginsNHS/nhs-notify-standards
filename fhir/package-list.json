@@ -1,0 +1,15 @@
+{
+  "package-id": "nhsdigital.nhs-notify-letters",
+  "title": "NHS Notify – FHIR Letter Printing IG",
+  "canonical": "https://nhsdigital.github.io/nhs-notify-standards/fhir",
+  "list": [
+    {
+      "version": "0.1.0",
+      "date": "2025-09-29",
+      "desc": "Initial draft (non-normative) for pilot feedback.",
+      "path": "https://nhsdigital.github.io/nhs-notify-standards/fhir",
+      "status": "draft",
+      "sequence": "STU"
+    }
+  ]
+}

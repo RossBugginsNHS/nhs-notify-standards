@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "IG: Build",
+      "type": "shell",
+      "command": "./tools/build.sh",
+      "options": { "cwd": "${workspaceFolder}/fhir" },
+      "problemMatcher": []
+    },
+    {
+      "label": "IG: Clean",
+      "type": "shell",
+      "command": "./tools/clean.sh",
+      "options": { "cwd": "${workspaceFolder}/fhir" },
+      "problemMatcher": []
+    }
+  ]
+}

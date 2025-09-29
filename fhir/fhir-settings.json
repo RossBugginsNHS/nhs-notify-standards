@@ -1,0 +1,9 @@
+
+{
+  "packageRegistry": [
+    "https://packages2.fhir.org/packages",
+    "https://packages.fhir.org/packages",
+    "https://registry.fhir.org/packages",
+    "https://packages.simplifier.net"
+  ]
+}

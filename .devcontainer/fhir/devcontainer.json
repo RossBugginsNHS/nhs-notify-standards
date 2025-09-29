@@ -1,0 +1,44 @@
+{
+  "name": "NHS Notify FHIR IG",
+  "image": "mcr.microsoft.com/devcontainers/java:17-bookworm",
+  "workspaceFolder": "/workspaces/nhs-notify-standards",
+  "remoteUser": "vscode",
+
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": { "version": "20" },
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "redhat.vscode-yaml",
+        "streetsidesoftware.code-spell-checker",
+        "yzhang.markdown-all-in-one",
+        "EditorConfig.EditorConfig",
+        "MITRE-CTF.vscode-language-fsh"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "files.eol": "\n",
+        "editor.tabSize": 2,
+        "yaml.format.enable": true
+      }
+    }
+  },
+
+  "containerEnv": {
+    "IG_ROOT": "/workspaces/nhs-notify-standards/fhir",
+    "IG_TOOLS": "/workspaces/nhs-notify-standards/fhir/tools",
+    "JAVA_TOOL_OPTIONS": "-Dfile.encoding=UTF-8"
+  },
+
+  "mounts": [
+    "source=nhsnotify-txcache,target=/workspaces/nhs-notify-standards/fhir/txCache,type=volume",
+    "source=nhsnotify-npmcache,target=/home/vscode/.npm,type=volume"
+  ],
+
+  "postCreateCommand": "bash .devcontainer/fhir/scripts/setup.sh",
+  "postStartCommand": "echo 'Dev container started. Try: cd fhir && ./tools/build.sh'",
+  "runArgs": ["--init", "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"]
+}
