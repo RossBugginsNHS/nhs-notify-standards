@@ -23,6 +23,7 @@ Usage: #example
 Instance: ExampleLetterBinary
 InstanceOf: LetterBinary
 Usage: #example
+* meta.profile[0] = "https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-binary"
 * contentType = #application/pdf
 * data = "SGVsbG8gd29ybGQ=" // 'Hello world' in base64
 
