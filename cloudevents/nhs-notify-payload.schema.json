@@ -6,12 +6,18 @@
   "additionalProperties": false,
   "required": [
     "notify-data",
-    "notify-metadata"
+    "notify-metadata",
+    "customer-id"
   ],
   "properties": {
     "notify-data": {
       "type": "object",
       "additionalProperties": true
+    },
+    "customer-id" : {
+      "type": "string",
+      "format": "uuid",
+      "description": "Customer ID (UUID)"
     },
     "notify-metadata": {
       "type": "object",

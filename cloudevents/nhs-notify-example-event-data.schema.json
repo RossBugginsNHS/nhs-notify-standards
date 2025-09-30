@@ -3,6 +3,10 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Example data type",
   "description": "Example data type",
-   "type": "object",
-  "allOf": [ { "$ref": "./nhs-number.schema.json" }]
+  "type": "object",
+  "additionalProperties": false,
+  "properties": { "nhsNumber": {
+    "$ref": "./nhs-number.schema.json#/properties/nhsNumber"
+  } },
+  "required": [ "nhsNumber" ]
 }

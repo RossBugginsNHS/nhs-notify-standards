@@ -1,34 +1,35 @@
 {
   "type": "uk.nhs.notify.ordering.order.read",
   "source": "/ordering",
-  "subject": "customer/8a0fc62f-5c56-4a20-b048-0b0b95c67890/order/b4143df1-5d61-4b85-87be-c75d7fcbdb4e/item/302b7e40-db35-43d8-ab95-bb3a106870e0",
+  "subject": "customer/53784c09-8429-4595-b4e1-fd763fbab518/order/7ec7cd5a-5012-41a1-a09e-411009701014/item/d306a936-d9e8-45af-85d0-31ab4489dcc2",
   "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json",
   "data": {
     "notify-payload": {
       "notify-data": {
-        "ad_99": "Ut ipsum ut reprehenderit magna",
-        "nhsNumber": "7846323944"
+        "nhsNumber": "910094 0214"
       },
       "notify-metadata": {
         "teamResponsible": "Team 1",
         "notifyDomain": "Ordering",
-        "version": "76094548831.9.0"
-      }
+        "microservice": "pgn67BOs6",
+        "version": "0.0.0+L6v8vhj.QvO.E"
+      },
+      "customer-id": "4cec07c7-e9b7-44d5-8764-9915f3f1cab0"
     }
   },
   "specversion": "1.0",
-  "id": "b6b11eec-7ebe-4304-ae3c-8b80f86ff6fe",
-  "time": "1968-02-05T10:01:21.0Z",
+  "id": "a729415a-4f61-4b1c-b33d-72d4d2242db6",
+  "time": "1891-02-20T22:02:41.0Z",
   "datacontenttype": "application/json",
-  "traceparent": "00-53a02464a82af55b58187cdbc1362571-28ec1da149acb0a3-45",
-  "tracestate": "occaecat Ut veniam in eu",
-  "partitionkey": "-a",
-  "recordedtime": "1914-05-21T03:48:09.0Z",
-  "sampledrate": 8642893,
-  "sequence": "40078890280089170514",
+  "traceparent": "00-50294444bd53615716b051388d8b2647-3041865b6cdff398-6e",
+  "tracestate": "quis",
+  "partitionkey": "so1bkgds2c",
+  "recordedtime": "1892-02-28T05:46:54.0Z",
+  "sampledrate": 96873868,
+  "sequence": "74758784035759473436",
   "severitytext": "WARN",
-  "severitynumber": 0,
+  "severitynumber": 6,
   "dataclassification": "restricted",
   "dataregulation": "GDPR",
-  "datacategory": "sensitive"
+  "datacategory": "standard"
 }
