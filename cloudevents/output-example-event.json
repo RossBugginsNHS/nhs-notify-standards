@@ -1,0 +1,21 @@
+{
+  "type": "uk.nhs.notify.ordering.order.read",
+  "source": "/ordering/order-read",
+  "data": {
+    "nhsNumber": "979-117 8946",
+    "metadata": {
+      "teamResponsible": "Team 3",
+      "notifyDomain": "Ordering",
+      "version": "71.83450872493.0+nQlV2cF.ZOYu0P-S.ExwXe.pt.8avckFG.FfEE2ZPf.bAQ.rd.1lrV"
+    }
+  },
+  "specversion": "1.0",
+  "id": "601d339d-c909-13ad-4834-baef85f3cc4c",
+  "time": "1900-10-20T01:52:39.0Z",
+  "traceparent": "00-703cd8c6ccc5c01d6c5633eaf6eb3a35-42a387ef6f49352c-44",
+  "recordedtime": "1957-08-23T10:12:32.0Z",
+  "sequence": "dolor veniam Lorem",
+  "severitynumber": 6,
+  "dataclassification": "confidential",
+  "dataregulation": "CCPA"
+}

@@ -18,6 +18,7 @@ CloudEvents is a specification for describing event data in a common way. The NH
 - [`output-example-event.json`](output-example-event.json): Example of a valid CloudEvent payload.
 - [`common/`](common/): Shared NHS-specific schema definitions and utilities.
 
+
 ## Usage
 
 1. **Validate CloudEvents:**
