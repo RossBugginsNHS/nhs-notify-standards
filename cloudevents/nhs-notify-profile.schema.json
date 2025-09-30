@@ -19,8 +19,10 @@
     },
     "source": {
       "type": "string",
+      "pattern": "^/(?:[a-z0-9-]+)(?:/[a-z0-9-]+)*$",
       "minLength": 1,
-      "$comment": "URI/URN of producer."
+      "format": "uri-reference",
+      "$comment": "URI path: must start with '/', only lowercase alphanumeric and hyphen segments separated by '/', must not end with '/'."
     },
     "type": {
       "type": "string",
