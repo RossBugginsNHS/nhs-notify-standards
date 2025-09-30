@@ -30,16 +30,23 @@ To generate example data from a schema, use the provided Makefile target:
 make generate-default
 ```
 
+To validate:
+
+```sh
+make validate
+```
+
 This will run the generator and create a file locally in the `output` folder.
 
 ## Usage
 
 1. **Validate CloudEvents:**
-   - Use the provided JSON Schema to validate your CloudEvent payloads for NHS Notify compatibility.
-   - Example (using `ajv`):
-     ```sh
-     npx ajv validate -s nhs-notify-profile.schema.json -d eoutput-example-event.json
-     ```
+    - Use the provided JSON Schema to validate your CloudEvent payloads for NHS Notify compatibility.
+    - Example (using the included Node.js script, which supports draft 2020-12):
+       ```sh
+       node validate.js nhs-notify-profile.schema.json output-example-event.json
+       ```
+    - The script will print validation errors if the data is invalid.
 2. **Reference Examples:**
    - Use the example files as templates for constructing your own events.
 3. **Extend or Reuse:**

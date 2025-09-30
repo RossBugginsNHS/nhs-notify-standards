@@ -25,7 +25,7 @@
     "type": {
       "type": "string",
       "minLength": 1,
-      "pattern": "^nhs\\.notify\\.[a-z0-9]+(\\.[a-z0-9]+)*$",
+      "pattern": "^uk\\.nhs\\.notify\\.[a-z0-9]+(\\.[a-z0-9]+)*$",
       "allOf": [
         {
           "not": {
@@ -95,16 +95,15 @@
     "data": {
       "type": "object",
       "additionalProperties": false,
-          "required": [
+      "required": [
         "notify-payload"
       ],
       "properties": {
         "notify-payload": {
-          
           "type": "object",
           "allOf": [
             {
-              "$ref": "#/$defs/NotifyPayload"
+              "$ref": "./nhs-notify-payload.schema.json"
             }
           ]
         }
@@ -130,8 +129,8 @@
       "type": "string",
       "minLength": 1,
       "maxLength": 64,
-  "pattern": "^[a-z0-9-]+$",
-  "$comment": "Non-empty partition key for scaling / causal grouping. Must be 1-64 characters, only lowercase letters, numbers, and hyphen."
+      "pattern": "^[a-z0-9-]+$",
+      "$comment": "Non-empty partition key for scaling / causal grouping. Must be 1-64 characters, only lowercase letters, numbers, and hyphen."
     },
     "recordedtime": {
       "type": "string",
@@ -276,83 +275,5 @@
       }
     }
   ],
-  "description": "NHS Notify profile for CloudEvents 1.0 with selected extensions.",
-  "$defs": {
-     "NotifyPayload": {
-      "$comment": "Notify Payload",
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "notify-data"
-      ],
-      "properties": {
-        "notify-data": {
-          "type": "object"}},
-
-        "allOf": [
-        {
-          "$ref": "#/$defs/NotifyMetadata"
-        }]
-
-    },
-
-
-    "NotifyMetadata": {
-      "$comment": "Notify Metadata",
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "notify-metadata"
-      ],
-      "description": "Notify Metadata",
-      "properties": {
-        "notify-metadata": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "version",
-            "teamResponsible",
-            "notifyDomain"
-          ],
-          "properties": {
-            "teamResponsible": {
-              "type": "string",
-              "oneOf": [
-                {
-                  "const": "Team 1"
-                },
-                {
-                  "const": "Team 2"
-                },
-                {
-                  "const": "Team 3"
-                }
-              ]
-            },
-            "notifyDomain": {
-              "type": "string",
-              "oneOf": [
-                {
-                  "const": "Ordering"
-                },
-                {
-                  "const": "Delivering"
-                },
-                {
-                  "const": "Reporting"
-                },
-                {
-                  "const": "Enquries"
-                }
-              ]
-            },
-            "version": {
-              "type": "string",
-              "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
-            }
-          }
-        }
-      }
-    }
-  }
+  "description": "NHS Notify profile for CloudEvents 1.0 with selected extensions."
 }

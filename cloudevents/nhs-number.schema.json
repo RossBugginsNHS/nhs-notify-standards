@@ -5,7 +5,7 @@
   "description": "Reusable types for NHS Notify payload schemas.",
   "properties": {
     "nhsNumber": {
-      "oneOf": [
+      "anyOf": [
         { "$ref": "#/$defs/NhsNumber10" },
         { "$ref": "#/$defs/NhsNumberFormatted" }
       ]

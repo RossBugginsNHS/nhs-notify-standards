@@ -58,7 +58,6 @@
     },
     "ExampleData": {
       "type": "object",
-      "additionalProperties": false,
       "allOf": [
         {
           "$ref": "./nhs-notify-example-event-data.schema.json"
@@ -77,7 +76,6 @@
       "$comment": "Notify Metadata",
       "type": "object",
       "description": "Notify Metadata",
-      "additionalProperties": false,
       "properties": {
         "teamResponsible": {
           "type": "string",

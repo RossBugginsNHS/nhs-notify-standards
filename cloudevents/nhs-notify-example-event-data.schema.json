@@ -4,5 +4,5 @@
   "title": "Example data type",
   "description": "Example data type",
    "type": "object",
-  "allOf": [ { "$ref": "./common/nhs/NhsNumber/1-0-0.json" }]
+  "allOf": [ { "$ref": "./nhs-number.schema.json" }]
 }

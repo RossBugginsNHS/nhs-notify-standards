@@ -1,0 +1,25 @@
+{
+  "$id": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-payload.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "Notify Payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "notify-data",
+    "notify-metadata"
+  ],
+  "properties": {
+    "notify-data": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "notify-metadata": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "./nhs-notify-metadata.schema.json"
+        }
+      ]
+    }
+  }
+}
