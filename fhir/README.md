@@ -1,6 +1,9 @@
 
 # NHS Notify – FHIR Letter Printing IG
 
+## Viewing the FHIR Letter Printing Implementation Guide
+
+View the [FHIR Letter Printing Implementation Guide](docs/index.html)
 ## Quick Start
 
 ### Using the Dev Container
