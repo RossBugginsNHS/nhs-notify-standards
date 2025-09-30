@@ -24,6 +24,13 @@
       "format": "uri-reference",
       "$comment": "Must begin with '/data-plane' or '/control-plane'. Subsequent segments: lowercase alphanumeric or hyphen. No trailing '/'."
     },
+    "subject": {
+      "type": "string",
+      "pattern": "^(?:[a-z0-9-]+)(?:/[a-z0-9-]+)*$",
+      "minLength": 5,
+      "format": "uri-reference",
+      "$comment": "URI path: must not start with '/', only lowercase alphanumeric and hyphen segments separated by '/', must not end with '/'."
+    },    
     "type": {
       "type": "string",
       "minLength": 1,
@@ -76,13 +83,6 @@
         }
       ],
       "$comment": "NHS naming: lower-dot namespaced; allowed chars a-z0-9 and dots; banned tokens: completed, finished, updated, changed, processed, handled, status, started, failed."
-    },
-    "subject": {
-      "type": "string",
-      "pattern": "^(?:[a-z0-9-]+)(?:/[a-z0-9-]+)*$",
-      "minLength": 5,
-      "format": "uri-reference",
-      "$comment": "URI path: must not start with '/', only lowercase alphanumeric and hyphen segments separated by '/', must not end with '/'."
     },
     "time": {
       "type": "string",
@@ -262,4 +262,24 @@
     ]
   },
   "description": "NHS Notify profile for CloudEvents 1.0 with selected extensions."
+  ,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "source": { "pattern": "^/data-plane" }
+        },
+        "required": ["source"]
+      },
+      "then": {
+        "properties": {
+          "subject": {
+            "pattern": "^customer/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}(?:/(?:[a-z0-9-]+|[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*$",
+            "$comment": "When source is /data-plane..., subject must start with customer/{uuid} and may have further segments which are either lowercase tokens or UUIDs."
+          }
+        },
+        "required": ["subject"]
+      }
+    }
+  ]
 }

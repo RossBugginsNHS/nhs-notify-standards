@@ -13,12 +13,8 @@
     "notify-data": {
       "type": "object",
       "oneOf": [
-        {
-          "$ref": "#/$defs/DataPlane"
-        },
-        {
-          "$ref": "#/$defs/ControlPlane"
-        }
+        { "$ref": "#/$defs/DataPlane" },
+        { "$ref": "#/$defs/ControlPlane" }
       ],
       "additionalProperties": true
     },
@@ -33,25 +29,19 @@
   },
   "$defs": {
     "DataPlane": {
+      "$comment": "Data plane notify-data must include customer-id",
       "type": "object",
-      "required": [
-        "customer-id"
-      ],
+      "required": ["customer-id"],
       "properties": {
-        "customer-id": {
-          "type": "string",
-          "format": "uuid",
-          "description": "Customer ID (UUID)"
-        }
-      }
+        "customer-id": { "type": "string", "format": "uuid" }
+      },
+      "additionalProperties": true
     },
     "ControlPlane": {
+      "$comment": "Control plane notify-data must not contain customer-id",
       "type": "object",
-      "not": {
-        "required": [
-          "customer-id"
-        ]
-      }
+      "not": { "required": ["customer-id"] },
+      "additionalProperties": true
     }
   }
 }
