@@ -1,12 +1,12 @@
 {
-  "$id": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/example.json",
+  "$id": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Example Event",
   "description": "Example  event",
   "type": "object",
   "allOf": [
     {
-      "$ref": "https://raw.githubusercontent.com/NHSDigital/nhs-notify-standards/refs/heads/main/cloudevents/nhs-notify-profile.schema.json"
+      "$ref": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-profile.schema.json"
     }
   ],
   "properties": {
@@ -20,13 +20,13 @@
     },
     "dataschema": {
       "type": "string",
-      "const": "https://raw.githubusercontent.com/NHSDigital/nhs-notify-standards/refs/heads/main/cloudevents/example-data.json"
+      "const": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json"
     },
     "data": {
       "type": "object",
       "allOf": [
         {
-          "$ref": "https://raw.githubusercontent.com/NHSDigital/nhs-notify-standards/refs/heads/main/cloudevents/example-data.json"
+          "$ref": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json"
         },
         {
           "$ref": "#/$defs/TeamAlphaBravoMetadata"

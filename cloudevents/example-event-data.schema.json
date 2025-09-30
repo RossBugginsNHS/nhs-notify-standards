@@ -1,8 +1,0 @@
-{
-  "$id": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/example-data.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Example data type",
-  "description": "Example data type",
-   "type": "object",
-  "allOf": [ { "$ref": "https://raw.githubusercontent.com/NHSDigital/nhs-notify-standards/refs/heads/main/cloudevents/common/nhs/NhsNumber/1-0-0.json" }]
-}
