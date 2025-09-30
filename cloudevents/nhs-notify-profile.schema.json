@@ -19,10 +19,10 @@
     },
     "source": {
       "type": "string",
-      "pattern": "^/(?:[a-z0-9-]+)(?:/[a-z0-9-]+)*$",
-      "minLength": 5,
+      "pattern": "^/(data-plane|control-plane)(?:/[a-z0-9-]+)*$",
+      "minLength": 12,
       "format": "uri-reference",
-      "$comment": "URI path: must start with '/', only lowercase alphanumeric and hyphen segments separated by '/', must not end with '/'."
+      "$comment": "Must begin with '/data-plane' or '/control-plane'. Subsequent segments: lowercase alphanumeric or hyphen. No trailing '/'."
     },
     "type": {
       "type": "string",

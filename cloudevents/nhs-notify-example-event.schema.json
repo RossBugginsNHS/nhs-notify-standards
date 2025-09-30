@@ -16,7 +16,7 @@
     },
     "source": {
       "type": "string",
-      "const": "/ordering"
+      "const": "/data-plane/ordering"
     },
     "subject": {
       "type": "string",

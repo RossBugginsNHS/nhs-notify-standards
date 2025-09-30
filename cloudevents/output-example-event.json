@@ -1,7 +1,7 @@
 {
   "type": "uk.nhs.notify.ordering.order.read",
-  "source": "/ordering",
-  "subject": "customer/3db85962-d2ff-42fa-a985-f8c3ddc042d6/order/7ba405a0-3d2e-43e7-8dc5-37ff68b5fced/item/6bd90f34-0233-43b3-b4be-1e0bec3eb5bc",
+  "source": "/data-plane/ordering",
+  "subject": "customer/cc8fcce6-64ca-40e2-b8e3-1992a197aa42/order/57ca9a02-c5c3-4141-b446-751a4692ac37/item/112b39e1-278f-424a-824a-8a184236fde0",
   "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json",
   "data": {
     "notify-payload": {
@@ -11,25 +11,24 @@
       "notify-metadata": {
         "teamResponsible": "Team 1",
         "notifyDomain": "Ordering",
-        "microservice": "HBY1KeZ",
-        "version": "0.54258223.0"
-      },
-      "plane-type": "data"
+        "microservice": "X45",
+        "version": "0.0.8356077-0.1.0+bLKVytrQ"
+      }
     }
   },
   "specversion": "1.0",
-  "id": "b39630b2-d554-46f4-b50b-6bb7f5fb77c8",
-  "time": "1932-05-15T17:11:55.0Z",
+  "id": "19855c52-eb31-4ca0-bc1e-9aada979f77f",
+  "time": "1906-07-26T21:07:36.0Z",
   "datacontenttype": "application/json",
-  "traceparent": "00-501d84f0e6b642d402668331dd2ac84b-520a89034c67555a-fd",
-  "tracestate": "ut Excepteur reprehenderit",
-  "partitionkey": "itii2878dy",
-  "recordedtime": "1940-10-29T10:27:39.0Z",
-  "sampledrate": 67890974,
-  "sequence": "59026197787414484056",
-  "severitytext": "FATAL",
+  "traceparent": "00-db9ca508f1d10853c439be329e48be6c-14606942cb56ed67-60",
+  "tracestate": "sit quis culpa consectetur commodo",
+  "partitionkey": "vdalud3",
+  "recordedtime": "1959-06-29T01:56:29.0Z",
+  "sampledrate": 92820668,
+  "sequence": "67531863673916165619",
+  "severitytext": "INFO",
   "severitynumber": 3,
-  "dataclassification": "internal",
-  "dataregulation": "HIPAA",
+  "dataclassification": "public",
+  "dataregulation": "CCPA",
   "datacategory": "special-category"
 }

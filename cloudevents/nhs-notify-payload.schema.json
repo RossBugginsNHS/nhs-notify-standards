@@ -6,18 +6,10 @@
   "additionalProperties": false,
   "required": [
     "notify-data",
-    "notify-metadata",
-    "plane-type"
+    "notify-metadata"
   ],
   "properties": {
-    "plane-type": {
-      "type": "string",
-      "enum": [
-        "data",
-        "control"
-      ],
-      "description": "Indicates whether this event is a data plane or control plane event. Must align with presence of customer-id in notify-data."
-    },
+    
     "notify-data": {
       "type": "object",
       "oneOf": [
@@ -61,37 +53,5 @@
         ]
       }
     }
-  },
-  "allOf": [
-    {
-      "if": {
-        "properties": {
-          "notify-data": {
-            "properties": {
-              "customer-id": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "customer-id"
-            ]
-          }
-        }
-      },
-      "then": {
-        "properties": {
-          "plane-type": {
-            "const": "data"
-          }
-        }
-      },
-      "else": {
-        "properties": {
-          "plane-type": {
-            "const": "data"
-          }
-        }
-      }
-    }
-  ]
+  }
 }
