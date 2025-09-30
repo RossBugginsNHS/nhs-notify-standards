@@ -6,4 +6,4 @@ generate:
 	npm run generate -- $(ARGS)
 
 generate-default:
-	npm run generate -- nhs-notify-example-event.schema.json output-example-event.json
+	npm run generate -- nhs-notify-example-event.schema.json output/output-example-event.json
