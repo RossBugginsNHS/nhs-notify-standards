@@ -13,9 +13,9 @@ CloudEvents is a specification for describing event data in a common way. The NH
 ## Key Files
 
 - [`nhs-notify-profile.schema.json`](nhs-notify-profile.schema.json): Main JSON Schema for NHS Notify CloudEvent profiles.
-- [`example-event.schema.json`](example-data.json): example event.
-- [`example-event-data.schema.json`](example-data.json): example event data.
-- [`example-event-payload.json`](example-event-payload.json): Example of a valid CloudEvent payload.
+- [`nhs-notify-example-event.schema.json`](nhs-notify-example-event.schema.json): example event.
+- [`nhs-notify-example-event-data.schema.json`](nhs-notify-example-event-data.schema.json): example event data.
+- [`output-example-event.json`](output-example-event.json): Example of a valid CloudEvent payload.
 - [`common/`](common/): Shared NHS-specific schema definitions and utilities.
 
 ## Usage
@@ -24,7 +24,7 @@ CloudEvents is a specification for describing event data in a common way. The NH
    - Use the provided JSON Schema to validate your CloudEvent payloads for NHS Notify compatibility.
    - Example (using `ajv`):
      ```sh
-     npx ajv validate -s nhs-notify-profile.schema.json -d example-event-payload.json
+     npx ajv validate -s nhs-notify-profile.schema.json -d eoutput-example-event.json
      ```
 2. **Reference Examples:**
    - Use the example files as templates for constructing your own events.
