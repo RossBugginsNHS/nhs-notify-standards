@@ -47,7 +47,7 @@
   POSSIBILITY OF SUCH DAMAGE.
   
 
-  Generated on Fri, Sep 26, 2025 21:39+0000 for FHIR v6.0.0-ballot3 
+  Generated on Mon, Sep 29, 2025 19:05+0000 for FHIR v6.0.0-ballot3 
 -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xml="http://www.w3.org/XML/1998/namespace" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="6.0.0-ballot3">
   <!-- Note: When using this schema with some tools, it may also be necessary to declare xmlns:xml="http://www.w3.org/XML/1998/namespace", however this causes performance issues with other tools and thus is not in the base schemas. -->
@@ -57631,12 +57631,12 @@ Deceased patients may also be marked as inactive for the same reasons, but may b
   </xs:complexType>
   <xs:element name="ResearchStudy" type="ResearchStudy">
     <xs:annotation>
-      <xs:documentation xml:lang="en">A scientific study intended to increase health-related knowledge. For example, clinical trials are research studies that involve people. These studies may be related to new ways to screen, prevent, diagnose, and treat disease. They may also study certain outcomes and certain groups of people by looking at data collected in the past or future.</xs:documentation>
+      <xs:documentation xml:lang="en">A research study is a scientific investigation designed to generate health-related knowledge. This can include clinical trials involving human participants (or animals in the case of veterinary clinical trials). These studies may be related to new ways to screen, prevent, diagnose, and treat disease. Research studies may also analyze data collected from individuals in the past (retrospective studies) or future (prospective studies) to understand specific outcomes or trends in particular populations.</xs:documentation>
     </xs:annotation>
   </xs:element>
   <xs:complexType name="ResearchStudy">
     <xs:annotation>
-      <xs:documentation xml:lang="en">A scientific study intended to increase health-related knowledge. For example, clinical trials are research studies that involve people. These studies may be related to new ways to screen, prevent, diagnose, and treat disease. They may also study certain outcomes and certain groups of people by looking at data collected in the past or future.</xs:documentation>
+      <xs:documentation xml:lang="en">A research study is a scientific investigation designed to generate health-related knowledge. This can include clinical trials involving human participants (or animals in the case of veterinary clinical trials). These studies may be related to new ways to screen, prevent, diagnose, and treat disease. Research studies may also analyze data collected from individuals in the past (retrospective studies) or future (prospective studies) to understand specific outcomes or trends in particular populations.</xs:documentation>
       <xs:documentation xml:lang="en">If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
@@ -57808,7 +57808,7 @@ Deceased patients may also be marked as inactive for the same reasons, but may b
   </xs:complexType>
   <xs:complexType name="ResearchStudy.Label">
     <xs:annotation>
-      <xs:documentation xml:lang="en">A scientific study intended to increase health-related knowledge. For example, clinical trials are research studies that involve people. These studies may be related to new ways to screen, prevent, diagnose, and treat disease. They may also study certain outcomes and certain groups of people by looking at data collected in the past or future.</xs:documentation>
+      <xs:documentation xml:lang="en">A research study is a scientific investigation designed to generate health-related knowledge. This can include clinical trials involving human participants (or animals in the case of veterinary clinical trials). These studies may be related to new ways to screen, prevent, diagnose, and treat disease. Research studies may also analyze data collected from individuals in the past (retrospective studies) or future (prospective studies) to understand specific outcomes or trends in particular populations.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="BackboneElement">
@@ -57834,7 +57834,7 @@ Deceased patients may also be marked as inactive for the same reasons, but may b
   </xs:complexType>
   <xs:complexType name="ResearchStudy.RelatesTo">
     <xs:annotation>
-      <xs:documentation xml:lang="en">A scientific study intended to increase health-related knowledge. For example, clinical trials are research studies that involve people. These studies may be related to new ways to screen, prevent, diagnose, and treat disease. They may also study certain outcomes and certain groups of people by looking at data collected in the past or future.</xs:documentation>
+      <xs:documentation xml:lang="en">A research study is a scientific investigation designed to generate health-related knowledge. This can include clinical trials involving human participants (or animals in the case of veterinary clinical trials). These studies may be related to new ways to screen, prevent, diagnose, and treat disease. Research studies may also analyze data collected from individuals in the past (retrospective studies) or future (prospective studies) to understand specific outcomes or trends in particular populations.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="BackboneElement">
@@ -57860,7 +57860,7 @@ Deceased patients may also be marked as inactive for the same reasons, but may b
   </xs:complexType>
   <xs:complexType name="ResearchStudy.AssociatedParty">
     <xs:annotation>
-      <xs:documentation xml:lang="en">A scientific study intended to increase health-related knowledge. For example, clinical trials are research studies that involve people. These studies may be related to new ways to screen, prevent, diagnose, and treat disease. They may also study certain outcomes and certain groups of people by looking at data collected in the past or future.</xs:documentation>
+      <xs:documentation xml:lang="en">A research study is a scientific investigation designed to generate health-related knowledge. This can include clinical trials involving human participants (or animals in the case of veterinary clinical trials). These studies may be related to new ways to screen, prevent, diagnose, and treat disease. Research studies may also analyze data collected from individuals in the past (retrospective studies) or future (prospective studies) to understand specific outcomes or trends in particular populations.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="BackboneElement">
@@ -57896,7 +57896,7 @@ Deceased patients may also be marked as inactive for the same reasons, but may b
   </xs:complexType>
   <xs:complexType name="ResearchStudy.ProgressStatus">
     <xs:annotation>
-      <xs:documentation xml:lang="en">A scientific study intended to increase health-related knowledge. For example, clinical trials are research studies that involve people. These studies may be related to new ways to screen, prevent, diagnose, and treat disease. They may also study certain outcomes and certain groups of people by looking at data collected in the past or future.</xs:documentation>
+      <xs:documentation xml:lang="en">A research study is a scientific investigation designed to generate health-related knowledge. This can include clinical trials involving human participants (or animals in the case of veterinary clinical trials). These studies may be related to new ways to screen, prevent, diagnose, and treat disease. Research studies may also analyze data collected from individuals in the past (retrospective studies) or future (prospective studies) to understand specific outcomes or trends in particular populations.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="BackboneElement">
@@ -57922,7 +57922,7 @@ Deceased patients may also be marked as inactive for the same reasons, but may b
   </xs:complexType>
   <xs:complexType name="ResearchStudy.Recruitment">
     <xs:annotation>
-      <xs:documentation xml:lang="en">A scientific study intended to increase health-related knowledge. For example, clinical trials are research studies that involve people. These studies may be related to new ways to screen, prevent, diagnose, and treat disease. They may also study certain outcomes and certain groups of people by looking at data collected in the past or future.</xs:documentation>
+      <xs:documentation xml:lang="en">A research study is a scientific investigation designed to generate health-related knowledge. This can include clinical trials involving human participants (or animals in the case of veterinary clinical trials). These studies may be related to new ways to screen, prevent, diagnose, and treat disease. Research studies may also analyze data collected from individuals in the past (retrospective studies) or future (prospective studies) to understand specific outcomes or trends in particular populations.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="BackboneElement">
@@ -57958,7 +57958,7 @@ Deceased patients may also be marked as inactive for the same reasons, but may b
   </xs:complexType>
   <xs:complexType name="ResearchStudy.ComparisonGroup">
     <xs:annotation>
-      <xs:documentation xml:lang="en">A scientific study intended to increase health-related knowledge. For example, clinical trials are research studies that involve people. These studies may be related to new ways to screen, prevent, diagnose, and treat disease. They may also study certain outcomes and certain groups of people by looking at data collected in the past or future.</xs:documentation>
+      <xs:documentation xml:lang="en">A research study is a scientific investigation designed to generate health-related knowledge. This can include clinical trials involving human participants (or animals in the case of veterinary clinical trials). These studies may be related to new ways to screen, prevent, diagnose, and treat disease. Research studies may also analyze data collected from individuals in the past (retrospective studies) or future (prospective studies) to understand specific outcomes or trends in particular populations.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="BackboneElement">
@@ -57994,7 +57994,7 @@ Deceased patients may also be marked as inactive for the same reasons, but may b
   </xs:complexType>
   <xs:complexType name="ResearchStudy.Objective">
     <xs:annotation>
-      <xs:documentation xml:lang="en">A scientific study intended to increase health-related knowledge. For example, clinical trials are research studies that involve people. These studies may be related to new ways to screen, prevent, diagnose, and treat disease. They may also study certain outcomes and certain groups of people by looking at data collected in the past or future.</xs:documentation>
+      <xs:documentation xml:lang="en">A research study is a scientific investigation designed to generate health-related knowledge. This can include clinical trials involving human participants (or animals in the case of veterinary clinical trials). These studies may be related to new ways to screen, prevent, diagnose, and treat disease. Research studies may also analyze data collected from individuals in the past (retrospective studies) or future (prospective studies) to understand specific outcomes or trends in particular populations.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="BackboneElement">
@@ -58025,7 +58025,7 @@ Deceased patients may also be marked as inactive for the same reasons, but may b
   </xs:complexType>
   <xs:complexType name="ResearchStudy.OutcomeMeasure">
     <xs:annotation>
-      <xs:documentation xml:lang="en">A scientific study intended to increase health-related knowledge. For example, clinical trials are research studies that involve people. These studies may be related to new ways to screen, prevent, diagnose, and treat disease. They may also study certain outcomes and certain groups of people by looking at data collected in the past or future.</xs:documentation>
+      <xs:documentation xml:lang="en">A research study is a scientific investigation designed to generate health-related knowledge. This can include clinical trials involving human participants (or animals in the case of veterinary clinical trials). These studies may be related to new ways to screen, prevent, diagnose, and treat disease. Research studies may also analyze data collected from individuals in the past (retrospective studies) or future (prospective studies) to understand specific outcomes or trends in particular populations.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="BackboneElement">
@@ -58086,7 +58086,7 @@ Deceased patients may also be marked as inactive for the same reasons, but may b
   </xs:complexType>
   <xs:complexType name="ResearchStudy.EventHandling">
     <xs:annotation>
-      <xs:documentation xml:lang="en">A scientific study intended to increase health-related knowledge. For example, clinical trials are research studies that involve people. These studies may be related to new ways to screen, prevent, diagnose, and treat disease. They may also study certain outcomes and certain groups of people by looking at data collected in the past or future.</xs:documentation>
+      <xs:documentation xml:lang="en">A research study is a scientific investigation designed to generate health-related knowledge. This can include clinical trials involving human participants (or animals in the case of veterinary clinical trials). These studies may be related to new ways to screen, prevent, diagnose, and treat disease. Research studies may also analyze data collected from individuals in the past (retrospective studies) or future (prospective studies) to understand specific outcomes or trends in particular populations.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="BackboneElement">

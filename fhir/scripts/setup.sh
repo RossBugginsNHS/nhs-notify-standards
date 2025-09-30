@@ -1,9 +1,22 @@
+echo "▶ Install SUSHI…"
+echo "PATH is: $PATH"
+echo "Installing fsh-sushi globally via npm..."
+npm install -g fsh-sushi
+echo "Verifying sushi install:"
+which sushi
+sushi --version
+
+echo "▶ Running SUSHI…"
+sushi .
+echo "▶ Running IG Publisher…"
+echo "✅ Build complete. Output at: ./output"
 #!/usr/bin/env bash
 set -euo pipefail
 
 log() { printf "▶ %s\n" "$*"; }
 
-# -----------------------------
+
+
 # Paths (from devcontainer.json)
 # -----------------------------
 IG_ROOT="${IG_ROOT:-/workspaces/nhs-notify-standards/fhir}"
@@ -25,8 +38,14 @@ npm config set cache /home/vscode/.npm --global
 npm config set prefix /home/vscode/.npm-global --global
 # Ensure global bin on PATH for future shells
 if ! grep -q 'npm-global/bin' /home/vscode/.bashrc; then
-  echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> /home/vscode/.bashrc
+	echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> /home/vscode/.bashrc
 fi
+echo "PATH is: $PATH"
+echo "Installing fsh-sushi globally via npm..."
+npm install -g fsh-sushi
+echo "Verifying sushi install:"
+which sushi
+sushi --version
 export PATH="$HOME/.npm-global/bin:$PATH"
 
 # --------------------------------
@@ -35,10 +54,10 @@ export PATH="$HOME/.npm-global/bin:$PATH"
 log "Installing base utilities…"
 sudo apt-get update -y
 sudo apt-get install -y --no-install-recommends \
-  git-lfs curl wget unzip ca-certificates jq graphviz \
-  libxtst6 libxi6 libxrender1 \
-  python3-full \
-  ruby-full build-essential zlib1g-dev
+	git-lfs curl wget unzip ca-certificates jq graphviz \
+	libxtst6 libxi6 libxrender1 \
+	python3-full \
+	ruby-full build-essential zlib1g-dev
 sudo apt-get clean
 sudo rm -rf /var/lib/apt/lists/*
 
@@ -49,7 +68,6 @@ log "Installing Jekyll (for IG Publisher)…"
 # From: https://jekyllrb.com/docs/installation/ubuntu/
 # Note: we use 'sudo gem install' to avoid permission issues in the container
 sudo gem install jekyll bundler
-
 
 
 
@@ -70,16 +88,16 @@ ALT_URL="https://github.com/HL7/fhir-ig-publisher/releases/latest/download/org.h
 PUBLISHER_JAR="${IG_TOOLS}/publisher.jar"
 
 if ! curl -fSLo "${PUBLISHER_JAR}" --retry 5 --retry-all-errors --retry-delay 3 "${PRIMARY_URL}"; then
-  echo "Primary asset not found, trying alternate asset name…"
-  curl -fSLo "${IG_TOOLS}/org.hl7.fhir.publisher.jar" --retry 5 --retry-all-errors --retry-delay 3 "${ALT_URL}"
-  mv "${IG_TOOLS}/org.hl7.fhir.publisher.jar" "${PUBLISHER_JAR}"
+	echo "Primary asset not found, trying alternate asset name…"
+	curl -fSLo "${IG_TOOLS}/org.hl7.fhir.publisher.jar" --retry 5 --retry-all-errors --retry-delay 3 "${ALT_URL}"
+	mv "${IG_TOOLS}/org.hl7.fhir.publisher.jar" "${PUBLISHER_JAR}"
 fi
 
 # FHIR Validator: canonical 'validator_cli.jar' latest link with retries
 log "Downloading FHIR Validator…"
 curl -fSLo "${IG_TOOLS}/validator_cli.jar" \
-  --retry 5 --retry-all-errors --retry-delay 3 \
-  "https://github.com/hapifhir/org.hl7.fhir.core/releases/latest/download/validator_cli.jar"
+	--retry 5 --retry-all-errors --retry-delay 3 \
+	"https://github.com/hapifhir/org.hl7.fhir.core/releases/latest/download/validator_cli.jar"
 
 # -----------------------------
 # Helper scripts in /fhir/tools
@@ -102,8 +120,8 @@ cat > "${IG_TOOLS}/validate.sh" <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
 if [ $# -lt 1 ]; then
-  echo "Usage: tools/validate.sh <file-to-validate.json> [extra validator args]"
-  exit 1
+	echo "Usage: tools/validate.sh <file-to-validate.json> [extra validator args]"
+	exit 1
 fi
 cd "$(dirname "$0")/.."
 FILE="$1"; shift || true

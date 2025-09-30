@@ -4,16 +4,28 @@
     {
       "label": "IG: Build",
       "type": "shell",
-      "command": "./tools/build.sh",
-      "options": { "cwd": "${workspaceFolder}/fhir" },
-      "problemMatcher": []
+      "command": "make",
+      "args": ["build"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "group": "build"
     },
     {
       "label": "IG: Clean",
       "type": "shell",
-      "command": "./tools/clean.sh",
-      "options": { "cwd": "${workspaceFolder}/fhir" },
+      "command": "make",
+      "args": ["clean"],
+      "options": { "cwd": "${workspaceFolder}" },
       "problemMatcher": []
+    },
+    {
+      "label": "IG: Serve",
+      "type": "shell",
+      "command": "make",
+      "args": ["serve"],
+      "group": "build",
+      "problemMatcher": [],
+      "isBackground": false
     }
   ]
 }
