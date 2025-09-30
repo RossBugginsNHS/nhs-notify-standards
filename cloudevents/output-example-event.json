@@ -1,39 +1,34 @@
 {
   "type": "uk.nhs.notify.ordering.order.read",
-  "source": "/customer/b420e388-ccae-4c20-b395-3efe440686a5/order/b0abd7f6-2903-433f-bf4c-1f6b18ca09d9",
-  "subject": "item/1cfc1830-43b8-4da9-8609-f3cfa97b04e2",
+  "source": "/ordering",
+  "subject": "customer/8a0fc62f-5c56-4a20-b048-0b0b95c67890/order/b4143df1-5d61-4b85-87be-c75d7fcbdb4e/item/302b7e40-db35-43d8-ab95-bb3a106870e0",
   "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json",
   "data": {
     "notify-payload": {
       "notify-data": {
-        "elit_7": "laborum irure",
-        "voluptate_6": "pariatur do nulla id",
-        "velit_3a": 94256896,
-        "esse85": true,
-        "cupidatat_08": false,
-        "nhsNumber": "010 2634291"
+        "ad_99": "Ut ipsum ut reprehenderit magna",
+        "nhsNumber": "7846323944"
       },
       "notify-metadata": {
         "teamResponsible": "Team 1",
         "notifyDomain": "Ordering",
-        "version": "0.7.0+bie1pNvT1.YbTxUmv9gPp.Bk5xc-.PQy.MkEzoeodJ8p.nuEym0"
+        "version": "76094548831.9.0"
       }
     }
   },
   "specversion": "1.0",
-  "id": "216e8413-4807-46a8-ad4e-be19f22930a7",
-  "time": "1957-08-30T01:33:53.0Z",
-  "datacontenttype": "in dolor ullamco culpa quis",
-  "data_base64": "velit id Duis aliqua pariatur",
-  "traceparent": "00-69c689b2c1380f0fddedf6aec8a380a5-741ed7db61a7c051-27",
-  "tracestate": "consectetur nostrud irure",
-  "partitionkey": "eu8ua",
-  "recordedtime": "1890-05-10T03:38:27.0Z",
-  "sampledrate": 91587710,
-  "sequence": "47261961321252528709",
+  "id": "b6b11eec-7ebe-4304-ae3c-8b80f86ff6fe",
+  "time": "1968-02-05T10:01:21.0Z",
+  "datacontenttype": "application/json",
+  "traceparent": "00-53a02464a82af55b58187cdbc1362571-28ec1da149acb0a3-45",
+  "tracestate": "occaecat Ut veniam in eu",
+  "partitionkey": "-a",
+  "recordedtime": "1914-05-21T03:48:09.0Z",
+  "sampledrate": 8642893,
+  "sequence": "40078890280089170514",
   "severitytext": "WARN",
-  "severitynumber": 3,
-  "dataclassification": "confidential",
-  "dataregulation": "NIST-800-53",
+  "severitynumber": 0,
+  "dataclassification": "restricted",
+  "dataregulation": "GDPR",
   "datacategory": "sensitive"
 }

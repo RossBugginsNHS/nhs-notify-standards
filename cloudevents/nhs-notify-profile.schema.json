@@ -91,6 +91,7 @@
     },
     "datacontenttype": {
       "type": "string",
+      "const": "application/json",
       "$comment": "Usually application/json."
     },
     "dataschema": {
@@ -114,11 +115,6 @@
         }
       },
       "$comment": "Domain payload (arbitrary JSON value)."
-    },
-    "data_base64": {
-      "type": "string",
-      "contentEncoding": "base64",
-      "$comment": "Alternative representation if transporting binary."
     },
     "traceparent": {
       "type": "string",
@@ -252,6 +248,7 @@
     "specversion",
     "id",
     "source",
+    "subject",
     "type",
     "time",
     "recordedtime",
@@ -264,21 +261,5 @@
       "severitytext"
     ]
   },
-  "allOf": [
-    {
-      "if": {
-        "required": [
-          "data_base64"
-        ]
-      },
-      "then": {
-        "properties": {
-          "datacontenttype": {
-            "type": "string"
-          }
-        }
-      }
-    }
-  ],
   "description": "NHS Notify profile for CloudEvents 1.0 with selected extensions."
 }

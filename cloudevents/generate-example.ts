@@ -37,13 +37,9 @@ async function main() {
   const dereferencedSchema = await $RefParser.dereference(schemaPath);
   const example = jsf.generate(dereferencedSchema);
 
-  // Post-process: set 'source' to a valid UUID path if present at the top level
-  if (example && typeof example === 'object' && 'source' in example) {
-    example.source = `/customer/${uuid()}/order/${uuid()}`;
-  }
 
   if (example && typeof example === 'object' && 'subject' in example) {
-    example.subject = `item/${uuid()}`;
+    example.subject = `customer/${uuid()}/order/${uuid()}/item/${uuid()}`;
   }  
 
   fs.writeFileSync(outputPath, JSON.stringify(example, null, 2));
