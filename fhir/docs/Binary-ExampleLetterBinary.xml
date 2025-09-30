@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Binary xmlns="http://hl7.org/fhir">
+  <id value="ExampleLetterBinary"/>
+  <meta>
+    <profile value="https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-binary"/>
+  </meta>
+  <contentType value="application/pdf"/>
+  <data value="SGVsbG8gd29ybGQ="/>
+</Binary>

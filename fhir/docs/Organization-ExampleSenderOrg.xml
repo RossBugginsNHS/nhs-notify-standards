@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Organization xmlns="http://hl7.org/fhir">
+  <id value="ExampleSenderOrg"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: Organization ExampleSenderOrg</b></p><a name="ExampleSenderOrg"> </a><a name="hcExampleSenderOrg"> </a><p><b>identifier</b>: <code>https://fhir.nhs.uk/Id/ods-organization-code</code>/R0A</p><p><b>name</b>: Example NHS Trust</p></div>
+  </text>
+  <identifier>
+    <system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
+    <value value="R0A"/>
+  </identifier>
+  <name value="Example NHS Trust"/>
+</Organization>

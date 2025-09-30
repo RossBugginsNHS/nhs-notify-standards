@@ -1,0 +1,47 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://nhsdigital.github.io/nhs-notify-standards/fhir/DocumentReference/ExampleLetterDocRef> a fhir:DocumentReference ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "ExampleLetterDocRef"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-documentreference"^^xsd:anyURI ;
+       fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-documentreference>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: DocumentReference ExampleLetterDocRef</b></p><a name=\"ExampleLetterDocRef\"> </a><a name=\"hcExampleLetterDocRef\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-nhsnotify-letter-documentreference.html\">Letter PDF Document</a></p></div><p><b>status</b>: Current</p><p><b>type</b>: <span title=\"Codes:{http://snomed.info/sct 371530004}\">Clinical consultation report</span></p><p><b>subject</b>: <a href=\"Patient-ExamplePatient.html\">Pat Patient  (no stated gender), DoB Unknown ( https://fhir.nhs.uk/Id/nhs-number#9449304135)</a></p><p><b>author</b>: <a href=\"Organization-ExampleSenderOrg.html\">Organization Example NHS Trust</a></p><blockquote><p><b>content</b></p><h3>Attachments</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>ContentType</b></td><td><b>Url</b></td></tr><tr><td style=\"display: none\">*</td><td>application/pdf</td><td><a href=\"Binary-ExampleLetterBinary.html\">Binary: application/pdf (16 bytes base64)</a></td></tr></table></blockquote></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:status [ fhir:v "current"] ; # 
+  fhir:type [
+     fhir:coding ( [
+       a sct:371530004 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "371530004" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/Patient/ExamplePatient> ;
+     fhir:reference [ fhir:v "Patient/ExamplePatient" ]
+  ] ; # 
+  fhir:author ( [
+     fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/Organization/ExampleSenderOrg> ;
+     fhir:reference [ fhir:v "Organization/ExampleSenderOrg" ]
+  ] ) ; # 
+  fhir:content ( [
+     fhir:attachment [
+       fhir:contentType [ fhir:v "application/pdf" ] ;
+       fhir:url [ fhir:v "Binary/ExampleLetterBinary"^^xsd:anyURI ]
+     ]
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<OperationDefinition xmlns="http://hl7.org/fhir">
+  <id value="SubmitLetterOperation"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: OperationDefinition SubmitLetterOperation</b></p><a name="SubmitLetterOperation"> </a><a name="hcSubmitLetterOperation"> </a><p>URL: [base]/$submit-letter</p><h3>Parameters</h3><table class="grid"><tr><td><b>Use</b></td><td><b>Name</b></td><td><b>Scope</b></td><td><b>Cardinality</b></td><td><b>Type</b></td><td><b>Binding</b></td><td><b>Documentation</b></td></tr><tr><td>IN</td><td>bundle</td><td/><td>1..1</td><td><a href="http://hl7.org/fhir/R4/bundle.html">Bundle</a></td><td/><td><div><p>transaction/collection Bundle with CommunicationRequest + DocumentReference + Binary (+ context).</p>
+</div></td></tr><tr><td>OUT</td><td>return</td><td/><td>1..1</td><td><a href="http://hl7.org/fhir/R4/operationoutcome.html">OperationOutcome</a></td><td/><td/></tr></table></div>
+  </text>
+  <url value="https://nhsdigital.github.io/nhs-notify-standards/fhir/OperationDefinition/submit-letter"/>
+  <version value="0.1.0"/>
+  <name value="SubmitLetter"/>
+  <title value="Submit Letter"/>
+  <status value="active"/>
+  <kind value="operation"/>
+  <date value="2025-09-30T10:31:22+00:00"/>
+  <publisher value="NHS England"/>
+  <contact>
+    <name value="NHS England"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://www.england.nhs.uk"/>
+    </telecom>
+  </contact>
+  <contact>
+    <name value="NHS England – NHS Notify"/>
+    <telecom>
+      <system value="email"/>
+      <value value="notify@nhs.net"/>
+    </telecom>
+  </contact>
+  <description value="Submit a bundle carrying the letter and context."/>
+  <jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166"/>
+      <code value="GB"/>
+      <display value="United Kingdom"/>
+    </coding>
+  </jurisdiction>
+  <code value="submit-letter"/>
+  <system value="true"/>
+  <type value="false"/>
+  <instance value="false"/>
+  <parameter>
+    <name value="bundle"/>
+    <use value="in"/>
+    <min value="1"/>
+    <max value="1"/>
+    <documentation value="transaction/collection Bundle with CommunicationRequest + DocumentReference + Binary (+ context)."/>
+    <type value="Bundle"/>
+  </parameter>
+  <parameter>
+    <name value="return"/>
+    <use value="out"/>
+    <min value="1"/>
+    <max value="1"/>
+    <type value="OperationOutcome"/>
+  </parameter>
+</OperationDefinition>

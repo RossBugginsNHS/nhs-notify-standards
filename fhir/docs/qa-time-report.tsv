@@ -1,0 +1,13 @@
+Source File	Size	loadResources	load	generateSnapshots	load-configure	scan	loadDepInfo	loadInfo	checkR4R4B	generateNarratives	validate	loadLists	checkConformanceResources	checkConformanceResources2	checkConformanceResources3	generateLogicalMaps	validateExpressions	scanForUsageStats	checkURLsUnique	processProvenanceDetails	generate1	generate2	generateLogicals	makeDependencies	generateExampleZip	generateValidationPack	scanProfilesForR5	scanExamplesForR5
+/fsh-generated/resources/ImplementationGuide-nhsdigital.nhs-notify-letters.json	4846	-	1	0	0	0	0	0	9	68	0	0	0	0	0	0	0	0	0	0	93	110	0	0	0	3	0	1
+fsh-generated/resources/Binary-ExampleLetterBinary.json	275	19	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	16	14	0	0	0	0	0	0
+fsh-generated/resources/CapabilityStatement-LettersServer.json	830	17	0	0	0	0	0	0	1	18	0	0	0	0	0	0	0	0	0	0	41	29	0	0	0	0	0	1
+fsh-generated/resources/CommunicationRequest-ExampleLetterCommunicationRequest.json	881	23	0	0	0	0	0	0	0	302	0	0	0	0	0	0	0	0	0	0	27	22	0	0	0	0	0	0
+fsh-generated/resources/DocumentReference-ExampleLetterDocRef.json	673	15	0	0	0	0	0	0	0	9	0	0	0	0	0	0	0	0	0	0	26	18	0	0	0	0	0	0
+fsh-generated/resources/OperationDefinition-SubmitLetterOperation.json	811	11	0	0	0	0	0	0	0	29	0	0	0	0	0	0	0	0	0	0	17	13	0	0	0	1	0	0
+fsh-generated/resources/Organization-ExampleSenderOrg.json	216	6	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	12	9	0	0	0	0	0	0
+fsh-generated/resources/Patient-ExamplePatient.json	426	6	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	12	13	0	0	0	0	0	0
+fsh-generated/resources/StructureDefinition-nhsnotify-letter-binary.json	1022	5	0	17	1	0	0	0	0	50	0	0	1	0	0	0	0	1	0	0	67	254	0	0	0	1	0	0
+fsh-generated/resources/StructureDefinition-nhsnotify-letter-communicationrequest.json	4094	5	0	53	0	0	0	0	1	77	0	0	0	0	0	0	0	0	0	0	286	677	0	0	0	8	0	1
+fsh-generated/resources/StructureDefinition-nhsnotify-letter-documentreference.json	2468	3	0	47	0	0	0	0	0	37	0	0	0	0	0	0	0	1	0	0	271	590	0	0	0	13	0	1
+fsh-generated/resources/ValueSet-nhsnotify-letter-category.json	311	3	0	0	0	0	0	0	0	32	0	0	0	0	0	0	0	0	0	0	22	432	0	0	0	0	0	0

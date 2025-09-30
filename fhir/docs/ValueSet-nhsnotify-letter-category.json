@@ -1,0 +1,37 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "nhsnotify-letter-category",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: ValueSet nhsnotify-letter-category</b></p><a name=\"nhsnotify-letter-category\"> </a><a name=\"hcnhsnotify-letter-category\"> </a><p>This value set includes codes based on the following rules:</p><ul/></div>"
+  },
+  "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category",
+  "version" : "0.1.0",
+  "name" : "LetterCategoryVS",
+  "title" : "Letter Categories",
+  "status" : "draft",
+  "date" : "2025-09-30T10:31:22+00:00",
+  "publisher" : "NHS England",
+  "contact" : [{
+    "name" : "NHS England",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "https://www.england.nhs.uk"
+    }]
+  },
+  {
+    "name" : "NHS England – NHS Notify",
+    "telecom" : [{
+      "system" : "email",
+      "value" : "notify@nhs.net"
+    }]
+  }],
+  "description" : "Categories for letters (SNOMED CT).",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "GB",
+      "display" : "United Kingdom"
+    }]
+  }]
+}

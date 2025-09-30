@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<DocumentReference xmlns="http://hl7.org/fhir">
+  <id value="ExampleLetterDocRef"/>
+  <meta>
+    <profile value="https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-documentreference"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: DocumentReference ExampleLetterDocRef</b></p><a name="ExampleLetterDocRef"> </a><a name="hcExampleLetterDocRef"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profile: <a href="StructureDefinition-nhsnotify-letter-documentreference.html">Letter PDF Document</a></p></div><p><b>status</b>: Current</p><p><b>type</b>: <span title="Codes:{http://snomed.info/sct 371530004}">Clinical consultation report</span></p><p><b>subject</b>: <a href="Patient-ExamplePatient.html">Pat Patient  (no stated gender), DoB Unknown ( https://fhir.nhs.uk/Id/nhs-number#9449304135)</a></p><p><b>author</b>: <a href="Organization-ExampleSenderOrg.html">Organization Example NHS Trust</a></p><blockquote><p><b>content</b></p><h3>Attachments</h3><table class="grid"><tr><td style="display: none">-</td><td><b>ContentType</b></td><td><b>Url</b></td></tr><tr><td style="display: none">*</td><td>application/pdf</td><td><a href="Binary-ExampleLetterBinary.html">Binary: application/pdf (16 bytes base64)</a></td></tr></table></blockquote></div>
+  </text>
+  <status value="current"/>
+  <type>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="371530004"/>
+    </coding>
+  </type>
+  <subject>
+    <reference value="Patient/ExamplePatient"/>
+  </subject>
+  <author>
+    <reference value="Organization/ExampleSenderOrg"/>
+  </author>
+  <content>
+    <attachment>
+      <contentType value="application/pdf"/>
+      <url value="Binary/ExampleLetterBinary"/>
+    </attachment>
+  </content>
+</DocumentReference>

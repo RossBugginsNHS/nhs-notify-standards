@@ -1,0 +1,13 @@
+{
+  "resourceType" : "Organization",
+  "id" : "ExampleSenderOrg",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Organization ExampleSenderOrg</b></p><a name=\"ExampleSenderOrg\"> </a><a name=\"hcExampleSenderOrg\"> </a><p><b>identifier</b>: <code>https://fhir.nhs.uk/Id/ods-organization-code</code>/R0A</p><p><b>name</b>: Example NHS Trust</p></div>"
+  },
+  "identifier" : [{
+    "system" : "https://fhir.nhs.uk/Id/ods-organization-code",
+    "value" : "R0A"
+  }],
+  "name" : "Example NHS Trust"
+}

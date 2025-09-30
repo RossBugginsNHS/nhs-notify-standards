@@ -1,0 +1,22 @@
+{
+  "resourceType" : "Patient",
+  "id" : "ExamplePatient",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Patient ExamplePatient</b></p><a name=\"ExamplePatient\"> </a><a name=\"hcExamplePatient\"> </a><p style=\"border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;\">Pat Patient  (no stated gender), DoB Unknown ( https://fhir.nhs.uk/Id/nhs-number#9449304135)</p><hr/><table class=\"grid\"><tr><td style=\"background-color: #f3f5da\" title=\"Ways to contact the Patient\">Contact Detail</td><td colspan=\"3\">1 High Street Leeds LS1 1AA GB </td></tr></table></div>"
+  },
+  "identifier" : [{
+    "system" : "https://fhir.nhs.uk/Id/nhs-number",
+    "value" : "9449304135"
+  }],
+  "name" : [{
+    "family" : "Patient",
+    "given" : ["Pat"]
+  }],
+  "address" : [{
+    "line" : ["1 High Street"],
+    "city" : "Leeds",
+    "postalCode" : "LS1 1AA",
+    "country" : "GB"
+  }]
+}

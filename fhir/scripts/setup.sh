@@ -1,26 +1,7 @@
-echo "▶ Install SUSHI…"
-echo "PATH is: $PATH"
-echo "Installing fsh-sushi globally via npm..."
-npm install -g fsh-sushi
-echo "Verifying sushi install:"
-which sushi
-sushi --version
-
-echo "▶ Running SUSHI…"
-sushi .
-echo "▶ Running IG Publisher…"
-echo "✅ Build complete. Output at: ./output"
-#!/usr/bin/env bash
-set -euo pipefail
-
-log() { printf "▶ %s\n" "$*"; }
-
-
-
 # Paths (from devcontainer.json)
 # -----------------------------
-IG_ROOT="${IG_ROOT:-/workspaces/nhs-notify-standards/fhir}"
-IG_TOOLS="${IG_TOOLS:-/workspaces/nhs-notify-standards/fhir/tools}"
+IG_ROOT="${IG_ROOT:-/workspace/fhir}"
+IG_TOOLS="${IG_TOOLS:-/workspace/fhir/fhirtools}"
 
 # --------------------------------
 # Ensure workspace folders exist

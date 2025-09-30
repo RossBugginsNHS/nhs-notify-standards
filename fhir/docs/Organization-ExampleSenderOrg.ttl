@@ -1,0 +1,23 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://nhsdigital.github.io/nhs-notify-standards/fhir/Organization/ExampleSenderOrg> a fhir:Organization ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "ExampleSenderOrg"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Organization ExampleSenderOrg</b></p><a name=\"ExampleSenderOrg\"> </a><a name=\"hcExampleSenderOrg\"> </a><p><b>identifier</b>: <code>https://fhir.nhs.uk/Id/ods-organization-code</code>/R0A</p><p><b>name</b>: Example NHS Trust</p></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://fhir.nhs.uk/Id/ods-organization-code"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "R0A" ]
+  ] ) ; # 
+  fhir:name [ fhir:v "Example NHS Trust"] . # 
+
+# -------------------------------------------------------------------------------------
+

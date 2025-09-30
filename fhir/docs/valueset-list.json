@@ -1,0 +1,12 @@
+{
+  "codeSystems" : [
+    {
+      "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category",
+      "version" : "0.1.0",
+      "status" : "draft",
+      "name" : "LetterCategoryVS",
+      "title" : "Letter Categories",
+      "description" : "Categories for letters (SNOMED CT)."
+    }
+  ]
+}

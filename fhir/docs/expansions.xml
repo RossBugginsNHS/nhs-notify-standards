@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Bundle xmlns="http://hl7.org/fhir">
+  <id value="f213f5a1-6175-434b-b370-17d5852dd3cb"/>
+  <meta>
+    <lastUpdated value="2025-09-30T10:32:30.250+00:00"/>
+  </meta>
+  <type value="collection"/>
+  <entry>
+    <fullUrl value="https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category"/>
+    <resource>
+      <ValueSet>
+        <text>
+          <status value="generated"/>
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p class="res-header-id"/>
+            <p>This value set contains 0 concepts</p>
+            <table class="codes">
+              <tr>
+                <td style="white-space:nowrap">
+                  <b>Code</b>
+                </td>
+                <td>
+                  <b>System</b>
+                </td>
+                <td>
+                  <b>Display</b>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </text>
+        <url value="https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category"/>
+        <version value="0.1.0"/>
+        <name value="LetterCategoryVS"/>
+        <title value="Letter Categories"/>
+        <status value="draft"/>
+        <date value="2025-09-30T10:31:22+00:00"/>
+        <jurisdiction>
+          <coding>
+            <system value="urn:iso:std:iso:3166"/>
+            <code value="GB"/>
+            <display value="United Kingdom"/>
+          </coding>
+        </jurisdiction>
+        <expansion>
+          <identifier value="urn:uuid:a55e96a5-d3d7-4737-b689-3c56ad0becab"/>
+          <timestamp value="2025-09-30T10:32:40+00:00"/>
+          <total value="0"/>
+          <offset value="0"/>
+          <parameter>
+            <name value="count"/>
+            <valueInteger value="1000"/>
+          </parameter>
+          <parameter>
+            <name value="offset"/>
+            <valueInteger value="0"/>
+          </parameter>
+          <parameter>
+            <name value="excludeNested"/>
+            <valueBoolean value="false"/>
+          </parameter>
+        </expansion>
+      </ValueSet>
+    </resource>
+  </entry>
+</Bundle>

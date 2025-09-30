@@ -1,0 +1,2 @@
+URL,Version,Status,OIDs,Name,Title,Descriptino,Uses,Used,Sources
+https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category,0.1.0,draft,,LetterCategoryVS,Letter Categories,"Categories for letters (SNOMED CT).","StructureDefinition/nhsnotify-letter-communicationrequest",

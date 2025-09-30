@@ -1,0 +1,32 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://nhsdigital.github.io/nhs-notify-standards/fhir/Patient/ExamplePatient> a fhir:Patient ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "ExamplePatient"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Patient ExamplePatient</b></p><a name=\"ExamplePatient\"> </a><a name=\"hcExamplePatient\"> </a><p style=\"border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;\">Pat Patient  (no stated gender), DoB Unknown ( https://fhir.nhs.uk/Id/nhs-number#9449304135)</p><hr/><table class=\"grid\"><tr><td style=\"background-color: #f3f5da\" title=\"Ways to contact the Patient\">Contact Detail</td><td colspan=\"3\">1 High Street Leeds LS1 1AA GB </td></tr></table></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://fhir.nhs.uk/Id/nhs-number"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "9449304135" ]
+  ] ) ; # 
+  fhir:name ( [
+     fhir:family [ fhir:v "Patient" ] ;
+     fhir:given ( [ fhir:v "Pat" ] )
+  ] ) ; # 
+  fhir:address ( [
+     fhir:line ( [ fhir:v "1 High Street" ] ) ;
+     fhir:city [ fhir:v "Leeds" ] ;
+     fhir:postalCode [ fhir:v "LS1 1AA" ] ;
+     fhir:country [ fhir:v "GB" ]
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+
