@@ -1,0 +1,56 @@
+name: Build & Publish FHIR IG
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'fhir/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: fhir
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Node (for SUSHI)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install SUSHI
+        run: npm install -g fsh-sushi
+
+      - name: Generate FHIR artifacts from FSH
+        run: sushi .
+
+      - name: Download IG Publisher
+        run: |
+          curl -L -o publisher.jar https://github.com/HL7/fhir-ig-publisher/releases/latest/download/org.hl7.fhir.publisher.jar
+
+      - name: Build IG
+        run: java -jar publisher.jar -ig ig.ini
+
+      - name: Upload HTML as artifact (for troubleshooting)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ig-site
+          path: fhir/output
+
+      - name: Deploy to gh-pages:/fhir
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: fhir/output
+          destination_dir: fhir

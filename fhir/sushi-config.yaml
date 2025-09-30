@@ -1,0 +1,62 @@
+# ================== NHS Notify – FHIR Letter Printing IG ==================
+# SUSHI / IG Publisher configuration
+# See: https://fshschool.org/docs/sushi/configuration/
+# ==========================================================================
+
+# This 'id' is used as the ImplementationGuide.id AND (unless you also supply
+# a separate packageId) as the NPM package id. Keep it consistent with
+# package-list.json ("nhsdigital.nhs-notify-letters").
+# Ref: SUSHI config docs (id used as both unless packageId provided).
+id: nhsdigital.nhs-notify-letters
+
+# The canonical base for your IG (where it will be hosted)
+canonical: https://nhsdigital.github.io/nhs-notify-standards/fhir
+
+# Human-readable values
+name: NHSNotifyLetters
+title: "NHS Notify – FHIR Letter Printing Implementation Guide"
+status: draft
+version: 0.1.0
+fhirVersion: 4.0.1
+
+# Required by IG Publisher templates and SUSHI
+# (Examples in SUSHI docs and HL7 IGs show these keys.)
+copyrightYear: 2025+
+releaseLabel: ci-build
+
+publisher:
+  name: NHS England
+  url: https://www.england.nhs.uk
+contact:
+  - name: NHS England – NHS Notify
+    telecom:
+      - system: email
+        value: notify@nhs.net
+
+license: CC-BY-4.0
+jurisdiction: urn:iso:std:iso:3166#GB "United Kingdom"
+
+# UK Core dependency so suppliers inherit UK conventions and extensions
+dependencies:
+  #hl7.fhir.uk.core: 2.4.0
+  fhir.r4.ukcore.stu2: 2.0.2
+
+
+
+pages:
+  index.md:
+    title: Home
+  guidance.md:
+    title: Guidance
+  api.md:
+    title: API
+  downloads.md:
+    title: Downloads
+
+# Explicit menu (fallback if menu.xml not processed by template)
+menu:
+  Home: index.html
+  Guidance: guidance.html
+  API: api.html
+  Artifacts: artifacts.html
+  Downloads: downloads.html
