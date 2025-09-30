@@ -60,6 +60,22 @@ for (const [id, s] of Object.entries(schemas)) {
   }
 }
 
+ajv.addFormat("nhs-number", {
+  type: "string",
+  validate: (value) => {
+    const digits = value.replace(/\s+/g, "");
+    if (!/^\d{10}$/.test(digits)) return false;
+    const nums = digits.split("").map(d => parseInt(d, 10));
+    const check = nums[9];
+    const sum = nums.slice(0,9)
+      .reduce((acc, d, i) => acc + d * (10 - i), 0);
+    const remainder = sum % 11;
+    const expected = 11 - remainder === 11 ? 0 : 11 - remainder;
+    if (expected === 10) return false;
+    return check === expected;
+  }
+});
+
 // Always overwrite the main schema's $id to its local path
 let mainSchemaFile = allJsonFiles.find(f => path.resolve(schemaPath) === path.resolve(f));
 let mainSchema = mainSchemaFile ? schemas['./' + path.relative(schemaDir, mainSchemaFile).replace(/\\/g, '/')] : JSON.parse(fs.readFileSync(schemaPath, "utf-8"));
