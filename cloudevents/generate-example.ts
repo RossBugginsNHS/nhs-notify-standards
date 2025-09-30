@@ -12,9 +12,9 @@ function uuid() {
 jsf.format('uuid', uuid);
 
 // Custom property generator for 'source' to match the required pattern
-jsf.define('source', () => {
-  return `/customer/${uuid()}/ordering/${uuid()}/item/${uuid()}`;
-});
+//jsf.define('source', () => {
+//  return `/customer/${uuid()}/ordering/${uuid()}/item/${uuid()}`;
+//});
 
 // Ensure jsf uses pattern for string generation
 jsf.option({ alwaysFakeOptionals: true });
@@ -39,8 +39,12 @@ async function main() {
 
   // Post-process: set 'source' to a valid UUID path if present at the top level
   if (example && typeof example === 'object' && 'source' in example) {
-    example.source = `/customer/${uuid()}/ordering/${uuid()}/item/${uuid()}`;
+    example.source = `/customer/${uuid()}/order/${uuid()}`;
   }
+
+  if (example && typeof example === 'object' && 'subject' in example) {
+    example.subject = `item/${uuid()}`;
+  }  
 
   fs.writeFileSync(outputPath, JSON.stringify(example, null, 2));
   console.log(`Example written to ${outputPath}`);

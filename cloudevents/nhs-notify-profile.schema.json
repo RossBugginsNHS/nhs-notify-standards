@@ -15,12 +15,12 @@
       "type": "string",
       "format": "uuid",
       "minLength": 1,
-      "$comment": "Unique per (source,id)."
+      "$comment": "Unique per (source,id). This should be a randomly generated guid that represents the id of the event itself."
     },
     "source": {
       "type": "string",
       "pattern": "^/(?:[a-z0-9-]+)(?:/[a-z0-9-]+)*$",
-      "minLength": 1,
+      "minLength": 5,
       "format": "uri-reference",
       "$comment": "URI path: must start with '/', only lowercase alphanumeric and hyphen segments separated by '/', must not end with '/'."
     },
@@ -79,7 +79,10 @@
     },
     "subject": {
       "type": "string",
-      "$comment": "Example: file/{fileId}."
+      "pattern": "^(?:[a-z0-9-]+)(?:/[a-z0-9-]+)*$",
+      "minLength": 5,
+      "format": "uri-reference",
+      "$comment": "URI path: must not start with '/', only lowercase alphanumeric and hyphen segments separated by '/', must not end with '/'."
     },
     "time": {
       "type": "string",
