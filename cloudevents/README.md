@@ -21,6 +21,17 @@ CloudEvents is a specification for describing event data in a common way. The NH
 
 
 
+
+## Generating Example Data
+
+To generate example data from a schema, use the provided Makefile target:
+
+```sh
+make generate-default
+```
+
+This will run the generator and create a file locally in the `output` folder.
+
 ## Usage
 
 1. **Validate CloudEvents:**
