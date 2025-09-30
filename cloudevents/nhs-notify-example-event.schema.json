@@ -6,7 +6,7 @@
   "type": "object",
   "allOf": [
     {
-      "$ref": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-profile.schema.json"
+      "$ref": "./nhs-notify-profile.schema.json"
     }
   ],
   "properties": {
@@ -26,32 +26,66 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json"
-        },
-        {
-          "$ref": "#/$defs/TeamAlphaBravoMetadata"
+          "$ref": "#/$defs/ExamplePayload"
         }
       ]
     }
   },
+  "required": [
+    "type",
+    "source",
+    "dataschema",
+    "data"
+  ],
   "$defs": {
+    "ExamplePayload": {
+      "type": "object",
+      "properties": {
+        "notify-payload": {
+          "type": "object",
+          "properties": {
+            "notify-data": {
+              "type": "object",
+              "$ref": "#/$defs/ExampleData"
+            },
+            "notify-metadata": {
+              "type": "object",
+              "$ref": "#/$defs/ExampleMetadata"
+            }
+          }
+        }
+      }
+    },
+    "ExampleData": {
+      "type": "object",
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "./nhs-notify-example-event-data.schema.json"
+        }
+      ]
+    },
+    "ExampleMetadata": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/TeamAlphaBravoMetadata"
+        }
+      ]
+    },
     "TeamAlphaBravoMetadata": {
       "$comment": "Notify Metadata",
       "type": "object",
       "description": "Notify Metadata",
+      "additionalProperties": false,
       "properties": {
-        "metadata": {
-          "type": "object",
-          "properties": {
-            "teamResponsible": {
-              "type": "string",
-              "const": "Team 1"
-            },
-            "notifyDomain": {
-              "type": "string",
-              "const": "Ordering"
-            }
-          }
+        "teamResponsible": {
+          "type": "string",
+          "const": "Team 1"
+        },
+        "notifyDomain": {
+          "type": "string",
+          "const": "Ordering"
         }
       }
     }

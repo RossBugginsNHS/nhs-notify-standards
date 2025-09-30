@@ -94,11 +94,21 @@
     },
     "data": {
       "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/$defs/NotifyMetadata"
-        }
+      "additionalProperties": false,
+          "required": [
+        "notify-payload"
       ],
+      "properties": {
+        "notify-payload": {
+          
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/$defs/NotifyPayload"
+            }
+          ]
+        }
+      },
       "$comment": "Domain payload (arbitrary JSON value)."
     },
     "data_base64": {
@@ -119,7 +129,9 @@
     "partitionkey": {
       "type": "string",
       "minLength": 1,
-      "$comment": "Non-empty partition key for scaling / causal grouping."
+      "maxLength": 64,
+  "pattern": "^[a-z0-9-]+$",
+  "$comment": "Non-empty partition key for scaling / causal grouping. Must be 1-64 characters, only lowercase letters, numbers, and hyphen."
     },
     "recordedtime": {
       "type": "string",
@@ -133,8 +145,9 @@
     },
     "sequence": {
       "type": "string",
-      "minLength": 1,
-      "$comment": "Lexicographically comparable ordering string per source."
+      "pattern": "^\\d{20}$",
+      "description": "String representation of a 64-bit unsigned integer, left-padded with zeros to 20 digits.",
+      "$comment": "Lexicographically comparable ordering string per source. Must be a string of exactly 20 digits, left-padded with zeros, representing a 64-bit unsigned integer."
     },
     "severitytext": {
       "type": "string",
@@ -265,16 +278,35 @@
   ],
   "description": "NHS Notify profile for CloudEvents 1.0 with selected extensions.",
   "$defs": {
+     "NotifyPayload": {
+      "$comment": "Notify Payload",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "notify-data"
+      ],
+      "properties": {
+        "notify-data": {
+          "type": "object"}},
+
+        "allOf": [
+        {
+          "$ref": "#/$defs/NotifyMetadata"
+        }]
+
+    },
+
+
     "NotifyMetadata": {
       "$comment": "Notify Metadata",
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "metadata"
+        "notify-metadata"
       ],
       "description": "Notify Metadata",
       "properties": {
-        "metadata": {
+        "notify-metadata": {
           "type": "object",
           "additionalProperties": false,
           "required": [
