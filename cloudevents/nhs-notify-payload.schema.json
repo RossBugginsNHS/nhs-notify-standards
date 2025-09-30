@@ -7,17 +7,28 @@
   "required": [
     "notify-data",
     "notify-metadata",
-    "customer-id"
+    "plane-type"
   ],
   "properties": {
+    "plane-type": {
+      "type": "string",
+      "enum": [
+        "data",
+        "control"
+      ],
+      "description": "Indicates whether this event is a data plane or control plane event. Must align with presence of customer-id in notify-data."
+    },
     "notify-data": {
       "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/DataPlane"
+        },
+        {
+          "$ref": "#/$defs/ControlPlane"
+        }
+      ],
       "additionalProperties": true
-    },
-    "customer-id" : {
-      "type": "string",
-      "format": "uuid",
-      "description": "Customer ID (UUID)"
     },
     "notify-metadata": {
       "type": "object",
@@ -27,5 +38,60 @@
         }
       ]
     }
-  }
+  },
+  "$defs": {
+    "DataPlane": {
+      "type": "object",
+      "required": [
+        "customer-id"
+      ],
+      "properties": {
+        "customer-id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Customer ID (UUID)"
+        }
+      }
+    },
+    "ControlPlane": {
+      "type": "object",
+      "not": {
+        "required": [
+          "customer-id"
+        ]
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "notify-data": {
+            "properties": {
+              "customer-id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "customer-id"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "plane-type": {
+            "const": "data"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "plane-type": {
+            "const": "data"
+          }
+        }
+      }
+    }
+  ]
 }

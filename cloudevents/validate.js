@@ -76,6 +76,31 @@ ajv.addFormat("nhs-number", {
   }
 });
 
+// Detailed NHS Number diagnosis helper (used only for enriched error output)
+function diagnoseNhsNumber(raw) {
+  const original = raw;
+  if (typeof raw !== 'string') {
+    return { valid: false, reason: 'Value is not a string', original };
+  }
+  const digits = raw.replace(/\s+/g, '');
+  if (!/^\d{10}$/.test(digits)) {
+    return { valid: false, reason: 'Must contain exactly 10 digits (spaces optional for readability)', original };
+  }
+  const nums = digits.split('').map(d => parseInt(d, 10));
+  const providedCheck = nums[9];
+  const sum = nums.slice(0, 9).reduce((acc, d, i) => acc + d * (10 - i), 0);
+  const remainder = sum % 11;
+  let expected = 11 - remainder;
+  if (expected === 11) expected = 0; // 11 -> 0 per algorithm
+  if (expected === 10) {
+    return { valid: false, reason: 'Computed check digit is 10 (reserved = invalid number)', expectedCheck: expected, providedCheck, original };
+  }
+  if (providedCheck !== expected) {
+    return { valid: false, reason: 'Checksum mismatch', expectedCheck: expected, providedCheck, original };
+  }
+  return { valid: true, reason: 'OK', expectedCheck: expected, providedCheck, original };
+}
+
 // Always overwrite the main schema's $id to its local path
 let mainSchemaFile = allJsonFiles.find(f => path.resolve(schemaPath) === path.resolve(f));
 let mainSchema = mainSchemaFile ? schemas['./' + path.relative(schemaDir, mainSchemaFile).replace(/\\/g, '/')] : JSON.parse(fs.readFileSync(schemaPath, "utf-8"));
@@ -112,6 +137,14 @@ if (valid) {
     console.error('  Keyword:', err.keyword);
     if (err.params) console.error('  Params:', JSON.stringify(err.params));
     if (err.message) console.error('  Message:', err.message);
+    // Enrich nhs-number format failures with checksum details
+    if (err.keyword === 'format' && err.params && err.params.format === 'nhs-number') {
+      const diag = diagnoseNhsNumber(value);
+      if (!diag.valid) {
+        const extra = `NHS Number invalid: ${diag.reason}` + (diag.expectedCheck !== undefined ? ` (expected check ${diag.expectedCheck}, got ${diag.providedCheck})` : '');
+        console.error('  Detail:', extra);
+      }
+    }
   }
   process.exit(1);
 }
