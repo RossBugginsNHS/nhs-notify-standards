@@ -1,0 +1,27 @@
+{
+  "type": "uk.nhs.notify.ordering.order.read",
+  "source": "/ordering/order-read",
+  "dataschema": "https://raw.githubusercontent.com/NHSDigital/nhs-notify-standards/refs/heads/main/cloudevents/example-data.json",
+  "data": {
+    "nhsNumber": "252063 9680",
+    "metadata": {
+      "teamResponsible": "Team 1",
+      "notifyDomain": "Delivering",
+      "version": "85108.0.0+Lh.JbJyg-V.lr.dbXY.BEEJCY.LeRFjjs5.BNuF3.W1j1"
+    }
+  },
+  "specversion": "1.0",
+  "id": "6c6bf213-5cf2-f87d-d847-6800cfafb795",
+  "subject": "in ex dolore laboris laborum",
+  "time": "1908-02-28T09:09:41.0Z",
+  "datacontenttype": "fugiat cillum id eu est",
+  "data_base64": "sint est aute enim",
+  "traceparent": "00-ad464d14d7d17bd90fbfc616cebd88d4-fcc262d96feaf2e5-b6",
+  "tracestate": "consequat ea non",
+  "partitionkey": "incididunt dolore",
+  "recordedtime": "1921-09-06T01:06:38.0Z",
+  "sequence": "et pariatur sed adipisicing elit",
+  "severitytext": "WARN",
+  "severitynumber": 0,
+  "dataclassification": "internal"
+}

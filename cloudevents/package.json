@@ -1,0 +1,19 @@
+{
+  "name": "cloudevents-example-generator",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "generate-example.ts",
+  "scripts": {
+  "generate": "ts-node generate-example.ts $@"
+  },
+  "dependencies": {
+    "ajv": "^8.0.0",
+    "json-schema-faker": "^0.5.0-rc23",
+  "json-schema-ref-parser": "^9.0.9"
+  },
+  "devDependencies": {
+    "ts-node": "^10.0.0",
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  }
+}
