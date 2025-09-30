@@ -3,14 +3,14 @@
   "id" : "nhsdigital.nhs-notify-letters",
   "text" : {
     "status" : "generated",
-    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: ImplementationGuide nhsdigital.nhs-notify-letters</b></p><a name=\"nhsdigital.nhs-notify-letters\"> </a><a name=\"hcnhsdigital.nhs-notify-letters\"> </a><h2>NHSNotifyLetters</h2><p>The official URL for this implementation guide is: </p><pre>https://nhsdigital.github.io/nhs-notify-standards/fhir/ImplementationGuide/nhsdigital.nhs-notify-letters</pre></div>"
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: ImplementationGuide nhsdigital.nhs-notify-letters</b></p><a name=\"nhsdigital.nhs-notify-letters\"> </a><a name=\"hcnhsdigital.nhs-notify-letters\"> </a><h2>NHSNotifyLetters</h2><p>The official URL for this implementation guide is: </p><pre>https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/ImplementationGuide/nhsdigital.nhs-notify-letters</pre></div>"
   },
-  "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/ImplementationGuide/nhsdigital.nhs-notify-letters",
+  "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/ImplementationGuide/nhsdigital.nhs-notify-letters",
   "version" : "0.1.0",
   "name" : "NHSNotifyLetters",
   "title" : "NHS Notify – FHIR Letter Printing Implementation Guide",
   "status" : "draft",
-  "date" : "2025-09-30T10:31:22+00:00",
+  "date" : "2025-09-30T11:01:53+00:00",
   "publisher" : "NHS England",
   "contact" : [{
     "name" : "NHS England",
@@ -169,7 +169,7 @@
       },
       {
         "url" : "value",
-        "valueString" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/history.html"
+        "valueString" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/history.html"
       }],
       "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
     },
@@ -448,7 +448,7 @@
       },
       {
         "url" : "value",
-        "valueString" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/history.html"
+        "valueString" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/history.html"
       }],
       "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
     },
@@ -626,7 +626,7 @@
         "reference" : "Binary/ExampleLetterBinary"
       },
       "name" : "ExampleLetterBinary",
-      "exampleCanonical" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-binary"
+      "exampleCanonical" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-binary"
     },
     {
       "extension" : [{
@@ -637,7 +637,7 @@
         "reference" : "CommunicationRequest/ExampleLetterCommunicationRequest"
       },
       "name" : "ExampleLetterCommunicationRequest",
-      "exampleCanonical" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-communicationrequest"
+      "exampleCanonical" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-communicationrequest"
     },
     {
       "extension" : [{
@@ -648,7 +648,7 @@
         "reference" : "DocumentReference/ExampleLetterDocRef"
       },
       "name" : "ExampleLetterDocRef",
-      "exampleCanonical" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-documentreference"
+      "exampleCanonical" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-documentreference"
     },
     {
       "extension" : [{

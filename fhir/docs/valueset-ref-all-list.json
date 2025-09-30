@@ -152,8 +152,8 @@
       "sources" : ["2.16.840.1.113883.4.642.3.20"],
       "uses" : {
       },
-      "StructureDefinition-nhsnotify-letter-communicationrequest.html" : "Letter CommunicationRequest",
       "StructureDefinition-nhsnotify-letter-binary.html" : "Letter PDF Binary",
+      "StructureDefinition-nhsnotify-letter-communicationrequest.html" : "Letter CommunicationRequest",
       "StructureDefinition-nhsnotify-letter-documentreference.html" : "Letter PDF Document"
     },
     {
@@ -272,15 +272,12 @@
       "StructureDefinition-nhsnotify-letter-communicationrequest.html" : "Letter CommunicationRequest"
     },
     {
-      "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category",
+      "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/ValueSet/nhsnotify-letter-category",
       "version" : "0.1.0",
       "status" : "draft",
       "name" : "LetterCategoryVS",
       "title" : "Letter Categories",
-      "description" : "Categories for letters (SNOMED CT).",
-      "uses" : {
-      },
-      "StructureDefinition-nhsnotify-letter-communicationrequest.html" : "Letter CommunicationRequest"
+      "description" : "Categories for letters (SNOMED CT)."
     }
   ]
 }

@@ -2,7 +2,8 @@
   "resourceType" : "Binary",
   "id" : "ExampleLetterBinary",
   "meta" : {
-    "profile" : ["https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-binary"]
+    "profile" : ["https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-binary",
+    "https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-binary"]
   },
   "contentType" : "application/pdf",
   "data" : "SGVsbG8gd29ybGQ="

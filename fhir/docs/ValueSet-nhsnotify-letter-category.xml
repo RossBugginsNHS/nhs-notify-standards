@@ -5,12 +5,12 @@
   <text>
     <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: ValueSet nhsnotify-letter-category</b></p><a name="nhsnotify-letter-category"> </a><a name="hcnhsnotify-letter-category"> </a><p>This value set includes codes based on the following rules:</p><ul/></div>
   </text>
-  <url value="https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category"/>
+  <url value="https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/ValueSet/nhsnotify-letter-category"/>
   <version value="0.1.0"/>
   <name value="LetterCategoryVS"/>
   <title value="Letter Categories"/>
   <status value="draft"/>
-  <date value="2025-09-30T10:31:22+00:00"/>
+  <date value="2025-09-30T11:01:53+00:00"/>
   <publisher value="NHS England"/>
   <contact>
     <name value="NHS England"/>

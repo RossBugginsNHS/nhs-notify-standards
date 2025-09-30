@@ -1,7 +1,7 @@
 {
   "codeSystems" : [
     {
-      "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category",
+      "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/ValueSet/nhsnotify-letter-category",
       "version" : "0.1.0",
       "status" : "draft",
       "name" : "LetterCategoryVS",

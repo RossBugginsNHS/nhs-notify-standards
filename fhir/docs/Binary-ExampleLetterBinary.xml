@@ -3,6 +3,7 @@
 <Binary xmlns="http://hl7.org/fhir">
   <id value="ExampleLetterBinary"/>
   <meta>
+    <profile value="https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-binary"/>
     <profile value="https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-binary"/>
   </meta>
   <contentType value="application/pdf"/>

@@ -13,7 +13,7 @@
     }
   },
   "externalDocs": {
-    "url": "https://nhsdigital.github.io/nhs-notify-standards/fhir/CapabilityStatement/LettersServer",
+    "url": "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/CapabilityStatement/LettersServer",
     "description": "FHIR CapabilityStatement"
   },
   "paths": {

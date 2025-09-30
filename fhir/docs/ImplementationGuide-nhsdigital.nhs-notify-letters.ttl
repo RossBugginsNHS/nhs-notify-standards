@@ -6,19 +6,19 @@
 
 # - resource -------------------------------------------------------------------
 
-<https://nhsdigital.github.io/nhs-notify-standards/fhir/ImplementationGuide/nhsdigital.nhs-notify-letters> a fhir:ImplementationGuide ;
+<https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/ImplementationGuide/nhsdigital.nhs-notify-letters> a fhir:ImplementationGuide ;
   fhir:nodeRole fhir:treeRoot ;
   fhir:id [ fhir:v "nhsdigital.nhs-notify-letters"] ; # 
   fhir:text [
      fhir:status [ fhir:v "generated" ] ;
-     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: ImplementationGuide nhsdigital.nhs-notify-letters</b></p><a name=\"nhsdigital.nhs-notify-letters\"> </a><a name=\"hcnhsdigital.nhs-notify-letters\"> </a><h2>NHSNotifyLetters</h2><p>The official URL for this implementation guide is: </p><pre>https://nhsdigital.github.io/nhs-notify-standards/fhir/ImplementationGuide/nhsdigital.nhs-notify-letters</pre></div>"^^rdf:XMLLiteral
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: ImplementationGuide nhsdigital.nhs-notify-letters</b></p><a name=\"nhsdigital.nhs-notify-letters\"> </a><a name=\"hcnhsdigital.nhs-notify-letters\"> </a><h2>NHSNotifyLetters</h2><p>The official URL for this implementation guide is: </p><pre>https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/ImplementationGuide/nhsdigital.nhs-notify-letters</pre></div>"^^rdf:XMLLiteral
   ] ; # 
-  fhir:url [ fhir:v "https://nhsdigital.github.io/nhs-notify-standards/fhir/ImplementationGuide/nhsdigital.nhs-notify-letters"^^xsd:anyURI] ; # 
+  fhir:url [ fhir:v "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/ImplementationGuide/nhsdigital.nhs-notify-letters"^^xsd:anyURI] ; # 
   fhir:version [ fhir:v "0.1.0"] ; # 
   fhir:name [ fhir:v "NHSNotifyLetters"] ; # 
   fhir:title [ fhir:v "NHS Notify – FHIR Letter Printing Implementation Guide"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
-  fhir:date [ fhir:v "2025-09-30T10:31:22+00:00"^^xsd:dateTime] ; # 
+  fhir:date [ fhir:v "2025-09-30T11:01:53+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "NHS England"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "NHS England" ] ;
@@ -229,7 +229,7 @@
          fhir:url [ fhir:v "value"^^xsd:anyURI ] ;
          fhir:value [
            a fhir:string ;
-           fhir:v "https://nhsdigital.github.io/nhs-notify-standards/fhir/history.html"
+           fhir:v "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/history.html"
          ]
        ] ) ;
        fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ]
@@ -610,7 +610,7 @@
          fhir:url [ fhir:v "value"^^xsd:anyURI ] ;
          fhir:value [
            a fhir:string ;
-           fhir:v "https://nhsdigital.github.io/nhs-notify-standards/fhir/history.html"
+           fhir:v "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/history.html"
          ]
        ] ) ;
        fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"^^xsd:anyURI ]
@@ -849,14 +849,14 @@
          ]
        ] ) ;
        fhir:reference [
-         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/Binary/ExampleLetterBinary> ;
+         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/Binary/ExampleLetterBinary> ;
          fhir:reference [ fhir:v "Binary/ExampleLetterBinary" ]
        ] ;
        fhir:name [ fhir:v "ExampleLetterBinary" ] ;
        fhir:example [
          a fhir:canonical ;
-         fhir:v "https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-binary"^^xsd:anyURI ;
-         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-binary>
+         fhir:v "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-binary"^^xsd:anyURI ;
+         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-binary>
        ]
      ] [
        fhir:extension ( [
@@ -867,14 +867,14 @@
          ]
        ] ) ;
        fhir:reference [
-         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/CommunicationRequest/ExampleLetterCommunicationRequest> ;
+         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/CommunicationRequest/ExampleLetterCommunicationRequest> ;
          fhir:reference [ fhir:v "CommunicationRequest/ExampleLetterCommunicationRequest" ]
        ] ;
        fhir:name [ fhir:v "ExampleLetterCommunicationRequest" ] ;
        fhir:example [
          a fhir:canonical ;
-         fhir:v "https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-communicationrequest"^^xsd:anyURI ;
-         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-communicationrequest>
+         fhir:v "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-communicationrequest"^^xsd:anyURI ;
+         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-communicationrequest>
        ]
      ] [
        fhir:extension ( [
@@ -885,14 +885,14 @@
          ]
        ] ) ;
        fhir:reference [
-         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/DocumentReference/ExampleLetterDocRef> ;
+         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/DocumentReference/ExampleLetterDocRef> ;
          fhir:reference [ fhir:v "DocumentReference/ExampleLetterDocRef" ]
        ] ;
        fhir:name [ fhir:v "ExampleLetterDocRef" ] ;
        fhir:example [
          a fhir:canonical ;
-         fhir:v "https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-documentreference"^^xsd:anyURI ;
-         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-documentreference>
+         fhir:v "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-documentreference"^^xsd:anyURI ;
+         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-documentreference>
        ]
      ] [
        fhir:extension ( [
@@ -903,7 +903,7 @@
          ]
        ] ) ;
        fhir:reference [
-         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/Patient/ExamplePatient> ;
+         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/Patient/ExamplePatient> ;
          fhir:reference [ fhir:v "Patient/ExamplePatient" ]
        ] ;
        fhir:name [ fhir:v "ExamplePatient" ] ;
@@ -920,7 +920,7 @@
          ]
        ] ) ;
        fhir:reference [
-         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/Organization/ExampleSenderOrg> ;
+         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/Organization/ExampleSenderOrg> ;
          fhir:reference [ fhir:v "Organization/ExampleSenderOrg" ]
        ] ;
        fhir:name [ fhir:v "ExampleSenderOrg" ] ;
@@ -937,7 +937,7 @@
          ]
        ] ) ;
        fhir:reference [
-         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category> ;
+         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/ValueSet/nhsnotify-letter-category> ;
          fhir:reference [ fhir:v "ValueSet/nhsnotify-letter-category" ]
        ] ;
        fhir:name [ fhir:v "Letter Categories" ] ;
@@ -955,7 +955,7 @@
          ]
        ] ) ;
        fhir:reference [
-         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-communicationrequest> ;
+         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-communicationrequest> ;
          fhir:reference [ fhir:v "StructureDefinition/nhsnotify-letter-communicationrequest" ]
        ] ;
        fhir:name [ fhir:v "Letter CommunicationRequest" ] ;
@@ -973,7 +973,7 @@
          ]
        ] ) ;
        fhir:reference [
-         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-binary> ;
+         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-binary> ;
          fhir:reference [ fhir:v "StructureDefinition/nhsnotify-letter-binary" ]
        ] ;
        fhir:name [ fhir:v "Letter PDF Binary" ] ;
@@ -991,7 +991,7 @@
          ]
        ] ) ;
        fhir:reference [
-         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-documentreference> ;
+         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-documentreference> ;
          fhir:reference [ fhir:v "StructureDefinition/nhsnotify-letter-documentreference" ]
        ] ;
        fhir:name [ fhir:v "Letter PDF Document" ] ;
@@ -1009,7 +1009,7 @@
          ]
        ] ) ;
        fhir:reference [
-         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/CapabilityStatement/LettersServer> ;
+         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/CapabilityStatement/LettersServer> ;
          fhir:reference [ fhir:v "CapabilityStatement/LettersServer" ]
        ] ;
        fhir:name [ fhir:v "Letter Printing Server CapabilityStatement" ] ;
@@ -1026,7 +1026,7 @@
          ]
        ] ) ;
        fhir:reference [
-         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/OperationDefinition/SubmitLetterOperation> ;
+         fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/OperationDefinition/SubmitLetterOperation> ;
          fhir:reference [ fhir:v "OperationDefinition/SubmitLetterOperation" ]
        ] ;
        fhir:name [ fhir:v "Submit Letter" ] ;

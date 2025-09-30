@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Bundle xmlns="http://hl7.org/fhir">
-  <id value="f213f5a1-6175-434b-b370-17d5852dd3cb"/>
+  <id value="4a9c3e19-ba51-4895-b5ad-f510fa7fa44c"/>
   <meta>
-    <lastUpdated value="2025-09-30T10:32:30.250+00:00"/>
+    <lastUpdated value="2025-09-30T11:02:25.819+00:00"/>
   </meta>
   <type value="collection"/>
   <entry>
-    <fullUrl value="https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category"/>
+    <fullUrl value="https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/ValueSet/nhsnotify-letter-category"/>
     <resource>
       <ValueSet>
         <text>
@@ -30,12 +30,12 @@
             </table>
           </div>
         </text>
-        <url value="https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category"/>
+        <url value="https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/ValueSet/nhsnotify-letter-category"/>
         <version value="0.1.0"/>
         <name value="LetterCategoryVS"/>
         <title value="Letter Categories"/>
         <status value="draft"/>
-        <date value="2025-09-30T10:31:22+00:00"/>
+        <date value="2025-09-30T11:01:53+00:00"/>
         <jurisdiction>
           <coding>
             <system value="urn:iso:std:iso:3166"/>
@@ -44,8 +44,8 @@
           </coding>
         </jurisdiction>
         <expansion>
-          <identifier value="urn:uuid:a55e96a5-d3d7-4737-b689-3c56ad0becab"/>
-          <timestamp value="2025-09-30T10:32:40+00:00"/>
+          <identifier value="urn:uuid:5aa0c91e-975d-483a-8a9f-fd577cab5511"/>
+          <timestamp value="2025-09-30T11:02:41+00:00"/>
           <total value="0"/>
           <offset value="0"/>
           <parameter>

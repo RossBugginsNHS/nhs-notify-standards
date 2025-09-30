@@ -7,13 +7,13 @@
 
 # - resource -------------------------------------------------------------------
 
-<https://nhsdigital.github.io/nhs-notify-standards/fhir/DocumentReference/ExampleLetterDocRef> a fhir:DocumentReference ;
+<https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/DocumentReference/ExampleLetterDocRef> a fhir:DocumentReference ;
   fhir:nodeRole fhir:treeRoot ;
   fhir:id [ fhir:v "ExampleLetterDocRef"] ; # 
   fhir:meta [
      fhir:profile ( [
-       fhir:v "https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-documentreference"^^xsd:anyURI ;
-       fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-documentreference>
+       fhir:v "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-documentreference"^^xsd:anyURI ;
+       fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-documentreference>
      ] )
   ] ; # 
   fhir:text [
@@ -29,11 +29,11 @@
      ] )
   ] ; # 
   fhir:subject [
-     fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/Patient/ExamplePatient> ;
+     fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/Patient/ExamplePatient> ;
      fhir:reference [ fhir:v "Patient/ExamplePatient" ]
   ] ; # 
   fhir:author ( [
-     fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/Organization/ExampleSenderOrg> ;
+     fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/Organization/ExampleSenderOrg> ;
      fhir:reference [ fhir:v "Organization/ExampleSenderOrg" ]
   ] ) ; # 
   fhir:content ( [

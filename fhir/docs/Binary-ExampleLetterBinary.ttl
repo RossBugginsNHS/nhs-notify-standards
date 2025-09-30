@@ -6,11 +6,14 @@
 
 # - resource -------------------------------------------------------------------
 
-<https://nhsdigital.github.io/nhs-notify-standards/fhir/Binary/ExampleLetterBinary> a fhir:Binary ;
+<https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/Binary/ExampleLetterBinary> a fhir:Binary ;
   fhir:nodeRole fhir:treeRoot ;
   fhir:id [ fhir:v "ExampleLetterBinary"] ; # 
   fhir:meta [
      fhir:profile ( [
+       fhir:v "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-binary"^^xsd:anyURI ;
+       fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-binary>
+     ] [
        fhir:v "https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-binary"^^xsd:anyURI ;
        fhir:link <https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-binary>
      ] )

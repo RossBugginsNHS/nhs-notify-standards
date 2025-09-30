@@ -1,18 +1,5 @@
 [
   {
-    "id" : "LettersServer",
-    "type" : "CapabilityStatement",
-    "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/CapabilityStatement/LettersServer",
-    "version" : "0.1.0"
-  },
-  {
-    "id" : "nhsdigital.nhs-notify-letters",
-    "type" : "ImplementationGuide",
-    "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/ImplementationGuide/nhsdigital.nhs-notify-letters",
-    "version" : "0.1.0",
-    "name" : "NHSNotifyLetters"
-  },
-  {
     "id" : "SubmitLetterOperation",
     "type" : "OperationDefinition",
     "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/OperationDefinition/submit-letter",
@@ -20,30 +7,43 @@
     "name" : "SubmitLetter"
   },
   {
+    "id" : "LettersServer",
+    "type" : "CapabilityStatement",
+    "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/CapabilityStatement/LettersServer",
+    "version" : "0.1.0"
+  },
+  {
+    "id" : "nhsdigital.nhs-notify-letters",
+    "type" : "ImplementationGuide",
+    "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/ImplementationGuide/nhsdigital.nhs-notify-letters",
+    "version" : "0.1.0",
+    "name" : "NHSNotifyLetters"
+  },
+  {
     "id" : "nhsnotify-letter-binary",
     "type" : "StructureDefinition",
-    "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-binary",
+    "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-binary",
     "version" : "0.1.0",
     "name" : "LetterBinary"
   },
   {
     "id" : "nhsnotify-letter-communicationrequest",
     "type" : "StructureDefinition",
-    "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-communicationrequest",
+    "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-communicationrequest",
     "version" : "0.1.0",
     "name" : "LetterCommunicationRequest"
   },
   {
     "id" : "nhsnotify-letter-documentreference",
     "type" : "StructureDefinition",
-    "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-documentreference",
+    "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-documentreference",
     "version" : "0.1.0",
     "name" : "LetterDocumentReference"
   },
   {
     "id" : "nhsnotify-letter-category",
     "type" : "ValueSet",
-    "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category",
+    "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/ValueSet/nhsnotify-letter-category",
     "version" : "0.1.0",
     "name" : "LetterCategoryVS"
   }

@@ -2,7 +2,7 @@
   "resourceType" : "CommunicationRequest",
   "id" : "ExampleLetterCommunicationRequest",
   "meta" : {
-    "profile" : ["https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-communicationrequest"]
+    "profile" : ["https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-communicationrequest"]
   },
   "text" : {
     "status" : "generated",

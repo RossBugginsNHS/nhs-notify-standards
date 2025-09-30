@@ -6,19 +6,19 @@
 
 # - resource -------------------------------------------------------------------
 
-<https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category> a fhir:ValueSet ;
+<https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/ValueSet/nhsnotify-letter-category> a fhir:ValueSet ;
   fhir:nodeRole fhir:treeRoot ;
   fhir:id [ fhir:v "nhsnotify-letter-category"] ; # 
   fhir:text [
      fhir:status [ fhir:v "generated" ] ;
      fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: ValueSet nhsnotify-letter-category</b></p><a name=\"nhsnotify-letter-category\"> </a><a name=\"hcnhsnotify-letter-category\"> </a><p>This value set includes codes based on the following rules:</p><ul/></div>"^^rdf:XMLLiteral
   ] ; # 
-  fhir:url [ fhir:v "https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category"^^xsd:anyURI] ; # 
+  fhir:url [ fhir:v "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/ValueSet/nhsnotify-letter-category"^^xsd:anyURI] ; # 
   fhir:version [ fhir:v "0.1.0"] ; # 
   fhir:name [ fhir:v "LetterCategoryVS"] ; # 
   fhir:title [ fhir:v "Letter Categories"] ; # 
   fhir:status [ fhir:v "draft"] ; # 
-  fhir:date [ fhir:v "2025-09-30T10:31:22+00:00"^^xsd:dateTime] ; # 
+  fhir:date [ fhir:v "2025-09-30T11:01:53+00:00"^^xsd:dateTime] ; # 
   fhir:publisher [ fhir:v "NHS England"] ; # 
   fhir:contact ( [
      fhir:name [ fhir:v "NHS England" ] ;

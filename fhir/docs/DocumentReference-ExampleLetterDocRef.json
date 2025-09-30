@@ -2,7 +2,7 @@
   "resourceType" : "DocumentReference",
   "id" : "ExampleLetterDocRef",
   "meta" : {
-    "profile" : ["https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-documentreference"]
+    "profile" : ["https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-documentreference"]
   },
   "text" : {
     "status" : "generated",

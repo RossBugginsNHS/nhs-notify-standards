@@ -10,7 +10,7 @@
 id: nhsdigital.nhs-notify-letters
 
 # The canonical base for your IG (where it will be hosted)
-canonical: https://nhsdigital.github.io/nhs-notify-standards/fhir
+canonical: https://nhsdigital.github.io/nhs-notify-standards/fhir/docs
 
 # Human-readable values
 name: NHSNotifyLetters

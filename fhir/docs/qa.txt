@@ -1,20 +1,20 @@
 NHSNotifyLetters : Validation Results
 =========================================
 
-err = 15, warn = 18, info = 1
+err = 14, warn = 23, info = 1
 IG Publisher Version: 2.0.17
-Generated Tue Sep 30 10:32:53 UTC 2025. FHIR version 4.0.1 for nhsdigital.nhs-notify-letters#0.1.0 (canonical = https://nhsdigital.github.io/nhs-notify-standards/fhir)
+Generated Tue Sep 30 11:02:55 UTC 2025. FHIR version 4.0.1 for nhsdigital.nhs-notify-letters#0.1.0 (canonical = https://nhsdigital.github.io/nhs-notify-standards/fhir/docs)
  Build Errors : 1 / 10 / 0
- /workspace/fhir/fsh-generated/resources/Binary-ExampleLetterBinary : 0 / 0 / 1
+ /workspace/fhir/fsh-generated/resources/Binary-ExampleLetterBinary : 0 / 2 / 1
  /workspace/fhir/fsh-generated/resources/CapabilityStatement-LettersServer : 3 / 0 / 1
- /workspace/fhir/fsh-generated/resources/CommunicationRequest-ExampleLetterCommunicationRequest : 0 / 0 / 1
+ /workspace/fhir/fsh-generated/resources/CommunicationRequest-ExampleLetterCommunicationRequest : 0 / 1 / 1
  /workspace/fhir/fsh-generated/resources/DocumentReference-ExampleLetterDocRef : 1 / 1 / 1
  /workspace/fhir/fsh-generated/resources/ImplementationGuide-nhsdigital.nhs-notify-letters : 1 / 2 / 1
- /workspace/fhir/fsh-generated/resources/OperationDefinition-SubmitLetterOperation : 4 / 0 / 1
+ /workspace/fhir/fsh-generated/resources/OperationDefinition-SubmitLetterOperation : 3 / 0 / 1
  /workspace/fhir/fsh-generated/resources/Organization-ExampleSenderOrg : 0 / 1 / 1
  /workspace/fhir/fsh-generated/resources/Patient-ExamplePatient : 0 / 1 / 1
  /workspace/fhir/fsh-generated/resources/StructureDefinition-nhsnotify-letter-binary : 1 / 0 / 2
- /workspace/fhir/fsh-generated/resources/StructureDefinition-nhsnotify-letter-communicationrequest : 1 / 0 / 1
+ /workspace/fhir/fsh-generated/resources/StructureDefinition-nhsnotify-letter-communicationrequest : 1 / 2 / 1
  /workspace/fhir/fsh-generated/resources/StructureDefinition-nhsnotify-letter-documentreference : 2 / 2 / 1
  /workspace/fhir/fsh-generated/resources/ValueSet-nhsnotify-letter-category : 1 / 1 / 1
 </table>
@@ -31,23 +31,25 @@ WARNING: 2: An HTML fragment from the set [cross-version-analysis.xhtml, cross-v
 WARNING: 3: An HTML fragment from the set [dependency-table.xhtml, dependency-table-short.xhtml, dependency-table-nontech.xhtml] is not included anywhere in the produced implementation guide
 WARNING: 4: The HTML fragment 'globals-table.xhtml' is not included anywhere in the produced implementation guide
 == fsh-generated/resources/Binary-ExampleLetterBinary.json ==
+WARNING: Binary/ExampleLetterBinary: Binary.meta.profile[1]: A definition could not be found for Canonical URL 'https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-binary'
+WARNING: Binary/ExampleLetterBinary: Binary.meta.profile[1]: Profile reference 'https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-binary' has not been checked because it could not be found, and the validator is set to not fetch unknown profiles
 == fsh-generated/resources/CapabilityStatement-LettersServer.json ==
 ERROR: CapabilityStatement/LettersServer: CapabilityStatement.jurisdiction[0].coding[0].display: Wrong Display Name 'United Kingdom' for urn:iso:std:iso:3166#GB. Valid display is 'United Kingdom of Great Britain and Northern Ireland' (for the language(s) 'en-GB')
 ERROR: CapabilityStatement/LettersServer: CapabilityStatement: Constraint failed: cpb-2: 'A Capability Statement SHALL have at least one of description, software, or implementation element. ((description.count() + software.count() + implementation.count()) > 0)'
 ERROR: CapabilityStatement/LettersServer: CapabilityStatement: Constraint failed: cpb-14: 'If kind = instance, implementation must be present and software may be present ((kind != 'instance') or implementation.exists())'
 == fsh-generated/resources/CommunicationRequest-ExampleLetterCommunicationRequest.json ==
+WARNING: CommunicationRequest/ExampleLetterCommunicationRequest: CommunicationRequest.category[0]: ValueSet 'https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category' not found
 == fsh-generated/resources/DocumentReference-ExampleLetterDocRef.json ==
 WARNING: DocumentReference/ExampleLetterDocRef: DocumentReference.content[0].attachment.url: No definition could be found for URL value 'Binary/ExampleLetterBinary'
-ERROR: DocumentReference/ExampleLetterDocRef: DocumentReference: Problem processing expression 'content.first().attachment.url.matches('Binary/[A-Za-z0-9\-\.]{1,64}')' in profile 'https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-documentreference|0.1.0' at path 'DocumentReference': Error @1, 71: Unknown FHIRPath character escape \-
+ERROR: DocumentReference/ExampleLetterDocRef: DocumentReference: Problem processing expression 'content.first().attachment.url.matches('Binary/[A-Za-z0-9\-\.]{1,64}')' in profile 'https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-documentreference|0.1.0' at path 'DocumentReference': Error @1, 71: Unknown FHIRPath character escape \-
 == fsh-generated/resources/ImplementationGuide-nhsdigital.nhs-notify-letters.json ==
 ERROR: ImplementationGuide/nhsdigital.nhs-notify-letters: ImplementationGuide.jurisdiction[0].coding[0].display: Wrong Display Name 'United Kingdom' for urn:iso:std:iso:3166#GB. Valid display is 'United Kingdom of Great Britain and Northern Ireland' (for the language(s) 'en-GB')
 WARNING: ImplementationGuide/nhsdigital.nhs-notify-letters: ImplementationGuide.dependsOn[2].uri: A definition could not be found for Canonical URL 'http://fhir.org/packages/fhir.r4.ukcore.stu2/ImplementationGuide/fhir.r4.ukcore.stu2'
 WARNING: ImplementationGuide/nhsdigital.nhs-notify-letters: ImplementationGuide.dependsOn[2]: The canonical URL http://fhir.org/packages/fhir.r4.ukcore.stu2/ImplementationGuide/fhir.r4.ukcore.stu2 doesn't point to an actual ImplementationGuide resource
 == fsh-generated/resources/OperationDefinition-SubmitLetterOperation.json ==
-ERROR: OperationDefinition.where(url = 'https://nhsdigital.github.io/nhs-notify-standards/fhir/OperationDefinition/submit-letter'): Conformance resource /workspace/fhir/fsh-generated/resources/OperationDefinition-SubmitLetterOperation.json - the canonical URL (https://nhsdigital.github.io/nhs-notify-standards/fhir/OperationDefinition/SubmitLetterOperation) does not match the URL (https://nhsdigital.github.io/nhs-notify-standards/fhir/OperationDefinition/submit-letter). Use the special-url parameter if you really mean for it not to match
-ERROR: OperationDefinition.url: Resource id/url mismatch: SubmitLetterOperation/https://nhsdigital.github.io/nhs-notify-standards/fhir/OperationDefinition/submit-letter
+ERROR: OperationDefinition.where(url = 'https://nhsdigital.github.io/nhs-notify-standards/fhir/OperationDefinition/submit-letter'): Conformance resource /workspace/fhir/fsh-generated/resources/OperationDefinition-SubmitLetterOperation.json - the canonical URL (https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/OperationDefinition/SubmitLetterOperation) does not match the URL (https://nhsdigital.github.io/nhs-notify-standards/fhir/OperationDefinition/submit-letter). Use the special-url parameter if you really mean for it not to match
 ERROR: OperationDefinition/SubmitLetterOperation: OperationDefinition.jurisdiction[0].coding[0].display: Wrong Display Name 'United Kingdom' for urn:iso:std:iso:3166#GB. Valid display is 'United Kingdom of Great Britain and Northern Ireland' (for the language(s) 'en-GB')
-ERROR: /workspace/fhir/fsh-generated/resources/OperationDefinition-SubmitLetterOperation: URL Mismatch https://nhsdigital.github.io/nhs-notify-standards/fhir/OperationDefinition/SubmitLetterOperation vs https://nhsdigital.github.io/nhs-notify-standards/fhir/OperationDefinition/submit-letter
+ERROR: /workspace/fhir/fsh-generated/resources/OperationDefinition-SubmitLetterOperation: URL Mismatch https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/OperationDefinition/SubmitLetterOperation vs https://nhsdigital.github.io/nhs-notify-standards/fhir/OperationDefinition/submit-letter
 == fsh-generated/resources/Organization-ExampleSenderOrg.json ==
 WARNING: Organization/ExampleSenderOrg: Organization.identifier[0].system: No definition could be found for URL value 'https://fhir.nhs.uk/Id/ods-organization-code'
 == fsh-generated/resources/Patient-ExamplePatient.json ==
@@ -57,6 +59,8 @@ ERROR: StructureDefinition/nhsnotify-letter-binary: StructureDefinition.jurisdic
 INFORMATION: StructureDefinition/nhsnotify-letter-binary: StructureDefinition.snapshot.element[4].binding.extension[0]: The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet|5.2.0 is deprecated
 == fsh-generated/resources/StructureDefinition-nhsnotify-letter-communicationrequest.json ==
 ERROR: StructureDefinition/nhsnotify-letter-communicationrequest: StructureDefinition.jurisdiction[0].coding[0].display: Wrong Display Name 'United Kingdom' for urn:iso:std:iso:3166#GB. Valid display is 'United Kingdom of Great Britain and Northern Ireland' (for the language(s) 'en-GB')
+WARNING: StructureDefinition/nhsnotify-letter-communicationrequest: StructureDefinition.snapshot.element[15].binding.valueSet: A definition could not be found for Canonical URL 'https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category'
+WARNING: StructureDefinition/nhsnotify-letter-communicationrequest: StructureDefinition.differential.element[2].binding.valueSet: A definition could not be found for Canonical URL 'https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category'
 == fsh-generated/resources/StructureDefinition-nhsnotify-letter-documentreference.json ==
 ERROR: StructureDefinition/nhsnotify-letter-documentreference: StructureDefinition.jurisdiction[0].coding[0].display: Wrong Display Name 'United Kingdom' for urn:iso:std:iso:3166#GB. Valid display is 'United Kingdom of Great Britain and Northern Ireland' (for the language(s) 'en-GB')
 WARNING: StructureDefinition/nhsnotify-letter-documentreference: StructureDefinition.snapshot.element[38].comment: The markdown contains content that appears to be an embedded HTML tag starting at '<i'. This will (or SHOULD) be escaped by the presentation layer. The content should be checked to confirm that this is the desired behaviour

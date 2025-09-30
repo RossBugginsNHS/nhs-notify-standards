@@ -3,14 +3,14 @@
 <ImplementationGuide xmlns="http://hl7.org/fhir">
   <id value="nhsdigital.nhs-notify-letters"/>
   <text>
-    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: ImplementationGuide nhsdigital.nhs-notify-letters</b></p><a name="nhsdigital.nhs-notify-letters"> </a><a name="hcnhsdigital.nhs-notify-letters"> </a><h2>NHSNotifyLetters</h2><p>The official URL for this implementation guide is: </p><pre>https://nhsdigital.github.io/nhs-notify-standards/fhir/ImplementationGuide/nhsdigital.nhs-notify-letters</pre></div>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: ImplementationGuide nhsdigital.nhs-notify-letters</b></p><a name="nhsdigital.nhs-notify-letters"> </a><a name="hcnhsdigital.nhs-notify-letters"> </a><h2>NHSNotifyLetters</h2><p>The official URL for this implementation guide is: </p><pre>https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/ImplementationGuide/nhsdigital.nhs-notify-letters</pre></div>
   </text>
-  <url value="https://nhsdigital.github.io/nhs-notify-standards/fhir/ImplementationGuide/nhsdigital.nhs-notify-letters"/>
+  <url value="https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/ImplementationGuide/nhsdigital.nhs-notify-letters"/>
   <version value="0.1.0"/>
   <name value="NHSNotifyLetters"/>
   <title value="NHS Notify – FHIR Letter Printing Implementation Guide"/>
   <status value="draft"/>
-  <date value="2025-09-30T10:31:22+00:00"/>
+  <date value="2025-09-30T11:01:53+00:00"/>
   <publisher value="NHS England"/>
   <contact>
     <name value="NHS England"/>
@@ -135,7 +135,7 @@
         <valueString value="path-history"/>
       </extension>
       <extension url="value">
-        <valueString value="https://nhsdigital.github.io/nhs-notify-standards/fhir/history.html"/>
+        <valueString value="https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/history.html"/>
       </extension>
     </extension>
     <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
@@ -338,7 +338,7 @@
         <valueCode value="path-history"/>
       </extension>
       <extension url="value">
-        <valueString value="https://nhsdigital.github.io/nhs-notify-standards/fhir/history.html"/>
+        <valueString value="https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/history.html"/>
       </extension>
     </extension>
     <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
@@ -469,7 +469,7 @@
         <reference value="Binary/ExampleLetterBinary"/>
       </reference>
       <name value="ExampleLetterBinary"/>
-      <exampleCanonical value="https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-binary"/>
+      <exampleCanonical value="https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-binary"/>
     </resource>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
@@ -479,7 +479,7 @@
         <reference value="CommunicationRequest/ExampleLetterCommunicationRequest"/>
       </reference>
       <name value="ExampleLetterCommunicationRequest"/>
-      <exampleCanonical value="https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-communicationrequest"/>
+      <exampleCanonical value="https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-communicationrequest"/>
     </resource>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
@@ -489,7 +489,7 @@
         <reference value="DocumentReference/ExampleLetterDocRef"/>
       </reference>
       <name value="ExampleLetterDocRef"/>
-      <exampleCanonical value="https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-documentreference"/>
+      <exampleCanonical value="https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-documentreference"/>
     </resource>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">

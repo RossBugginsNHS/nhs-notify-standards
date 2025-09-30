@@ -147,7 +147,7 @@ ext-1:Must have either extensions or value[x], not both {extension.exists() != v
 ","Message part content","The communicated content (or for multi-part communications, one portion of the communication).","","","","","","","","","",,,,,"","type:$this}
 ","",,"closed","CommunicationRequest.payload.content[x]",1,1,"","ele-1:All FHIR elements must have a @value or children {hasValue() or (children().count() > id.count())}
 ","Request.note"
-"CommunicationRequest.payload.content[x]:contentReference","CommunicationRequest.payload.content[x]","contentReference","","",1,1,"Y","","","Reference {[]} {[CanonicalType[https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-documentreference]]}
+"CommunicationRequest.payload.content[x]:contentReference","CommunicationRequest.payload.content[x]","contentReference","","",1,1,"Y","","","Reference {[]} {[CanonicalType[https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-documentreference]]}
 ","DocumentReference wrapping the PDF binary","The communicated content (or for multi-part communications, one portion of the communication).","","","","","","","","","",,,,,"",,,,"CommunicationRequest.payload.content[x]",1,1,"","ele-1:All FHIR elements must have a @value or children {hasValue() or (children().count() > id.count())}
 ","Request.note"
 "CommunicationRequest.occurrence[x]","CommunicationRequest.occurrence[x]","","timing

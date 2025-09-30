@@ -10,6 +10,7 @@ SHELL := /bin/bash
 
 IG_DIR         ?= .
 OUT_DIR        := $(IG_DIR)/output
+DOCS_DIR        := $(IG_DIR)/docs
 
 # =============================================================================
 # Build (SUSHI + IG Publisher)
@@ -25,6 +26,15 @@ build:
 serve:
 > echo "▶ Serving $(OUT_DIR) on http://localhost:8080 (Ctrl+C to stop)…"
 > cd $(OUT_DIR)
+> python3 -m http.server 8080
+
+# =============================================================================
+# Serve docs output locally
+# =============================================================================
+.PHONY: serve
+serve-docs:
+> echo "▶ Serving $(DOCS_DIR) on http://localhost:8080 (Ctrl+C to stop)…"
+> cd $(DOCS_DIR)
 > python3 -m http.server 8080
 
 # =============================================================================

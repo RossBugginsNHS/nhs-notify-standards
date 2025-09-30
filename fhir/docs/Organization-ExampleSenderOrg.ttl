@@ -6,7 +6,7 @@
 
 # - resource -------------------------------------------------------------------
 
-<https://nhsdigital.github.io/nhs-notify-standards/fhir/Organization/ExampleSenderOrg> a fhir:Organization ;
+<https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/Organization/ExampleSenderOrg> a fhir:Organization ;
   fhir:nodeRole fhir:treeRoot ;
   fhir:id [ fhir:v "ExampleSenderOrg"] ; # 
   fhir:text [

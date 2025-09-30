@@ -12,7 +12,7 @@
 </head>
 <body style="margin: 20px; background-color: #ffffff">
  <h1>Terminology Server Report for NHSNotifyLetters</h1>
- <p>Generated Tue Sep 30 10:32:53 UTC 2025, FHIR version 4.0.1 for nhsdigital.nhs-notify-letters#0.1.0 (canonical = <a href="https://nhsdigital.github.io/nhs-notify-standards/fhir">https://nhsdigital.github.io/nhs-notify-standards/fhir</a> (<a href="https://nhsdigital.github.io/nhs-notify-standards/fhir/history.html">history</a>))</p>
+ <p>Generated Tue Sep 30 11:02:55 UTC 2025, FHIR version 4.0.1 for nhsdigital.nhs-notify-letters#0.1.0 (canonical = <a href="https://nhsdigital.github.io/nhs-notify-standards/fhir/docs">https://nhsdigital.github.io/nhs-notify-standards/fhir/docs</a> (<a href="https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/history.html">history</a>))</p>
 <p>This page provides a report on which terminology servers were used while publishing this IG. Note that terminology caching reduces the server hit count - this page only reports content that wasn't cached</p>
 <h2>Terminology Parameters</h2>
 <ul>
@@ -57,6 +57,13 @@
   <tr>
     <td>Found candidate server http://tx.fhir.org/r4</td>
     <td>http://tx.fhir.org/r4</td>
+    <td>https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category</td>
+    <td>http://loinc.org</td>
+    <td>auth = , candidates=http://tx.fhir.org/r4|https://tx.ontoserver.csiro.au/fhir|https://terminologystandardsservice.ca/tx/fhir|http://tx.hl7europe.eu/r4|https://tx.fhir.ch/r4</td>
+  </tr>
+  <tr>
+    <td>Found candidate server http://tx.fhir.org/r4</td>
+    <td>http://tx.fhir.org/r4</td>
     <td>null</td>
     <td>http://snomed.info/sct</td>
     <td>auth = , candidates=http://tx.fhir.org/r4|https://tx.ontoserver.csiro.au/fhir|https://terminologystandardsservice.ca/tx/fhir|https://smt.esante.gouv.fr/fhir|https://apps.health.belgium.be/ontoserver/fhir|http://tx.hl7europe.eu/r4|https://tx.fhir.ch/r4</td>
@@ -64,7 +71,7 @@
 </table>
 <h2>Primary Server: https://tx.fhir.org/r4</h2>
 <a href="https://tx.fhir.org/r4"></a>
-<p>Use Count: 0. Code Systems used: </p>
+<p>Use Count: 5. Code Systems used: </p>
 <table class="grid">
   <tr>
     <th>
@@ -79,6 +86,14 @@
     <th>
       <b>Details</b>
     </th>
+  </tr>
+  <tr>
+    <td>http://loinc.org</td>
+    <td>0</td>
+    <td>1</td>
+    <td>
+      <a href="http://terminology.hl7.org/6.5.0/CodeSystem-v3-loinc.html">Logical Observation Identifiers, Names and Codes (LOINC)</a>
+    </td>
   </tr>
   <tr>
     <td>http://snomed.info/sct</td>
@@ -97,5 +112,10 @@
     </td>
   </tr>
 </table>
+<p>ValueSets fetched:</p>
+<ul>
+  <li>https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-binary</li>
+  <li>https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category</li>
+</ul>
 </body>
 </html>

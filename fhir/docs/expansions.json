@@ -1,24 +1,24 @@
 {
   "resourceType" : "Bundle",
-  "id" : "f213f5a1-6175-434b-b370-17d5852dd3cb",
+  "id" : "4a9c3e19-ba51-4895-b5ad-f510fa7fa44c",
   "meta" : {
-    "lastUpdated" : "2025-09-30T10:32:30.250+00:00"
+    "lastUpdated" : "2025-09-30T11:02:25.819+00:00"
   },
   "type" : "collection",
   "entry" : [{
-    "fullUrl" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category",
+    "fullUrl" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/ValueSet/nhsnotify-letter-category",
     "resource" : {
       "resourceType" : "ValueSet",
       "text" : {
         "status" : "generated",
         "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"/><p>This value set contains 0 concepts</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>System</b></td><td><b>Display</b></td></tr></table></div>"
       },
-      "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category",
+      "url" : "https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/ValueSet/nhsnotify-letter-category",
       "version" : "0.1.0",
       "name" : "LetterCategoryVS",
       "title" : "Letter Categories",
       "status" : "draft",
-      "date" : "2025-09-30T10:31:22+00:00",
+      "date" : "2025-09-30T11:01:53+00:00",
       "jurisdiction" : [{
         "coding" : [{
           "system" : "urn:iso:std:iso:3166",
@@ -27,8 +27,8 @@
         }]
       }],
       "expansion" : {
-        "identifier" : "urn:uuid:a55e96a5-d3d7-4737-b689-3c56ad0becab",
-        "timestamp" : "2025-09-30T10:32:40+00:00",
+        "identifier" : "urn:uuid:5aa0c91e-975d-483a-8a9f-fd577cab5511",
+        "timestamp" : "2025-09-30T11:02:41+00:00",
         "total" : 0,
         "offset" : 0,
         "parameter" : [{

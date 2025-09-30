@@ -1,3 +1,5 @@
 {
+  "https://nhsdigital.github.io/nhs-notify-standards/fhir/ValueSet/nhsnotify-letter-category" : null,
+  "https://nhsdigital.github.io/nhs-notify-standards/fhir/StructureDefinition/nhsnotify-letter-binary" : null,
   "http://fhir.org/packages/fhir.r4.ukcore.stu2/ImplementationGuide/fhir.r4.ukcore.stu2" : null
 }

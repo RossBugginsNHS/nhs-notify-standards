@@ -6,7 +6,7 @@
 
 # - resource -------------------------------------------------------------------
 
-<https://nhsdigital.github.io/nhs-notify-standards/fhir/Patient/ExamplePatient> a fhir:Patient ;
+<https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/Patient/ExamplePatient> a fhir:Patient ;
   fhir:nodeRole fhir:treeRoot ;
   fhir:id [ fhir:v "ExamplePatient"] ; # 
   fhir:text [
