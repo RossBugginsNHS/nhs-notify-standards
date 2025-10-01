@@ -16,6 +16,17 @@
 <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#nhsnumber">nhsNumber</a></td><td></td></tr></tbody></table>
 
 
+## Example
+
+
+
+```
+{
+    "nhsNumber": "9434765919"
+}
+```
+
+
 
 <hr />
 
@@ -61,11 +72,21 @@
     "properties": {
         "nhsNumber": {
             "$ref": "./nhs-number.schema.json#/properties/nhsNumber",
-            "description": "Example patient's NHS Number (accepts canonical or formatted forms)."
+            "description": "Example patient's NHS Number (accepts canonical or formatted forms).",
+            "examples": [
+                "9434765919",
+                "943 476 5919",
+                "943-476-5919"
+            ]
         }
     },
     "required": [
         "nhsNumber"
+    ],
+    "examples": [
+        {
+            "nhsNumber": "9434765919"
+        }
     ]
 }
 ```
