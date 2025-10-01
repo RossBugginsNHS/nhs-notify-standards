@@ -18,7 +18,7 @@
     },
     "notifyDomain": {
       "type": "string",
-      "enum": ["Ordering","Delivering","Reporting","Enquries"],
+      "enum": ["Ordering","Delivering","Reporting","Enquiries"],
       "description": "High-level business domain to which the event belongs."
     },
     "microservice":{

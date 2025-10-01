@@ -31,12 +31,7 @@
       "description": "Canonical URI of the example event's data schema."
     },
     "data": {
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/$defs/ExamplePayload"
-        }
-      ],
+      "$ref": "#/$defs/ExamplePayload",
       "description": "Example payload wrapper containing notify-payload."
     }
   },
@@ -55,12 +50,10 @@
           "type": "object",
           "properties": {
             "notify-data": {
-              "type": "object",
               "$ref": "#/$defs/ExampleData",
               "description": "Example data-plane object for illustrative purposes."
             },
             "notify-metadata": {
-              "type": "object",
               "$ref": "#/$defs/ExampleMetadata",
               "description": "Example metadata block constrained for this example."
             }
