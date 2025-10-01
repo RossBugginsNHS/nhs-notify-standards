@@ -25,6 +25,7 @@ CloudEvents is a specification for describing event data in a common way. The NH
 
 Generated static documentation (once you run `npm run docs`) will appear under `docs/`.
 
+- [`index.html`](docs/index.html): NHS Notify CloudEvent schema docs home.
 - [`nhs-notify-profile.schema.html`](docs/nhs-notify-profile.schema.html): NHS Notify CloudEvent profile (envelope + constraints).
 - [`nhs-notify-example-event.schema.html`](docs/nhs-notify-example-event.schema.html): Example CloudEvent envelope schema.
 - [`nhs-notify-example-event-data.schema.html`](docs/nhs-notify-example-event-data.schema.html): Example event data payload schema.
