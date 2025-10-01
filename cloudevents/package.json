@@ -4,7 +4,8 @@
   "type": "module",
   "main": "generate-example.ts",
   "scripts": {
-    "generate": "ts-node generate-example.ts $@"
+    "generate": "ts-node generate-example.ts $@",
+    "docs": "node generate-docs.cjs"
   },
   "dependencies": {
     "ajv": "^8.0.0",
@@ -15,6 +16,7 @@
   "devDependencies": {
     "@types/node": "^20.0.0",
     "ajv-cli": "^5.0.0",
+    "json-schema-static-docs": "^0.28.1",
     "ts-node": "^10.0.0",
     "typescript": "^5.0.0"
   }

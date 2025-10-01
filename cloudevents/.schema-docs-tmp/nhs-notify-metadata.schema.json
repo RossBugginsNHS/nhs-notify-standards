@@ -1,0 +1,58 @@
+{
+  "$id": "nhs-notify-metadata.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NHS Notify Metadata",
+  "type": "object",
+  "description": "Notify Metadata",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "teamResponsible",
+    "notifyDomain"
+  ],
+  "properties": {
+    "teamResponsible": {
+      "type": "string",
+      "oneOf": [
+        {
+          "const": "Team 1"
+        },
+        {
+          "const": "Team 2"
+        },
+        {
+          "const": "Team 3"
+        }
+      ]
+    },
+    "notifyDomain": {
+      "type": "string",
+      "oneOf": [
+        {
+          "const": "Ordering"
+        },
+        {
+          "const": "Delivering"
+        },
+        {
+          "const": "Reporting"
+        },
+        {
+          "const": "Enquries"
+        }
+      ]
+    },
+    "microservice": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "pattern": "^[a-zA-Z0-9-]+$",
+      "description": "The name of the microservice generating the event, e.g. order-service"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+      "description": "The version of the microservice generating the event, in semantic versioning format (https://semver.org/), e.g. 1.0.0"
+    }
+  }
+}

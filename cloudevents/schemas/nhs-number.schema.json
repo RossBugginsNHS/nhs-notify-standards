@@ -1,5 +1,5 @@
 {
-  "$id": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-number.schema.json",
+  "$id": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/common/nhs/NhsNumber/1-0-0.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "NHS Common Types v1.0.0",
   "description": "Reusable types for NHS Notify payload schemas.",

@@ -1,0 +1,96 @@
+{
+  "$id": "nhs-notify-example-event.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Example Event",
+  "description": "Example  event",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "./nhs-notify-profile.schema.json"
+    }
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "uk.nhs.notify.ordering.order.read"
+    },
+    "source": {
+      "type": "string",
+      "const": "/data-plane/ordering"
+    },
+    "subject": {
+      "type": "string",
+      "pattern": "^customer/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/order/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/item/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+      "description": "Path in the form customer/{id}/order/{id}/item/{id} where each {{id}} is a UUID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)."
+    },
+    "dataschema": {
+      "type": "string",
+      "const": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json"
+    },
+    "data": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/ExamplePayload"
+        }
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "source",
+    "dataschema",
+    "data"
+  ],
+  "$defs": {
+    "ExamplePayload": {
+      "type": "object",
+      "properties": {
+        "notify-payload": {
+          "type": "object",
+          "properties": {
+            "notify-data": {
+              "type": "object",
+              "$ref": "#/$defs/ExampleData"
+            },
+            "notify-metadata": {
+              "type": "object",
+              "$ref": "#/$defs/ExampleMetadata"
+            }
+          }
+        }
+      }
+    },
+    "ExampleData": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "./nhs-notify-example-event-data.schema.json"
+        }
+      ]
+    },
+    "ExampleMetadata": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/TeamAlphaBravoMetadata"
+        }
+      ]
+    },
+    "TeamAlphaBravoMetadata": {
+      "$comment": "Notify Metadata",
+      "type": "object",
+      "description": "Notify Metadata",
+      "properties": {
+        "teamResponsible": {
+          "type": "string",
+          "const": "Team 1"
+        },
+        "notifyDomain": {
+          "type": "string",
+          "const": "Ordering"
+        }
+      }
+    }
+  }
+}

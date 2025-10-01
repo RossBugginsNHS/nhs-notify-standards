@@ -1,5 +1,5 @@
 {
-  "$id": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-number.schema.json",
+  "$id": "nhs-number.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "NHS Common Types v1.0.0",
   "description": "Reusable types for NHS Notify payload schemas.",
@@ -7,12 +7,18 @@
   "properties": {
     "nhsNumber": {
       "anyOf": [
-        { "$ref": "#/$defs/NhsNumber10" },
-        { "$ref": "#/$defs/NhsNumberFormatted" }
+        {
+          "$ref": "#/$defs/NhsNumber10"
+        },
+        {
+          "$ref": "#/$defs/NhsNumberFormatted"
+        }
       ]
     }
   },
-  "required": ["nhsNumber"],
+  "required": [
+    "nhsNumber"
+  ],
   "$defs": {
     "NhsNumber10": {
       "$comment": "Canonical stored form: exactly 10 digits (no spaces or hyphens).\n10-digit requirement and check-digit semantics come from the NHS Data Dictionary.\nRef: NHS Number attribute & algorithm (Modulus 11).",
@@ -21,7 +27,6 @@
       "pattern": "^[0-9]{10}$",
       "format": "nhs-number"
     },
-
     "NhsNumberFormatted": {
       "$comment": "UI/ingress tolerant form: allows 3-3-4 with optional spaces/hyphens. Still only digits once separators are removed.\nDisplay guidance to use 3-3-4 spacing; systems should accept flexible input.",
       "type": "string",
@@ -29,12 +34,16 @@
       "pattern": "^(?:[0-9]{3}[- ]?[0-9]{3}[- ]?[0-9]{4})$",
       "format": "nhs-number"
     },
-
     "NhsNumber": {
       "$comment": "Strong type: canonical 10 digits + checksum verified via custom format. Note: 'format' requires runtime support to assert it.",
       "allOf": [
-        { "$ref": "#/$defs/NhsNumber10" },
-        { "format": "nhs-number", "nhsChecksum": true }
+        {
+          "$ref": "#/$defs/NhsNumber10"
+        },
+        {
+          "format": "nhs-number",
+          "nhsChecksum": true
+        }
       ],
       "description": "NHS Number with Mod-11 checksum enforcement."
     }

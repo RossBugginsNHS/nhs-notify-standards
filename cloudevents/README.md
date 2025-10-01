@@ -57,6 +57,21 @@ This will run the generator and create a file locally in the `output` folder.
 - Keep schemas backward compatible where possible.
 - Coordinate with the FHIR IG team for cross-standard consistency.
 
+## Schema Documentation
+
+Static HTML documentation for the JSON Schemas can be generated using `json-schema-static-docs`.
+
+Generate docs (outputs to `docs/`):
+
+```sh
+npm install   # first time only to install the new dev dependency
+npm run docs
+```
+
+Then open `docs/index.html` in a browser (or host the folder via GitHub Pages if desired).
+
+If you add a new schema file, update the `docs` script in `package.json` to include an additional `-i <filename>` argument.
+
 ## Related
 
 - [CloudEvents Specification](https://cloudevents.io/)

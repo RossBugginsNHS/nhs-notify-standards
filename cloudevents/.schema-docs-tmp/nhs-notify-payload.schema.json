@@ -1,5 +1,5 @@
 {
-  "$id": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-payload.schema.json",
+  "$id": "nhs-notify-payload.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$comment": "Notify Payload",
   "type": "object",
@@ -9,7 +9,6 @@
     "notify-metadata"
   ],
   "properties": {
-    
     "notify-data": {
       "type": "object",
       "anyOf": [
@@ -34,7 +33,6 @@
   "$defs": {
     "DataPlane": {
       "type": "object"
-  
     },
     "ControlPlane": {
       "type": "object"

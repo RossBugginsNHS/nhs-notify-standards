@@ -1,0 +1,16 @@
+{
+  "$id": "nhs-notify-example-event-data.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Example data type",
+  "description": "Example data type",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "nhsNumber": {
+      "$ref": "./nhs-number.schema.json#/properties/nhsNumber"
+    }
+  },
+  "required": [
+    "nhsNumber"
+  ]
+}
