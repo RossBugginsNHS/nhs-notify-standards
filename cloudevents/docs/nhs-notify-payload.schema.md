@@ -128,58 +128,13 @@
       <th>Description</th>
       <td colspan="2">Owning engineering team accountable for this event&#x27;s domain logic.</td>
     </tr>
-    <tr><tr><td rowspan="3">Type</td><td rowspan="3">One of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr></tr>
-    
-  </tbody>
-</table>
-
-
-
-### notify-metadata.0.teamResponsible.0
-
-
-<table class="jssd-property-table">
-  <tbody>
-    
+    <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
-      <th>Const</th>
-      <td colspan="2">Team 1</td>
+      <th>Enum</th>
+      <td colspan="2"><ul><li>Team 1</li><li>Team 2</li><li>Team 3</li></ul></td>
     </tr>
   </tbody>
 </table>
-
-
-
-
-### notify-metadata.0.teamResponsible.1
-
-
-<table class="jssd-property-table">
-  <tbody>
-    
-    <tr>
-      <th>Const</th>
-      <td colspan="2">Team 2</td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-### notify-metadata.0.teamResponsible.2
-
-
-<table class="jssd-property-table">
-  <tbody>
-    
-    <tr>
-      <th>Const</th>
-      <td colspan="2">Team 3</td>
-    </tr>
-  </tbody>
-</table>
-
 
 
 
@@ -193,74 +148,13 @@
       <th>Description</th>
       <td colspan="2">High-level business domain to which the event belongs.</td>
     </tr>
-    <tr><tr><td rowspan="4">Type</td><td rowspan="4">One of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr></tr>
-    
-  </tbody>
-</table>
-
-
-
-### notify-metadata.0.notifyDomain.0
-
-
-<table class="jssd-property-table">
-  <tbody>
-    
+    <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
-      <th>Const</th>
-      <td colspan="2">Ordering</td>
+      <th>Enum</th>
+      <td colspan="2"><ul><li>Ordering</li><li>Delivering</li><li>Reporting</li><li>Enquries</li></ul></td>
     </tr>
   </tbody>
 </table>
-
-
-
-
-### notify-metadata.0.notifyDomain.1
-
-
-<table class="jssd-property-table">
-  <tbody>
-    
-    <tr>
-      <th>Const</th>
-      <td colspan="2">Delivering</td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-### notify-metadata.0.notifyDomain.2
-
-
-<table class="jssd-property-table">
-  <tbody>
-    
-    <tr>
-      <th>Const</th>
-      <td colspan="2">Reporting</td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-### notify-metadata.0.notifyDomain.3
-
-
-<table class="jssd-property-table">
-  <tbody>
-    
-    <tr>
-      <th>Const</th>
-      <td colspan="2">Enquries</td>
-    </tr>
-  </tbody>
-</table>
-
 
 
 

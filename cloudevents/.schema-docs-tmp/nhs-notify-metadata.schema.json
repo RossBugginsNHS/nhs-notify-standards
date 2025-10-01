@@ -13,34 +13,20 @@
   "properties": {
     "teamResponsible": {
       "type": "string",
-      "oneOf": [
-        {
-          "const": "Team 1"
-        },
-        {
-          "const": "Team 2"
-        },
-        {
-          "const": "Team 3"
-        }
+      "enum": [
+        "Team 1",
+        "Team 2",
+        "Team 3"
       ],
       "description": "Owning engineering team accountable for this event's domain logic."
     },
     "notifyDomain": {
       "type": "string",
-      "oneOf": [
-        {
-          "const": "Ordering"
-        },
-        {
-          "const": "Delivering"
-        },
-        {
-          "const": "Reporting"
-        },
-        {
-          "const": "Enquries"
-        }
+      "enum": [
+        "Ordering",
+        "Delivering",
+        "Reporting",
+        "Enquries"
       ],
       "description": "High-level business domain to which the event belongs."
     },

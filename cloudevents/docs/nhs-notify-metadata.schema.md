@@ -13,7 +13,7 @@
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td rowspan="3">teamResponsible</td><td rowspan="3">One of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td rowspan="4">notifyDomain</td><td rowspan="4">One of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td colspan="2"><a href="#microservice">microservice</a></td><td>String</td></tr><tr><td colspan="2"><a href="#version">version</a></td><td>String</td></tr></tbody></table>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#teamresponsible">teamResponsible</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notifydomain">notifyDomain</a></td><td>String</td></tr><tr><td colspan="2"><a href="#microservice">microservice</a></td><td>String</td></tr><tr><td colspan="2"><a href="#version">version</a></td><td>String</td></tr></tbody></table>
 
 
 
@@ -29,62 +29,17 @@
       <th>Description</th>
       <td colspan="2">Owning engineering team accountable for this event&#x27;s domain logic.</td>
     </tr>
-    <tr><tr><td rowspan="3">Type</td><td rowspan="3">One of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr></tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Required</th>
       <td colspan="2">Yes</td>
     </tr>
-    
-  </tbody>
-</table>
-
-
-
-### teamResponsible.0
-
-
-<table class="jssd-property-table">
-  <tbody>
-    
     <tr>
-      <th>Const</th>
-      <td colspan="2">Team 1</td>
+      <th>Enum</th>
+      <td colspan="2"><ul><li>Team 1</li><li>Team 2</li><li>Team 3</li></ul></td>
     </tr>
   </tbody>
 </table>
-
-
-
-
-### teamResponsible.1
-
-
-<table class="jssd-property-table">
-  <tbody>
-    
-    <tr>
-      <th>Const</th>
-      <td colspan="2">Team 2</td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-### teamResponsible.2
-
-
-<table class="jssd-property-table">
-  <tbody>
-    
-    <tr>
-      <th>Const</th>
-      <td colspan="2">Team 3</td>
-    </tr>
-  </tbody>
-</table>
-
 
 
 
@@ -98,78 +53,17 @@
       <th>Description</th>
       <td colspan="2">High-level business domain to which the event belongs.</td>
     </tr>
-    <tr><tr><td rowspan="4">Type</td><td rowspan="4">One of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr></tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Required</th>
       <td colspan="2">Yes</td>
     </tr>
-    
-  </tbody>
-</table>
-
-
-
-### notifyDomain.0
-
-
-<table class="jssd-property-table">
-  <tbody>
-    
     <tr>
-      <th>Const</th>
-      <td colspan="2">Ordering</td>
+      <th>Enum</th>
+      <td colspan="2"><ul><li>Ordering</li><li>Delivering</li><li>Reporting</li><li>Enquries</li></ul></td>
     </tr>
   </tbody>
 </table>
-
-
-
-
-### notifyDomain.1
-
-
-<table class="jssd-property-table">
-  <tbody>
-    
-    <tr>
-      <th>Const</th>
-      <td colspan="2">Delivering</td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-### notifyDomain.2
-
-
-<table class="jssd-property-table">
-  <tbody>
-    
-    <tr>
-      <th>Const</th>
-      <td colspan="2">Reporting</td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-### notifyDomain.3
-
-
-<table class="jssd-property-table">
-  <tbody>
-    
-    <tr>
-      <th>Const</th>
-      <td colspan="2">Enquries</td>
-    </tr>
-  </tbody>
-</table>
-
 
 
 
@@ -252,34 +146,20 @@
     "properties": {
         "teamResponsible": {
             "type": "string",
-            "oneOf": [
-                {
-                    "const": "Team 1"
-                },
-                {
-                    "const": "Team 2"
-                },
-                {
-                    "const": "Team 3"
-                }
+            "enum": [
+                "Team 1",
+                "Team 2",
+                "Team 3"
             ],
             "description": "Owning engineering team accountable for this event's domain logic."
         },
         "notifyDomain": {
             "type": "string",
-            "oneOf": [
-                {
-                    "const": "Ordering"
-                },
-                {
-                    "const": "Delivering"
-                },
-                {
-                    "const": "Reporting"
-                },
-                {
-                    "const": "Enquries"
-                }
+            "enum": [
+                "Ordering",
+                "Delivering",
+                "Reporting",
+                "Enquries"
             ],
             "description": "High-level business domain to which the event belongs."
         },

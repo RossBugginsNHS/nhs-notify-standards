@@ -141,6 +141,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Wrapper for notify-payload used only in this example event schema.</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">Object</td></tr>
     
   </tbody>
@@ -288,7 +292,7 @@
   <tbody>
     <tr>
       <th>Description</th>
-      <td colspan="2">Notify Metadata</td>
+      <td colspan="2">Restricted example metadata subset used for illustrative purposes only.</td>
     </tr>
     <tr><th>Type</th><td colspan="2">Object</td></tr>
     
@@ -402,6 +406,7 @@
     "$defs": {
         "ExamplePayload": {
             "type": "object",
+            "description": "Wrapper for notify-payload used only in this example event schema.",
             "properties": {
                 "notify-payload": {
                     "type": "object",
@@ -441,7 +446,7 @@
         "TeamAlphaBravoMetadata": {
             "$comment": "Notify Metadata",
             "type": "object",
-            "description": "Notify Metadata",
+            "description": "Restricted example metadata subset used for illustrative purposes only.",
             "properties": {
                 "teamResponsible": {
                     "type": "string",
