@@ -363,31 +363,12 @@
 </table>
 
 ### Properties
-  <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td rowspan="1">notify-payload</td><td rowspan="1">All of:</td><td>Object</td></tr></tbody></table>
+  <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#datanotify-payload">notify-payload</a></td><td>Object (of type <a href="./nhs-notify-payload.schema.html">./nhs-notify-payload.schema.html</a>)</td></tr></tbody></table>
 
 
 ### data.notify-payload
 
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">Structured Notify payload containing domain data (notify-data) and metadata (notify-metadata).</td>
-    </tr>
-    <tr><tr><td rowspan="1">Type</td><td rowspan="1">All of:</td><td>Object</td></tr></tr>
-    <tr>
-      <th>Required</th>
-      <td colspan="2">Yes</td>
-    </tr>
-    
-  </tbody>
-</table>
-
-
-
-### data.notify-payload.0
-
+  <p>Defined in <a href="./nhs-notify-payload.schema.html">./nhs-notify-payload.schema.html</a></p>
 
 <table class="jssd-property-table">
   <tbody>
@@ -395,190 +376,18 @@
       <th>$id</th>
       <td colspan="2">nhs-notify-payload.schema.json</td>
     </tr>
-    <tr><th>Type</th><td colspan="2">Object</td></tr>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Structured Notify payload containing domain data (notify-data) and metadata (notify-metadata).</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Object (of type <a href="./nhs-notify-payload.schema.html">./nhs-notify-payload.schema.html</a>)</td></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">Yes</td>
+    </tr>
     
   </tbody>
 </table>
-
-
-
-### data.notify-payload.0.notify-data
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">Domain specific data attributes (variant: DataPlane | ControlPlane).</td>
-    </tr>
-    <tr><tr><td rowspan="2">Type</td><td rowspan="2">Any of:</td><td>Object</td></tr><tr><td>Object</td></tr></tr>
-    
-  </tbody>
-</table>
-
-
-
-### data.notify-payload.0.notify-data.0
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">Placeholder for data-plane specific properties (extend in concrete event schemas).</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">Object</td></tr>
-    
-  </tbody>
-</table>
-
-
-
-
-### data.notify-payload.0.notify-data.1
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">Placeholder for control-plane specific properties (extend in concrete event schemas).</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">Object</td></tr>
-    
-  </tbody>
-</table>
-
-
-
-
-
-### data.notify-payload.0.notify-metadata
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">Standard metadata set shared across Notify events.</td>
-    </tr>
-    <tr><tr><td rowspan="1">Type</td><td rowspan="1">All of:</td><td>Object</td></tr></tr>
-    
-  </tbody>
-</table>
-
-
-
-### data.notify-payload.0.notify-metadata.0
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>$id</th>
-      <td colspan="2">nhs-notify-metadata.schema.json</td>
-    </tr>
-    <tr>
-      <th>Title</th>
-      <td colspan="2">NHS Notify Metadata</td>
-    </tr>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">Notify Metadata</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">Object</td></tr>
-    
-  </tbody>
-</table>
-
-
-
-### data.notify-payload.0.notify-metadata.0.teamResponsible
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">Owning engineering team accountable for this event&#x27;s domain logic.</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">String</td></tr>
-    <tr>
-      <th>Enum</th>
-      <td colspan="2"><ul><li>Team 1</li><li>Team 2</li><li>Team 3</li></ul></td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-### data.notify-payload.0.notify-metadata.0.notifyDomain
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">High-level business domain to which the event belongs.</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">String</td></tr>
-    <tr>
-      <th>Enum</th>
-      <td colspan="2"><ul><li>Ordering</li><li>Delivering</li><li>Reporting</li><li>Enquries</li></ul></td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-### data.notify-payload.0.notify-metadata.0.microservice
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">The name of the microservice generating the event, e.g. order-service</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">String</td></tr>
-    <tr>
-      <th>Min Length</th>
-      <td colspan="2">1</td>
-    </tr><tr>
-      <th>Max Length</th>
-      <td colspan="2">100</td>
-    </tr><tr>
-      <th>Pattern</th>
-      <td colspan="2">^[a-zA-Z0-9-]+$</td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-### data.notify-payload.0.notify-metadata.0.version
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">Semantic version (SemVer 2.0.0) of the producing microservice at emit time.</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">String</td></tr>
-    <tr>
-      <th>Pattern</th>
-      <td colspan="2">^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$</td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
 
 
 
@@ -980,12 +789,7 @@
             ],
             "properties": {
                 "notify-payload": {
-                    "type": "object",
-                    "allOf": [
-                        {
-                            "$ref": "./nhs-notify-payload.schema.json"
-                        }
-                    ],
+                    "$ref": "./nhs-notify-payload.schema.json",
                     "description": "Structured Notify payload containing domain data (notify-data) and metadata (notify-metadata)."
                 }
             },

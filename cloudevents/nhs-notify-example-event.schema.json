@@ -3,11 +3,8 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Example Event",
   "description": "Example  event",
-  "type": "object",
   "allOf": [
-    {
-      "$ref": "./nhs-notify-profile.schema.json"
-    }
+    { "$ref": "./nhs-notify-profile.schema.json" }
   ],
   "properties": {
     "type": {
@@ -62,21 +59,11 @@
       }
     },
     "ExampleData": {
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "./nhs-notify-example-event-data.schema.json"
-        }
-      ],
+      "$ref": "./nhs-notify-example-event-data.schema.json",
       "description": "Example data schema reference binding."
     },
     "ExampleMetadata": {
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/$defs/TeamAlphaBravoMetadata"
-        }
-      ],
+      "$ref": "#/$defs/TeamAlphaBravoMetadata",
       "description": "Example metadata schema reference binding."
     },
     "TeamAlphaBravoMetadata": {

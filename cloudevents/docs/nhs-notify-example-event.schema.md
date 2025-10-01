@@ -13,7 +13,7 @@
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#type">type</a></td><td>String=uk.nhs.notify.ordering.order.read</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String=/data-plane/ordering</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json</td></tr><tr><td rowspan="1">data</td><td rowspan="1">All of:</td><td>Object</td></tr><tr><td colspan="2" rowspan="1">All of:</td><td>Object (of type <a href="./nhs-notify-profile.schema.html">NHS Notify CloudEvents Profile</a>)</td></tr></tbody></table>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#type">type</a></td><td>String=uk.nhs.notify.ordering.order.read</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String=/data-plane/ordering</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2" rowspan="1">All of:</td><td>Object (of type <a href="./nhs-notify-profile.schema.html">NHS Notify CloudEvents Profile</a>)</td></tr></tbody></table>
 
 
 
@@ -125,7 +125,7 @@
       <th>Description</th>
       <td colspan="2">Example payload wrapper containing notify-payload.</td>
     </tr>
-    <tr><tr><td rowspan="1">Type</td><td rowspan="1">All of:</td><td>Object</td></tr></tr>
+    <tr><th>Type</th><td colspan="2">Object</td></tr>
     <tr>
       <th>Required</th>
       <td colspan="2">Yes</td>
@@ -134,53 +134,27 @@
   </tbody>
 </table>
 
+### Properties
+  <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#datanotify-payload">notify-payload</a></td><td>Object</td></tr></tbody></table>
 
 
-### data.0
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">Wrapper for notify-payload used only in this example event schema.</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">Object</td></tr>
-    
-  </tbody>
-</table>
-
-
-
-### data.0.notify-payload
+### data.notify-payload
 
 
 <table class="jssd-property-table">
   <tbody>
     <tr><th>Type</th><td colspan="2">Object</td></tr>
-    
-  </tbody>
-</table>
-
-
-
-### data.0.notify-payload.notify-data
-
-
-<table class="jssd-property-table">
-  <tbody>
     <tr>
-      <th>Description</th>
-      <td colspan="2">Example data-plane object for illustrative purposes.</td>
+      <th>Required</th>
+      <td colspan="2">No</td>
     </tr>
-    <tr><tr><td rowspan="1">Type</td><td rowspan="1">All of:</td><td>Object</td></tr></tr>
     
   </tbody>
 </table>
 
 
 
-### data.0.notify-payload.notify-data.0
+### data.notify-payload.notify-data
 
 
 <table class="jssd-property-table">
@@ -195,16 +169,20 @@
     </tr>
     <tr>
       <th>Description</th>
-      <td colspan="2">Example data type</td>
+      <td colspan="2">Example data-plane object for illustrative purposes.</td>
     </tr>
     <tr><th>Type</th><td colspan="2">Object</td></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">No</td>
+    </tr>
     
   </tbody>
 </table>
 
 
 
-### data.0.notify-payload.notify-data.0.nhsNumber
+### data.notify-payload.notify-data.nhsNumber
 
 
 <table class="jssd-property-table">
@@ -214,13 +192,17 @@
       <td colspan="2">Example patient&#x27;s NHS Number (accepts canonical or formatted forms).</td>
     </tr>
     <tr><tr><td rowspan="2">Type</td><td rowspan="2">Any of:</td><td>String</td></tr><tr><td>String</td></tr></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">Yes</td>
+    </tr>
     
   </tbody>
 </table>
 
 
 
-### data.0.notify-payload.notify-data.0.nhsNumber.0
+### data.notify-payload.notify-data.nhsNumber.0
 
 
 <table class="jssd-property-table">
@@ -243,7 +225,7 @@
 
 
 
-### data.0.notify-payload.notify-data.0.nhsNumber.1
+### data.notify-payload.notify-data.nhsNumber.1
 
 
 <table class="jssd-property-table">
@@ -268,8 +250,7 @@
 
 
 
-
-### data.0.notify-payload.notify-metadata
+### data.notify-payload.notify-metadata
 
 
 <table class="jssd-property-table">
@@ -278,30 +259,18 @@
       <th>Description</th>
       <td colspan="2">Example metadata block constrained for this example.</td>
     </tr>
-    <tr><tr><td rowspan="1">Type</td><td rowspan="1">All of:</td><td>Object</td></tr></tr>
-    
-  </tbody>
-</table>
-
-
-
-### data.0.notify-payload.notify-metadata.0
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">Restricted example metadata subset used for illustrative purposes only.</td>
-    </tr>
     <tr><th>Type</th><td colspan="2">Object</td></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">No</td>
+    </tr>
     
   </tbody>
 </table>
 
 
 
-### data.0.notify-payload.notify-metadata.0.teamResponsible
+### data.notify-payload.notify-metadata.teamResponsible
 
 
 <table class="jssd-property-table">
@@ -312,6 +281,10 @@
     </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
+      <th>Required</th>
+      <td colspan="2">No</td>
+    </tr>
+    <tr>
       <th>Const</th>
       <td colspan="2">Team 1</td>
     </tr>
@@ -321,7 +294,7 @@
 
 
 
-### data.0.notify-payload.notify-metadata.0.notifyDomain
+### data.notify-payload.notify-metadata.notifyDomain
 
 
 <table class="jssd-property-table">
@@ -332,13 +305,15 @@
     </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
+      <th>Required</th>
+      <td colspan="2">No</td>
+    </tr>
+    <tr>
       <th>Const</th>
       <td colspan="2">Ordering</td>
     </tr>
   </tbody>
 </table>
-
-
 
 
 
@@ -360,7 +335,6 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "title": "Example Event",
     "description": "Example  event",
-    "type": "object",
     "allOf": [
         {
             "$ref": "./nhs-notify-profile.schema.json"
@@ -388,12 +362,7 @@
             "description": "Canonical URI of the example event's data schema."
         },
         "data": {
-            "type": "object",
-            "allOf": [
-                {
-                    "$ref": "#/$defs/ExamplePayload"
-                }
-            ],
+            "$ref": "#/$defs/ExamplePayload",
             "description": "Example payload wrapper containing notify-payload."
         }
     },
@@ -412,12 +381,10 @@
                     "type": "object",
                     "properties": {
                         "notify-data": {
-                            "type": "object",
                             "$ref": "#/$defs/ExampleData",
                             "description": "Example data-plane object for illustrative purposes."
                         },
                         "notify-metadata": {
-                            "type": "object",
                             "$ref": "#/$defs/ExampleMetadata",
                             "description": "Example metadata block constrained for this example."
                         }
@@ -426,21 +393,11 @@
             }
         },
         "ExampleData": {
-            "type": "object",
-            "allOf": [
-                {
-                    "$ref": "./nhs-notify-example-event-data.schema.json"
-                }
-            ],
+            "$ref": "./nhs-notify-example-event-data.schema.json",
             "description": "Example data schema reference binding."
         },
         "ExampleMetadata": {
-            "type": "object",
-            "allOf": [
-                {
-                    "$ref": "#/$defs/TeamAlphaBravoMetadata"
-                }
-            ],
+            "$ref": "#/$defs/TeamAlphaBravoMetadata",
             "description": "Example metadata schema reference binding."
         },
         "TeamAlphaBravoMetadata": {

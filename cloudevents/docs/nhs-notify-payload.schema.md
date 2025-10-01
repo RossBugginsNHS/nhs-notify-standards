@@ -13,7 +13,7 @@
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td rowspan="2">notify-data</td><td rowspan="2">Any of:</td><td>Object</td></tr><tr><td>Object</td></tr><tr><td rowspan="1">notify-metadata</td><td rowspan="1">All of:</td><td>Object</td></tr></tbody></table>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td rowspan="2">notify-data</td><td rowspan="2">Any of:</td><td>Object</td></tr><tr><td>Object</td></tr><tr><td colspan="2"><a href="#notify-metadata">notify-metadata</a></td><td>Object (of type <a href="./nhs-notify-metadata.schema.html">NHS Notify Metadata</a>)</td></tr></tbody></table>
 
 
 
@@ -77,26 +77,7 @@
 
 ## notify-metadata
 
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">Standard metadata set shared across Notify events.</td>
-    </tr>
-    <tr><tr><td rowspan="1">Type</td><td rowspan="1">All of:</td><td>Object</td></tr></tr>
-    <tr>
-      <th>Required</th>
-      <td colspan="2">Yes</td>
-    </tr>
-    
-  </tbody>
-</table>
-
-
-
-### notify-metadata.0
-
+  <p>Defined in <a href="./nhs-notify-metadata.schema.html">./nhs-notify-metadata.schema.html</a></p>
 
 <table class="jssd-property-table">
   <tbody>
@@ -110,100 +91,19 @@
     </tr>
     <tr>
       <th>Description</th>
-      <td colspan="2">Notify Metadata</td>
+      <td colspan="2">Standard metadata set shared across Notify events.</td>
     </tr>
-    <tr><th>Type</th><td colspan="2">Object</td></tr>
+    <tr><th>Type</th><td colspan="2">Object (of type <a href="./nhs-notify-metadata.schema.html">NHS Notify Metadata</a>)</td></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">Yes</td>
+    </tr>
     
   </tbody>
 </table>
 
-
-
-### notify-metadata.0.teamResponsible
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">Owning engineering team accountable for this event&#x27;s domain logic.</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">String</td></tr>
-    <tr>
-      <th>Enum</th>
-      <td colspan="2"><ul><li>Team 1</li><li>Team 2</li><li>Team 3</li></ul></td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-### notify-metadata.0.notifyDomain
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">High-level business domain to which the event belongs.</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">String</td></tr>
-    <tr>
-      <th>Enum</th>
-      <td colspan="2"><ul><li>Ordering</li><li>Delivering</li><li>Reporting</li><li>Enquries</li></ul></td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-### notify-metadata.0.microservice
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">The name of the microservice generating the event, e.g. order-service</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">String</td></tr>
-    <tr>
-      <th>Min Length</th>
-      <td colspan="2">1</td>
-    </tr><tr>
-      <th>Max Length</th>
-      <td colspan="2">100</td>
-    </tr><tr>
-      <th>Pattern</th>
-      <td colspan="2">^[a-zA-Z0-9-]+$</td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-### notify-metadata.0.version
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">Semantic version (SemVer 2.0.0) of the producing microservice at emit time.</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">String</td></tr>
-    <tr>
-      <th>Pattern</th>
-      <td colspan="2">^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$</td>
-    </tr>
-  </tbody>
-</table>
-
-
-
+### Properties
+  <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#notify-metadatateamresponsible">teamResponsible</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatanotifydomain">notifyDomain</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatamicroservice">microservice</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadataversion">version</a></td><td>String</td></tr></tbody></table>
 
 
 
@@ -238,26 +138,24 @@
                 }
             ],
             "additionalProperties": true,
-            "description": "Domain specific data attributes (variant: DataPlane | ControlPlane)."
+            "description": "Domain specific data attributes (variant: DataPlane | ControlPlane).",
+            "$comment": "Union of two variant payload shapes. anyOf is used (instead of oneOf) because the two variants are currently placeholders and not mutually differentiable. Once DataPlane and ControlPlane gain distinct required properties or a discriminator, switch to oneOf (and optionally add a 'plane' enum property) to prevent ambiguous matches."
         },
         "notify-metadata": {
-            "type": "object",
-            "allOf": [
-                {
-                    "$ref": "./nhs-notify-metadata.schema.json"
-                }
-            ],
+            "$ref": "./nhs-notify-metadata.schema.json",
             "description": "Standard metadata set shared across Notify events."
         }
     },
     "$defs": {
         "DataPlane": {
             "type": "object",
-            "description": "Placeholder for data-plane specific properties (extend in concrete event schemas)."
+            "description": "Placeholder for data-plane specific properties (extend in concrete event schemas).",
+            "$comment": "Add required fields here (e.g. 'plane': 'data') or domain-specific attributes; when distinct from ControlPlane, change notify-data.anyOf to oneOf to enforce exclusivity."
         },
         "ControlPlane": {
             "type": "object",
-            "description": "Placeholder for control-plane specific properties (extend in concrete event schemas)."
+            "description": "Placeholder for control-plane specific properties (extend in concrete event schemas).",
+            "$comment": "As with DataPlane, add identifying / required properties here (e.g. 'plane': 'control'). Ensure divergence for better validation and consumer code generation."
         }
     }
 }

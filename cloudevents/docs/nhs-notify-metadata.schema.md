@@ -60,7 +60,7 @@
     </tr>
     <tr>
       <th>Enum</th>
-      <td colspan="2"><ul><li>Ordering</li><li>Delivering</li><li>Reporting</li><li>Enquries</li></ul></td>
+      <td colspan="2"><ul><li>Ordering</li><li>Delivering</li><li>Reporting</li><li>Enquiries</li></ul></td>
     </tr>
   </tbody>
 </table>
@@ -159,7 +159,7 @@
                 "Ordering",
                 "Delivering",
                 "Reporting",
-                "Enquries"
+                "Enquiries"
             ],
             "description": "High-level business domain to which the event belongs."
         },
