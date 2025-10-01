@@ -21,6 +21,18 @@ CloudEvents is a specification for describing event data in a common way. The NH
 - [`output-example-event.json`](output-example-event.json): Example of a valid CloudEvent payload.
 
 
+## Schema Docs
+
+Generated static documentation (once you run `npm run docs`) will appear under `docs/`.
+
+- [`nhs-notify-profile.schema.html`](docs/nhs-notify-profile.schema.html): NHS Notify CloudEvent profile (envelope + constraints).
+- [`nhs-notify-example-event.schema.html`](docs/nhs-notify-example-event.schema.html): Example CloudEvent envelope schema.
+- [`nhs-notify-example-event-data.schema.html`](docs/nhs-notify-example-event-data.schema.html): Example event data payload schema.
+- [`nhs-notify-metadata.schema.html`](docs/nhs-notify-metadata.schema.html): Common metadata elements reused across events.
+- [`nhs-notify-payload.schema.html`](docs/nhs-notify-payload.schema.html): Base payload wrapper / structure.
+- [`nhs-number.schema.html`](docs/nhs-number.schema.html): NHS Number reusable type definitions.
+
+
 ## Generating Example Data
 
 To generate example data from a schema, use the provided Makefile target:
