@@ -13,7 +13,48 @@
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#specversion">specversion</a></td><td>String=1.0</td></tr><tr><td colspan="2"><a href="#id">id</a></td><td>String</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td rowspan="9">type</td><td rowspan="9">All of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td colspan="2"><a href="#time">time</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacontenttype">datacontenttype</a></td><td>String=application/json</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2"><a href="#traceparent">traceparent</a></td><td>String</td></tr><tr><td colspan="2"><a href="#tracestate">tracestate</a></td><td>String</td></tr><tr><td colspan="2"><a href="#partitionkey">partitionkey</a></td><td>String</td></tr><tr><td colspan="2"><a href="#recordedtime">recordedtime</a></td><td>String</td></tr><tr><td colspan="2"><a href="#sampledrate">sampledrate</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#sequence">sequence</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitytext">severitytext</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitynumber">severitynumber</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#dataclassification">dataclassification</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataregulation">dataregulation</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacategory">datacategory</a></td><td>String</td></tr><tr><td colspan="2" rowspan="1">All of:</td><td></td></tr></tbody></table>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#specversion">specversion</a></td><td>String=1.0</td></tr><tr><td colspan="2"><a href="#id">id</a></td><td>String</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td rowspan="9">type</td><td rowspan="9">All of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td colspan="2"><a href="#time">time</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacontenttype">datacontenttype</a></td><td>String=application/json</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2"><a href="#traceparent">traceparent</a></td><td>String</td></tr><tr><td colspan="2"><a href="#tracestate">tracestate</a></td><td>String</td></tr><tr><td colspan="2"><a href="#partitionkey">partitionkey</a></td><td>String</td></tr><tr><td colspan="2"><a href="#recordedtime">recordedtime</a></td><td>String</td></tr><tr><td colspan="2"><a href="#sampledrate">sampledrate</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#sequence">sequence</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitytext">severitytext</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitynumber">severitynumber</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#dataclassification">dataclassification</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataregulation">dataregulation</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacategory">datacategory</a></td><td>String</td></tr><tr><td colspan="2" rowspan="7">All of:</td><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr></tbody></table>
+
+
+## Example
+
+
+
+```
+{
+    "specversion": "1.0",
+    "id": "6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111",
+    "source": "/data-plane/ordering",
+    "subject": "customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d",
+    "type": "uk.nhs.notify.ordering.order.read",
+    "time": "2025-10-01T10:15:30.000Z",
+    "recordedtime": "2025-10-01T10:15:30.250Z",
+    "traceparent": "00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01",
+    "tracestate": "rojo=00f067aa0ba902b7,congo=t61rcWkgMzE",
+    "partitionkey": "customer-920fca11",
+    "sequence": "00000000000000000042",
+    "severitytext": "DEBUG",
+    "severitynumber": 1,
+    "datacontenttype": "application/json",
+    "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json",
+    "dataclassification": "restricted",
+    "dataregulation": "ISO-27001",
+    "datacategory": "sensitive",
+    "sampledrate": 5,
+    "data": {
+        "notify-payload": {
+            "notify-data": {
+                "nhsNumber": "9434765919"
+            },
+            "notify-metadata": {
+                "teamResponsible": "Team 1",
+                "notifyDomain": "Ordering",
+                "version": "1.3.0"
+            }
+        }
+    }
+}
+```
 
 
 
@@ -37,6 +78,9 @@
     <tr>
       <th>Const</th>
       <td colspan="2">1.0</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>1.0</li></td>
     </tr>
   </tbody>
 </table>
@@ -64,6 +108,9 @@
     </tr><tr>
       <th>Format</th>
       <td colspan="2">uuid</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111</li></td>
     </tr>
   </tbody>
 </table>
@@ -94,6 +141,9 @@
     </tr><tr>
       <th>Pattern</th>
       <td colspan="2">^/(data-plane|control-plane)(?:/[a-z0-9-]+)*$</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>/data-plane/ordering</li><li>/control-plane/audit</li></td>
     </tr>
   </tbody>
 </table>
@@ -124,6 +174,9 @@
     </tr><tr>
       <th>Pattern</th>
       <td colspan="2">^(?:[a-z0-9-]+)(?:/[a-z0-9-]+)*$</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d</li></td>
     </tr>
   </tbody>
 </table>
@@ -151,6 +204,9 @@
     </tr><tr>
       <th>Pattern</th>
       <td colspan="2">^uk\.nhs\.notify\.[a-z0-9]+(\.[a-z0-9]+)*$</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>uk.nhs.notify.ordering.order.read</li></td>
     </tr>
   </tbody>
 </table>
@@ -292,6 +348,9 @@
     <tr>
       <th>Format</th>
       <td colspan="2">date-time</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>2025-10-01T10:15:30.000Z</li></td>
     </tr>
   </tbody>
 </table>
@@ -316,6 +375,9 @@
     <tr>
       <th>Const</th>
       <td colspan="2">application/json</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>application/json</li></td>
     </tr>
   </tbody>
 </table>
@@ -337,7 +399,10 @@
       <th>Required</th>
       <td colspan="2">No</td>
     </tr>
-    
+    <tr>
+      <th>Examples</th>
+      <td colspan="2"><li>https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json</li></td>
+    </tr>
   </tbody>
 </table>
 
@@ -413,6 +478,9 @@
     </tr><tr>
       <th>Pattern</th>
       <td colspan="2">^00-[0-9a-f]{32}-[0-9a-f]{16}-[0-9a-f]{2}$</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01</li></td>
     </tr>
   </tbody>
 </table>
@@ -434,7 +502,10 @@
       <th>Required</th>
       <td colspan="2">No</td>
     </tr>
-    
+    <tr>
+      <th>Examples</th>
+      <td colspan="2"><li>rojo&#x3D;00f067aa0ba902b7,congo&#x3D;t61rcWkgMzE</li></td>
+    </tr>
   </tbody>
 </table>
 
@@ -464,6 +535,9 @@
     </tr><tr>
       <th>Pattern</th>
       <td colspan="2">^[a-z0-9-]+$</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>customer-920fca11</li></td>
     </tr>
   </tbody>
 </table>
@@ -488,6 +562,9 @@
     <tr>
       <th>Format</th>
       <td colspan="2">date-time</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>2025-10-01T10:15:30.250Z</li></td>
     </tr>
   </tbody>
 </table>
@@ -512,6 +589,9 @@
     <tr>
       <th>Minimum</th>
       <td colspan="2">1</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>5</li></td>
     </tr>
   </tbody>
 </table>
@@ -536,6 +616,9 @@
     <tr>
       <th>Pattern</th>
       <td colspan="2">^\d{20}$</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>00000000000000000042</li></td>
     </tr>
   </tbody>
 </table>
@@ -560,6 +643,9 @@
     <tr>
       <th>Enum</th>
       <td colspan="2"><ul><li>TRACE</li><li>DEBUG</li><li>INFO</li><li>WARN</li><li>ERROR</li><li>FATAL</li></ul></td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>DEBUG</li></td>
     </tr>
   </tbody>
 </table>
@@ -574,7 +660,7 @@
   <tbody>
     <tr>
       <th>Description</th>
-      <td colspan="2">Numeric severity (TRACE&#x3D;0 .. FATAL&#x3D;6).</td>
+      <td colspan="2">Numeric severity (TRACE&#x3D;0, DEBUG&#x3D;1, INFO&#x3D;2, WARN&#x3D;3, ERROR&#x3D;4, FATAL&#x3D;5).</td>
     </tr>
     <tr><th>Type</th><td colspan="2">Integer</td></tr>
     <tr>
@@ -583,7 +669,10 @@
     </tr>
     <tr>
       <th>Maximum</th>
-      <td colspan="2">6</td>
+      <td colspan="2">5</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>1</li></td>
     </tr>
   </tbody>
 </table>
@@ -608,6 +697,9 @@
     <tr>
       <th>Enum</th>
       <td colspan="2"><ul><li>public</li><li>internal</li><li>confidential</li><li>restricted</li></ul></td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>restricted</li></td>
     </tr>
   </tbody>
 </table>
@@ -632,6 +724,9 @@
     <tr>
       <th>Enum</th>
       <td colspan="2"><ul><li>GDPR</li><li>HIPAA</li><li>PCI-DSS</li><li>ISO-27001</li><li>NIST-800-53</li><li>CCPA</li></ul></td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>ISO-27001</li></td>
     </tr>
   </tbody>
 </table>
@@ -655,7 +750,10 @@
     </tr>
     <tr>
       <th>Enum</th>
-      <td colspan="2"><ul><li>on-sensitive</li><li>standard</li><li>sensitive</li><li>special-category</li></ul></td>
+      <td colspan="2"><ul><li>non-sensitive</li><li>standard</li><li>sensitive</li><li>special-category</li></ul></td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>sensitive</li></td>
     </tr>
   </tbody>
 </table>
@@ -685,6 +783,9 @@
             "type": "string",
             "const": "1.0",
             "description": "CloudEvents specification version (fixed to 1.0).",
+            "examples": [
+                "1.0"
+            ],
             "$comment": "CloudEvents version used. Core attributes: specversion,id,source,type (+ optional subject,time,datacontenttype,dataschema,data). Ref: CloudEvents core spec."
         },
         "id": {
@@ -692,6 +793,9 @@
             "format": "uuid",
             "minLength": 1,
             "description": "Unique identifier for this event instance (UUID).",
+            "examples": [
+                "6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111"
+            ],
             "$comment": "Unique per (source,id). This should be a randomly generated guid that represents the id of the event itself."
         },
         "source": {
@@ -700,6 +804,10 @@
             "minLength": 12,
             "format": "uri-reference",
             "description": "Logical event producer path starting /data-plane or /control-plane followed by lowercase segments.",
+            "examples": [
+                "/data-plane/ordering",
+                "/control-plane/audit"
+            ],
             "$comment": "Must begin with '/data-plane' or '/control-plane'. Subsequent segments: lowercase alphanumeric or hyphen. No trailing '/'."
         },
         "subject": {
@@ -708,6 +816,9 @@
             "minLength": 5,
             "format": "uri-reference",
             "description": "Resource path (no leading slash) within the source made of lowercase segments separated by '/'.",
+            "examples": [
+                "customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d"
+            ],
             "$comment": "URI path: must not start with '/', only lowercase alphanumeric and hyphen segments separated by '/', must not end with '/'."
         },
         "type": {
@@ -762,23 +873,35 @@
                 }
             ],
             "description": "Event type (uk.nhs.notify.*) using reverse-DNS style; ambiguous verbs (completed, finished, updated, changed, processed, handled, status, started, failed) disallowed.",
+            "examples": [
+                "uk.nhs.notify.ordering.order.read"
+            ],
             "$comment": "NHS naming: lower-dot namespaced; allowed chars a-z0-9 and dots; banned tokens: completed, finished, updated, changed, processed, handled, status, started, failed."
         },
         "time": {
             "type": "string",
             "format": "date-time",
             "description": "Timestamp when the event occurred (RFC 3339).",
+            "examples": [
+                "2025-10-01T10:15:30.000Z"
+            ],
             "$comment": "RFC3339 UTC occurred-at (REQUIRED in NHS profile)."
         },
         "datacontenttype": {
             "type": "string",
             "const": "application/json",
             "description": "Media type for the data field (fixed to application/json).",
+            "examples": [
+                "application/json"
+            ],
             "$comment": "Usually application/json."
         },
         "dataschema": {
             "type": "string",
             "description": "URI of a schema that describes the event payload (notify-payload).",
+            "examples": [
+                "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json"
+            ],
             "$comment": "URI to event payload schema."
         },
         "data": {
@@ -794,6 +917,20 @@
                 }
             },
             "description": "Container object wrapping the structured Notify payload.",
+            "examples": [
+                {
+                    "notify-payload": {
+                        "notify-data": {
+                            "nhsNumber": "9434765919"
+                        },
+                        "notify-metadata": {
+                            "teamResponsible": "Team 1",
+                            "notifyDomain": "Ordering",
+                            "version": "1.3.0"
+                        }
+                    }
+                }
+            ],
             "$comment": "Domain payload (arbitrary JSON value)."
         },
         "traceparent": {
@@ -801,11 +938,17 @@
             "minLength": 1,
             "pattern": "^00-[0-9a-f]{32}-[0-9a-f]{16}-[0-9a-f]{2}$",
             "description": "W3C Trace Context traceparent header value.",
+            "examples": [
+                "00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01"
+            ],
             "$comment": "W3C Trace Context traceparent (required when tracing used)."
         },
         "tracestate": {
             "type": "string",
             "description": "Optional W3C Trace Context tracestate header value.",
+            "examples": [
+                "rojo=00f067aa0ba902b7,congo=t61rcWkgMzE"
+            ],
             "$comment": "W3C Trace Context tracestate (optional)."
         },
         "partitionkey": {
@@ -814,24 +957,36 @@
             "maxLength": 64,
             "pattern": "^[a-z0-9-]+$",
             "description": "Partition / ordering key (lowercase alphanumerics and hyphen, 1-64 chars).",
+            "examples": [
+                "customer-920fca11"
+            ],
             "$comment": "Non-empty partition key for scaling / causal grouping. Must be 1-64 characters, only lowercase letters, numbers, and hyphen."
         },
         "recordedtime": {
             "type": "string",
             "format": "date-time",
             "description": "Timestamp when the event was recorded/persisted (should be >= time).",
+            "examples": [
+                "2025-10-01T10:15:30.250Z"
+            ],
             "$comment": "Bitemporal created-at; should be >= time."
         },
         "sampledrate": {
             "type": "integer",
             "minimum": 1,
             "description": "Sampling factor: number of similar occurrences this event represents.",
+            "examples": [
+                5
+            ],
             "$comment": "Integer > 0 indicating how many similar occurrences this event represents."
         },
         "sequence": {
             "type": "string",
             "pattern": "^\\d{20}$",
             "description": "Zero-padded 20 digit numeric sequence (lexicographically sortable).",
+            "examples": [
+                "00000000000000000042"
+            ],
             "$comment": "Lexicographically comparable ordering string per source. Must be a string of exactly 20 digits, left-padded with zeros, representing a 64-bit unsigned integer."
         },
         "severitytext": {
@@ -845,14 +1000,20 @@
                 "FATAL"
             ],
             "description": "Log severity level name.",
+            "examples": [
+                "DEBUG"
+            ],
             "$comment": "Severity text (TRACE, DEBUG, INFO, WARN, ERROR, FATAL, etc.)."
         },
         "severitynumber": {
             "type": "integer",
             "minimum": 0,
-            "maximum": 6,
-            "description": "Numeric severity (TRACE=0 .. FATAL=6).",
-            "$comment": "Numeric severity corresponding to severitytext."
+            "maximum": 5,
+            "description": "Numeric severity (TRACE=0, DEBUG=1, INFO=2, WARN=3, ERROR=4, FATAL=5).",
+            "examples": [
+                1
+            ],
+            "$comment": "Numeric severity corresponding to severitytext (TRACE=0..FATAL=5)."
         },
         "dataclassification": {
             "type": "string",
@@ -863,6 +1024,9 @@
                 "restricted"
             ],
             "description": "Data sensitivity classification.",
+            "examples": [
+                "restricted"
+            ],
             "$comment": "Data classification e.g. public|internal|confidential|restricted."
         },
         "dataregulation": {
@@ -876,17 +1040,23 @@
                 "CCPA"
             ],
             "description": "Regulatory regime tag applied to this data.",
+            "examples": [
+                "ISO-27001"
+            ],
             "$comment": "Regulation tags e.g. GDPR, HIPAA."
         },
         "datacategory": {
             "type": "string",
             "enum": [
-                "on-sensitive",
+                "non-sensitive",
                 "standard",
                 "sensitive",
                 "special-category"
             ],
             "description": "Data category classification (e.g. standard, special-category).",
+            "examples": [
+                "sensitive"
+            ],
             "$comment": "Example: special-category (GDPR), phi (HIPAA)."
         }
     },
@@ -930,6 +1100,173 @@
                 "required": [
                     "subject"
                 ]
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "severitytext": {
+                        "const": "TRACE"
+                    }
+                },
+                "required": [
+                    "severitytext"
+                ]
+            },
+            "then": {
+                "properties": {
+                    "severitynumber": {
+                        "const": 0
+                    }
+                },
+                "required": [
+                    "severitynumber"
+                ]
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "severitytext": {
+                        "const": "DEBUG"
+                    }
+                },
+                "required": [
+                    "severitytext"
+                ]
+            },
+            "then": {
+                "properties": {
+                    "severitynumber": {
+                        "const": 1
+                    }
+                },
+                "required": [
+                    "severitynumber"
+                ]
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "severitytext": {
+                        "const": "INFO"
+                    }
+                },
+                "required": [
+                    "severitytext"
+                ]
+            },
+            "then": {
+                "properties": {
+                    "severitynumber": {
+                        "const": 2
+                    }
+                },
+                "required": [
+                    "severitynumber"
+                ]
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "severitytext": {
+                        "const": "WARN"
+                    }
+                },
+                "required": [
+                    "severitytext"
+                ]
+            },
+            "then": {
+                "properties": {
+                    "severitynumber": {
+                        "const": 3
+                    }
+                },
+                "required": [
+                    "severitynumber"
+                ]
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "severitytext": {
+                        "const": "ERROR"
+                    }
+                },
+                "required": [
+                    "severitytext"
+                ]
+            },
+            "then": {
+                "properties": {
+                    "severitynumber": {
+                        "const": 4
+                    }
+                },
+                "required": [
+                    "severitynumber"
+                ]
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "severitytext": {
+                        "const": "FATAL"
+                    }
+                },
+                "required": [
+                    "severitytext"
+                ]
+            },
+            "then": {
+                "properties": {
+                    "severitynumber": {
+                        "const": 5
+                    }
+                },
+                "required": [
+                    "severitynumber"
+                ]
+            }
+        }
+    ],
+    "examples": [
+        {
+            "specversion": "1.0",
+            "id": "6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111",
+            "source": "/data-plane/ordering",
+            "subject": "customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d",
+            "type": "uk.nhs.notify.ordering.order.read",
+            "time": "2025-10-01T10:15:30.000Z",
+            "recordedtime": "2025-10-01T10:15:30.250Z",
+            "traceparent": "00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01",
+            "tracestate": "rojo=00f067aa0ba902b7,congo=t61rcWkgMzE",
+            "partitionkey": "customer-920fca11",
+            "sequence": "00000000000000000042",
+            "severitytext": "DEBUG",
+            "severitynumber": 1,
+            "datacontenttype": "application/json",
+            "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json",
+            "dataclassification": "restricted",
+            "dataregulation": "ISO-27001",
+            "datacategory": "sensitive",
+            "sampledrate": 5,
+            "data": {
+                "notify-payload": {
+                    "notify-data": {
+                        "nhsNumber": "9434765919"
+                    },
+                    "notify-metadata": {
+                        "teamResponsible": "Team 1",
+                        "notifyDomain": "Ordering",
+                        "version": "1.3.0"
+                    }
+                }
             }
         }
     ]

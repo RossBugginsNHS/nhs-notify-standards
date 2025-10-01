@@ -16,6 +16,28 @@
 <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td rowspan="2">nhsNumber</td><td rowspan="2">Any of:</td><td>String</td></tr><tr><td>String</td></tr></tbody></table>
 
 
+## Example
+
+
+
+```
+{
+    "nhsNumber": "9434765919"
+}
+```
+
+
+## Example
+
+
+
+```
+{
+    "nhsNumber": "943 476 5919"
+}
+```
+
+
 
 <hr />
 
@@ -56,6 +78,9 @@
     </tr><tr>
       <th>Pattern</th>
       <td colspan="2">^[0-9]{10}$</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>9434765919</li><li>1234567890</li></td>
     </tr>
   </tbody>
 </table>
@@ -79,6 +104,9 @@
     </tr><tr>
       <th>Pattern</th>
       <td colspan="2">^(?:[0-9]{3}[- ]?[0-9]{3}[- ]?[0-9]{4})$</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>943 476 5919</li><li>943-476-5919</li><li>9434765919</li></td>
     </tr>
   </tbody>
 </table>
@@ -112,7 +140,12 @@
                     "$ref": "#/$defs/NhsNumberFormatted"
                 }
             ],
-            "description": "NHS Number provided either as canonical 10 digits or human-entered formatted variant (3-3-4 with optional spaces/hyphens)."
+            "description": "NHS Number provided either as canonical 10 digits or human-entered formatted variant (3-3-4 with optional spaces/hyphens).",
+            "examples": [
+                "9434765919",
+                "943 476 5919",
+                "943-476-5919"
+            ]
         }
     },
     "required": [
@@ -124,14 +157,23 @@
             "type": "string",
             "description": "NHS Number (10 digits; last digit is a Modulus-11 check digit).",
             "pattern": "^[0-9]{10}$",
-            "format": "nhs-number"
+            "format": "nhs-number",
+            "examples": [
+                "9434765919",
+                "1234567890"
+            ]
         },
         "NhsNumberFormatted": {
             "$comment": "UI/ingress tolerant form: allows 3-3-4 with optional spaces/hyphens. Still only digits once separators are removed.\nDisplay guidance to use 3-3-4 spacing; systems should accept flexible input.",
             "type": "string",
             "description": "Human-entered NHS Number (accepts 3-3-4 with optional spaces or hyphens).",
             "pattern": "^(?:[0-9]{3}[- ]?[0-9]{3}[- ]?[0-9]{4})$",
-            "format": "nhs-number"
+            "format": "nhs-number",
+            "examples": [
+                "943 476 5919",
+                "943-476-5919",
+                "9434765919"
+            ]
         },
         "NhsNumber": {
             "$comment": "Strong type: canonical 10 digits + checksum verified via custom format. Note: 'format' requires runtime support to assert it.",
@@ -144,9 +186,20 @@
                     "nhsChecksum": true
                 }
             ],
-            "description": "NHS Number with Mod-11 checksum enforcement."
+            "description": "NHS Number with Mod-11 checksum enforcement.",
+            "examples": [
+                "9434765919"
+            ]
         }
-    }
+    },
+    "examples": [
+        {
+            "nhsNumber": "9434765919"
+        },
+        {
+            "nhsNumber": "943 476 5919"
+        }
+    ]
 }
 ```
 

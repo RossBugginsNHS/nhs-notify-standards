@@ -154,10 +154,10 @@
     "severitynumber": {
       "type": "integer",
       "minimum": 0,
-      "maximum": 6,
-      "description": "Numeric severity (TRACE=0 .. FATAL=6).",
-      "examples": [3],
-      "$comment": "Numeric severity corresponding to severitytext."
+      "maximum": 5,
+      "description": "Numeric severity (TRACE=0, DEBUG=1, INFO=2, WARN=3, ERROR=4, FATAL=5).",
+      "examples": [1],
+      "$comment": "Numeric severity corresponding to severitytext (TRACE=0..FATAL=5)."
     },
     "dataclassification": {
       "type": "string",
@@ -175,7 +175,7 @@
     },
     "datacategory": {
       "type": "string",
-      "enum": ["on-sensitive","standard","sensitive","special-category"],
+      "enum": ["non-sensitive","standard","sensitive","special-category"],
       "description": "Data category classification (e.g. standard, special-category).",
       "examples": ["sensitive"],
       "$comment": "Example: special-category (GDPR), phi (HIPAA)."
@@ -213,6 +213,13 @@
           "required": ["subject"]
         }
       }
+    ,
+    { "if": { "properties": { "severitytext": { "const": "TRACE" } }, "required": ["severitytext"] }, "then": { "properties": { "severitynumber": { "const": 0 } }, "required": ["severitynumber"] } },
+    { "if": { "properties": { "severitytext": { "const": "DEBUG" } }, "required": ["severitytext"] }, "then": { "properties": { "severitynumber": { "const": 1 } }, "required": ["severitynumber"] } },
+    { "if": { "properties": { "severitytext": { "const": "INFO" } }, "required": ["severitytext"] }, "then": { "properties": { "severitynumber": { "const": 2 } }, "required": ["severitynumber"] } },
+    { "if": { "properties": { "severitytext": { "const": "WARN" } }, "required": ["severitytext"] }, "then": { "properties": { "severitynumber": { "const": 3 } }, "required": ["severitynumber"] } },
+    { "if": { "properties": { "severitytext": { "const": "ERROR" } }, "required": ["severitytext"] }, "then": { "properties": { "severitynumber": { "const": 4 } }, "required": ["severitynumber"] } },
+    { "if": { "properties": { "severitytext": { "const": "FATAL" } }, "required": ["severitytext"] }, "then": { "properties": { "severitynumber": { "const": 5 } }, "required": ["severitynumber"] } }
     ]
   ,
   "examples": [
@@ -229,7 +236,7 @@
       "partitionkey": "customer-920fca11",
       "sequence": "00000000000000000042",
       "severitytext": "DEBUG",
-      "severitynumber": 3,
+      "severitynumber": 1,
       "datacontenttype": "application/json",
       "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json",
       "dataclassification": "restricted",

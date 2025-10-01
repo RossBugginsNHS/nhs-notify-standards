@@ -16,6 +16,34 @@
 <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#teamresponsible">teamResponsible</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notifydomain">notifyDomain</a></td><td>String</td></tr><tr><td colspan="2"><a href="#microservice">microservice</a></td><td>String</td></tr><tr><td colspan="2"><a href="#version">version</a></td><td>String</td></tr></tbody></table>
 
 
+## Example
+
+
+
+```
+{
+    "teamResponsible": "Team 1",
+    "notifyDomain": "Ordering",
+    "microservice": "order-service",
+    "version": "1.3.0"
+}
+```
+
+
+## Example
+
+
+
+```
+{
+    "teamResponsible": "Team 2",
+    "notifyDomain": "Reporting",
+    "microservice": "reporting-api",
+    "version": "2.0.0"
+}
+```
+
+
 
 <hr />
 
@@ -37,6 +65,9 @@
     <tr>
       <th>Enum</th>
       <td colspan="2"><ul><li>Team 1</li><li>Team 2</li><li>Team 3</li></ul></td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>Team 1</li></td>
     </tr>
   </tbody>
 </table>
@@ -61,6 +92,9 @@
     <tr>
       <th>Enum</th>
       <td colspan="2"><ul><li>Ordering</li><li>Delivering</li><li>Reporting</li><li>Enquiries</li></ul></td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>Ordering</li></td>
     </tr>
   </tbody>
 </table>
@@ -91,6 +125,9 @@
     </tr><tr>
       <th>Pattern</th>
       <td colspan="2">^[a-zA-Z0-9-]+$</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>order-service</li></td>
     </tr>
   </tbody>
 </table>
@@ -115,6 +152,9 @@
     <tr>
       <th>Pattern</th>
       <td colspan="2">^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>1.3.0</li><li>2.0.0-beta.1</li></td>
     </tr>
   </tbody>
 </table>
@@ -151,7 +191,10 @@
                 "Team 2",
                 "Team 3"
             ],
-            "description": "Owning engineering team accountable for this event's domain logic."
+            "description": "Owning engineering team accountable for this event's domain logic.",
+            "examples": [
+                "Team 1"
+            ]
         },
         "notifyDomain": {
             "type": "string",
@@ -161,21 +204,45 @@
                 "Reporting",
                 "Enquiries"
             ],
-            "description": "High-level business domain to which the event belongs."
+            "description": "High-level business domain to which the event belongs.",
+            "examples": [
+                "Ordering"
+            ]
         },
         "microservice": {
             "type": "string",
             "minLength": 1,
             "maxLength": 100,
             "pattern": "^[a-zA-Z0-9-]+$",
-            "description": "The name of the microservice generating the event, e.g. order-service"
+            "description": "The name of the microservice generating the event, e.g. order-service",
+            "examples": [
+                "order-service"
+            ]
         },
         "version": {
             "type": "string",
             "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
-            "description": "Semantic version (SemVer 2.0.0) of the producing microservice at emit time."
+            "description": "Semantic version (SemVer 2.0.0) of the producing microservice at emit time.",
+            "examples": [
+                "1.3.0",
+                "2.0.0-beta.1"
+            ]
         }
-    }
+    },
+    "examples": [
+        {
+            "teamResponsible": "Team 1",
+            "notifyDomain": "Ordering",
+            "microservice": "order-service",
+            "version": "1.3.0"
+        },
+        {
+            "teamResponsible": "Team 2",
+            "notifyDomain": "Reporting",
+            "microservice": "reporting-api",
+            "version": "2.0.0"
+        }
+    ]
 }
 ```
 

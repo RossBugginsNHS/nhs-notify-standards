@@ -16,6 +16,45 @@
 <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td rowspan="2">notify-data</td><td rowspan="2">Any of:</td><td>Object</td></tr><tr><td>Object</td></tr><tr><td colspan="2"><a href="#notify-metadata">notify-metadata</a></td><td>Object (of type <a href="./nhs-notify-metadata.schema.html">NHS Notify Metadata</a>)</td></tr></tbody></table>
 
 
+## Example
+
+
+
+```
+{
+    "notify-data": {
+        "nhsNumber": "9434765919"
+    },
+    "notify-metadata": {
+        "teamResponsible": "Team 1",
+        "notifyDomain": "Ordering",
+        "version": "1.3.0",
+        "microservice": "order-service"
+    }
+}
+```
+
+
+## Example
+
+
+
+```
+{
+    "notify-data": {
+        "plane": "control",
+        "action": "rotate-keys"
+    },
+    "notify-metadata": {
+        "teamResponsible": "Team 2",
+        "notifyDomain": "Reporting",
+        "version": "2.0.0",
+        "microservice": "reporting-api"
+    }
+}
+```
+
+
 
 <hr />
 
@@ -137,13 +176,29 @@
                     "$ref": "#/$defs/ControlPlane"
                 }
             ],
-            "additionalProperties": true,
             "description": "Domain specific data attributes (variant: DataPlane | ControlPlane).",
+            "examples": [
+                {
+                    "nhsNumber": "9434765919"
+                },
+                {
+                    "plane": "control",
+                    "action": "rotate-keys"
+                }
+            ],
             "$comment": "Union of two variant payload shapes. anyOf is used (instead of oneOf) because the two variants are currently placeholders and not mutually differentiable. Once DataPlane and ControlPlane gain distinct required properties or a discriminator, switch to oneOf (and optionally add a 'plane' enum property) to prevent ambiguous matches."
         },
         "notify-metadata": {
             "$ref": "./nhs-notify-metadata.schema.json",
-            "description": "Standard metadata set shared across Notify events."
+            "description": "Standard metadata set shared across Notify events.",
+            "examples": [
+                {
+                    "teamResponsible": "Team 1",
+                    "notifyDomain": "Ordering",
+                    "version": "1.3.0",
+                    "microservice": "order-service"
+                }
+            ]
         }
     },
     "$defs": {
@@ -157,7 +212,32 @@
             "description": "Placeholder for control-plane specific properties (extend in concrete event schemas).",
             "$comment": "As with DataPlane, add identifying / required properties here (e.g. 'plane': 'control'). Ensure divergence for better validation and consumer code generation."
         }
-    }
+    },
+    "examples": [
+        {
+            "notify-data": {
+                "nhsNumber": "9434765919"
+            },
+            "notify-metadata": {
+                "teamResponsible": "Team 1",
+                "notifyDomain": "Ordering",
+                "version": "1.3.0",
+                "microservice": "order-service"
+            }
+        },
+        {
+            "notify-data": {
+                "plane": "control",
+                "action": "rotate-keys"
+            },
+            "notify-metadata": {
+                "teamResponsible": "Team 2",
+                "notifyDomain": "Reporting",
+                "version": "2.0.0",
+                "microservice": "reporting-api"
+            }
+        }
+    ]
 }
 ```
 
