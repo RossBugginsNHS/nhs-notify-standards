@@ -13,7 +13,8 @@
         {
           "$ref": "#/$defs/NhsNumberFormatted"
         }
-      ]
+      ],
+      "description": "NHS Number provided either as canonical 10 digits or human-entered formatted variant (3-3-4 with optional spaces/hyphens)."
     }
   },
   "required": [

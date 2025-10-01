@@ -7,7 +7,8 @@
   "additionalProperties": false,
   "properties": {
     "nhsNumber": {
-      "$ref": "./nhs-number.schema.json#/properties/nhsNumber"
+      "$ref": "./nhs-number.schema.json#/properties/nhsNumber",
+      "description": "Example patient's NHS Number (accepts canonical or formatted forms)."
     }
   },
   "required": [

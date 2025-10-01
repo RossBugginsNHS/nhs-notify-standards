@@ -25,6 +25,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Concrete event type string for this example event.</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Required</th>
@@ -45,6 +49,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Event source for ordering domain examples.</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Required</th>
@@ -89,6 +97,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Canonical URI of the example event&#x27;s data schema.</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Required</th>
@@ -109,6 +121,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Example payload wrapper containing notify-payload.</td>
+    </tr>
     <tr><tr><td rowspan="1">Type</td><td rowspan="1">All of:</td><td>Object</td></tr></tr>
     <tr>
       <th>Required</th>
@@ -149,6 +165,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Example data-plane object for illustrative purposes.</td>
+    </tr>
     <tr><tr><td rowspan="1">Type</td><td rowspan="1">All of:</td><td>Object</td></tr></tr>
     
   </tbody>
@@ -185,6 +205,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Example patient&#x27;s NHS Number (accepts canonical or formatted forms).</td>
+    </tr>
     <tr><tr><td rowspan="2">Type</td><td rowspan="2">Any of:</td><td>String</td></tr><tr><td>String</td></tr></tr>
     
   </tbody>
@@ -246,6 +270,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Example metadata block constrained for this example.</td>
+    </tr>
     <tr><tr><td rowspan="1">Type</td><td rowspan="1">All of:</td><td>Object</td></tr></tr>
     
   </tbody>
@@ -274,6 +302,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Owning team for the example metadata.</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Const</th>
@@ -290,6 +322,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Domain for the example metadata (Ordering).</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Const</th>
@@ -329,11 +365,13 @@
     "properties": {
         "type": {
             "type": "string",
-            "const": "uk.nhs.notify.ordering.order.read"
+            "const": "uk.nhs.notify.ordering.order.read",
+            "description": "Concrete event type string for this example event."
         },
         "source": {
             "type": "string",
-            "const": "/data-plane/ordering"
+            "const": "/data-plane/ordering",
+            "description": "Event source for ordering domain examples."
         },
         "subject": {
             "type": "string",
@@ -342,7 +380,8 @@
         },
         "dataschema": {
             "type": "string",
-            "const": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json"
+            "const": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json",
+            "description": "Canonical URI of the example event's data schema."
         },
         "data": {
             "type": "object",
@@ -350,7 +389,8 @@
                 {
                     "$ref": "#/$defs/ExamplePayload"
                 }
-            ]
+            ],
+            "description": "Example payload wrapper containing notify-payload."
         }
     },
     "required": [
@@ -368,11 +408,13 @@
                     "properties": {
                         "notify-data": {
                             "type": "object",
-                            "$ref": "#/$defs/ExampleData"
+                            "$ref": "#/$defs/ExampleData",
+                            "description": "Example data-plane object for illustrative purposes."
                         },
                         "notify-metadata": {
                             "type": "object",
-                            "$ref": "#/$defs/ExampleMetadata"
+                            "$ref": "#/$defs/ExampleMetadata",
+                            "description": "Example metadata block constrained for this example."
                         }
                     }
                 }
@@ -384,7 +426,8 @@
                 {
                     "$ref": "./nhs-notify-example-event-data.schema.json"
                 }
-            ]
+            ],
+            "description": "Example data schema reference binding."
         },
         "ExampleMetadata": {
             "type": "object",
@@ -392,7 +435,8 @@
                 {
                     "$ref": "#/$defs/TeamAlphaBravoMetadata"
                 }
-            ]
+            ],
+            "description": "Example metadata schema reference binding."
         },
         "TeamAlphaBravoMetadata": {
             "$comment": "Notify Metadata",
@@ -401,11 +445,13 @@
             "properties": {
                 "teamResponsible": {
                     "type": "string",
-                    "const": "Team 1"
+                    "const": "Team 1",
+                    "description": "Owning team for the example metadata."
                 },
                 "notifyDomain": {
                     "type": "string",
-                    "const": "Ordering"
+                    "const": "Ordering",
+                    "description": "Domain for the example metadata (Ordering)."
                 }
             }
         }

@@ -25,6 +25,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">CloudEvents specification version (must be 1.0).</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Required</th>
@@ -45,6 +49,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Unique event identifier (UUID v4 recommended) that is unique for the producing source.</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Required</th>
@@ -68,6 +76,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Logical producer path starting with /data-plane or /control-plane followed by lowercase segments.</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Required</th>
@@ -94,6 +106,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Resource path (no leading slash) within the source; lowercase segments separated by &#x27;/&#x27;.</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Required</th>
@@ -120,6 +136,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Event type in reverse-DNS style: uk.nhs.notify.&lt;domain&gt;[.&lt;subtype&gt;...]; certain ambiguous verbs are disallowed.</td>
+    </tr>
     <tr><tr><td rowspan="9">Type</td><td rowspan="9">All of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr></tr>
     <tr>
       <th>Required</th>
@@ -260,6 +280,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Time the event occurred (RFC 3339 UTC).</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Required</th>
@@ -280,6 +304,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Media type of the &#x27;data&#x27; value; NHS profile fixes this to application/json.</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Required</th>
@@ -300,6 +328,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">URI of a schema that describes data.notify-payload (if published).</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Required</th>
@@ -317,6 +349,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Container object wrapping the structured Notify payload.</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">Object</td></tr>
     <tr>
       <th>Required</th>
@@ -335,6 +371,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Structured Notify payload containing domain data (notify-data) and metadata (notify-metadata).</td>
+    </tr>
     <tr><tr><td rowspan="1">Type</td><td rowspan="1">All of:</td><td>Object</td></tr></tr>
     <tr>
       <th>Required</th>
@@ -367,6 +407,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Domain specific data attributes (variant: DataPlane | ControlPlane).</td>
+    </tr>
     <tr><tr><td rowspan="2">Type</td><td rowspan="2">Any of:</td><td>Object</td></tr><tr><td>Object</td></tr></tr>
     
   </tbody>
@@ -379,6 +423,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Placeholder for data-plane specific properties (extend in concrete event schemas).</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">Object</td></tr>
     
   </tbody>
@@ -392,6 +440,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Placeholder for control-plane specific properties (extend in concrete event schemas).</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">Object</td></tr>
     
   </tbody>
@@ -406,6 +458,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Standard metadata set shared across Notify events.</td>
+    </tr>
     <tr><tr><td rowspan="1">Type</td><td rowspan="1">All of:</td><td>Object</td></tr></tr>
     
   </tbody>
@@ -442,6 +498,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Owning engineering team accountable for this event&#x27;s domain logic.</td>
+    </tr>
     <tr><tr><td rowspan="3">Type</td><td rowspan="3">One of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr></tr>
     
   </tbody>
@@ -503,6 +563,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">High-level business domain to which the event belongs.</td>
+    </tr>
     <tr><tr><td rowspan="4">Type</td><td rowspan="4">One of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr></tr>
     
   </tbody>
@@ -608,7 +672,7 @@
   <tbody>
     <tr>
       <th>Description</th>
-      <td colspan="2">The version of the microservice generating the event, in semantic versioning format (https://semver.org/), e.g. 1.0.0</td>
+      <td colspan="2">Semantic version (SemVer 2.0.0) of the producing microservice at emit time.</td>
     </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
@@ -631,6 +695,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">W3C Trace Context traceparent header value for distributed tracing.</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Required</th>
@@ -654,6 +722,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Optional W3C Trace Context tracestate header value carrying vendor extension info.</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Required</th>
@@ -671,6 +743,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Key used to deterministically partition events (ordering / scaling). 1-64 lowercase alphanumeric or hyphen characters.</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Required</th>
@@ -697,6 +773,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Time the event was recorded/persisted (bitemporal) in RFC 3339 UTC; should be &gt;&#x3D; time.</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Required</th>
@@ -717,6 +797,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Positive integer indicating how many occurrences this single event represents (sampling).</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">Integer</td></tr>
     <tr>
       <th>Required</th>
@@ -761,6 +845,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Textual severity level of the event (TRACE, DEBUG, INFO, WARN, ERROR, FATAL).</td>
+    </tr>
     <tr><tr><td rowspan="6">Type</td><td rowspan="6">One of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr></tr>
     <tr>
       <th>Required</th>
@@ -877,6 +965,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Numeric severity 0-6 aligned with severitytext (mapping consistent with OpenTelemetry).</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">Integer</td></tr>
     <tr>
       <th>Required</th>
@@ -897,6 +989,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Classification of the event data&#x27;s sensitivity (public | internal | confidential | restricted).</td>
+    </tr>
     <tr><tr><td rowspan="4">Type</td><td rowspan="4">One of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr></tr>
     <tr>
       <th>Required</th>
@@ -981,6 +1077,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Regulatory regime(s) applicable to handling of this data (e.g. GDPR).</td>
+    </tr>
     <tr><tr><td rowspan="6">Type</td><td rowspan="6">One of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr></tr>
     <tr>
       <th>Required</th>
@@ -1097,6 +1197,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Data category or sensitivity grouping (e.g. standard | sensitive | special-category).</td>
+    </tr>
     <tr><tr><td rowspan="4">Type</td><td rowspan="4">One of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr></tr>
     <tr>
       <th>Required</th>
@@ -1196,12 +1300,14 @@
         "specversion": {
             "type": "string",
             "const": "1.0",
+            "description": "CloudEvents specification version (must be 1.0).",
             "$comment": "CloudEvents version used. Core attributes: specversion,id,source,type (+ optional subject,time,datacontenttype,dataschema,data). Ref: CloudEvents core spec."
         },
         "id": {
             "type": "string",
             "format": "uuid",
             "minLength": 1,
+            "description": "Unique event identifier (UUID v4 recommended) that is unique for the producing source.",
             "$comment": "Unique per (source,id). This should be a randomly generated guid that represents the id of the event itself."
         },
         "source": {
@@ -1209,6 +1315,7 @@
             "pattern": "^/(data-plane|control-plane)(?:/[a-z0-9-]+)*$",
             "minLength": 12,
             "format": "uri-reference",
+            "description": "Logical producer path starting with /data-plane or /control-plane followed by lowercase segments.",
             "$comment": "Must begin with '/data-plane' or '/control-plane'. Subsequent segments: lowercase alphanumeric or hyphen. No trailing '/'."
         },
         "subject": {
@@ -1216,6 +1323,7 @@
             "pattern": "^(?:[a-z0-9-]+)(?:/[a-z0-9-]+)*$",
             "minLength": 5,
             "format": "uri-reference",
+            "description": "Resource path (no leading slash) within the source; lowercase segments separated by '/'.",
             "$comment": "URI path: must not start with '/', only lowercase alphanumeric and hyphen segments separated by '/', must not end with '/'."
         },
         "type": {
@@ -1269,20 +1377,24 @@
                     }
                 }
             ],
+            "description": "Event type in reverse-DNS style: uk.nhs.notify.<domain>[.<subtype>...]; certain ambiguous verbs are disallowed.",
             "$comment": "NHS naming: lower-dot namespaced; allowed chars a-z0-9 and dots; banned tokens: completed, finished, updated, changed, processed, handled, status, started, failed."
         },
         "time": {
             "type": "string",
             "format": "date-time",
+            "description": "Time the event occurred (RFC 3339 UTC).",
             "$comment": "RFC3339 UTC occurred-at (REQUIRED in NHS profile)."
         },
         "datacontenttype": {
             "type": "string",
             "const": "application/json",
+            "description": "Media type of the 'data' value; NHS profile fixes this to application/json.",
             "$comment": "Usually application/json."
         },
         "dataschema": {
             "type": "string",
+            "description": "URI of a schema that describes data.notify-payload (if published).",
             "$comment": "URI to event payload schema."
         },
         "data": {
@@ -1298,19 +1410,23 @@
                         {
                             "$ref": "./nhs-notify-payload.schema.json"
                         }
-                    ]
+                    ],
+                    "description": "Structured Notify payload containing domain data (notify-data) and metadata (notify-metadata)."
                 }
             },
+            "description": "Container object wrapping the structured Notify payload.",
             "$comment": "Domain payload (arbitrary JSON value)."
         },
         "traceparent": {
             "type": "string",
             "minLength": 1,
             "pattern": "^00-[0-9a-f]{32}-[0-9a-f]{16}-[0-9a-f]{2}$",
+            "description": "W3C Trace Context traceparent header value for distributed tracing.",
             "$comment": "W3C Trace Context traceparent (required when tracing used)."
         },
         "tracestate": {
             "type": "string",
+            "description": "Optional W3C Trace Context tracestate header value carrying vendor extension info.",
             "$comment": "W3C Trace Context tracestate (optional)."
         },
         "partitionkey": {
@@ -1318,16 +1434,19 @@
             "minLength": 1,
             "maxLength": 64,
             "pattern": "^[a-z0-9-]+$",
+            "description": "Key used to deterministically partition events (ordering / scaling). 1-64 lowercase alphanumeric or hyphen characters.",
             "$comment": "Non-empty partition key for scaling / causal grouping. Must be 1-64 characters, only lowercase letters, numbers, and hyphen."
         },
         "recordedtime": {
             "type": "string",
             "format": "date-time",
+            "description": "Time the event was recorded/persisted (bitemporal) in RFC 3339 UTC; should be >= time.",
             "$comment": "Bitemporal created-at; should be >= time."
         },
         "sampledrate": {
             "type": "integer",
             "minimum": 1,
+            "description": "Positive integer indicating how many occurrences this single event represents (sampling).",
             "$comment": "Integer > 0 indicating how many similar occurrences this event represents."
         },
         "sequence": {
@@ -1359,12 +1478,14 @@
                     "const": "FATAL"
                 }
             ],
+            "description": "Textual severity level of the event (TRACE, DEBUG, INFO, WARN, ERROR, FATAL).",
             "$comment": "Severity text (TRACE, DEBUG, INFO, WARN, ERROR, FATAL, etc.)."
         },
         "severitynumber": {
             "type": "integer",
             "minimum": 0,
             "maximum": 6,
+            "description": "Numeric severity 0-6 aligned with severitytext (mapping consistent with OpenTelemetry).",
             "$comment": "Numeric severity corresponding to severitytext."
         },
         "dataclassification": {
@@ -1384,6 +1505,7 @@
                     "const": "restricted"
                 }
             ],
+            "description": "Classification of the event data's sensitivity (public | internal | confidential | restricted).",
             "$comment": "Data classification e.g. public|internal|confidential|restricted."
         },
         "dataregulation": {
@@ -1409,6 +1531,7 @@
                     "const": "CCPA"
                 }
             ],
+            "description": "Regulatory regime(s) applicable to handling of this data (e.g. GDPR).",
             "$comment": "Regulation tags e.g. GDPR, HIPAA."
         },
         "datacategory": {
@@ -1428,6 +1551,7 @@
                     "const": "special-category"
                 }
             ],
+            "description": "Data category or sensitivity grouping (e.g. standard | sensitive | special-category).",
             "$comment": "Example: special-category (GDPR), phi (HIPAA)."
         }
     },

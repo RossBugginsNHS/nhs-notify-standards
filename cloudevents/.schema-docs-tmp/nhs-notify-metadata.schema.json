@@ -23,7 +23,8 @@
         {
           "const": "Team 3"
         }
-      ]
+      ],
+      "description": "Owning engineering team accountable for this event's domain logic."
     },
     "notifyDomain": {
       "type": "string",
@@ -40,7 +41,8 @@
         {
           "const": "Enquries"
         }
-      ]
+      ],
+      "description": "High-level business domain to which the event belongs."
     },
     "microservice": {
       "type": "string",
@@ -52,7 +54,7 @@
     "version": {
       "type": "string",
       "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
-      "description": "The version of the microservice generating the event, in semantic versioning format (https://semver.org/), e.g. 1.0.0"
+      "description": "Semantic version (SemVer 2.0.0) of the producing microservice at emit time."
     }
   }
 }

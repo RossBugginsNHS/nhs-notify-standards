@@ -19,7 +19,8 @@
           "$ref": "#/$defs/ControlPlane"
         }
       ],
-      "additionalProperties": true
+      "additionalProperties": true,
+      "description": "Domain specific data attributes (variant: DataPlane | ControlPlane)."
     },
     "notify-metadata": {
       "type": "object",
@@ -27,15 +28,18 @@
         {
           "$ref": "./nhs-notify-metadata.schema.json"
         }
-      ]
+      ],
+      "description": "Standard metadata set shared across Notify events."
     }
   },
   "$defs": {
     "DataPlane": {
-      "type": "object"
+      "type": "object",
+      "description": "Placeholder for data-plane specific properties (extend in concrete event schemas)."
     },
     "ControlPlane": {
-      "type": "object"
+      "type": "object",
+      "description": "Placeholder for control-plane specific properties (extend in concrete event schemas)."
     }
   }
 }

@@ -25,6 +25,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Domain specific data attributes (variant: DataPlane | ControlPlane).</td>
+    </tr>
     <tr><tr><td rowspan="2">Type</td><td rowspan="2">Any of:</td><td>Object</td></tr><tr><td>Object</td></tr></tr>
     <tr>
       <th>Required</th>
@@ -41,6 +45,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Placeholder for data-plane specific properties (extend in concrete event schemas).</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">Object</td></tr>
     
   </tbody>
@@ -54,6 +62,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Placeholder for control-plane specific properties (extend in concrete event schemas).</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">Object</td></tr>
     
   </tbody>
@@ -68,6 +80,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Standard metadata set shared across Notify events.</td>
+    </tr>
     <tr><tr><td rowspan="1">Type</td><td rowspan="1">All of:</td><td>Object</td></tr></tr>
     <tr>
       <th>Required</th>
@@ -108,6 +124,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Owning engineering team accountable for this event&#x27;s domain logic.</td>
+    </tr>
     <tr><tr><td rowspan="3">Type</td><td rowspan="3">One of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr></tr>
     
   </tbody>
@@ -169,6 +189,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">High-level business domain to which the event belongs.</td>
+    </tr>
     <tr><tr><td rowspan="4">Type</td><td rowspan="4">One of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr></tr>
     
   </tbody>
@@ -274,7 +298,7 @@
   <tbody>
     <tr>
       <th>Description</th>
-      <td colspan="2">The version of the microservice generating the event, in semantic versioning format (https://semver.org/), e.g. 1.0.0</td>
+      <td colspan="2">Semantic version (SemVer 2.0.0) of the producing microservice at emit time.</td>
     </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
@@ -319,7 +343,8 @@
                     "$ref": "#/$defs/ControlPlane"
                 }
             ],
-            "additionalProperties": true
+            "additionalProperties": true,
+            "description": "Domain specific data attributes (variant: DataPlane | ControlPlane)."
         },
         "notify-metadata": {
             "type": "object",
@@ -327,15 +352,18 @@
                 {
                     "$ref": "./nhs-notify-metadata.schema.json"
                 }
-            ]
+            ],
+            "description": "Standard metadata set shared across Notify events."
         }
     },
     "$defs": {
         "DataPlane": {
-            "type": "object"
+            "type": "object",
+            "description": "Placeholder for data-plane specific properties (extend in concrete event schemas)."
         },
         "ControlPlane": {
-            "type": "object"
+            "type": "object",
+            "description": "Placeholder for control-plane specific properties (extend in concrete event schemas)."
         }
     }
 }

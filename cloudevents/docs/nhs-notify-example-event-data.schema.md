@@ -26,6 +26,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Example patient&#x27;s NHS Number (accepts canonical or formatted forms).</td>
+    </tr>
     <tr><tr><td rowspan="2">Type</td><td rowspan="2">Any of:</td><td>String</td></tr><tr><td>String</td></tr></tr>
     <tr>
       <th>Required</th>
@@ -56,7 +60,8 @@
     "additionalProperties": false,
     "properties": {
         "nhsNumber": {
-            "$ref": "./nhs-number.schema.json#/properties/nhsNumber"
+            "$ref": "./nhs-number.schema.json#/properties/nhsNumber",
+            "description": "Example patient's NHS Number (accepts canonical or formatted forms)."
         }
     },
     "required": [

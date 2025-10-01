@@ -11,3 +11,6 @@ generate-default:
 validate:
 	node validate.js nhs-notify-example-event.schema.json output-example-event.json
 	node validate.js nhs-notify-profile.schema.json output-example-event.json
+
+docs:
+	npm run docs

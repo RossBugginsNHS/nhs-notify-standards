@@ -25,6 +25,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">NHS Number provided either as canonical 10 digits or human-entered formatted variant (3-3-4 with optional spaces/hyphens).</td>
+    </tr>
     <tr><tr><td rowspan="2">Type</td><td rowspan="2">Any of:</td><td>String</td></tr><tr><td>String</td></tr></tr>
     <tr>
       <th>Required</th>
@@ -107,7 +111,8 @@
                 {
                     "$ref": "#/$defs/NhsNumberFormatted"
                 }
-            ]
+            ],
+            "description": "NHS Number provided either as canonical 10 digits or human-entered formatted variant (3-3-4 with optional spaces/hyphens)."
         }
     },
     "required": [

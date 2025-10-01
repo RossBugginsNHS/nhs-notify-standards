@@ -25,6 +25,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Owning engineering team accountable for this event&#x27;s domain logic.</td>
+    </tr>
     <tr><tr><td rowspan="3">Type</td><td rowspan="3">One of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr></tr>
     <tr>
       <th>Required</th>
@@ -90,6 +94,10 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">High-level business domain to which the event belongs.</td>
+    </tr>
     <tr><tr><td rowspan="4">Type</td><td rowspan="4">One of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr></tr>
     <tr>
       <th>Required</th>
@@ -203,7 +211,7 @@
   <tbody>
     <tr>
       <th>Description</th>
-      <td colspan="2">The version of the microservice generating the event, in semantic versioning format (https://semver.org/), e.g. 1.0.0</td>
+      <td colspan="2">Semantic version (SemVer 2.0.0) of the producing microservice at emit time.</td>
     </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
@@ -254,7 +262,8 @@
                 {
                     "const": "Team 3"
                 }
-            ]
+            ],
+            "description": "Owning engineering team accountable for this event's domain logic."
         },
         "notifyDomain": {
             "type": "string",
@@ -271,7 +280,8 @@
                 {
                     "const": "Enquries"
                 }
-            ]
+            ],
+            "description": "High-level business domain to which the event belongs."
         },
         "microservice": {
             "type": "string",
@@ -283,7 +293,7 @@
         "version": {
             "type": "string",
             "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
-            "description": "The version of the microservice generating the event, in semantic versioning format (https://semver.org/), e.g. 1.0.0"
+            "description": "Semantic version (SemVer 2.0.0) of the producing microservice at emit time."
         }
     }
 }
