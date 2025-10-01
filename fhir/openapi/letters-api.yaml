@@ -9,7 +9,11 @@ info:
     defined in the Implementation Guide.
 
 
-    Refer to the canonical FHIR artifacts for normative definitions.'
+    Refer to the canonical FHIR artifacts for normative definitions.
+
+
+    Profiles represented (simplified schemas): NhsnotifyLetterCommunicationrequest,
+    NhsnotifyLetterDocumentreference, NhsnotifyLetterBinary'
   contact:
     name: NHS England
 servers:
@@ -110,3 +114,137 @@ components:
       required:
       - resourceType
       - type
+    NhsnotifyLetterCommunicationrequest:
+      type: object
+      description: Letter CommunicationRequest
+      properties:
+        resourceType:
+          type: string
+          enum:
+          - CommunicationRequest
+        meta:
+          type: object
+          properties:
+            profile:
+              type: array
+              items:
+                type: string
+              description: Profiles asserted for this resource
+              example:
+              - https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-communicationrequest
+        status: &id001
+          type: string
+        category:
+          type: array
+          items:
+            type: object
+        subject:
+          type: object
+          description: Reference
+        payload:
+          type: array
+          items:
+            type: object
+        authoredOn:
+          type: string
+          format: date-time
+        requester:
+          type: object
+          description: Reference
+        recipient:
+          type: array
+          items:
+            type: object
+            description: Reference
+        sender:
+          type: object
+          description: Reference
+      required:
+      - payload
+      - recipient
+      - requester
+      - resourceType
+      - subject
+      x-fhir-profile: https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-communicationrequest
+    NhsnotifyLetterDocumentreference:
+      type: object
+      description: Letter PDF Document
+      properties:
+        resourceType:
+          type: string
+          enum:
+          - DocumentReference
+        meta:
+          type: object
+          properties:
+            profile:
+              type: array
+              items:
+                type: string
+              description: Profiles asserted for this resource
+              example:
+              - https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-documentreference
+        status: *id001
+        description:
+          type: string
+        content:
+          type: array
+          items:
+            type: object
+      required:
+      - resourceType
+      x-fhir-profile: https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-documentreference
+    NhsnotifyLetterBinary:
+      type: object
+      description: Letter PDF Binary
+      properties:
+        resourceType:
+          type: string
+          enum:
+          - Binary
+        meta:
+          type: object
+          properties:
+            profile:
+              type: array
+              items:
+                type: string
+              description: Profiles asserted for this resource
+              example:
+              - https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-binary
+        contentType:
+          type: string
+        securityContext:
+          type: object
+      required:
+      - resourceType
+      x-fhir-profile: https://nhsdigital.github.io/nhs-notify-standards/fhir/docs/StructureDefinition/nhsnotify-letter-binary
+    LetterBundle:
+      type: object
+      description: Bundle constrained to letter submission resources (simplified).
+      properties:
+        resourceType:
+          type: string
+          enum:
+          - Bundle
+        type:
+          type: string
+          enum:
+          - transaction
+          - collection
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              resource:
+                oneOf:
+                - $ref: '#/components/schemas/NhsnotifyLetterCommunicationrequest'
+                - $ref: '#/components/schemas/NhsnotifyLetterDocumentreference'
+                - $ref: '#/components/schemas/NhsnotifyLetterBinary'
+            required:
+            - resource
+      required:
+      - resourceType
+      - type
+      - entry

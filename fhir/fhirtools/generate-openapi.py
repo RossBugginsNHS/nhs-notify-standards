@@ -27,7 +27,7 @@ import json
 import re
 import sys
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any, Dict, List, Optional
 
 try:
     import yaml  # type: ignore
@@ -161,6 +161,151 @@ def add_basic_schemas(components: Dict[str, Any]):
     })
 
 
+# --------------------------------------------------------------------------------------
+# Profile -> Simplified OpenAPI Schema generation
+# (Intentionally conservative – we only surface top-level required fields)
+# --------------------------------------------------------------------------------------
+
+TOP_LEVEL_PRIMITIVE_HINTS = {
+    'status': {'type': 'string'},
+    'category': {'type': 'array', 'items': {'type': 'object'}},
+    'subject': {'type': 'object', 'description': 'Reference'},
+    'recipient': {'type': 'array', 'items': {'type': 'object', 'description': 'Reference'}},
+    'payload': {'type': 'array', 'items': {'type': 'object'}},
+    'requester': {'type': 'object', 'description': 'Reference'},
+    'sender': {'type': 'object', 'description': 'Reference'},
+    'authoredOn': {'type': 'string', 'format': 'date-time'},
+    'content': {'type': 'array', 'items': {'type': 'object'}},
+    'contentType': {'type': 'string'},
+    'description': {'type': 'string'},
+    'securityContext': {'type': 'object'}
+}
+
+
+def safe_title_case(profile_id: str) -> str:
+    parts = re.split(r'[-_]', profile_id)
+    return ''.join(p.capitalize() for p in parts if p)
+
+
+def load_profile_structure(version_dir: Path, profile_id: str) -> Optional[Dict[str, Any]]:
+    cand = version_dir / f'StructureDefinition-{profile_id}.json'
+    if cand.exists():
+        try:
+            return load_json(cand)
+        except Exception:
+            return None
+    return None
+
+
+def structure_to_schema(struct: Dict[str, Any]) -> Dict[str, Any]:
+    base_type = struct.get('type', 'Resource')
+    canonical = struct.get('url')
+    differential = (struct.get('differential') or {}).get('element', [])
+    required: List[str] = []
+    properties: Dict[str, Any] = {
+        'resourceType': {'type': 'string', 'enum': [base_type]},
+    }
+    # meta.profile enforcement (canonical)
+    properties['meta'] = {
+        'type': 'object',
+        'properties': {
+            'profile': {
+                'type': 'array',
+                'items': {'type': 'string'},
+                'description': 'Profiles asserted for this resource',
+                'example': [canonical] if canonical else None
+            }
+        }
+    }
+
+    for el in differential:
+        path = el.get('path')  # e.g. CommunicationRequest.status
+        if not path or '.' not in path:
+            continue
+        segments = path.split('.')
+        if len(segments) != 2:
+            # Skip nested for now (keep scope small)
+            continue
+        _, field = segments
+        min_card = el.get('min')
+        if min_card and isinstance(min_card, int) and min_card > 0:
+            if field not in required and field not in ('meta',):
+                required.append(field)
+        # Provide a generic shape if not already present
+        if field not in properties:
+            hint = TOP_LEVEL_PRIMITIVE_HINTS.get(field, {'type': 'object'})
+            properties[field] = hint
+
+    schema: Dict[str, Any] = {
+        'type': 'object',
+        'description': struct.get('title') or struct.get('description') or base_type,
+        'properties': properties,
+        'required': sorted(set(['resourceType'] + required))
+    }
+    if canonical:
+        schema['x-fhir-profile'] = canonical
+    return schema
+
+
+def add_profile_schemas(components: Dict[str, Any], version_dir: Path, profile_ids: List[str]) -> List[str]:
+    added = []
+    schemas = components.setdefault('schemas', {})
+    for pid in profile_ids:
+        struct = load_profile_structure(version_dir, pid)
+        if not struct:
+            print(f"Warning: Could not load StructureDefinition for profile id '{pid}'", file=sys.stderr)
+            continue
+        name = safe_title_case(pid)
+        if name in schemas:
+            continue
+        schemas[name] = structure_to_schema(struct)
+        added.append(name)
+    return added
+
+
+def make_specialized_bundle(components: Dict[str, Any], member_schema_names: List[str]):
+    if not member_schema_names:
+        return
+    schemas = components.setdefault('schemas', {})
+    schemas['LetterBundle'] = {
+        'type': 'object',
+        'description': 'Bundle constrained to letter submission resources (simplified).',
+        'properties': {
+            'resourceType': {'type': 'string', 'enum': ['Bundle']},
+            'type': {'type': 'string', 'enum': ['transaction', 'collection']},
+            'entry': {
+                'type': 'array',
+                'items': {
+                    'type': 'object',
+                    'properties': {
+                        'resource': {
+                            'oneOf': [{'$ref': f"#/components/schemas/{n}"} for n in member_schema_names]
+                        }
+                    },
+                    'required': ['resource']
+                }
+            }
+        },
+        'required': ['resourceType', 'type', 'entry']
+    }
+
+
+def rewrite_bundle_refs_to_specialized(api: Dict[str, Any]):
+    paths = api.get('paths', {})
+    for pitem in paths.values():
+        for method_obj in pitem.values():
+            if not isinstance(method_obj, dict):
+                continue
+            rb = method_obj.get('requestBody')
+            if not rb:
+                continue
+            content = rb.get('content', {})
+            for mt, mt_obj in content.items():
+                schema = mt_obj.get('schema')
+                if isinstance(schema, dict) and schema.get('$ref') == '#/components/schemas/Bundle':
+                    schema['$ref'] = '#/components/schemas/LetterBundle'
+
+
 def operation_to_openapi_path(od: Dict[str, Any]) -> Dict[str, Any]:
     code = od.get('code')
     if not code:
@@ -270,6 +415,7 @@ def main():
     parser.add_argument('--cap', required=True, help='Path to CapabilityStatement JSON (built artifact)')
     parser.add_argument('--out', required=True, help='Output OpenAPI YAML path')
     parser.add_argument('--version-dir', default='v1', help='Directory containing built FHIR artifacts (default: v1)')
+    parser.add_argument('--profile-ids', nargs='*', default=[], help='Profile ids to include as specialized component schemas (e.g. nhsnotify-letter-communicationrequest nhsnotify-letter-documentreference nhsnotify-letter-binary)')
     args = parser.parse_args()
 
     cap_path = Path(args.cap)
@@ -279,6 +425,13 @@ def main():
     cap = load_json(cap_path)
     api = base_openapi(cap)
     add_basic_schemas(api['components'])
+    added = add_profile_schemas(api['components'], version_dir, args.profile_ids)
+    if added:
+        make_specialized_bundle(api['components'], added)
+        rewrite_bundle_refs_to_specialized(api)
+        # Record provenance in info.description
+        prof_note = f"Profiles represented (simplified schemas): {', '.join(added)}"
+        api['info']['description'] += f"\n\n{prof_note}"
     integrate_operations(cap, version_dir, api)
 
     out_path.parent.mkdir(parents=True, exist_ok=True)

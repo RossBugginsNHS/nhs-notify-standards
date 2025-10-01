@@ -50,6 +50,27 @@ app.get('/openapi.json', (_req, res) => {
   res.json(openapiDoc);
 });
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Swagger UI available at http://localhost:${port}/docs`);
+});
+
+function shutdown(signal) {
+  console.log(`\nReceived ${signal}, shutting down gracefully...`);
+  server.close(err => {
+    if (err) {
+      console.error('Error during shutdown', err);
+      process.exit(1);
+    }
+    console.log('Server closed. Bye.');
+    process.exit(0);
+  });
+  // Fallback hard-exit if something hangs
+  setTimeout(() => {
+    console.warn('Forcing shutdown after 5s');
+    process.exit(1);
+  }, 5000).unref();
+}
+
+['SIGINT','SIGTERM'].forEach(sig => {
+  process.on(sig, () => shutdown(sig));
 });

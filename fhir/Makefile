@@ -77,7 +77,16 @@ swagger-docker-run:
 		exit 1; \
 	fi
 > echo "▶ Running Swagger UI container on http://localhost:9090/docs ..."
-> docker run --rm -p 9090:8080 letters-openapi:latest
+> docker run --rm --init -p 9090:8080 --name letters-openapi letters-openapi:latest
+
+.PHONY: swagger-docker-run-detach
+swagger-docker-run-detach:
+> docker run -d --init --rm -p 9090:8080 --name letters-openapi letters-openapi:latest
+> echo "Container started (name=letters-openapi). Use 'make swagger-docker-stop' to stop."
+
+.PHONY: swagger-docker-stop
+swagger-docker-stop:
+> docker stop letters-openapi || true
 
 .PHONY: swagger-docker-shell
 swagger-docker-shell:
