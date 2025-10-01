@@ -77,8 +77,7 @@
       "required": ["notify-payload"],
       "properties": {
         "notify-payload": {
-          "type": "object",
-          "allOf": [ {"$ref": "./nhs-notify-payload.schema.json"} ],
+          "$ref": "./nhs-notify-payload.schema.json",
           "description": "Structured Notify payload containing domain data (notify-data) and metadata (notify-metadata)."
         }
       },
