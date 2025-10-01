@@ -3,7 +3,7 @@ InstanceOf: OperationDefinition
 Usage: #definition
 Title: "Submit Letter"
 Description: "Submit a bundle carrying the letter and context."
-* url = "https://nhsdigital.github.io/nhs-notify-standards/fhir/OperationDefinition/submit-letter"
+* url = "https://nhsdigital.github.io/nhs-notify-standards/fhir/v1/OperationDefinition/submit-letter"
 * name = "SubmitLetter"
 * status = #active
 * kind = #operation

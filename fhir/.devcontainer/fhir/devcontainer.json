@@ -8,7 +8,13 @@
     "ghcr.io/devcontainers/features/node:1": {
       "version": "20"
     },
-    "ghcr.io/devcontainers/features/github-cli:1": {}
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.13"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest"
+    }
   },
   "customizations": {
     "vscode": {
@@ -36,7 +42,8 @@
     "source=nhsnotify-txcache,target=/workspace/fhir/txCache,type=volume",
     "source=nhsnotify-npmcache,target=/home/vscode/.npm,type=volume"
   ],
-  "postCreateCommand": "pwd && ls -la &&  bash scripts/setup.sh",
-  "postStartCommand": "echo 'Dev container started. Try: ./tools/build.sh'",
+  "postCreateCommand": "pwd && ls -la && bash scripts/setup.sh && python3 -m pip install --no-cache-dir --upgrade pip && python3 -m pip install --no-cache-dir PyYAML",
+  "forwardPorts": [8080, 8081, 9090],
+  "postStartCommand": "echo 'Dev container started. Docker should be available (docker version). Try: ./tools/build.sh'",
   "runArgs": ["--init", "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"]
 }

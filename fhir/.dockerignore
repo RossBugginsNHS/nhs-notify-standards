@@ -1,0 +1,14 @@
+# Exclude everything not needed for swagger-server image layers
+.git
+.vscode
+.devcontainer
+node_modules
+**/node_modules
+# Build outputs
+output
+v1
+# Caches
+input-cache
+txCache
+# Misc
+*.log

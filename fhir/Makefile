@@ -45,3 +45,49 @@ clean:
 > echo "▶ Cleaning build artefacts…"
 > ./tools/clean.sh
 > echo "OK"
+
+# =============================================================================
+# Generate OpenAPI (derived from CapabilityStatement + OperationDefinitions)
+# =============================================================================
+.PHONY: openapi
+openapi:
+> echo "▶ Generating OpenAPI spec…"
+> ./fhirtools/generate-openapi.sh
+> echo "OK (see openapi/letters-api.yaml)"
+
+# =============================================================================
+# Swagger UI server (Docker) for OpenAPI spec
+# =============================================================================
+.PHONY: swagger-docker-build
+swagger-docker-build:
+> if ! command -v docker >/dev/null 2>&1; then \
+		echo "✖ docker command not found in this environment"; \
+		echo "  (You can still run the server locally with 'make swagger-serve')"; \
+		exit 1; \
+	fi
+> echo "▶ Building Swagger UI Docker image (context=repo root, Dockerfile=swagger-server/Dockerfile)..."
+> docker build -f swagger-server/Dockerfile -t letters-openapi:latest .
+> echo "OK (image: letters-openapi:latest)"
+
+.PHONY: swagger-docker-run
+swagger-docker-run:
+> if ! command -v docker >/dev/null 2>&1; then \
+		echo "✖ docker command not found in this environment"; \
+		echo "  (You can still run the server locally with 'make swagger-serve')"; \
+		exit 1; \
+	fi
+> echo "▶ Running Swagger UI container on http://localhost:9090/docs ..."
+> docker run --rm -p 9090:8080 letters-openapi:latest
+
+.PHONY: swagger-docker-shell
+swagger-docker-shell:
+> docker run --rm -it letters-openapi:latest sh
+
+.PHONY: swagger-install
+swagger-install:
+> cd swagger-server && if [ ! -d node_modules ]; then npm ci; else echo "(node_modules already present)"; fi
+
+.PHONY: swagger-serve
+swagger-serve: swagger-install
+> echo "▶ Starting Swagger UI server (no Docker) on http://localhost:8081/docs ..."
+> PORT=8081 node swagger-server/src/server.js

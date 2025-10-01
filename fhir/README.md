@@ -3,9 +3,9 @@
 
 ## Viewing the FHIR Letter Printing Implementation Guide
 
-View the [FHIR Letter Printing Implementation Guide](docs/index.html)
+View the [FHIR Letter Printing Implementation Guide](v1/index.html)
 
-(Manually copied from /output to /docs - TODO: CICD pipeline for this)
+(Manually copied from /output to /v1 - TODO: CICD pipeline for this)
 
 ## Quick Start
 

@@ -1,0 +1,112 @@
+openapi: 3.0.3
+info:
+  title: Letter Printing Server API
+  version: 0.1.0
+  description: 'Generated from CapabilityStatement ''LettersServer''.
+
+
+    This OpenAPI description is a convenience abstraction over the FHIR operation(s)
+    defined in the Implementation Guide.
+
+
+    Refer to the canonical FHIR artifacts for normative definitions.'
+  contact:
+    name: NHS England
+servers:
+- url: https://{environment}.example.nhs.uk/fhir
+  description: FHIR base URL
+  variables:
+    environment:
+      default: sandbox
+      enum:
+      - sandbox
+      - prod
+paths:
+  /$submit-letter:
+    post:
+      summary: Submit Letter
+      operationId: submit_letter
+      description: 'Submit a bundle carrying the letter and context.
+
+
+        Canonical OperationDefinition: https://nhsdigital.github.io/nhs-notify-standards/fhir/OperationDefinition/submit-letter'
+      tags:
+      - Letters
+      responses:
+        '400':
+          description: Client error
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/OperationOutcome'
+        '500':
+          description: Server error
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/OperationOutcome'
+        '200':
+          description: Operation successful (OperationOutcome)
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/OperationOutcome'
+      requestBody:
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              $ref: '#/components/schemas/Bundle'
+components:
+  schemas:
+    OperationOutcome:
+      type: object
+      description: FHIR OperationOutcome (trimmed)
+      properties:
+        resourceType:
+          type: string
+          enum:
+          - OperationOutcome
+        issue:
+          type: array
+          items:
+            type: object
+            properties:
+              severity:
+                type: string
+              code:
+                type: string
+              diagnostics:
+                type: string
+            required:
+            - severity
+            - code
+      required:
+      - resourceType
+      - issue
+    Bundle:
+      type: object
+      description: FHIR Bundle (transaction/collection) containing letter submission
+        resources.
+      properties:
+        resourceType:
+          type: string
+          enum:
+          - Bundle
+        type:
+          type: string
+          enum:
+          - transaction
+          - collection
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              resource:
+                type: object
+            required:
+            - resource
+      required:
+      - resourceType
+      - type
