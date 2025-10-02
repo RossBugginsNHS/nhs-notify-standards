@@ -1,6 +1,6 @@
 
 
-# Example Event
+# Example Event (Bundled)
 
 <p>Example  event</p>
 
@@ -385,7 +385,7 @@
 {
     "$id": "nhs-notify-example-event.bundle.schema.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "title": "Example Event",
+    "title": "Example Event (Bundled)",
     "description": "Example  event",
     "allOf": [
         {
@@ -1201,7 +1201,7 @@
             }
         }
     ],
-    "$comment": "Bundled schema (all external $ref inlined)."
+    "$comment": "Bundled schema (all external $ref inlined). | Bundled variant included in docs."
 }
 ```
 

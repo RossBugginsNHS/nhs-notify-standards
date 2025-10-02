@@ -149,11 +149,11 @@ async function main() {
               return;
             }
             if (key === 'pattern' && a.pattern !== b.pattern) {
-              // Keep both pattern constraints via allOf if no const to collapse
               if (!out.const) {
-                const keepA = { pattern: a.pattern };
-                const keepB = { pattern: b.pattern };
-                // Remove pattern from out and replace with allOf patterns
+                const originalDesc = a.description ? `Original pattern: ${a.description}` : 'Original pattern constraint';
+                const incomingDesc = b.description ? `Merged pattern: ${b.description}` : 'Merged pattern constraint';
+                const keepA = { type: 'string', pattern: a.pattern, description: originalDesc };
+                const keepB = { type: 'string', pattern: b.pattern, description: incomingDesc };
                 delete out.pattern;
                 out.allOf = (out.allOf || []).concat([keepA, keepB]);
               }

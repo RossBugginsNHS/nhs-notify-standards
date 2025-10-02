@@ -20,23 +20,37 @@ const SOURCE_GLOB_PREFIX = 'nhs-';
     fs.mkdirSync(tempDir);
   }
 
-  // Collect schema files in project root (authoritative sources)
+  // Collect base schema files in project root (authoritative sources)
   const allFiles = fs.readdirSync(repoRoot);
-  const schemaFiles = allFiles.filter(f => f.startsWith(SOURCE_GLOB_PREFIX) && f.endsWith('.schema.json'));
-  if (schemaFiles.length === 0) {
+  const baseSchemas = allFiles.filter(f => f.startsWith(SOURCE_GLOB_PREFIX) && f.endsWith('.schema.json'));
+  if (baseSchemas.length === 0) {
     console.error('No schema files found matching pattern:', SOURCE_GLOB_PREFIX + '*.schema.json');
     process.exit(1);
   }
 
+  // Collect variant schemas (bundled & flattened) in repo root (by naming convention)
+  const variantSchemas = allFiles.filter(f => f.startsWith(SOURCE_GLOB_PREFIX) && (f.endsWith('.bundle.schema.json') || f.endsWith('.flattened.schema.json')));
+
+  const allSchemaFiles = [
+    ...baseSchemas.map(f => ({ file: f, variant: false })),
+    ...variantSchemas.map(f => ({ file: f, variant: true }))
+  ];
+
   // Normalise schemas into temp dir
-  for (const file of schemaFiles) {
+  for (const { file, variant } of allSchemaFiles) {
     const srcPath = path.join(repoRoot, file);
     try {
       const raw = fs.readFileSync(srcPath, 'utf-8');
       const json = JSON.parse(raw);
-      // Overwrite $id with the file name itself to keep refs local & predictable
-      json.$id = file; // simple identifier for local resolution
-      const outPath = path.join(tempDir, file);
+      const baseName = path.basename(file);
+      json.$id = baseName; // simplified id
+      if (variant) {
+        // Add variant metadata to description/title
+        const variantTag = file.includes('.flattened.') ? 'Flattened' : 'Bundled';
+        json.title = json.title ? `${json.title} (${variantTag})` : `${baseName} (${variantTag})`;
+        json.$comment = (json.$comment ? json.$comment + ' | ' : '') + `${variantTag} variant included in docs.`;
+      }
+      const outPath = path.join(tempDir, baseName);
       fs.writeFileSync(outPath, JSON.stringify(json, null, 2));
     } catch (e) {
       console.warn('Skipping schema (failed to parse):', file, e.message);

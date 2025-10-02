@@ -1,6 +1,6 @@
 
 
-# Example Event
+# Example Event (Flattened)
 
 <p>Example  event</p>
 
@@ -272,7 +272,11 @@
 
 <table class="jssd-property-table">
   <tbody>
-    
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Original pattern: Path in the form customer/{id}/order/{id}/item/{id} where each {{id}} is a UUID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx).</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Pattern</th>
       <td colspan="2">^customer/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/order/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/item/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$</td>
@@ -288,7 +292,11 @@
 
 <table class="jssd-property-table">
   <tbody>
-    
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Merged pattern: Resource path (no leading slash) within the source made of lowercase segments separated by &#x27;/&#x27;.</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Pattern</th>
       <td colspan="2">^(?:[a-z0-9-]+)(?:/[a-z0-9-]+)*$</td>
@@ -1157,7 +1165,7 @@
 {
     "$id": "nhs-notify-example-event.flattened.schema.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "title": "Example Event",
+    "title": "Example Event (Flattened)",
     "description": "Example  event",
     "allOf": [
         {
@@ -1397,10 +1405,14 @@
             ],
             "allOf": [
                 {
-                    "pattern": "^customer/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/order/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/item/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+                    "type": "string",
+                    "pattern": "^customer/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/order/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/item/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                    "description": "Original pattern: Path in the form customer/{id}/order/{id}/item/{id} where each {{id}} is a UUID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)."
                 },
                 {
-                    "pattern": "^(?:[a-z0-9-]+)(?:/[a-z0-9-]+)*$"
+                    "type": "string",
+                    "pattern": "^(?:[a-z0-9-]+)(?:/[a-z0-9-]+)*$",
+                    "description": "Merged pattern: Resource path (no leading slash) within the source made of lowercase segments separated by '/'."
                 }
             ],
             "minLength": 5,
@@ -1898,7 +1910,7 @@
             }
         }
     ],
-    "$comment": "Bundled schema (all external $ref inlined)."
+    "$comment": "Bundled schema (all external $ref inlined). | Flattened variant included in docs."
 }
 ```
 
