@@ -5,5 +5,12 @@ Any "common" shared should be in common.
 
 Suggestion to Cloudfront to this:
 
+
+
 https://schema.notify.nhs.uk/events -> https://nhsdigital.github.io/nhs-notify-standards/cloudevents/schemas
+
+or maybe 
+https://notify.nhs.uk/schema/events -> https://nhsdigital.github.io/nhs-notify-standards/cloudevents/schemas
+
+
 
