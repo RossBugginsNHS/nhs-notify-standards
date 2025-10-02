@@ -79,9 +79,7 @@
 
 
 
-### notify-data.0
-
-
+### <a id="notify-data-0"></a> notify-data.0
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -96,9 +94,7 @@
 
 
 
-### notify-data.1
-
-
+### <a id="notify-data-1"></a> notify-data.1
 <table class="jssd-property-table">
   <tbody>
     <tr>

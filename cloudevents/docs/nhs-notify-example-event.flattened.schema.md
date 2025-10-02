@@ -13,7 +13,16 @@
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td rowspan="10">type</td><td rowspan="10">All of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String=/data-plane/ordering</td></tr><tr><td rowspan="2">subject</td><td rowspan="2">All of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json</td></tr><tr><td rowspan="2">data</td><td rowspan="2">All of:</td><td>Object</td></tr><tr><td>Object</td></tr><tr><td colspan="2"><a href="#specversion">specversion</a></td><td>String=1.0</td></tr><tr><td colspan="2"><a href="#id">id</a></td><td>String</td></tr><tr><td colspan="2"><a href="#time">time</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacontenttype">datacontenttype</a></td><td>String=application/json</td></tr><tr><td colspan="2"><a href="#traceparent">traceparent</a></td><td>String</td></tr><tr><td colspan="2"><a href="#tracestate">tracestate</a></td><td>String</td></tr><tr><td colspan="2"><a href="#partitionkey">partitionkey</a></td><td>String</td></tr><tr><td colspan="2"><a href="#recordedtime">recordedtime</a></td><td>String</td></tr><tr><td colspan="2"><a href="#sampledrate">sampledrate</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#sequence">sequence</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitytext">severitytext</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitynumber">severitynumber</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#dataclassification">dataclassification</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataregulation">dataregulation</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacategory">datacategory</a></td><td>String</td></tr><tr><td colspan="2" rowspan="7">All of:</td><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr></tbody></table>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td rowspan="10">type</td><td rowspan="10">All of:</td><td><a href="#type-0">String</a></td></tr>
+<tr><td><a href="#type-1">String</a></td></tr>
+<tr><td><a href="#type-2">String</a></td></tr>
+<tr><td><a href="#type-3">String</a></td></tr>
+<tr><td><a href="#type-4">String</a></td></tr>
+<tr><td><a href="#type-5">String</a></td></tr>
+<tr><td><a href="#type-6">String</a></td></tr>
+<tr><td><a href="#type-7">String</a></td></tr>
+<tr><td><a href="#type-8">String</a></td></tr>
+<tr><td><a href="#type-9">String</a></td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String=/data-plane/ordering</td></tr><tr><td rowspan="2">subject</td><td rowspan="2">All of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json</td></tr><tr><td rowspan="2">data</td><td rowspan="2">All of:</td><td>Object</td></tr><tr><td>Object</td></tr><tr><td colspan="2"><a href="#specversion">specversion</a></td><td>String=1.0</td></tr><tr><td colspan="2"><a href="#id">id</a></td><td>String</td></tr><tr><td colspan="2"><a href="#time">time</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacontenttype">datacontenttype</a></td><td>String=application/json</td></tr><tr><td colspan="2"><a href="#traceparent">traceparent</a></td><td>String</td></tr><tr><td colspan="2"><a href="#tracestate">tracestate</a></td><td>String</td></tr><tr><td colspan="2"><a href="#partitionkey">partitionkey</a></td><td>String</td></tr><tr><td colspan="2"><a href="#recordedtime">recordedtime</a></td><td>String</td></tr><tr><td colspan="2"><a href="#sampledrate">sampledrate</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#sequence">sequence</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitytext">severitytext</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitynumber">severitynumber</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#dataclassification">dataclassification</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataregulation">dataregulation</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacategory">datacategory</a></td><td>String</td></tr><tr><td colspan="2" rowspan="7">All of:</td><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr></tbody></table>
 
 
 ## Example
@@ -81,9 +90,7 @@
 
 
 
-### type.0
-
-
+### <a id="type-0"></a> type.0
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -104,11 +111,13 @@
 
 
 
-### type.1
-
-
+### <a id="type-1"></a> type.1
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Disallow ambiguous past tense token &#x27;completed&#x27;. Use a domain-specific verb like read, created, published.</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     
   </tbody>
@@ -117,11 +126,13 @@
 
 
 
-### type.2
-
-
+### <a id="type-2"></a> type.2
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Disallow &#x27;finished&#x27; which is temporal and ambiguous; choose a workflow-specific terminal verb.</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     
   </tbody>
@@ -130,11 +141,13 @@
 
 
 
-### type.3
-
-
+### <a id="type-3"></a> type.3
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Disallow &#x27;updated&#x27;; prefer a concrete action (e.g. order.modified.v1 -&gt; order.change.applied).</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     
   </tbody>
@@ -143,11 +156,13 @@
 
 
 
-### type.4
-
-
+### <a id="type-4"></a> type.4
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Disallow vague &#x27;changed&#x27;; specify the nature of the change (e.g. status.changed -&gt; status.transitioned).</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     
   </tbody>
@@ -156,11 +171,13 @@
 
 
 
-### type.5
-
-
+### <a id="type-5"></a> type.5
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Disallow &#x27;processed&#x27;; state WHAT happened, not that a process occurred.</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     
   </tbody>
@@ -169,11 +186,13 @@
 
 
 
-### type.6
-
-
+### <a id="type-6"></a> type.6
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Disallow &#x27;handled&#x27;; overly generic and not business meaningful.</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     
   </tbody>
@@ -182,11 +201,13 @@
 
 
 
-### type.7
-
-
+### <a id="type-7"></a> type.7
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Disallow bare &#x27;status&#x27;; event types should represent a domain occurrence, not a generic label.</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     
   </tbody>
@@ -195,11 +216,13 @@
 
 
 
-### type.8
-
-
+### <a id="type-8"></a> type.8
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Disallow &#x27;started&#x27;; prefer a specific lifecycle action (e.g. session.opened).</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     
   </tbody>
@@ -208,11 +231,13 @@
 
 
 
-### type.9
-
-
+### <a id="type-9"></a> type.9
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Disallow &#x27;failed&#x27;; model the concrete failure (e.g. payment.authorization.failed -&gt; payment.authorization.rejected).</td>
+    </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     
   </tbody>
@@ -287,9 +312,7 @@
 
 
 
-### subject.0
-
-
+### <a id="subject-0"></a> subject.0
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -307,9 +330,7 @@
 
 
 
-### subject.1
-
-
+### <a id="subject-1"></a> subject.1
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -371,9 +392,7 @@
 
 
 
-### data.0
-
-
+### <a id="data-0"></a> data.0
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -554,9 +573,7 @@
 
 
 
-### data.1
-
-
+### <a id="data-1"></a> data.1
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -1367,65 +1384,65 @@
                 {
                     "type": "string",
                     "not": {
-                        "pattern": "(?:^|\\.)completed(?:\\.|$)",
-                        "description": "Disallow ambiguous past tense token 'completed'. Use a domain-specific verb like read, created, published."
-                    }
+                        "pattern": "(?:^|\\.)completed(?:\\.|$)"
+                    },
+                    "description": "Disallow ambiguous past tense token 'completed'. Use a domain-specific verb like read, created, published."
                 },
                 {
                     "type": "string",
                     "not": {
-                        "pattern": "(?:^|\\.)finished(?:\\.|$)",
-                        "description": "Disallow 'finished' which is temporal and ambiguous; choose a workflow-specific terminal verb."
-                    }
+                        "pattern": "(?:^|\\.)finished(?:\\.|$)"
+                    },
+                    "description": "Disallow 'finished' which is temporal and ambiguous; choose a workflow-specific terminal verb."
                 },
                 {
                     "type": "string",
                     "not": {
-                        "pattern": "(?:^|\\.)updated(?:\\.|$)",
-                        "description": "Disallow 'updated'; prefer a concrete action (e.g. order.modified.v1 -> order.change.applied)."
-                    }
+                        "pattern": "(?:^|\\.)updated(?:\\.|$)"
+                    },
+                    "description": "Disallow 'updated'; prefer a concrete action (e.g. order.modified.v1 -> order.change.applied)."
                 },
                 {
                     "type": "string",
                     "not": {
-                        "pattern": "(?:^|\\.)changed(?:\\.|$)",
-                        "description": "Disallow vague 'changed'; specify the nature of the change (e.g. status.changed -> status.transitioned)."
-                    }
+                        "pattern": "(?:^|\\.)changed(?:\\.|$)"
+                    },
+                    "description": "Disallow vague 'changed'; specify the nature of the change (e.g. status.changed -> status.transitioned)."
                 },
                 {
                     "type": "string",
                     "not": {
-                        "pattern": "(?:^|\\.)processed(?:\\.|$)",
-                        "description": "Disallow 'processed'; state WHAT happened, not that a process occurred."
-                    }
+                        "pattern": "(?:^|\\.)processed(?:\\.|$)"
+                    },
+                    "description": "Disallow 'processed'; state WHAT happened, not that a process occurred."
                 },
                 {
                     "type": "string",
                     "not": {
-                        "pattern": "(?:^|\\.)handled(?:\\.|$)",
-                        "description": "Disallow 'handled'; overly generic and not business meaningful."
-                    }
+                        "pattern": "(?:^|\\.)handled(?:\\.|$)"
+                    },
+                    "description": "Disallow 'handled'; overly generic and not business meaningful."
                 },
                 {
                     "type": "string",
                     "not": {
-                        "pattern": "(?:^|\\.)status(?:\\.|$)",
-                        "description": "Disallow bare 'status'; event types should represent a domain occurrence, not a generic label."
-                    }
+                        "pattern": "(?:^|\\.)status(?:\\.|$)"
+                    },
+                    "description": "Disallow bare 'status'; event types should represent a domain occurrence, not a generic label."
                 },
                 {
                     "type": "string",
                     "not": {
-                        "pattern": "(?:^|\\.)started(?:\\.|$)",
-                        "description": "Disallow 'started'; prefer a specific lifecycle action (e.g. session.opened)."
-                    }
+                        "pattern": "(?:^|\\.)started(?:\\.|$)"
+                    },
+                    "description": "Disallow 'started'; prefer a specific lifecycle action (e.g. session.opened)."
                 },
                 {
                     "type": "string",
                     "not": {
-                        "pattern": "(?:^|\\.)failed(?:\\.|$)",
-                        "description": "Disallow 'failed'; model the concrete failure (e.g. payment.authorization.failed -> payment.authorization.rejected)."
-                    }
+                        "pattern": "(?:^|\\.)failed(?:\\.|$)"
+                    },
+                    "description": "Disallow 'failed'; model the concrete failure (e.g. payment.authorization.failed -> payment.authorization.rejected)."
                 }
             ],
             "$comment": "NHS naming: lower-dot namespaced; allowed chars a-z0-9 and dots; banned tokens: completed, finished, updated, changed, processed, handled, status, started, failed."

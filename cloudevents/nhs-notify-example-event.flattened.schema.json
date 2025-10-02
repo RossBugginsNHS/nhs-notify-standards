@@ -183,65 +183,65 @@
         {
           "type": "string",
           "not": {
-            "pattern": "(?:^|\\.)completed(?:\\.|$)",
-            "description": "Disallow ambiguous past tense token 'completed'. Use a domain-specific verb like read, created, published."
-          }
+            "pattern": "(?:^|\\.)completed(?:\\.|$)"
+          },
+          "description": "Disallow ambiguous past tense token 'completed'. Use a domain-specific verb like read, created, published."
         },
         {
           "type": "string",
           "not": {
-            "pattern": "(?:^|\\.)finished(?:\\.|$)",
-            "description": "Disallow 'finished' which is temporal and ambiguous; choose a workflow-specific terminal verb."
-          }
+            "pattern": "(?:^|\\.)finished(?:\\.|$)"
+          },
+          "description": "Disallow 'finished' which is temporal and ambiguous; choose a workflow-specific terminal verb."
         },
         {
           "type": "string",
           "not": {
-            "pattern": "(?:^|\\.)updated(?:\\.|$)",
-            "description": "Disallow 'updated'; prefer a concrete action (e.g. order.modified.v1 -> order.change.applied)."
-          }
+            "pattern": "(?:^|\\.)updated(?:\\.|$)"
+          },
+          "description": "Disallow 'updated'; prefer a concrete action (e.g. order.modified.v1 -> order.change.applied)."
         },
         {
           "type": "string",
           "not": {
-            "pattern": "(?:^|\\.)changed(?:\\.|$)",
-            "description": "Disallow vague 'changed'; specify the nature of the change (e.g. status.changed -> status.transitioned)."
-          }
+            "pattern": "(?:^|\\.)changed(?:\\.|$)"
+          },
+          "description": "Disallow vague 'changed'; specify the nature of the change (e.g. status.changed -> status.transitioned)."
         },
         {
           "type": "string",
           "not": {
-            "pattern": "(?:^|\\.)processed(?:\\.|$)",
-            "description": "Disallow 'processed'; state WHAT happened, not that a process occurred."
-          }
+            "pattern": "(?:^|\\.)processed(?:\\.|$)"
+          },
+          "description": "Disallow 'processed'; state WHAT happened, not that a process occurred."
         },
         {
           "type": "string",
           "not": {
-            "pattern": "(?:^|\\.)handled(?:\\.|$)",
-            "description": "Disallow 'handled'; overly generic and not business meaningful."
-          }
+            "pattern": "(?:^|\\.)handled(?:\\.|$)"
+          },
+          "description": "Disallow 'handled'; overly generic and not business meaningful."
         },
         {
           "type": "string",
           "not": {
-            "pattern": "(?:^|\\.)status(?:\\.|$)",
-            "description": "Disallow bare 'status'; event types should represent a domain occurrence, not a generic label."
-          }
+            "pattern": "(?:^|\\.)status(?:\\.|$)"
+          },
+          "description": "Disallow bare 'status'; event types should represent a domain occurrence, not a generic label."
         },
         {
           "type": "string",
           "not": {
-            "pattern": "(?:^|\\.)started(?:\\.|$)",
-            "description": "Disallow 'started'; prefer a specific lifecycle action (e.g. session.opened)."
-          }
+            "pattern": "(?:^|\\.)started(?:\\.|$)"
+          },
+          "description": "Disallow 'started'; prefer a specific lifecycle action (e.g. session.opened)."
         },
         {
           "type": "string",
           "not": {
-            "pattern": "(?:^|\\.)failed(?:\\.|$)",
-            "description": "Disallow 'failed'; model the concrete failure (e.g. payment.authorization.failed -> payment.authorization.rejected)."
-          }
+            "pattern": "(?:^|\\.)failed(?:\\.|$)"
+          },
+          "description": "Disallow 'failed'; model the concrete failure (e.g. payment.authorization.failed -> payment.authorization.rejected)."
         }
       ],
       "$comment": "NHS naming: lower-dot namespaced; allowed chars a-z0-9 and dots; banned tokens: completed, finished, updated, changed, processed, handled, status, started, failed."
