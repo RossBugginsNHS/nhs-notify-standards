@@ -13,7 +13,7 @@
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#specversion">specversion</a></td><td>String=1.0</td></tr><tr><td colspan="2"><a href="#id">id</a></td><td>String</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td rowspan="9">type</td><td rowspan="9">All of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td colspan="2"><a href="#time">time</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacontenttype">datacontenttype</a></td><td>String=application/json</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2"><a href="#traceparent">traceparent</a></td><td>String</td></tr><tr><td colspan="2"><a href="#tracestate">tracestate</a></td><td>String</td></tr><tr><td colspan="2"><a href="#partitionkey">partitionkey</a></td><td>String</td></tr><tr><td colspan="2"><a href="#recordedtime">recordedtime</a></td><td>String</td></tr><tr><td colspan="2"><a href="#sampledrate">sampledrate</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#sequence">sequence</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitytext">severitytext</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitynumber">severitynumber</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#dataclassification">dataclassification</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataregulation">dataregulation</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacategory">datacategory</a></td><td>String</td></tr><tr><td colspan="2" rowspan="7">All of:</td><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr></tbody></table>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#specversion">specversion</a></td><td>String=1.0</td></tr><tr><td colspan="2"><a href="#id">id</a></td><td>String</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td rowspan="10">type</td><td rowspan="10">All of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td colspan="2"><a href="#time">time</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacontenttype">datacontenttype</a></td><td>String=application/json</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2"><a href="#traceparent">traceparent</a></td><td>String</td></tr><tr><td colspan="2"><a href="#tracestate">tracestate</a></td><td>String</td></tr><tr><td colspan="2"><a href="#partitionkey">partitionkey</a></td><td>String</td></tr><tr><td colspan="2"><a href="#recordedtime">recordedtime</a></td><td>String</td></tr><tr><td colspan="2"><a href="#sampledrate">sampledrate</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#sequence">sequence</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitytext">severitytext</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitynumber">severitynumber</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#dataclassification">dataclassification</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataregulation">dataregulation</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacategory">datacategory</a></td><td>String</td></tr><tr><td colspan="2" rowspan="7">All of:</td><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr></tbody></table>
 
 
 ## Example
@@ -193,7 +193,7 @@
       <th>Description</th>
       <td colspan="2">Event type (uk.nhs.notify.*) using reverse-DNS style; ambiguous verbs (completed, finished, updated, changed, processed, handled, status, started, failed) disallowed.</td>
     </tr>
-    <tr><tr><td rowspan="9">Type</td><td rowspan="9">All of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr></tr>
+    <tr><tr><td rowspan="10">Type</td><td rowspan="10">All of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr></tr>
     <tr>
       <th>Required</th>
       <td colspan="2">Yes</td>
@@ -201,9 +201,6 @@
     <tr>
       <th>Min Length</th>
       <td colspan="2">1</td>
-    </tr><tr>
-      <th>Pattern</th>
-      <td colspan="2">^uk\.nhs\.notify\.[a-z0-9]+(\.[a-z0-9]+)*$</td>
     </tr><tr>
       <th>Examples</th>
       <td colspan="2"><li>uk.nhs.notify.ordering.order.read</li></td>
@@ -218,8 +215,18 @@
 
 <table class="jssd-property-table">
   <tbody>
-    
-    
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Event type (uk.nhs.notify.*) using reverse-DNS style; lowercase alphanumerics and dots only.</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Pattern</th>
+      <td colspan="2">^uk\.nhs\.notify\.[a-z0-9]+(\.[a-z0-9]+)*$</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>uk.nhs.notify.ordering.order.read</li></td>
+    </tr>
   </tbody>
 </table>
 
@@ -231,7 +238,7 @@
 
 <table class="jssd-property-table">
   <tbody>
-    
+    <tr><th>Type</th><td colspan="2">String</td></tr>
     
   </tbody>
 </table>
@@ -244,7 +251,7 @@
 
 <table class="jssd-property-table">
   <tbody>
-    
+    <tr><th>Type</th><td colspan="2">String</td></tr>
     
   </tbody>
 </table>
@@ -257,7 +264,7 @@
 
 <table class="jssd-property-table">
   <tbody>
-    
+    <tr><th>Type</th><td colspan="2">String</td></tr>
     
   </tbody>
 </table>
@@ -270,7 +277,7 @@
 
 <table class="jssd-property-table">
   <tbody>
-    
+    <tr><th>Type</th><td colspan="2">String</td></tr>
     
   </tbody>
 </table>
@@ -283,7 +290,7 @@
 
 <table class="jssd-property-table">
   <tbody>
-    
+    <tr><th>Type</th><td colspan="2">String</td></tr>
     
   </tbody>
 </table>
@@ -296,7 +303,7 @@
 
 <table class="jssd-property-table">
   <tbody>
-    
+    <tr><th>Type</th><td colspan="2">String</td></tr>
     
   </tbody>
 </table>
@@ -309,7 +316,7 @@
 
 <table class="jssd-property-table">
   <tbody>
-    
+    <tr><th>Type</th><td colspan="2">String</td></tr>
     
   </tbody>
 </table>
@@ -322,7 +329,20 @@
 
 <table class="jssd-property-table">
   <tbody>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
     
+  </tbody>
+</table>
+
+
+
+
+### type.9
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
     
   </tbody>
 </table>
@@ -824,57 +844,74 @@
         "type": {
             "type": "string",
             "minLength": 1,
-            "pattern": "^uk\\.nhs\\.notify\\.[a-z0-9]+(\\.[a-z0-9]+)*$",
             "allOf": [
                 {
+                    "type": "string",
+                    "pattern": "^uk\\.nhs\\.notify\\.[a-z0-9]+(\\.[a-z0-9]+)*$",
+                    "description": "Event type (uk.nhs.notify.*) using reverse-DNS style; lowercase alphanumerics and dots only.",
+                    "examples": [
+                        "uk.nhs.notify.ordering.order.read"
+                    ],
+                    "$comment": "NHS naming: lower-dot namespaced; allowed chars a-z0-9 and dots."
+                },
+                {
+                    "type": "string",
                     "not": {
                         "pattern": "(?:^|\\.)completed(?:\\.|$)",
                         "description": "Disallow ambiguous past tense token 'completed'. Use a domain-specific verb like read, created, published."
                     }
                 },
                 {
+                    "type": "string",
                     "not": {
                         "pattern": "(?:^|\\.)finished(?:\\.|$)",
                         "description": "Disallow 'finished' which is temporal and ambiguous; choose a workflow-specific terminal verb."
                     }
                 },
                 {
+                    "type": "string",
                     "not": {
                         "pattern": "(?:^|\\.)updated(?:\\.|$)",
                         "description": "Disallow 'updated'; prefer a concrete action (e.g. order.modified.v1 -> order.change.applied)."
                     }
                 },
                 {
+                    "type": "string",
                     "not": {
                         "pattern": "(?:^|\\.)changed(?:\\.|$)",
                         "description": "Disallow vague 'changed'; specify the nature of the change (e.g. status.changed -> status.transitioned)."
                     }
                 },
                 {
+                    "type": "string",
                     "not": {
                         "pattern": "(?:^|\\.)processed(?:\\.|$)",
                         "description": "Disallow 'processed'; state WHAT happened, not that a process occurred."
                     }
                 },
                 {
+                    "type": "string",
                     "not": {
                         "pattern": "(?:^|\\.)handled(?:\\.|$)",
                         "description": "Disallow 'handled'; overly generic and not business meaningful."
                     }
                 },
                 {
+                    "type": "string",
                     "not": {
                         "pattern": "(?:^|\\.)status(?:\\.|$)",
                         "description": "Disallow bare 'status'; event types should represent a domain occurrence, not a generic label."
                     }
                 },
                 {
+                    "type": "string",
                     "not": {
                         "pattern": "(?:^|\\.)started(?:\\.|$)",
                         "description": "Disallow 'started'; prefer a specific lifecycle action (e.g. session.opened)."
                     }
                 },
                 {
+                    "type": "string",
                     "not": {
                         "pattern": "(?:^|\\.)failed(?:\\.|$)",
                         "description": "Disallow 'failed'; model the concrete failure (e.g. payment.authorization.failed -> payment.authorization.rejected)."
