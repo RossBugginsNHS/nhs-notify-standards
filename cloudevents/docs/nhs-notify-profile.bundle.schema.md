@@ -228,7 +228,7 @@
 
 
 
-### <a id="type-0"></a> type.0
+### <a id="type-0"></a> type.0 – NHS Notify event type pattern
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -249,7 +249,7 @@
 
 
 
-### <a id="type-1"></a> type.1
+### <a id="type-1"></a> type.1 – Disallow 'completed' token
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -268,7 +268,7 @@
 
 
 
-### <a id="type-2"></a> type.2
+### <a id="type-2"></a> type.2 – Disallow 'finished' which is temporal and ambiguous; choose a workflow-specific terminal verb
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -287,7 +287,7 @@
 
 
 
-### <a id="type-3"></a> type.3
+### <a id="type-3"></a> type.3 – Disallow 'updated'; prefer a concrete action (e.g
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -306,7 +306,7 @@
 
 
 
-### <a id="type-4"></a> type.4
+### <a id="type-4"></a> type.4 – Disallow vague 'changed'; specify the nature of the change (e.g
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -325,7 +325,7 @@
 
 
 
-### <a id="type-5"></a> type.5
+### <a id="type-5"></a> type.5 – Disallow 'processed'; state WHAT happened, not that a process occurred
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -344,7 +344,7 @@
 
 
 
-### <a id="type-6"></a> type.6
+### <a id="type-6"></a> type.6 – Disallow 'handled'; overly generic and not business meaningful
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -363,7 +363,7 @@
 
 
 
-### <a id="type-7"></a> type.7
+### <a id="type-7"></a> type.7 – Disallow bare 'status'; event types should represent a domain occurrence, not a generic label
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -382,7 +382,7 @@
 
 
 
-### <a id="type-8"></a> type.8
+### <a id="type-8"></a> type.8 – Disallow 'started'; prefer a specific lifecycle action (e.g
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -401,7 +401,7 @@
 
 
 
-### <a id="type-9"></a> type.9
+### <a id="type-9"></a> type.9 – Disallow 'failed'; model the concrete failure (e.g
 <table class="jssd-property-table">
   <tbody>
     <tr>

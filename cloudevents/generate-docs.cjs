@@ -355,6 +355,9 @@ const SOURCE_GLOB_PREFIX = 'nhs-';
                     const linkRegex = new RegExp(`<a href="#${safeProp}-${idx}">(String|Integer|Object|Number|Boolean)</a>`, 'g');
                     // Show label plus primitive type in parentheses for clarity
                     md = md.replace(linkRegex, (m, prim) => `<a href="#${safeProp}-${idx}">${esc(derivedLabel)} (${prim})</a>`);
+                    // Append the label to the subsection heading if not already present (idempotent)
+                    const headingRegex = new RegExp(`(### <a id=\\"${safeProp}-${idx}\\"></a> ${propName}\\.${idx})(?!\\s– )`);
+                    md = md.replace(headingRegex, `$1 – ${esc(derivedLabel)}`);
                     // Also replace in any top-level Properties table entry (already handled above but double-check)
                   });
                 }
