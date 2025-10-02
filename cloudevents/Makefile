@@ -8,6 +8,9 @@ generate:
 generate-default:
 	npm run generate -- nhs-notify-example-event.schema.json output/output-example-event.json
 
+generate-root:
+	npm run generate -- nhs-notify-example-event.schema.json output-example-event.json
+
 validate-default:
 	node validate.js nhs-notify-example-event.schema.json output/output-example-event.json
 	node validate.js nhs-notify-profile.schema.json output/output-example-event.json
@@ -19,7 +22,7 @@ validate:
 	node validate.js nhs-notify-example-event.bundle.schema.json output-example-event.json
 	node validate.js nhs-notify-example-event.flattened.schema.json output-example-event.json
 
-docs: bundle-all
+docs: bundle-all flatten-all
 	npm run docs
 
 bundle-example:

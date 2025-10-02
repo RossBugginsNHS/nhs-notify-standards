@@ -1338,47 +1338,56 @@
             "allOf": [
                 {
                     "not": {
-                        "pattern": "(?:^|\\.)completed(?:\\.|$)"
+                        "pattern": "(?:^|\\.)completed(?:\\.|$)",
+                        "description": "Disallow ambiguous past tense token 'completed'. Use a domain-specific verb like read, created, published."
                     }
                 },
                 {
                     "not": {
-                        "pattern": "(?:^|\\.)finished(?:\\.|$)"
+                        "pattern": "(?:^|\\.)finished(?:\\.|$)",
+                        "description": "Disallow 'finished' which is temporal and ambiguous; choose a workflow-specific terminal verb."
                     }
                 },
                 {
                     "not": {
-                        "pattern": "(?:^|\\.)updated(?:\\.|$)"
+                        "pattern": "(?:^|\\.)updated(?:\\.|$)",
+                        "description": "Disallow 'updated'; prefer a concrete action (e.g. order.modified.v1 -> order.change.applied)."
                     }
                 },
                 {
                     "not": {
-                        "pattern": "(?:^|\\.)changed(?:\\.|$)"
+                        "pattern": "(?:^|\\.)changed(?:\\.|$)",
+                        "description": "Disallow vague 'changed'; specify the nature of the change (e.g. status.changed -> status.transitioned)."
                     }
                 },
                 {
                     "not": {
-                        "pattern": "(?:^|\\.)processed(?:\\.|$)"
+                        "pattern": "(?:^|\\.)processed(?:\\.|$)",
+                        "description": "Disallow 'processed'; state WHAT happened, not that a process occurred."
                     }
                 },
                 {
                     "not": {
-                        "pattern": "(?:^|\\.)handled(?:\\.|$)"
+                        "pattern": "(?:^|\\.)handled(?:\\.|$)",
+                        "description": "Disallow 'handled'; overly generic and not business meaningful."
                     }
                 },
                 {
                     "not": {
-                        "pattern": "(?:^|\\.)status(?:\\.|$)"
+                        "pattern": "(?:^|\\.)status(?:\\.|$)",
+                        "description": "Disallow bare 'status'; event types should represent a domain occurrence, not a generic label."
                     }
                 },
                 {
                     "not": {
-                        "pattern": "(?:^|\\.)started(?:\\.|$)"
+                        "pattern": "(?:^|\\.)started(?:\\.|$)",
+                        "description": "Disallow 'started'; prefer a specific lifecycle action (e.g. session.opened)."
                     }
                 },
                 {
                     "not": {
-                        "pattern": "(?:^|\\.)failed(?:\\.|$)"
+                        "pattern": "(?:^|\\.)failed(?:\\.|$)",
+                        "description": "Disallow 'failed'; model the concrete failure (e.g. payment.authorization.failed -> payment.authorization.rejected)."
                     }
                 }
             ],

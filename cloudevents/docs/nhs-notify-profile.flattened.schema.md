@@ -1,12 +1,12 @@
 
 
-# NHS Notify CloudEvents Profile
+# NHS Notify CloudEvents Profile (Flattened)
 
 <p>NHS Notify profile for CloudEvents 1.0 including additional governance and tracing attributes.</p>
 
 <table>
 <tbody>
-<tr><th>$id</th><td>nhs-notify-profile.schema.json</td></tr>
+<tr><th>$id</th><td>nhs-notify-profile.flattened.schema.json</td></tr>
 <tr><th>$schema</th><td>https://json-schema.org/draft/2020-12/schema</td></tr>
 </tbody>
 </table>
@@ -428,24 +428,19 @@
 </table>
 
 ### Properties
-  <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#datanotify-payload">notify-payload</a></td><td>Object (of type <a href="./nhs-notify-payload.schema.html">./nhs-notify-payload.schema.html</a>)</td></tr></tbody></table>
+  <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#datanotify-payload">notify-payload</a></td><td>Object</td></tr></tbody></table>
 
 
 ### data.notify-payload
 
-  <p>Defined in <a href="./nhs-notify-payload.schema.html">./nhs-notify-payload.schema.html</a></p>
 
 <table class="jssd-property-table">
   <tbody>
     <tr>
-      <th>$id</th>
-      <td colspan="2">nhs-notify-payload.schema.json</td>
-    </tr>
-    <tr>
       <th>Description</th>
       <td colspan="2">Structured Notify payload containing domain data (notify-data) and metadata (notify-metadata).</td>
     </tr>
-    <tr><th>Type</th><td colspan="2">Object (of type <a href="./nhs-notify-payload.schema.html">./nhs-notify-payload.schema.html</a>)</td></tr>
+    <tr><th>Type</th><td colspan="2">Object</td></tr>
     <tr>
       <th>Required</th>
       <td colspan="2">Yes</td>
@@ -453,6 +448,200 @@
     
   </tbody>
 </table>
+
+
+
+### data.notify-payload.notify-data
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Domain specific data attributes (variant: DataPlane | ControlPlane).</td>
+    </tr>
+    <tr><tr><td rowspan="2">Type</td><td rowspan="2">Any of:</td><td>Object</td></tr><tr><td>Object</td></tr></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">Yes</td>
+    </tr>
+    
+  </tbody>
+</table>
+
+
+
+### data.notify-payload.notify-data.0
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Placeholder for data-plane specific properties (extend in concrete event schemas).</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Object</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.notify-payload.notify-data.1
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Placeholder for control-plane specific properties (extend in concrete event schemas).</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Object</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+
+### data.notify-payload.notify-metadata
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Title</th>
+      <td colspan="2">NHS Notify Metadata</td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Standard metadata set shared across Notify events.</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Object</td></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">Yes</td>
+    </tr>
+    
+  </tbody>
+</table>
+
+
+
+### data.notify-payload.notify-metadata.teamResponsible
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Owning engineering team accountable for this event&#x27;s domain logic.</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">Yes</td>
+    </tr>
+    <tr>
+      <th>Enum</th>
+      <td colspan="2"><ul><li>Team 1</li><li>Team 2</li><li>Team 3</li></ul></td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>Team 1</li></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.notify-payload.notify-metadata.notifyDomain
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">High-level business domain to which the event belongs.</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">Yes</td>
+    </tr>
+    <tr>
+      <th>Enum</th>
+      <td colspan="2"><ul><li>Ordering</li><li>Delivering</li><li>Reporting</li><li>Enquiries</li></ul></td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>Ordering</li></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.notify-payload.notify-metadata.microservice
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">The name of the microservice generating the event, e.g. order-service</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">No</td>
+    </tr>
+    <tr>
+      <th>Min Length</th>
+      <td colspan="2">1</td>
+    </tr><tr>
+      <th>Max Length</th>
+      <td colspan="2">100</td>
+    </tr><tr>
+      <th>Pattern</th>
+      <td colspan="2">^[a-zA-Z0-9-]+$</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>order-service</li></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.notify-payload.notify-metadata.version
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Semantic version (SemVer 2.0.0) of the producing microservice at emit time.</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">Yes</td>
+    </tr>
+    <tr>
+      <th>Pattern</th>
+      <td colspan="2">^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>1.3.0</li><li>2.0.0-beta.1</li></td>
+    </tr>
+  </tbody>
+</table>
+
+
 
 
 
@@ -771,13 +960,13 @@
 ## Schema
 ```
 {
-    "$id": "nhs-notify-profile.schema.json",
+    "$id": "nhs-notify-profile.flattened.schema.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "title": "NHS Notify CloudEvents Profile",
+    "title": "NHS Notify CloudEvents Profile (Flattened)",
     "description": "NHS Notify profile for CloudEvents 1.0 including additional governance and tracing attributes.",
     "type": "object",
     "additionalProperties": false,
-    "$comment": "CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.",
+    "$comment": "CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec. | Bundled schema (all external $ref inlined). | Flattened variant included in docs.",
     "properties": {
         "specversion": {
             "type": "string",
@@ -921,8 +1110,142 @@
             ],
             "properties": {
                 "notify-payload": {
-                    "$ref": "./nhs-notify-payload.schema.json",
-                    "description": "Structured Notify payload containing domain data (notify-data) and metadata (notify-metadata)."
+                    "description": "Structured Notify payload containing domain data (notify-data) and metadata (notify-metadata).",
+                    "$schema": "https://json-schema.org/draft/2020-12/schema",
+                    "$comment": "Notify Payload",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "notify-data",
+                        "notify-metadata"
+                    ],
+                    "properties": {
+                        "notify-data": {
+                            "type": "object",
+                            "anyOf": [
+                                {
+                                    "$ref": "#/properties/data/properties/notify-payload/%24defs/DataPlane"
+                                },
+                                {
+                                    "$ref": "#/properties/data/properties/notify-payload/%24defs/ControlPlane"
+                                }
+                            ],
+                            "description": "Domain specific data attributes (variant: DataPlane | ControlPlane).",
+                            "examples": [
+                                {
+                                    "nhsNumber": "9434765919"
+                                },
+                                {
+                                    "plane": "control",
+                                    "action": "rotate-keys"
+                                }
+                            ],
+                            "$comment": "Union of two variant payload shapes. anyOf is used (instead of oneOf) because the two variants are currently placeholders and not mutually differentiable. Once DataPlane and ControlPlane gain distinct required properties or a discriminator, switch to oneOf (and optionally add a 'plane' enum property) to prevent ambiguous matches."
+                        },
+                        "notify-metadata": {
+                            "description": "Standard metadata set shared across Notify events.",
+                            "examples": [
+                                {
+                                    "teamResponsible": "Team 1",
+                                    "notifyDomain": "Ordering",
+                                    "version": "1.3.0",
+                                    "microservice": "order-service"
+                                }
+                            ],
+                            "$schema": "https://json-schema.org/draft/2020-12/schema",
+                            "title": "NHS Notify Metadata",
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "version",
+                                "teamResponsible",
+                                "notifyDomain"
+                            ],
+                            "properties": {
+                                "teamResponsible": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Team 1",
+                                        "Team 2",
+                                        "Team 3"
+                                    ],
+                                    "description": "Owning engineering team accountable for this event's domain logic.",
+                                    "examples": [
+                                        "Team 1"
+                                    ]
+                                },
+                                "notifyDomain": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Ordering",
+                                        "Delivering",
+                                        "Reporting",
+                                        "Enquiries"
+                                    ],
+                                    "description": "High-level business domain to which the event belongs.",
+                                    "examples": [
+                                        "Ordering"
+                                    ]
+                                },
+                                "microservice": {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 100,
+                                    "pattern": "^[a-zA-Z0-9-]+$",
+                                    "description": "The name of the microservice generating the event, e.g. order-service",
+                                    "examples": [
+                                        "order-service"
+                                    ]
+                                },
+                                "version": {
+                                    "type": "string",
+                                    "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+                                    "description": "Semantic version (SemVer 2.0.0) of the producing microservice at emit time.",
+                                    "examples": [
+                                        "1.3.0",
+                                        "2.0.0-beta.1"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "$defs": {
+                        "DataPlane": {
+                            "type": "object",
+                            "description": "Placeholder for data-plane specific properties (extend in concrete event schemas).",
+                            "$comment": "Add required fields here (e.g. 'plane': 'data') or domain-specific attributes; when distinct from ControlPlane, change notify-data.anyOf to oneOf to enforce exclusivity."
+                        },
+                        "ControlPlane": {
+                            "type": "object",
+                            "description": "Placeholder for control-plane specific properties (extend in concrete event schemas).",
+                            "$comment": "As with DataPlane, add identifying / required properties here (e.g. 'plane': 'control'). Ensure divergence for better validation and consumer code generation."
+                        }
+                    },
+                    "examples": [
+                        {
+                            "notify-data": {
+                                "nhsNumber": "9434765919"
+                            },
+                            "notify-metadata": {
+                                "teamResponsible": "Team 1",
+                                "notifyDomain": "Ordering",
+                                "version": "1.3.0",
+                                "microservice": "order-service"
+                            }
+                        },
+                        {
+                            "notify-data": {
+                                "plane": "control",
+                                "action": "rotate-keys"
+                            },
+                            "notify-metadata": {
+                                "teamResponsible": "Team 2",
+                                "notifyDomain": "Reporting",
+                                "version": "2.0.0",
+                                "microservice": "reporting-api"
+                            }
+                        }
+                    ]
                 }
             },
             "description": "Container object wrapping the structured Notify payload.",
@@ -1278,7 +1601,8 @@
                 }
             }
         }
-    ]
+    ],
+    "$defs": {}
 }
 ```
 
