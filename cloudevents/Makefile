@@ -6,14 +6,14 @@ generate:
 	npm run generate -- $(ARGS)
 
 generate-default:
-	npm run generate -- nhs-notify-example-event.schema.json output/output-example-event.json
+	npm run generate -- nhs-notify-example-event.schema.json output-example-event.json
 
 generate-root:
 	npm run generate -- nhs-notify-example-event.schema.json output-example-event.json
 
 validate-default:
-	node validate.js nhs-notify-example-event.schema.json output/output-example-event.json
-	node validate.js nhs-notify-profile.schema.json output/output-example-event.json
+	node validate.js nhs-notify-example-event.schema.json output-example-event.json
+	node validate.js nhs-notify-profile.schema.json output-example-event.json
 
 
 validate:
@@ -26,10 +26,10 @@ docs: bundle-all flatten-all
 	npm run docs
 
 bundle-example:
-	npm run bundle -- nhs-notify-example-event.schema.json output/nhs-notify-example-event.bundle.schema.json
+	npm run bundle -- nhs-notify-example-event.schema.json nhs-notify-example-event.bundle.schema.json
 
 bundle-profile:
-	npm run bundle -- nhs-notify-profile.schema.json output/nhs-notify-profile.bundle.schema.json
+	npm run bundle -- nhs-notify-profile.schema.json nhs-notify-profile.bundle.schema.json
 
 bundle-all: bundle-example bundle-profile
 
@@ -42,4 +42,4 @@ flatten-profile:
 flatten-all: flatten-example flatten-profile
 
 validate-bundle: bundle-example
-	node validate.js output/nhs-notify-example-event.bundle.schema.json output-example-event.json
+	node validate.js nhs-notify-example-event.bundle.schema.json output-example-event.json

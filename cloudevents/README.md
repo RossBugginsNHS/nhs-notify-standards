@@ -1,43 +1,55 @@
 # NHS Notify – CloudEvents Standards
 
-This folder contains the NHS Notify CloudEvents standards, which define the structure and requirements for event-driven messaging in the NHS Notify ecosystem.
+This folder contains the NHS Notify CloudEvents standards: a set of JSON Schemas, examples and generated documentation that define the structure and requirements for event-driven messaging in the NHS Notify ecosystem.
 
 ## Overview
 
-CloudEvents is a specification for describing event data in a common way. The NHS Notify CloudEvents standards provide:
+CloudEvents is a vendor-neutral specification for describing event data. These standards provide:
 
-- **JSON Schemas** for event payloads and profiles
-- **Example event data** for reference and testing
-- **Common definitions** for NHS-specific event fields
+* JSON Schemas for CloudEvent profile / envelope, common payload wrapper, metadata and reusable NHS types
+* Example concrete event schema and example event data instance
+* Bundled + flattened build artifacts for easier downstream consumption
+* Generated markdown documentation for every schema
 
-## Key Files
+## JSON Schema Files (authoritative sources)
 
-- [`nhs-notify-profile.schema.json`](nhs-notify-profile.schema.json): Main JSON Schema for NHS Notify CloudEvent profiles.
-- [`nhs-notify-example-event.schema.json`](nhs-notify-example-event.schema.json): Example event envelope schema.
- - [`nhs-notify-example-event.schema.json`](nhs-notify-example-event.schema.json): Example event envelope schema.
- - [`nhs-notify-example-event.bundle.schema.json`](nhs-notify-example-event.bundle.schema.json): Bundled single-file variant (all external $ref inlined & nested $id stripped).
- - [`nhs-notify-example-event.bundle.schema.json`](nhs-notify-example-event.bundle.schema.json): Bundled single-file variant (all external $ref inlined & nested $id stripped).
- - [`nhs-notify-example-event.flattened.schema.json`](nhs-notify-example-event.flattened.schema.json): Bundled + allOf-flattened variant (referenced profile properties merged directly; conflicting property constraints combined via allOf at property level).
-- [`nhs-notify-example-event-data.schema.json`](nhs-notify-example-event-data.schema.json): Example event data schema.
-- [`nhs-notify-metadata.schema.json`](nhs-notify-metadata.schema.json): Common metadata schema for NHS Notify events.
-- [`nhs-notify-payload.schema.json`](nhs-notify-payload.schema.json): Common payload schema for NHS Notify events.
-- [`nhs-number.schema.json`](nhs-number.schema.json): NHS Number schema (validates canonical and formatted NHS numbers).
-- [`output-example-event.json`](output-example-event.json): Example of a valid CloudEvent payload.
+| File | Purpose |
+|------|---------|
+| [`nhs-notify-profile.schema.json`](nhs-notify-profile.schema.json) | Profile constraints applied to all NHS Notify CloudEvents (adds required attributes, formats, traceability fields, etc.). |
+| [`nhs-notify-profile.bundle.schema.json`](nhs-notify-profile.bundle.schema.json) | Bundled single-document version of the profile (all external `$ref` inlined; nested `$id` removed). |
+| [`nhs-notify-profile.flattened.schema.json`](nhs-notify-profile.flattened.schema.json) | Experimental: profile with top-level `allOf` object merges flattened where safe. |
+| [`nhs-notify-example-event.schema.json`](nhs-notify-example-event.schema.json) | Concrete example CloudEvent (envelope + `data` shape + refs to profile & payload pieces). |
+| [`nhs-notify-example-event.bundle.schema.json`](nhs-notify-example-event.bundle.schema.json) | Bundled variant of the example event schema (single file for distribution). |
+| [`nhs-notify-example-event.flattened.schema.json`](nhs-notify-example-event.flattened.schema.json) | Experimental flattened variant of the example event schema (merged properties). |
+| [`nhs-notify-example-event-data.schema.json`](nhs-notify-example-event-data.schema.json) | Schema describing only the `data` portion referenced by the example event. |
+| [`nhs-notify-payload.schema.json`](nhs-notify-payload.schema.json) | Common wrapper providing `notify-data` (domain/control plane variants) + `notify-metadata`. |
+| [`nhs-notify-metadata.schema.json`](nhs-notify-metadata.schema.json) | Common metadata fields (team, domain, version, service, etc.). |
+| [`nhs-number.schema.json`](nhs-number.schema.json) | Reusable NHS Number type (canonical and human formatted variants). |
+| [`output-example-event.json`](output-example-event.json) | Example instance that validates against the profile + example event schema. |
 
+Notes:
+* Bundled artifacts are produced via `json-schema-ref-parser` `bundle()` (not full dereference) to keep shared `$defs` unique.
+* Flattened artifacts attempt safe structural merge of `allOf` object schemas; treat as experimental and validate thoroughly before downstream use.
 
-## Schema Docs
+## Generated Schema Documentation (markdown)
 
-Generated static documentation (once you run `npm run docs`) will appear under `docs/`.
+Running `npm run docs` (or `make docs`) generates markdown docs under `docs/` for every schema.
 
-- [`index.html`](docs/index.html): NHS Notify CloudEvent schema docs home.
-- [`nhs-notify-profile.schema.html`](docs/nhs-notify-profile.schema.html): NHS Notify CloudEvent profile (envelope + constraints).
-- [`nhs-notify-example-event.schema.html`](docs/nhs-notify-example-event.schema.html): Example CloudEvent envelope schema.
-- [`nhs-notify-example-event.bundle.schema.html`](docs/nhs-notify-example-event.bundle.schema.html): Bundled single-file variant documentation.
-- [`nhs-notify-example-event.flattened.schema.html`](docs/nhs-notify-example-event.flattened.schema.html): Bundled flattened single-file variant documentation.
-- [`nhs-notify-example-event-data.schema.html`](docs/nhs-notify-example-event-data.schema.html): Example event data payload schema.
-- [`nhs-notify-metadata.schema.html`](docs/nhs-notify-metadata.schema.html): Common metadata elements reused across events.
-- [`nhs-notify-payload.schema.html`](docs/nhs-notify-payload.schema.html): Base payload wrapper / structure.
-- [`nhs-number.schema.html`](docs/nhs-number.schema.html): NHS Number reusable type definitions.
+| Schema | Doc |
+|--------|-----|
+| Profile | [`docs/nhs-notify-profile.schema.md`](docs/nhs-notify-profile.schema.md) |
+| Profile (bundled) | [`docs/nhs-notify-profile.bundle.schema.md`](docs/nhs-notify-profile.bundle.schema.md) |
+| Profile (flattened) | [`docs/nhs-notify-profile.flattened.schema.md`](docs/nhs-notify-profile.flattened.schema.md) |
+| Example Event | [`docs/nhs-notify-example-event.schema.md`](docs/nhs-notify-example-event.schema.md) |
+| Example Event (bundled) | [`docs/nhs-notify-example-event.bundle.schema.md`](docs/nhs-notify-example-event.bundle.schema.md) |
+| Example Event (flattened) | [`docs/nhs-notify-example-event.flattened.schema.md`](docs/nhs-notify-example-event.flattened.schema.md) |
+| Example Event Data | [`docs/nhs-notify-example-event-data.schema.md`](docs/nhs-notify-example-event-data.schema.md) |
+| Payload Wrapper | [`docs/nhs-notify-payload.schema.md`](docs/nhs-notify-payload.schema.md) |
+| Metadata | [`docs/nhs-notify-metadata.schema.md`](docs/nhs-notify-metadata.schema.md) |
+| NHS Number Types | [`docs/nhs-number.schema.md`](docs/nhs-number.schema.md) |
+| Index | [`docs/index.md`](docs/index.md) |
+
+If you later publish via GitHub Pages you can link to the rendered markdown (or convert to HTML) directly; the `$id` values in bundled schemas are designed to point to a plausible published location.
 
 
 ## Generating Example Data
@@ -124,20 +136,22 @@ Notes:
 - Keep schemas backward compatible where possible.
 - Coordinate with the FHIR IG team for cross-standard consistency.
 
-## Schema Documentation
+## Regenerating Schema Documentation
 
-Static HTML documentation for the JSON Schemas can be generated using `json-schema-static-docs`.
-
-Generate docs (outputs to `docs/`):
+Markdown documentation is produced with `json-schema-static-docs` via `generate-docs.cjs`.
 
 ```sh
-npm install   # first time only to install the new dev dependency
-npm run docs
+npm install        # first time only
+npm run docs       # or: make docs
 ```
 
-Then open `docs/index.html` in a browser (or host the folder via GitHub Pages if desired).
+Outputs appear in `./docs/*.md`. Commit regenerated docs whenever schemas change so reviewers can diff both.
 
-If you add a new schema file, update the `docs` script in `package.json` to include an additional `-i <filename>` argument.
+To add a new schema:
+1. Create the new `*.schema.json` file.
+2. (If it should be bundled/flattened) add a Makefile target or invoke the existing `bundle` script.
+3. Update this README (JSON Schema Files + Generated Schema Documentation tables).
+4. Re-run `npm run docs` so a corresponding markdown file is created.
 
 ## Related
 
