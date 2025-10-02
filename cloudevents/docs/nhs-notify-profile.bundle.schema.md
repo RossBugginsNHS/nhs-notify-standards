@@ -13,16 +13,16 @@
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#specversion">specversion</a></td><td>String=1.0</td></tr><tr><td colspan="2"><a href="#id">id</a></td><td>String</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td rowspan="10"><a href="#type">type</a></td><td rowspan="10">All of:</td><td><a href="#type-0">String</a></td></tr>
-<tr><td><a href="#type-1">String</a></td></tr>
-<tr><td><a href="#type-2">String</a></td></tr>
-<tr><td><a href="#type-3">String</a></td></tr>
-<tr><td><a href="#type-4">String</a></td></tr>
-<tr><td><a href="#type-5">String</a></td></tr>
-<tr><td><a href="#type-6">String</a></td></tr>
-<tr><td><a href="#type-7">String</a></td></tr>
-<tr><td><a href="#type-8">String</a></td></tr>
-<tr><td><a href="#type-9">String</a></td></tr><tr><td colspan="2"><a href="#time">time</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacontenttype">datacontenttype</a></td><td>String=application/json</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2"><a href="#traceparent">traceparent</a></td><td>String</td></tr><tr><td colspan="2"><a href="#tracestate">tracestate</a></td><td>String</td></tr><tr><td colspan="2"><a href="#partitionkey">partitionkey</a></td><td>String</td></tr><tr><td colspan="2"><a href="#recordedtime">recordedtime</a></td><td>String</td></tr><tr><td colspan="2"><a href="#sampledrate">sampledrate</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#sequence">sequence</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitytext">severitytext</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitynumber">severitynumber</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#dataclassification">dataclassification</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataregulation">dataregulation</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacategory">datacategory</a></td><td>String</td></tr><tr><td colspan="2" rowspan="7">All of:</td><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr></tbody></table>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#specversion">specversion</a></td><td>String=1.0</td></tr><tr><td colspan="2"><a href="#id">id</a></td><td>String</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td rowspan="10"><a href="#type">type</a></td><td rowspan="10">All of:</td><td><a href="#type-0">NHS Notify event type pattern (String)</a></td></tr>
+<tr><td><a href="#type-1">Disallow 'completed' token (String)</a></td></tr>
+<tr><td><a href="#type-2">Disallow 'finished' which is temporal and ambiguous; choose a workflow-specific terminal verb (String)</a></td></tr>
+<tr><td><a href="#type-3">Disallow 'updated'; prefer a concrete action (e.g (String)</a></td></tr>
+<tr><td><a href="#type-4">Disallow vague 'changed'; specify the nature of the change (e.g (String)</a></td></tr>
+<tr><td><a href="#type-5">Disallow 'processed'; state WHAT happened, not that a process occurred (String)</a></td></tr>
+<tr><td><a href="#type-6">Disallow 'handled'; overly generic and not business meaningful (String)</a></td></tr>
+<tr><td><a href="#type-7">Disallow bare 'status'; event types should represent a domain occurrence, not a generic label (String)</a></td></tr>
+<tr><td><a href="#type-8">Disallow 'started'; prefer a specific lifecycle action (e.g (String)</a></td></tr>
+<tr><td><a href="#type-9">Disallow 'failed'; model the concrete failure (e.g (String)</a></td></tr><tr><td colspan="2"><a href="#time">time</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacontenttype">datacontenttype</a></td><td>String=application/json</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2"><a href="#traceparent">traceparent</a></td><td>String</td></tr><tr><td colspan="2"><a href="#tracestate">tracestate</a></td><td>String</td></tr><tr><td colspan="2"><a href="#partitionkey">partitionkey</a></td><td>String</td></tr><tr><td colspan="2"><a href="#recordedtime">recordedtime</a></td><td>String</td></tr><tr><td colspan="2"><a href="#sampledrate">sampledrate</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#sequence">sequence</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitytext">severitytext</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitynumber">severitynumber</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#dataclassification">dataclassification</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataregulation">dataregulation</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacategory">datacategory</a></td><td>String</td></tr><tr><td colspan="2" rowspan="7">All of:</td><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr></tbody></table>
 
 
 ## Example
@@ -202,16 +202,16 @@
       <th>Description</th>
       <td colspan="2">Event type (uk.nhs.notify.*) using reverse-DNS style; ambiguous verbs (completed, finished, updated, changed, processed, handled, status, started, failed) disallowed.</td>
     </tr>
-    <tr><tr><td rowspan="10">Type</td><td rowspan="10">All of:</td><td><a href="#type-0">String</a></td></tr>
-<tr><td><a href="#type-1">String</a></td></tr>
-<tr><td><a href="#type-2">String</a></td></tr>
-<tr><td><a href="#type-3">String</a></td></tr>
-<tr><td><a href="#type-4">String</a></td></tr>
-<tr><td><a href="#type-5">String</a></td></tr>
-<tr><td><a href="#type-6">String</a></td></tr>
-<tr><td><a href="#type-7">String</a></td></tr>
-<tr><td><a href="#type-8">String</a></td></tr>
-<tr><td><a href="#type-9">String</a></td></tr></tr>
+    <tr><tr><td rowspan="10">Type</td><td rowspan="10">All of:</td><td><a href="#type-0">NHS Notify event type pattern (String)</a></td></tr>
+<tr><td><a href="#type-1">Disallow 'completed' token (String)</a></td></tr>
+<tr><td><a href="#type-2">Disallow 'finished' which is temporal and ambiguous; choose a workflow-specific terminal verb (String)</a></td></tr>
+<tr><td><a href="#type-3">Disallow 'updated'; prefer a concrete action (e.g (String)</a></td></tr>
+<tr><td><a href="#type-4">Disallow vague 'changed'; specify the nature of the change (e.g (String)</a></td></tr>
+<tr><td><a href="#type-5">Disallow 'processed'; state WHAT happened, not that a process occurred (String)</a></td></tr>
+<tr><td><a href="#type-6">Disallow 'handled'; overly generic and not business meaningful (String)</a></td></tr>
+<tr><td><a href="#type-7">Disallow bare 'status'; event types should represent a domain occurrence, not a generic label (String)</a></td></tr>
+<tr><td><a href="#type-8">Disallow 'started'; prefer a specific lifecycle action (e.g (String)</a></td></tr>
+<tr><td><a href="#type-9">Disallow 'failed'; model the concrete failure (e.g (String)</a></td></tr></tr>
     <tr>
       <th>Required</th>
       <td colspan="2">Yes</td>
@@ -1105,6 +1105,7 @@
             "minLength": 1,
             "allOf": [
                 {
+                    "name": "NHS Notify event type pattern",
                     "type": "string",
                     "pattern": "^uk\\.nhs\\.notify\\.[a-z0-9]+(\\.[a-z0-9]+)*$",
                     "description": "Event type (uk.nhs.notify.*) using reverse-DNS style; lowercase alphanumerics and dots only.",
@@ -1114,6 +1115,7 @@
                     "$comment": "NHS naming: lower-dot namespaced; allowed chars a-z0-9 and dots."
                 },
                 {
+                    "name": "Disallow 'completed' token",
                     "type": "string",
                     "not": {
                         "pattern": "(?:^|\\.)completed(?:\\.|$)"

@@ -443,6 +443,7 @@
                     "minLength": 1,
                     "allOf": [
                         {
+                            "name": "NHS Notify event type pattern",
                             "type": "string",
                             "pattern": "^uk\\.nhs\\.notify\\.[a-z0-9]+(\\.[a-z0-9]+)*$",
                             "description": "Event type (uk.nhs.notify.*) using reverse-DNS style; lowercase alphanumerics and dots only.",
@@ -452,6 +453,7 @@
                             "$comment": "NHS naming: lower-dot namespaced; allowed chars a-z0-9 and dots."
                         },
                         {
+                            "name": "Disallow 'completed' token",
                             "type": "string",
                             "not": {
                                 "pattern": "(?:^|\\.)completed(?:\\.|$)"

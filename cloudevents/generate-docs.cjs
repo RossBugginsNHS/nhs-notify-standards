@@ -322,6 +322,45 @@ const SOURCE_GLOB_PREFIX = 'nhs-';
                   md = md.slice(0, sectionStart) + newSection + md.slice(sectionEnd);
                 }
               });
+
+              // 4. Replace primitive placeholder link text with subschema 'name' labels (if provided) for allOf entries.
+              try {
+                for (const [propName, propDef] of Object.entries(schema.properties)) {
+                  if (!Array.isArray(propDef.allOf)) continue;
+                  propDef.allOf.forEach((sub, idx) => {
+                    if (!sub || typeof sub !== 'object') return;
+                    // Derive a label: prefer explicit name; else attempt from description (first sentence up to 60 chars); else from not.pattern; else fallback to type.
+                    let derivedLabel = sub.name;
+                    if (!derivedLabel) {
+                      if (sub.description) {
+                        derivedLabel = sub.description.split(/\.(?:\s|$)/)[0].trim();
+                      } else if (sub.not && sub.not.pattern) {
+                        const pat = sub.not.pattern.replace(/\\/g,'');
+                        // Extract token between literal dots if pattern targets a specific banned word
+                        const tokenMatch = pat.match(/\.([a-z0-9-]+)\(/);
+                        const token = tokenMatch ? tokenMatch[1] : null;
+                        if (token) derivedLabel = `Disallow ${token}`;
+                      } else if (sub.pattern) {
+                        derivedLabel = 'Pattern constraint';
+                      }
+                    }
+                    if (!derivedLabel) return; // nothing to change
+                    const safeProp = propName.toLowerCase();
+                    const esc = (s) => s
+                      .replace(/&/g,'&amp;')
+                      .replace(/</g,'&lt;')
+                      .replace(/>/g,'&gt;')
+                      .replace(/"/g,'&quot;');
+                    // Replace link text if still a bare primitive (String, Integer, Object, Number, Boolean)
+                    const linkRegex = new RegExp(`<a href="#${safeProp}-${idx}">(String|Integer|Object|Number|Boolean)</a>`, 'g');
+                    // Show label plus primitive type in parentheses for clarity
+                    md = md.replace(linkRegex, (m, prim) => `<a href="#${safeProp}-${idx}">${esc(derivedLabel)} (${prim})</a>`);
+                    // Also replace in any top-level Properties table entry (already handled above but double-check)
+                  });
+                }
+              } catch (e) {
+                // non-fatal
+              }
               fs.writeFileSync(p, md, 'utf-8');
             }
           }
