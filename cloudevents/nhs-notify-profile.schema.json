@@ -44,13 +44,17 @@
       "type": "string",
       "minLength": 1,
       "allOf": [
-        {"type": "string", 
+        {
+          "name": "NHS Notify event type pattern",
+          "type": "string", 
          "pattern": "^uk\\.nhs\\.notify\\.[a-z0-9]+(\\.[a-z0-9]+)*$",
          "description": "Event type (uk.nhs.notify.*) using reverse-DNS style; lowercase alphanumerics and dots only.",
          "examples": ["uk.nhs.notify.ordering.order.read"],
          "$comment": "NHS naming: lower-dot namespaced; allowed chars a-z0-9 and dots."
         },
-        { "type": "string", 
+        { 
+          "name": "Disallow 'completed' token",
+          "type": "string", 
           "not": {"pattern": "(?:^|\\.)completed(?:\\.|$)"}, 
           "description": "Disallow ambiguous past tense token 'completed'. Use a domain-specific verb like read, created, published."
         },

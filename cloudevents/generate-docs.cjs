@@ -115,9 +115,15 @@ const SOURCE_GLOB_PREFIX = 'nhs-';
             return full;
           }
 
-          // Build new first row with link to anchor id (propName-0)
+          // Build new first row with link to anchor id (propName-0) and link property name itself to its section heading anchor
           const safeProp = propName.trim().toLowerCase();
-          let rebuilt = `${startPrefix}<a href="#${safeProp}-0">${firstType}</a>${endSuffix}`;
+          // Link property name in the first cell
+          // Replace property name cell contents with anchor link (keep rowspan value intact)
+          const startPrefixLinked = startPrefix.replace(
+            new RegExp(`(<tr><td rowspan="${count}">)${propName}</td>`),
+            `$1<a href="#${safeProp}">${propName}</a></td>`
+          );
+          let rebuilt = `${startPrefixLinked}<a href="#${safeProp}-0">${firstType}</a>${endSuffix}`;
           // Rebuild subsequent rows linking to anchors
             for (let i = 0; i < rows.length; i++) {
               const r = rows[i];
@@ -129,6 +135,92 @@ const SOURCE_GLOB_PREFIX = 'nhs-';
         });
 
         fs.writeFileSync(p, md, 'utf-8');
+
+        // 3. Surface 'not' patterns from original schema allOf subschemas (disallowed patterns) into each subsection table.
+        try {
+          const schemaJsonName = f.replace(/\.md$/, '.json');
+          const schemaPath = path.join(repoRoot, schemaJsonName);
+          if (fs.existsSync(schemaPath)) {
+            const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf-8'));
+            if (schema && schema.properties) {
+              const propsWithAllOf = [];
+              for (const [propName, propDef] of Object.entries(schema.properties)) {
+                if (Array.isArray(propDef.allOf) && propDef.allOf.length) {
+                  propsWithAllOf.push(propName);
+                  propDef.allOf.forEach((sub, idx) => {
+                    const notPat = sub && sub.not && sub.not.pattern;
+                    if (!notPat) return; // only care about disallowed pattern entries
+                    // Anchor id we generated earlier
+                    const anchorId = `${propName}-${idx}`.toLowerCase();
+                    // Regex to capture the table body for this subsection heading
+                    const sectionRegex = new RegExp(`(### <a id="${anchorId}"></a> ${propName}\\.${idx}\\n<table class="jssd-property-table">\\n  <tbody>\\n)([\\s\\S]*?)(\\n  </tbody>)`);
+                    md = md.replace(sectionRegex, (m, start, body, end) => {
+                      // Avoid duplication
+                      if (body.includes('Disallowed Pattern')) return m;
+                      const esc = (s) => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+                      let rowsToAdd = '';
+                      // Add description row if sub.description exists and not already present
+                      if (sub.description && !body.includes('<th>Description</th>')) {
+                        rowsToAdd += `    <tr>\n      <th>Description</th>\n      <td colspan="2">${esc(sub.description)}</td>\n    </tr>\n`;
+                      }
+                      rowsToAdd += `    <tr>\n      <th>Disallowed Pattern</th>\n      <td colspan="2"><code>${esc(notPat)}</code></td>\n    </tr>\n`;
+                      return `${start}${rowsToAdd}${body}${end}`;
+                    });
+                  });
+                }
+              }
+              // Add explicit heading anchor for each property with allOf and link its internal property-level All of rows.
+              propsWithAllOf.forEach(propName => {
+                const safeProp = propName.toLowerCase();
+                // Insert anchor into heading if not already
+                const headingRegex = new RegExp(`^## ${propName}$`, 'm');
+                if (headingRegex.test(md) && !new RegExp(`^## <a id="${safeProp}"></a> ${propName}$`,'m').test(md)) {
+                  md = md.replace(headingRegex, `## <a id="${safeProp}"></a> ${propName}`);
+                }
+                // Within the section for this property, link the property-level All of rows for Type the same way as the summary table
+                const sectionRegex = new RegExp(`(## <a id="${safeProp}"></a> ${propName}[\s\S]*?<table class="jssd-property-table">[\s\S]*?)(<tr><td rowspan="(\\d+)">Type<\/td><td rowspan="\\3">All of:<\/td><td>)([^<]+)(<\/td><\/tr>)([\\s\\S]*?)(?<tblend><\/tbody>)`);
+                md = md.replace(sectionRegex, (whole, before, startPrefix, countStr, firstType, endSuffix, tail, tblend) => {
+                  const count = parseInt(countStr,10);
+                  const rowRegex = /<tr><td>([^<]+)<\/td><\/tr>/g;
+                  const rows = [];
+                  let match; let consumedLength=0;
+                  while ((match = rowRegex.exec(tail)) && rows.length < count -1) {
+                    rows.push(match[1]);
+                    consumedLength = match.index + match[0].length;
+                  }
+                  if (rows.length !== count -1) return whole; // give up
+                  let rebuilt = `${startPrefix}<a href="#${safeProp}-0">${firstType}</a>${endSuffix}`;
+                  rows.forEach((t,i) => { rebuilt += `\n<tr><td><a href="#${safeProp}-${i+1}">${t}</a></td></tr>`; });
+                  const remainder = tail.slice(consumedLength);
+                  return before + rebuilt + remainder + tblend;
+                });
+                // Secondary attempt: handle extra wrapping <tr><tr> pattern if first didn't apply
+                if (!md.includes(`<a href="#${safeProp}-0">String</a>`)) {
+                  const sectionRegex2 = new RegExp(`(## <a id="${safeProp}"></a> ${propName}[\\s\\S]*?<table class="jssd-property-table">[\\s\\S]*?)(<tr><tr><td rowspan="(\\d+)">Type<\\/td><td rowspan="\\3">All of:<\\/td><td>)([^<]+)(<\\/td><\\/tr>)([\\s\\S]*?)(<\\/tr><\\/tr>[\\s\\S]*?<\\/tbody>)`);
+                  md = md.replace(sectionRegex2, (whole, before, startPrefix, countStr, firstType, endSuffix, tail, tblend) => {
+                    const count = parseInt(countStr,10);
+                    const rowRegex = /<tr><td>([^<]+)<\/td><\/tr>/g;
+                    const rows = [];
+                    let match; let consumedLength=0;
+                    while ((match = rowRegex.exec(tail)) && rows.length < count -1) {
+                      rows.push(match[1]);
+                      consumedLength = match.index + match[0].length;
+                    }
+                    if (rows.length !== count -1) return whole;
+                    let rebuilt = `${startPrefix}<a href="#${safeProp}-0">${firstType}</a>${endSuffix}`;
+                    rows.forEach((t,i) => { rebuilt += `\n<tr><td><a href="#${safeProp}-${i+1}">${t}</a></td></tr>`; });
+                    const remainder = tail.slice(consumedLength);
+                    return before + rebuilt + remainder + tblend;
+                  });
+                }
+              });
+              fs.writeFileSync(p, md, 'utf-8');
+            }
+          }
+          fs.writeFileSync(p, md, 'utf-8');
+        } catch (e) {
+          // Non-fatal: continue
+        }
       }
       console.log('Post-processing: enhanced allOf property links in docs.');
     } catch (ppErr) {

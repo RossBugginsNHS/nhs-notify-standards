@@ -13,7 +13,7 @@
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td rowspan="10">type</td><td rowspan="10">All of:</td><td><a href="#type-0">String</a></td></tr>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td rowspan="10"><a href="#type">type</a></td><td rowspan="10">All of:</td><td><a href="#type-0">String</a></td></tr>
 <tr><td><a href="#type-1">String</a></td></tr>
 <tr><td><a href="#type-2">String</a></td></tr>
 <tr><td><a href="#type-3">String</a></td></tr>
@@ -61,7 +61,7 @@
 <hr />
 
 
-## type
+## <a id="type"></a> type
 
 
 <table class="jssd-property-table">
@@ -115,6 +115,10 @@
 <table class="jssd-property-table">
   <tbody>
     <tr>
+      <th>Disallowed Pattern</th>
+      <td colspan="2"><code>(?:^|\.)completed(?:\.|$)</code></td>
+    </tr>
+    <tr>
       <th>Description</th>
       <td colspan="2">Disallow ambiguous past tense token &#x27;completed&#x27;. Use a domain-specific verb like read, created, published.</td>
     </tr>
@@ -129,6 +133,10 @@
 ### <a id="type-2"></a> type.2
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Disallowed Pattern</th>
+      <td colspan="2"><code>(?:^|\.)finished(?:\.|$)</code></td>
+    </tr>
     <tr>
       <th>Description</th>
       <td colspan="2">Disallow &#x27;finished&#x27; which is temporal and ambiguous; choose a workflow-specific terminal verb.</td>
@@ -145,6 +153,10 @@
 <table class="jssd-property-table">
   <tbody>
     <tr>
+      <th>Disallowed Pattern</th>
+      <td colspan="2"><code>(?:^|\.)updated(?:\.|$)</code></td>
+    </tr>
+    <tr>
       <th>Description</th>
       <td colspan="2">Disallow &#x27;updated&#x27;; prefer a concrete action (e.g. order.modified.v1 -&gt; order.change.applied).</td>
     </tr>
@@ -159,6 +171,10 @@
 ### <a id="type-4"></a> type.4
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Disallowed Pattern</th>
+      <td colspan="2"><code>(?:^|\.)changed(?:\.|$)</code></td>
+    </tr>
     <tr>
       <th>Description</th>
       <td colspan="2">Disallow vague &#x27;changed&#x27;; specify the nature of the change (e.g. status.changed -&gt; status.transitioned).</td>
@@ -175,6 +191,10 @@
 <table class="jssd-property-table">
   <tbody>
     <tr>
+      <th>Disallowed Pattern</th>
+      <td colspan="2"><code>(?:^|\.)processed(?:\.|$)</code></td>
+    </tr>
+    <tr>
       <th>Description</th>
       <td colspan="2">Disallow &#x27;processed&#x27;; state WHAT happened, not that a process occurred.</td>
     </tr>
@@ -189,6 +209,10 @@
 ### <a id="type-6"></a> type.6
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Disallowed Pattern</th>
+      <td colspan="2"><code>(?:^|\.)handled(?:\.|$)</code></td>
+    </tr>
     <tr>
       <th>Description</th>
       <td colspan="2">Disallow &#x27;handled&#x27;; overly generic and not business meaningful.</td>
@@ -205,6 +229,10 @@
 <table class="jssd-property-table">
   <tbody>
     <tr>
+      <th>Disallowed Pattern</th>
+      <td colspan="2"><code>(?:^|\.)status(?:\.|$)</code></td>
+    </tr>
+    <tr>
       <th>Description</th>
       <td colspan="2">Disallow bare &#x27;status&#x27;; event types should represent a domain occurrence, not a generic label.</td>
     </tr>
@@ -220,6 +248,10 @@
 <table class="jssd-property-table">
   <tbody>
     <tr>
+      <th>Disallowed Pattern</th>
+      <td colspan="2"><code>(?:^|\.)started(?:\.|$)</code></td>
+    </tr>
+    <tr>
       <th>Description</th>
       <td colspan="2">Disallow &#x27;started&#x27;; prefer a specific lifecycle action (e.g. session.opened).</td>
     </tr>
@@ -234,6 +266,10 @@
 ### <a id="type-9"></a> type.9
 <table class="jssd-property-table">
   <tbody>
+    <tr>
+      <th>Disallowed Pattern</th>
+      <td colspan="2"><code>(?:^|\.)failed(?:\.|$)</code></td>
+    </tr>
     <tr>
       <th>Description</th>
       <td colspan="2">Disallow &#x27;failed&#x27;; model the concrete failure (e.g. payment.authorization.failed -&gt; payment.authorization.rejected).</td>
@@ -283,7 +319,7 @@
 
 
 
-## subject
+## <a id="subject"></a> subject
 
 
 <table class="jssd-property-table">
@@ -376,7 +412,7 @@
 
 
 
-## data
+## <a id="data"></a> data
 
 
 <table class="jssd-property-table">
