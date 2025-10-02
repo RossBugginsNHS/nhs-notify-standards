@@ -15,14 +15,14 @@
 
 <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#specversion">specversion</a></td><td>String=1.0</td></tr><tr><td colspan="2"><a href="#id">id</a></td><td>String</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td rowspan="10"><a href="#type">type</a></td><td rowspan="10">All of:</td><td><a href="#type-0">NHS Notify event type pattern (String)</a></td></tr>
 <tr><td><a href="#type-1">Disallow 'completed' token (String)</a></td></tr>
-<tr><td><a href="#type-2">Disallow 'finished' which is temporal and ambiguous; choose a workflow-specific terminal verb (String)</a></td></tr>
-<tr><td><a href="#type-3">Disallow 'updated'; prefer a concrete action (e.g (String)</a></td></tr>
-<tr><td><a href="#type-4">Disallow vague 'changed'; specify the nature of the change (e.g (String)</a></td></tr>
-<tr><td><a href="#type-5">Disallow 'processed'; state WHAT happened, not that a process occurred (String)</a></td></tr>
-<tr><td><a href="#type-6">Disallow 'handled'; overly generic and not business meaningful (String)</a></td></tr>
-<tr><td><a href="#type-7">Disallow bare 'status'; event types should represent a domain occurrence, not a generic label (String)</a></td></tr>
-<tr><td><a href="#type-8">Disallow 'started'; prefer a specific lifecycle action (e.g (String)</a></td></tr>
-<tr><td><a href="#type-9">Disallow 'failed'; model the concrete failure (e.g (String)</a></td></tr><tr><td colspan="2"><a href="#time">time</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacontenttype">datacontenttype</a></td><td>String=application/json</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2"><a href="#traceparent">traceparent</a></td><td>String</td></tr><tr><td colspan="2"><a href="#tracestate">tracestate</a></td><td>String</td></tr><tr><td colspan="2"><a href="#partitionkey">partitionkey</a></td><td>String</td></tr><tr><td colspan="2"><a href="#recordedtime">recordedtime</a></td><td>String</td></tr><tr><td colspan="2"><a href="#sampledrate">sampledrate</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#sequence">sequence</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitytext">severitytext</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitynumber">severitynumber</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#dataclassification">dataclassification</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataregulation">dataregulation</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacategory">datacategory</a></td><td>String</td></tr><tr><td colspan="2" rowspan="7">All of:</td><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr></tbody></table>
+<tr><td><a href="#type-2">Disallow 'finished' token (String)</a></td></tr>
+<tr><td><a href="#type-3">Disallow 'updated' token (String)</a></td></tr>
+<tr><td><a href="#type-4">Disallow 'changed' token (String)</a></td></tr>
+<tr><td><a href="#type-5">Disallow 'processed' token (String)</a></td></tr>
+<tr><td><a href="#type-6">Disallow 'handled' token (String)</a></td></tr>
+<tr><td><a href="#type-7">Disallow 'status' token (String)</a></td></tr>
+<tr><td><a href="#type-8">Disallow 'started' token (String)</a></td></tr>
+<tr><td><a href="#type-9">Disallow 'failed' token (String)</a></td></tr><tr><td colspan="2"><a href="#time">time</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacontenttype">datacontenttype</a></td><td>String=application/json</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2"><a href="#traceparent">traceparent</a></td><td>String</td></tr><tr><td colspan="2"><a href="#tracestate">tracestate</a></td><td>String</td></tr><tr><td colspan="2"><a href="#partitionkey">partitionkey</a></td><td>String</td></tr><tr><td colspan="2"><a href="#recordedtime">recordedtime</a></td><td>String</td></tr><tr><td colspan="2"><a href="#sampledrate">sampledrate</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#sequence">sequence</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitytext">severitytext</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitynumber">severitynumber</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#dataclassification">dataclassification</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataregulation">dataregulation</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacategory">datacategory</a></td><td>String</td></tr><tr><td colspan="2" rowspan="7">All of:</td><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr></tbody></table>
 
 
 ## Example
@@ -202,16 +202,16 @@
       <th>Description</th>
       <td colspan="2">Event type (uk.nhs.notify.*) using reverse-DNS style; ambiguous verbs (completed, finished, updated, changed, processed, handled, status, started, failed) disallowed.</td>
     </tr>
-    <tr><tr><td rowspan="10">Type</td><td rowspan="10">All of:</td><td><a href="#type-0">NHS Notify event type pattern (String)</a></td></tr>
+    <tr><tr><td rowspan="10"><a href="#type">Type</a></td><td rowspan="10">All of:</td><td><a href="#type-0">NHS Notify event type pattern (String)</a></td></tr>
 <tr><td><a href="#type-1">Disallow 'completed' token (String)</a></td></tr>
-<tr><td><a href="#type-2">Disallow 'finished' which is temporal and ambiguous; choose a workflow-specific terminal verb (String)</a></td></tr>
-<tr><td><a href="#type-3">Disallow 'updated'; prefer a concrete action (e.g (String)</a></td></tr>
-<tr><td><a href="#type-4">Disallow vague 'changed'; specify the nature of the change (e.g (String)</a></td></tr>
-<tr><td><a href="#type-5">Disallow 'processed'; state WHAT happened, not that a process occurred (String)</a></td></tr>
-<tr><td><a href="#type-6">Disallow 'handled'; overly generic and not business meaningful (String)</a></td></tr>
-<tr><td><a href="#type-7">Disallow bare 'status'; event types should represent a domain occurrence, not a generic label (String)</a></td></tr>
-<tr><td><a href="#type-8">Disallow 'started'; prefer a specific lifecycle action (e.g (String)</a></td></tr>
-<tr><td><a href="#type-9">Disallow 'failed'; model the concrete failure (e.g (String)</a></td></tr></tr>
+<tr><td><a href="#type-2">Disallow 'finished' token (String)</a></td></tr>
+<tr><td><a href="#type-3">Disallow 'updated' token (String)</a></td></tr>
+<tr><td><a href="#type-4">Disallow 'changed' token (String)</a></td></tr>
+<tr><td><a href="#type-5">Disallow 'processed' token (String)</a></td></tr>
+<tr><td><a href="#type-6">Disallow 'handled' token (String)</a></td></tr>
+<tr><td><a href="#type-7">Disallow 'status' token (String)</a></td></tr>
+<tr><td><a href="#type-8">Disallow 'started' token (String)</a></td></tr>
+<tr><td><a href="#type-9">Disallow 'failed' token (String)</a></td></tr></tr>
     <tr>
       <th>Required</th>
       <td colspan="2">Yes</td>
@@ -268,7 +268,7 @@
 
 
 
-### <a id="type-2"></a> type.2 – Disallow 'finished' which is temporal and ambiguous; choose a workflow-specific terminal verb
+### <a id="type-2"></a> type.2 – Disallow 'finished' token
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -287,7 +287,7 @@
 
 
 
-### <a id="type-3"></a> type.3 – Disallow 'updated'; prefer a concrete action (e.g
+### <a id="type-3"></a> type.3 – Disallow 'updated' token
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -306,7 +306,7 @@
 
 
 
-### <a id="type-4"></a> type.4 – Disallow vague 'changed'; specify the nature of the change (e.g
+### <a id="type-4"></a> type.4 – Disallow 'changed' token
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -325,7 +325,7 @@
 
 
 
-### <a id="type-5"></a> type.5 – Disallow 'processed'; state WHAT happened, not that a process occurred
+### <a id="type-5"></a> type.5 – Disallow 'processed' token
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -344,7 +344,7 @@
 
 
 
-### <a id="type-6"></a> type.6 – Disallow 'handled'; overly generic and not business meaningful
+### <a id="type-6"></a> type.6 – Disallow 'handled' token
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -363,7 +363,7 @@
 
 
 
-### <a id="type-7"></a> type.7 – Disallow bare 'status'; event types should represent a domain occurrence, not a generic label
+### <a id="type-7"></a> type.7 – Disallow 'status' token
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -382,7 +382,7 @@
 
 
 
-### <a id="type-8"></a> type.8 – Disallow 'started'; prefer a specific lifecycle action (e.g
+### <a id="type-8"></a> type.8 – Disallow 'started' token
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -401,7 +401,7 @@
 
 
 
-### <a id="type-9"></a> type.9 – Disallow 'failed'; model the concrete failure (e.g
+### <a id="type-9"></a> type.9 – Disallow 'failed' token
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -1123,6 +1123,7 @@
                     "description": "Disallow ambiguous past tense token 'completed'. Use a domain-specific verb like read, created, published."
                 },
                 {
+                    "name": "Disallow 'finished' token",
                     "type": "string",
                     "not": {
                         "pattern": "(?:^|\\.)finished(?:\\.|$)"
@@ -1130,6 +1131,7 @@
                     "description": "Disallow 'finished' which is temporal and ambiguous; choose a workflow-specific terminal verb."
                 },
                 {
+                    "name": "Disallow 'updated' token",
                     "type": "string",
                     "not": {
                         "pattern": "(?:^|\\.)updated(?:\\.|$)"
@@ -1137,6 +1139,7 @@
                     "description": "Disallow 'updated'; prefer a concrete action (e.g. order.modified.v1 -> order.change.applied)."
                 },
                 {
+                    "name": "Disallow 'changed' token",
                     "type": "string",
                     "not": {
                         "pattern": "(?:^|\\.)changed(?:\\.|$)"
@@ -1144,6 +1147,7 @@
                     "description": "Disallow vague 'changed'; specify the nature of the change (e.g. status.changed -> status.transitioned)."
                 },
                 {
+                    "name": "Disallow 'processed' token",
                     "type": "string",
                     "not": {
                         "pattern": "(?:^|\\.)processed(?:\\.|$)"
@@ -1151,6 +1155,7 @@
                     "description": "Disallow 'processed'; state WHAT happened, not that a process occurred."
                 },
                 {
+                    "name": "Disallow 'handled' token",
                     "type": "string",
                     "not": {
                         "pattern": "(?:^|\\.)handled(?:\\.|$)"
@@ -1158,6 +1163,7 @@
                     "description": "Disallow 'handled'; overly generic and not business meaningful."
                 },
                 {
+                    "name": "Disallow 'status' token",
                     "type": "string",
                     "not": {
                         "pattern": "(?:^|\\.)status(?:\\.|$)"
@@ -1165,6 +1171,7 @@
                     "description": "Disallow bare 'status'; event types should represent a domain occurrence, not a generic label."
                 },
                 {
+                    "name": "Disallow 'started' token",
                     "type": "string",
                     "not": {
                         "pattern": "(?:^|\\.)started(?:\\.|$)"
@@ -1172,6 +1179,7 @@
                     "description": "Disallow 'started'; prefer a specific lifecycle action (e.g. session.opened)."
                 },
                 {
+                    "name": "Disallow 'failed' token",
                     "type": "string",
                     "not": {
                         "pattern": "(?:^|\\.)failed(?:\\.|$)"

@@ -202,7 +202,7 @@
       <th>Description</th>
       <td colspan="2">Event type (uk.nhs.notify.*) using reverse-DNS style; ambiguous verbs (completed, finished, updated, changed, processed, handled, status, started, failed) disallowed.</td>
     </tr>
-    <tr><tr><td rowspan="10">Type</td><td rowspan="10">All of:</td><td><a href="#type-0">NHS Notify event type pattern (String)</a></td></tr>
+    <tr><tr><td rowspan="10"><a href="#type">Type</a></td><td rowspan="10">All of:</td><td><a href="#type-0">NHS Notify event type pattern (String)</a></td></tr>
 <tr><td><a href="#type-1">Disallow 'completed' token (String)</a></td></tr>
 <tr><td><a href="#type-2">Disallow 'finished' token (String)</a></td></tr>
 <tr><td><a href="#type-3">Disallow 'updated' token (String)</a></td></tr>

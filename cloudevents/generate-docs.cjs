@@ -134,6 +134,48 @@ const SOURCE_GLOB_PREFIX = 'nhs-';
           return rebuilt + remainder;
         });
 
+        // Additional pass: linkify any remaining unprocessed All of clusters in the Properties table (the above only handled the first occurrence).
+        try {
+          const linkifyRemainingAllOf = () => {
+            let changed = false;
+            // Pattern for an unprocessed All of cluster start (property name not yet wrapped in <a>, and first subtype primitive not linked)
+            const startRegex = /<tr><td rowspan="(\d+)">([^<]+)<\/td><td rowspan="\1">All of:<\/td><td>([^<]+)<\/td><\/tr>/g;
+            let match;
+            while ((match = startRegex.exec(md)) !== null) {
+              const [full, countStr, propName, firstType] = match;
+              const count = parseInt(countStr, 10);
+              const blockStart = match.index;
+              let cursor = blockStart + full.length;
+              const rows = [];
+              for (let i = 1; i < count; i++) {
+                const rowMatch = md.slice(cursor).match(/^<tr><td>([^<]+)<\/td><\/tr>/);
+                if (!rowMatch) break;
+                rows.push(rowMatch[1]);
+                cursor += rowMatch[0].length;
+              }
+              if (rows.length !== count - 1) continue; // not a clean cluster; skip
+              // Skip if already linkified (property cell already contains an anchor or first subtype already linked)
+              if (full.includes('<a href="#')) continue;
+              const safeProp = propName.trim().toLowerCase();
+              let rebuilt = `<tr><td rowspan="${count}"><a href="#${safeProp}">${propName}</a></td><td rowspan="${count}">All of:</td><td><a href="#${safeProp}-0">${firstType}</a></td></tr>`;
+              rows.forEach((t, idx) => {
+                rebuilt += `\n<tr><td><a href="#${safeProp}-${idx + 1}">${t}</a></td></tr>`;
+              });
+              md = md.slice(0, blockStart) + rebuilt + md.slice(cursor);
+              changed = true;
+              // Adjust regex lastIndex to continue after the rebuilt block
+              startRegex.lastIndex = blockStart + rebuilt.length;
+            }
+            return changed;
+          };
+          // Run until no further changes (safe guard max iterations)
+            for (let i = 0; i < 10; i++) {
+              if (!linkifyRemainingAllOf()) break;
+            }
+        } catch (e) {
+          // non-fatal
+        }
+
         fs.writeFileSync(p, md, 'utf-8');
 
         // 3. Surface 'not' patterns from original schema allOf subschemas (disallowed patterns) into each subsection table.

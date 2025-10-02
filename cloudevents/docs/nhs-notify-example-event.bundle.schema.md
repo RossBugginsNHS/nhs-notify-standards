@@ -461,6 +461,7 @@
                             "description": "Disallow ambiguous past tense token 'completed'. Use a domain-specific verb like read, created, published."
                         },
                         {
+                            "name": "Disallow 'finished' token",
                             "type": "string",
                             "not": {
                                 "pattern": "(?:^|\\.)finished(?:\\.|$)"
@@ -468,6 +469,7 @@
                             "description": "Disallow 'finished' which is temporal and ambiguous; choose a workflow-specific terminal verb."
                         },
                         {
+                            "name": "Disallow 'updated' token",
                             "type": "string",
                             "not": {
                                 "pattern": "(?:^|\\.)updated(?:\\.|$)"
@@ -475,6 +477,7 @@
                             "description": "Disallow 'updated'; prefer a concrete action (e.g. order.modified.v1 -> order.change.applied)."
                         },
                         {
+                            "name": "Disallow 'changed' token",
                             "type": "string",
                             "not": {
                                 "pattern": "(?:^|\\.)changed(?:\\.|$)"
@@ -482,6 +485,7 @@
                             "description": "Disallow vague 'changed'; specify the nature of the change (e.g. status.changed -> status.transitioned)."
                         },
                         {
+                            "name": "Disallow 'processed' token",
                             "type": "string",
                             "not": {
                                 "pattern": "(?:^|\\.)processed(?:\\.|$)"
@@ -489,6 +493,7 @@
                             "description": "Disallow 'processed'; state WHAT happened, not that a process occurred."
                         },
                         {
+                            "name": "Disallow 'handled' token",
                             "type": "string",
                             "not": {
                                 "pattern": "(?:^|\\.)handled(?:\\.|$)"
@@ -496,6 +501,7 @@
                             "description": "Disallow 'handled'; overly generic and not business meaningful."
                         },
                         {
+                            "name": "Disallow 'status' token",
                             "type": "string",
                             "not": {
                                 "pattern": "(?:^|\\.)status(?:\\.|$)"
@@ -503,6 +509,7 @@
                             "description": "Disallow bare 'status'; event types should represent a domain occurrence, not a generic label."
                         },
                         {
+                            "name": "Disallow 'started' token",
                             "type": "string",
                             "not": {
                                 "pattern": "(?:^|\\.)started(?:\\.|$)"
@@ -510,6 +517,7 @@
                             "description": "Disallow 'started'; prefer a specific lifecycle action (e.g. session.opened)."
                         },
                         {
+                            "name": "Disallow 'failed' token",
                             "type": "string",
                             "not": {
                                 "pattern": "(?:^|\\.)failed(?:\\.|$)"
