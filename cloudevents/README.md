@@ -16,6 +16,8 @@ CloudEvents is a specification for describing event data in a common way. The NH
 - [`nhs-notify-example-event.schema.json`](nhs-notify-example-event.schema.json): Example event envelope schema.
  - [`nhs-notify-example-event.schema.json`](nhs-notify-example-event.schema.json): Example event envelope schema.
  - [`nhs-notify-example-event.bundle.schema.json`](nhs-notify-example-event.bundle.schema.json): Bundled single-file variant (all external $ref inlined & nested $id stripped).
+ - [`nhs-notify-example-event.bundle.schema.json`](nhs-notify-example-event.bundle.schema.json): Bundled single-file variant (all external $ref inlined & nested $id stripped).
+ - [`nhs-notify-example-event.flattened.schema.json`](nhs-notify-example-event.flattened.schema.json): Bundled + allOf-flattened variant (referenced profile properties merged directly; conflicting property constraints combined via allOf at property level).
 - [`nhs-notify-example-event-data.schema.json`](nhs-notify-example-event-data.schema.json): Example event data schema.
 - [`nhs-notify-metadata.schema.json`](nhs-notify-metadata.schema.json): Common metadata schema for NHS Notify events.
 - [`nhs-notify-payload.schema.json`](nhs-notify-payload.schema.json): Common payload schema for NHS Notify events.
@@ -84,6 +86,22 @@ make validate-bundle
 ```
 
 Implementation detail: during bundling we strip nested `$id` values so AJV treats the result as a single document; otherwise AJV may try to resolve internal refs against those nested IDs and report MissingRefError.
+
+### Flattened Variant (Experimental)
+
+You can also produce an "allOf-flattened" schema which merges top-level object schemas pulled in via `allOf` (e.g., the profile) directly into the concrete event schema's `properties`.
+
+Generate:
+
+```sh
+make flatten-example
+```
+
+Notes:
+* When both schemas define the same property, merging prefers retaining stricter constraints; incompatible constraints fall back to a property-level `allOf` combination.
+* Distinct `enum` sets are intersected; if intersection becomes a single value it is collapsed to `const`.
+* Conflicting `pattern` values are kept via `allOf` of pattern fragments.
+* This is experimental—always validate against your examples to ensure the merged semantics match expectations.
 
 ## Usage
 

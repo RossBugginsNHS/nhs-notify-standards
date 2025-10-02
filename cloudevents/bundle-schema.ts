@@ -20,9 +20,19 @@ import path from 'path';
  */
 
 async function main() {
-  const [entry, outFile] = process.argv.slice(2);
+  const args = process.argv.slice(2);
+  let flatten = false;
+  const filtered: string[] = [];
+  for (const a of args) {
+    if (a === '--flatten' || a === '--flatten-allof') {
+      flatten = true;
+    } else {
+      filtered.push(a);
+    }
+  }
+  const [entry, outFile] = filtered;
   if (!entry || !outFile) {
-    console.error('Usage: ts-node bundle-schema.ts <entry-schema.json> <output-file.json>');
+    console.error('Usage: ts-node bundle-schema.ts [--flatten] <entry-schema.json> <output-file.json>');
     process.exit(1);
   }
 
@@ -71,7 +81,7 @@ async function main() {
       }
       cleanse(root);
 
-      // Rewrite any refs that json-schema-ref-parser emitted pointing deep via encoded path segments
+  // Rewrite any refs that json-schema-ref-parser emitted pointing deep via encoded path segments
       // Example currently causing issue: "#/allOf/0/properties/data/properties/notify-payload/%24defs/DataPlane"
       // We can detect pattern /notify-payload/%24defs/... and map to a top-level unique path in $defs.
       // For simplicity, if root.$defs does not have these, we hoist them.
@@ -98,6 +108,103 @@ async function main() {
         }
       }
       rewriteRefs(root);
+
+      // Optionally flatten top-level allOf object schemas (merge properties/required/etc) while preserving conditional subschemas.
+      if (flatten && Array.isArray(root.allOf)) {
+        const imported: any[] = [];
+        const carry: any[] = [];
+        for (const seg of root.allOf) {
+          if (seg && typeof seg === 'object' && !('$ref' in seg) && (seg.properties || seg.required || seg.allOf)) {
+            imported.push(seg);
+          } else {
+            carry.push(seg);
+          }
+        }
+
+        const mergePropertySchemas = (a: any, b: any) => {
+          // If either references or uses complex keywords, fallback to allOf
+          const complexKeys = ['oneOf','anyOf','not','if','then','else','$ref'];
+            if (complexKeys.some(k => k in a) || complexKeys.some(k => k in b)) {
+              return { allOf: [a, b] };
+            }
+          const out: any = { ...a };
+          const mergeSimple = (key: string) => {
+            if (b[key] === undefined) return;
+            if (out[key] === undefined) { out[key] = b[key]; return; }
+            if (key === 'description') {
+              if (out.description !== b.description) {
+                out.description = out.description + ' | ' + b.description;
+              }
+              return;
+            }
+            if (key === 'examples' && Array.isArray(out.examples) && Array.isArray(b.examples)) {
+              const set = new Set([...out.examples, ...b.examples]);
+              out.examples = Array.from(set);
+              return;
+            }
+            if (key === 'enum' && Array.isArray(out.enum) && Array.isArray(b.enum)) {
+              const intersect = out.enum.filter((v: any) => b.enum.includes(v));
+              out.enum = intersect;
+              if (intersect.length === 1) { out.const = intersect[0]; delete out.enum; }
+              return;
+            }
+            if (key === 'pattern' && a.pattern !== b.pattern) {
+              // Keep both pattern constraints via allOf if no const to collapse
+              if (!out.const) {
+                const keepA = { pattern: a.pattern };
+                const keepB = { pattern: b.pattern };
+                // Remove pattern from out and replace with allOf patterns
+                delete out.pattern;
+                out.allOf = (out.allOf || []).concat([keepA, keepB]);
+              }
+              return;
+            }
+            if (key === 'const') {
+              if (out.const !== b.const) {
+                // Conflict - unsatisfiable; record both in allOf to surface failure during validation
+                return { allOf: [a, b] };
+              }
+              return;
+            }
+            // For other scalar merge attempts, prefer existing (more specific) and ignore broader.
+          };
+          for (const k of Object.keys(b)) mergeSimple(k);
+          return out;
+        };
+
+        // Root accumulators
+        root.properties = root.properties || {};
+        root.required = Array.isArray(root.required) ? root.required : [];
+        const requiredSet = new Set(root.required);
+
+        const pushRequired = (req: any) => {
+          if (Array.isArray(req)) req.forEach(r => requiredSet.add(r));
+        };
+
+        const extraAllOf: any[] = [];
+
+        for (const seg of imported) {
+          // Merge simple top-level facets
+          pushRequired(seg.required);
+          if (seg.properties) {
+            for (const [pName, pSchema] of Object.entries<any>(seg.properties)) {
+              if (!(pName in root.properties)) {
+                root.properties[pName] = pSchema;
+              } else {
+                const merged = mergePropertySchemas(root.properties[pName], pSchema);
+                root.properties[pName] = merged;
+              }
+            }
+          }
+          // Hoist nested allOf entries (e.g., conditional logic) to carry list
+          if (Array.isArray(seg.allOf)) {
+            for (const sub of seg.allOf) extraAllOf.push(sub);
+          }
+        }
+        root.required = Array.from(requiredSet);
+        const newAllOf = [...carry, ...extraAllOf].filter(Boolean);
+        if (newAllOf.length > 0) root.allOf = newAllOf; else delete root.allOf;
+      }
     }
 
     const outDir = path.dirname(path.resolve(outFile));
