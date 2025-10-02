@@ -21,8 +21,9 @@ validate:
 	node validate.js nhs-notify-profile.schema.json output-example-event.json
 	node validate.js nhs-notify-example-event.bundle.schema.json output-example-event.json
 	node validate.js nhs-notify-example-event.flattened.schema.json output-example-event.json
+	node validate.js nhs-notify-example-event.prefer-child.bundle.schema.json output-example-event.json
 
-docs: bundle-all flatten-all
+docs: bundle-all flatten-all bundle-flatten-preferchild validate
 	npm run docs
 
 bundle-example:
@@ -43,3 +44,6 @@ flatten-all: flatten-example flatten-profile
 
 validate-bundle: bundle-example
 	node validate.js nhs-notify-example-event.bundle.schema.json output-example-event.json
+
+bundle-flatten-preferchild:
+	npm run bundle:prefer-child -- --flatten nhs-notify-example-event.schema.json nhs-notify-example-event.prefer-child.bundle.schema.json

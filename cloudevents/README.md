@@ -21,6 +21,7 @@ CloudEvents is a vendor-neutral specification for describing event data. These s
 | [`nhs-notify-example-event.schema.json`](nhs-notify-example-event.schema.json) | Concrete example CloudEvent (envelope + `data` shape + refs to profile & payload pieces). |
 | [`nhs-notify-example-event.bundle.schema.json`](nhs-notify-example-event.bundle.schema.json) | Bundled variant of the example event schema (single file for distribution). |
 | [`nhs-notify-example-event.flattened.schema.json`](nhs-notify-example-event.flattened.schema.json) | Experimental flattened variant of the example event schema (merged properties). |
+| [`nhs-notify-example-event.prefer-child.bundle.schema.json`](nhs-notify-example-event.prefer-child.bundle.schema.json) | Bundled + prefer-child merged (experimental) variant of the example event schema. |
 | [`nhs-notify-example-event-data.schema.json`](nhs-notify-example-event-data.schema.json) | Schema describing only the `data` portion referenced by the example event. |
 | [`nhs-notify-payload.schema.json`](nhs-notify-payload.schema.json) | Common wrapper providing `notify-data` (domain/control plane variants) + `notify-metadata`. |
 | [`nhs-notify-metadata.schema.json`](nhs-notify-metadata.schema.json) | Common metadata fields (team, domain, version, service, etc.). |
@@ -43,6 +44,7 @@ Running `npm run docs` (or `make docs`) generates markdown docs under `docs/` fo
 | Example Event | [`docs/nhs-notify-example-event.schema.md`](docs/nhs-notify-example-event.schema.md) |
 | Example Event (bundled) | [`docs/nhs-notify-example-event.bundle.schema.md`](docs/nhs-notify-example-event.bundle.schema.md) |
 | Example Event (flattened) | [`docs/nhs-notify-example-event.flattened.schema.md`](docs/nhs-notify-example-event.flattened.schema.md) |
+| Example Event (prefer-child bundle) | [`docs/nhs-notify-example-event.prefer-child.bundle.schema.md`](docs/nhs-notify-example-event.prefer-child.bundle.schema.md) |
 | Example Event Data | [`docs/nhs-notify-example-event-data.schema.md`](docs/nhs-notify-example-event-data.schema.md) |
 | Payload Wrapper | [`docs/nhs-notify-payload.schema.md`](docs/nhs-notify-payload.schema.md) |
 | Metadata | [`docs/nhs-notify-metadata.schema.md`](docs/nhs-notify-metadata.schema.md) |
@@ -91,6 +93,26 @@ npm run bundle -- nhs-notify-example-event.schema.json output/nhs-notify-example
 ```
 
 The resulting bundled schema sets a new `$id` (pointing to where it would live on GitHub Pages) and annotates with a `$comment` indicating it is a bundled artifact.
+
+### Prefer-Child Merge Variant (Experimental)
+
+In some cases you may want duplicate property definitions coming from layered `allOf` segments (e.g. profile + concrete event + domain overlays) to resolve by taking the *most specific* (lowest child) version of the property while still accumulating restrictions (patterns, numeric ranges, enums) from ancestors. A separate script `bundle-schema-prefer-child.ts` provides this behavior when used with `--flatten`.
+
+Example usage:
+
+```sh
+npm run bundle:prefer-child -- --flatten nhs-notify-example-event.schema.json output/nhs-notify-example-event.prefer-child.bundle.schema.json
+```
+
+Key differences vs standard flatten:
+* Later (child) schema wins for core shape & descriptions; parent constraints are intersected where safe.
+* Patterns are ANDed by attaching the parent pattern as an additional `allOf` fragment if different.
+* Numeric minimum/maximum style keywords are tightened (intersection).
+* `enum` sets are intersected; single-value intersections collapse to `const`.
+* Object `properties` are recursively merged, with child overrides unless incompatible (then an `allOf` is emitted to surface conflict).
+* Irreconcilable conflicts (e.g. disjoint `type`) produce an `allOf` combination leaving detection to a validator.
+
+Treat this as experimental; always re-validate examples and downstream payloads after adopting.
 
 Validate using the bundled schema (Makefile target also regenerates it first):
 
