@@ -70,7 +70,16 @@
       <th>Description</th>
       <td colspan="2">Concrete event type string for this example event. | Event type (uk.nhs.notify.*) using reverse-DNS style; ambiguous verbs (completed, finished, updated, changed, processed, handled, status, started, failed) disallowed.</td>
     </tr>
-    <tr><tr><td rowspan="10">Type</td><td rowspan="10">All of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr></tr>
+    <tr><tr><td rowspan="10">Type</td><td rowspan="10">All of:</td><td><a href="#type-0">String</a></td></tr>
+<tr><td><a href="#type-1">String</a></td></tr>
+<tr><td><a href="#type-2">String</a></td></tr>
+<tr><td><a href="#type-3">String</a></td></tr>
+<tr><td><a href="#type-4">String</a></td></tr>
+<tr><td><a href="#type-5">String</a></td></tr>
+<tr><td><a href="#type-6">String</a></td></tr>
+<tr><td><a href="#type-7">String</a></td></tr>
+<tr><td><a href="#type-8">String</a></td></tr>
+<tr><td><a href="#type-9">String</a></td></tr></tr>
     <tr>
       <th>Required</th>
       <td colspan="2">Yes</td>
@@ -328,7 +337,8 @@
       <th>Description</th>
       <td colspan="2">Path in the form customer/{id}/order/{id}/item/{id} where each {{id}} is a UUID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx). | Resource path (no leading slash) within the source made of lowercase segments separated by &#x27;/&#x27;.</td>
     </tr>
-    <tr><tr><td rowspan="2">Type</td><td rowspan="2">All of:</td><td>String</td></tr><tr><td>String</td></tr></tr>
+    <tr><tr><td rowspan="2">Type</td><td rowspan="2">All of:</td><td><a href="#subject-0">String</a></td></tr>
+<tr><td><a href="#subject-1">String</a></td></tr></tr>
     <tr>
       <th>Required</th>
       <td colspan="2">Yes</td>
@@ -417,7 +427,8 @@
 
 <table class="jssd-property-table">
   <tbody>
-    <tr><tr><td rowspan="2">Type</td><td rowspan="2">All of:</td><td>Object</td></tr><tr><td>Object</td></tr></tr>
+    <tr><tr><td rowspan="2">Type</td><td rowspan="2">All of:</td><td><a href="#data-0">Object</a></td></tr>
+<tr><td><a href="#data-1">Object</a></td></tr></tr>
     <tr>
       <th>Required</th>
       <td colspan="2">Yes</td>

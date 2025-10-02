@@ -213,6 +213,114 @@ const SOURCE_GLOB_PREFIX = 'nhs-';
                     return before + rebuilt + remainder + tblend;
                   });
                 }
+                // Fallback: a very permissive parser for a property detail table lacking anchors yet (to catch generator markup anomalies)
+                if (!md.includes(`#${safeProp}-0`) ) {
+                  const genericSectionRegex = new RegExp(`(## <a id="${safeProp}"></a> ${propName}[\s\S]*?<table class="jssd-property-table">[\s\S]*?)(<tr>(?:<tr>)?<td rowspan="(\\d+)">Type<\/td><td rowspan="\\3">All of:<\/td><td>)([^<]+)(<\/td><\/tr>)([\s\S]*?)(<\/tbody>)`);
+                  md = md.replace(genericSectionRegex, (whole, before, startPrefix, countStr, firstType, endSuffix, tail, tbodyEnd) => {
+                    if (whole.includes(`#${safeProp}-0`)) return whole; // already linked
+                    const count = parseInt(countStr,10);
+                    // Collect up to count-1 subsequent simple cell rows
+                    const rowRegex = /<tr><td>([^<]+)<\/td><\/tr>/g;
+                    const rows = [];
+                    let match; let consumedLength = 0;
+                    while ((match = rowRegex.exec(tail)) && rows.length < count -1) {
+                      rows.push(match[1]);
+                      consumedLength = match.index + match[0].length;
+                    }
+                    if (rows.length !== count -1) return whole; // can't confidently transform
+                    let rebuilt = `${startPrefix}<a href="#${safeProp}-0">${firstType}</a>${endSuffix}`;
+                    rows.forEach((t,i) => { rebuilt += `\n<tr><td><a href="#${safeProp}-${i+1}">${t}</a></td></tr>`; });
+                    const remainder = tail.slice(consumedLength);
+                    return before + rebuilt + remainder + tbodyEnd;
+                  });
+                }
+                // Strongest fallback: detect malformed double <tr><tr> block and reconstruct with links
+                if (!md.includes(`#${safeProp}-0`)) {
+                  const sectionStart = md.indexOf(`## <a id="${safeProp}"></a> ${propName}`);
+                  if (sectionStart !== -1) {
+                    const nextHeading = md.indexOf('\n## ', sectionStart + 5);
+                    const sectionEnd = nextHeading === -1 ? md.length : nextHeading;
+                    const section = md.slice(sectionStart, sectionEnd);
+                    const blockRegex = /<tr><tr><td rowspan="(\d+)">Type<\/td><td rowspan="\1">All of:<\/td><td>([^<]+)<\/td><\/tr>((?:<tr><td>[^<]+<\/td><\/tr>){1,200})<\/tr>/;
+                    if (blockRegex.test(section)) {
+                      const updated = section.replace(blockRegex, (m, countStr, firstType, tailRows) => {
+                        const count = parseInt(countStr,10);
+                        const rowRegex = /<tr><td>([^<]+)<\/td><\/tr>/g;
+                        const extras = [];
+                        let mt;
+                        while ((mt = rowRegex.exec(tailRows)) && extras.length < count -1) {
+                          extras.push(mt[1]);
+                        }
+                        if (extras.length !== count -1) return m; // bail
+                        let rebuilt = `<tr><tr><td rowspan="${count}">Type</td><td rowspan="${count}">All of:</td><td><a href="#${safeProp}-0">${firstType}</a></td></tr>`;
+                        extras.forEach((t,i) => { rebuilt += `\n<tr><td><a href="#${safeProp}-${i+1}">${t}</a></td></tr>`; });
+                        rebuilt += `</tr>`;
+                        return rebuilt;
+                      });
+                      if (updated !== section) {
+                        md = md.slice(0, sectionStart) + updated + md.slice(sectionEnd);
+                      }
+                    }
+                    // Additional replacement: fully malformed cluster with double closing tag </tr></tr>
+                    if (!md.includes(`#${safeProp}-0`)) {
+                      const section2 = md.slice(sectionStart, sectionEnd);
+                      const blockRegex2 = /<tr><tr><td rowspan="(\d+)">Type<\/td><td rowspan="\1">All of:<\/td><td>([^<]+)<\/td><\/tr>((?:<tr><td>[^<]+<\/td><\/tr>){1,200})<\/tr><\/tr>/;
+                      if (blockRegex2.test(section2)) {
+                        const updated2 = section2.replace(blockRegex2, (m, countStr, firstType, tailRows) => {
+                          const count = parseInt(countStr,10);
+                          const rowRegex = /<tr><td>([^<]+)<\/td><\/tr>/g;
+                          const extras = [];
+                          let mt;
+                          while ((mt = rowRegex.exec(tailRows)) && extras.length < count -1) {
+                            extras.push(mt[1]);
+                          }
+                          if (extras.length !== count -1) return m;
+                          let rebuilt = `<tr><td rowspan="${count}">Type</td><td rowspan="${count}">All of:</td><td><a href="#${safeProp}-0">${firstType}</a></td></tr>`;
+                          extras.forEach((t,i) => { rebuilt += `\n<tr><td><a href="#${safeProp}-${i+1}">${t}</a></td></tr>`; });
+                          return rebuilt;
+                        });
+                        if (updated2 !== section2) {
+                          md = md.slice(0, sectionStart) + updated2 + md.slice(sectionEnd);
+                        }
+                      }
+                    }
+                  }
+                }
+              });
+              // Final fallback pass: for any property with allOf whose property-level Type table still lacks links, inject them.
+              propsWithAllOf.forEach(propName => {
+                const safeProp = propName.toLowerCase();
+                // Locate section boundaries
+                const headingPattern = new RegExp(`## <a id="${safeProp}"></a> ${propName}`,'m');
+                const headingMatch = headingPattern.exec(md);
+                if (!headingMatch) return;
+                const sectionStart = headingMatch.index;
+                const nextHeadingIdx = md.indexOf('\n## ', sectionStart + 5);
+                const sectionEnd = nextHeadingIdx === -1 ? md.length : nextHeadingIdx;
+                const section = md.slice(sectionStart, sectionEnd);
+                // If already linked, skip
+                if (section.includes(`<a href="#${safeProp}-0">`)) return;
+                // Identify count from rowspan and capture table up to first subsection heading (### <a id="prop-0">)
+                const firstSubHeadingIdx = section.indexOf(`### <a id="${safeProp}-0"></a>`);
+                const preSub = firstSubHeadingIdx !== -1 ? section.slice(0, firstSubHeadingIdx) : section;
+                const tableRegex = /<tr><tr><td rowspan="(\d+)">Type<\/td><td rowspan="\1">All of:<\/td><td>String<\/td><\/tr>((?:<tr><td>String<\/td><\/tr>){1,200})<\/tr>/;
+                const m = tableRegex.exec(preSub);
+                if (!m) return;
+                const count = parseInt(m[1],10);
+                const tailRows = m[2];
+                // Count existing simple rows (should be count-1)
+                const rowCount = (tailRows.match(/<tr><td>String<\/td><\/tr>/g) || []).length;
+                if (rowCount !== count -1) return; // mismatch
+                // Build replacement
+                let rebuilt = `<tr><tr><td rowspan="${count}">Type</td><td rowspan="${count}">All of:</td><td><a href="#${safeProp}-0">String</a></td></tr>`;
+                for (let i=1;i<count;i++) {
+                  rebuilt += `\n<tr><td><a href="#${safeProp}-${i}">String</a></td></tr>`;
+                }
+                rebuilt += `</tr>`;
+                const newSection = section.replace(tableRegex, rebuilt);
+                if (newSection !== section) {
+                  md = md.slice(0, sectionStart) + newSection + md.slice(sectionEnd);
+                }
               });
               fs.writeFileSync(p, md, 'utf-8');
             }
