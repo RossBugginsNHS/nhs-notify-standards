@@ -5,7 +5,8 @@
   "main": "generate-example.ts",
   "scripts": {
     "generate": "ts-node generate-example.ts $@",
-    "docs": "node generate-docs.cjs"
+    "docs": "node generate-docs.cjs",
+    "bundle": "ts-node bundle-schema.ts"
   },
   "dependencies": {
     "ajv": "^8.0.0",

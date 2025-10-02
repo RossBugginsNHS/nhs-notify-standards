@@ -1,6 +1,6 @@
 # Makefile for cloudevents-example-generator
 
-.PHONY: generate clean
+.PHONY: generate clean docs bundle-example bundle-profile bundle-all validate validate-default validate-bundle generate-default
 
 generate:
 	npm run generate -- $(ARGS)
@@ -16,6 +16,18 @@ validate-default:
 validate:
 	node validate.js nhs-notify-example-event.schema.json output-example-event.json
 	node validate.js nhs-notify-profile.schema.json output-example-event.json
+	node validate.js output/nhs-notify-example-event.bundle.schema.json output-example-event.json
 
-docs:
+docs: bundle-all
 	npm run docs
+
+bundle-example:
+	npm run bundle -- nhs-notify-example-event.schema.json output/nhs-notify-example-event.bundle.schema.json
+
+bundle-profile:
+	npm run bundle -- nhs-notify-profile.schema.json output/nhs-notify-profile.bundle.schema.json
+
+bundle-all: bundle-example bundle-profile
+
+validate-bundle: bundle-example
+	node validate.js output/nhs-notify-example-event.bundle.schema.json output-example-event.json
