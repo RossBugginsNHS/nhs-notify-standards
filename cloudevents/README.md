@@ -32,7 +32,8 @@ Generated static documentation (once you run `npm run docs`) will appear under `
 - [`index.html`](docs/index.html): NHS Notify CloudEvent schema docs home.
 - [`nhs-notify-profile.schema.html`](docs/nhs-notify-profile.schema.html): NHS Notify CloudEvent profile (envelope + constraints).
 - [`nhs-notify-example-event.schema.html`](docs/nhs-notify-example-event.schema.html): Example CloudEvent envelope schema.
- - [`nhs-notify-example-event.bundle.schema.html`](docs/nhs-notify-example-event.bundle.schema.html): Bundled single-file variant documentation.
+- [`nhs-notify-example-event.bundle.schema.html`](docs/nhs-notify-example-event.bundle.schema.html): Bundled single-file variant documentation.
+- [`nhs-notify-example-event.flattened.schema.html`](docs/nhs-notify-example-event.flattened.schema.html): Bundled flattened single-file variant documentation.
 - [`nhs-notify-example-event-data.schema.html`](docs/nhs-notify-example-event-data.schema.html): Example event data payload schema.
 - [`nhs-notify-metadata.schema.html`](docs/nhs-notify-metadata.schema.html): Common metadata elements reused across events.
 - [`nhs-notify-payload.schema.html`](docs/nhs-notify-payload.schema.html): Base payload wrapper / structure.
