@@ -13,7 +13,7 @@
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#type">type</a></td><td>String=uk.nhs.notify.ordering.order.read</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String=/data-plane/ordering</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2" rowspan="1">All of:</td><td>Object</td></tr></tbody></table>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#type">type</a></td><td>String=uk.nhs.notify.ordering.order.read.v1</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2" rowspan="1">All of:</td><td>Object</td></tr></tbody></table>
 
 
 ## Example
@@ -24,7 +24,7 @@
 {
     "specversion": "1.0",
     "id": "6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111",
-    "type": "uk.nhs.notify.ordering.order.read",
+    "type": "uk.nhs.notify.ordering.order.read.v1",
     "source": "/data-plane/ordering",
     "subject": "customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d",
     "time": "2025-10-01T10:15:30.000Z",
@@ -59,7 +59,7 @@
   <tbody>
     <tr>
       <th>Description</th>
-      <td colspan="2">Concrete event type string for this example event.</td>
+      <td colspan="2">Concrete versioned event type string for this example event (.vN suffix).</td>
     </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
@@ -68,10 +68,10 @@
     </tr>
     <tr>
       <th>Const</th>
-      <td colspan="2">uk.nhs.notify.ordering.order.read</td>
+      <td colspan="2">uk.nhs.notify.ordering.order.read.v1</td>
     </tr><tr>
       <th>Examples</th>
-      <td colspan="2"><li>uk.nhs.notify.ordering.order.read</li></td>
+      <td colspan="2"><li>uk.nhs.notify.ordering.order.read.v1</li></td>
     </tr>
   </tbody>
 </table>
@@ -94,11 +94,11 @@
       <td colspan="2">Yes</td>
     </tr>
     <tr>
-      <th>Const</th>
-      <td colspan="2">/data-plane/ordering</td>
+      <th>Pattern</th>
+      <td colspan="2">^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/data-plane/ordering</td>
     </tr><tr>
       <th>Examples</th>
-      <td colspan="2"><li>/data-plane/ordering</li></td>
+      <td colspan="2"><li>/nhs/england/notify/production/primary/data-plane/ordering</li></td>
     </tr>
   </tbody>
 </table>
@@ -389,13 +389,28 @@
     "description": "Example  event",
     "allOf": [
         {
+            "$anchor": "nhs-notify-profile",
             "$schema": "https://json-schema.org/draft/2020-12/schema",
             "title": "NHS Notify CloudEvents Profile",
             "description": "NHS Notify profile for CloudEvents 1.0 including additional governance and tracing attributes.",
             "type": "object",
             "additionalProperties": false,
-            "$comment": "CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.",
+            "$comment": "id includes the published date. CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.",
             "properties": {
+                "profileversion": {
+                    "type": "string",
+                    "const": "1.0.0",
+                    "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+                    "description": "NHS Notify CloudEvents profile semantic version.",
+                    "$comment": "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
+                },
+                "profilepublished": {
+                    "type": "string",
+                    "const": "2025-10",
+                    "pattern": "^\\d{4}-\\d{2}$",
+                    "description": "NHS Notify CloudEvents profile publication date (YYYY-MM).",
+                    "$comment": "Publication date of this profile version (YYYY-MM)."
+                },
                 "specversion": {
                     "type": "string",
                     "const": "1.0",
@@ -417,15 +432,16 @@
                 },
                 "source": {
                     "type": "string",
-                    "pattern": "^/(data-plane|control-plane)(?:/[a-z0-9-]+)*$",
-                    "minLength": 12,
+                    "pattern": "^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/(data-plane|control-plane)(?:/[a-z0-9-]+)*$",
+                    "minLength": 40,
                     "format": "uri-reference",
-                    "description": "Logical event producer path starting /data-plane or /control-plane followed by lowercase segments.",
+                    "description": "Logical event producer path: /nhs/england/notify/{environment}/{instance}/{plane}[/{service}...] where environment=production|staging|development|uat, instance=primary|secondary|dev-{digits}, plane=data-plane|control-plane, and optional service/lowercase tokens follow.",
                     "examples": [
-                        "/data-plane/ordering",
-                        "/control-plane/audit"
+                        "/nhs/england/notify/production/primary/data-plane/ordering",
+                        "/nhs/england/notify/staging/secondary/control-plane/audit",
+                        "/nhs/england/notify/development/dev-12345/data-plane/ordering"
                     ],
-                    "$comment": "Must begin with '/data-plane' or '/control-plane'. Subsequent segments: lowercase alphanumeric or hyphen. No trailing '/'."
+                    "$comment": "Segments: /nhs/england/notify/{environment}/{instance}/{plane}[/{token}...]; environment in (production|staging|development|uat); instance in (primary|secondary|dev-<digits> for ephemeral/dev sandboxes); plane in (data-plane|control-plane); subsequent optional segments: lowercase alphanumeric or hyphen; no trailing slash."
                 },
                 "subject": {
                     "type": "string",
@@ -443,14 +459,14 @@
                     "minLength": 1,
                     "allOf": [
                         {
-                            "name": "NHS Notify event type pattern",
+                            "name": "NHS Notify versioned event type pattern",
                             "type": "string",
-                            "pattern": "^uk\\.nhs\\.notify\\.[a-z0-9]+(\\.[a-z0-9]+)*$",
-                            "description": "Event type (uk.nhs.notify.*) using reverse-DNS style; lowercase alphanumerics and dots only.",
+                            "pattern": "^uk\\.nhs\\.notify\\.[a-z0-9]+(?:\\.[a-z0-9]+)*\\.v[0-9]+$",
+                            "description": "Versioned event type (uk.nhs.notify.*.<segments>.vN) using reverse-DNS style segments ending with .v<digits> (e.g. .v1, .v10).",
                             "examples": [
-                                "uk.nhs.notify.ordering.order.read"
+                                "uk.nhs.notify.ordering.order.read.v1"
                             ],
-                            "$comment": "NHS naming: lower-dot namespaced; allowed chars a-z0-9 and dots."
+                            "$comment": "Segments: lowercase a-z0-9; final segment is version marker v<digits>. Allows arbitrary positive integer (no leading zero rule enforced)."
                         },
                         {
                             "name": "Disallow 'completed' token",
@@ -525,11 +541,11 @@
                             "description": "Disallow 'failed'; model the concrete failure (e.g. payment.authorization.failed -> payment.authorization.rejected)."
                         }
                     ],
-                    "description": "Event type (uk.nhs.notify.*) using reverse-DNS style; ambiguous verbs (completed, finished, updated, changed, processed, handled, status, started, failed) disallowed.",
+                    "description": "Versioned event type (uk.nhs.notify.*.<segments>.vN) using reverse-DNS style; final segment MUST be .v<digits>; ambiguous verbs (completed, finished, updated, changed, processed, handled, status, started, failed) disallowed.",
                     "examples": [
-                        "uk.nhs.notify.ordering.order.read"
+                        "uk.nhs.notify.ordering.order.read.v1"
                     ],
-                    "$comment": "NHS naming: lower-dot namespaced; allowed chars a-z0-9 and dots; banned tokens: completed, finished, updated, changed, processed, handled, status, started, failed."
+                    "$comment": "NHS naming: lower-dot namespaced; version suffix required (.v<digits>); banned tokens anywhere before version: completed, finished, updated, changed, processed, handled, status, started, failed."
                 },
                 "time": {
                     "type": "string",
@@ -650,6 +666,61 @@
                                             "description": "The name of the microservice generating the event, e.g. order-service",
                                             "examples": [
                                                 "order-service"
+                                            ]
+                                        },
+                                        "repositoryUrl": {
+                                            "type": "string",
+                                            "format": "uri",
+                                            "description": "The URL of the repository containing the microservice codebase",
+                                            "examples": [
+                                                "https://github.com/nhsdigital/nhs-notify-standards"
+                                            ]
+                                        },
+                                        "accountId": {
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 100,
+                                            "pattern": "^[a-zA-Z0-9-]+$",
+                                            "description": "The cloud account id where the microservice is deployed, for example the AWS account id",
+                                            "examples": [
+                                                "123456789012",
+                                                "my-cloud-account"
+                                            ]
+                                        },
+                                        "environment": {
+                                            "type": "string",
+                                            "enum": [
+                                                "development",
+                                                "testing",
+                                                "staging",
+                                                "production"
+                                            ],
+                                            "description": "The deployment environment of the microservice generating the event",
+                                            "examples": [
+                                                "production"
+                                            ]
+                                        },
+                                        "instance": {
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 100,
+                                            "pattern": "^[a-zA-Z0-9-]+$",
+                                            "description": "The specific instance name of the deployment, eg Notify Standard, or Notify Hot backup, or Notify Priority customers",
+                                            "examples": [
+                                                "primary",
+                                                "hot-backup",
+                                                "priority-customers"
+                                            ]
+                                        },
+                                        "microserviceInstanceId": {
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 100,
+                                            "pattern": "^[a-zA-Z0-9-]+$",
+                                            "description": "The specific instance id of the microservice generating the event, for example the lambda id or pod name",
+                                            "examples": [
+                                                "lambda-1",
+                                                "pod-1234"
                                             ]
                                         },
                                         "version": {
@@ -857,7 +928,9 @@
                 "recordedtime",
                 "severitynumber",
                 "traceparent",
-                "data"
+                "data",
+                "profileversion",
+                "profilepublished"
             ],
             "dependentRequired": {
                 "severitynumber": [
@@ -869,7 +942,7 @@
                     "if": {
                         "properties": {
                             "source": {
-                                "pattern": "^/data-plane"
+                                "pattern": "^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/data-plane"
                             }
                         },
                         "required": [
@@ -1024,6 +1097,8 @@
             ],
             "examples": [
                 {
+                    "profileversion": "1.0.0",
+                    "profilepublished": "2025-10",
                     "specversion": "1.0",
                     "id": "6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111",
                     "source": "/data-plane/ordering",
@@ -1062,18 +1137,18 @@
     "properties": {
         "type": {
             "type": "string",
-            "const": "uk.nhs.notify.ordering.order.read",
-            "description": "Concrete event type string for this example event.",
+            "const": "uk.nhs.notify.ordering.order.read.v1",
+            "description": "Concrete versioned event type string for this example event (.vN suffix).",
             "examples": [
-                "uk.nhs.notify.ordering.order.read"
+                "uk.nhs.notify.ordering.order.read.v1"
             ]
         },
         "source": {
             "type": "string",
-            "const": "/data-plane/ordering",
+            "pattern": "^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/data-plane/ordering",
             "description": "Event source for ordering domain examples.",
             "examples": [
-                "/data-plane/ordering"
+                "/nhs/england/notify/production/primary/data-plane/ordering"
             ]
         },
         "subject": {
@@ -1215,7 +1290,7 @@
         {
             "specversion": "1.0",
             "id": "6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111",
-            "type": "uk.nhs.notify.ordering.order.read",
+            "type": "uk.nhs.notify.ordering.order.read.v1",
             "source": "/data-plane/ordering",
             "subject": "customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d",
             "time": "2025-10-01T10:15:30.000Z",

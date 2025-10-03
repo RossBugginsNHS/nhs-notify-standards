@@ -16,7 +16,7 @@ validate-default:
 	node validate.js nhs-notify-profile.schema.json output-example-event.json
 
 
-validate:
+validate: bundle-all flatten-all bundle-flatten-preferchild
 	node validate.js nhs-notify-example-event.schema.json output-example-event.json
 	node validate.js nhs-notify-profile.schema.json output-example-event.json
 	node validate.js nhs-notify-example-event.bundle.schema.json output-example-event.json

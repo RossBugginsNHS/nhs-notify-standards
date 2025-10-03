@@ -138,7 +138,7 @@
 </table>
 
 ### Properties
-  <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#notify-metadatateamresponsible">teamResponsible</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatanotifydomain">notifyDomain</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatamicroservice">microservice</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadataversion">version</a></td><td>String</td></tr></tbody></table>
+  <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#notify-metadatateamresponsible">teamResponsible</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatanotifydomain">notifyDomain</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatamicroservice">microservice</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatarepositoryurl">repositoryUrl</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadataaccountid">accountId</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadataenvironment">environment</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatainstance">instance</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatamicroserviceinstanceid">microserviceInstanceId</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadataversion">version</a></td><td>String</td></tr></tbody></table>
 
 
 

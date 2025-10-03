@@ -31,6 +31,42 @@
       "description": "The name of the microservice generating the event, e.g. order-service",
       "examples": ["order-service"]
     },
+    "repositoryUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL of the repository containing the microservice codebase",
+      "examples": ["https://github.com/nhsdigital/nhs-notify-standards"]
+    },
+    "accountId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "pattern": "^[a-zA-Z0-9-]+$",
+      "description": "The cloud account id where the microservice is deployed, for example the AWS account id",
+      "examples": ["123456789012", "my-cloud-account"]
+    },
+    "environment": {
+      "type": "string",
+      "enum": ["development", "testing", "staging", "production"],
+      "description": "The deployment environment of the microservice generating the event",
+      "examples": ["production"]
+    },
+    "instance":{
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "pattern": "^[a-zA-Z0-9-]+$",
+      "description": "The specific instance name of the deployment, eg Notify Standard, or Notify Hot backup, or Notify Priority customers",
+      "examples": ["primary", "hot-backup", "priority-customers"]
+    },
+    "microserviceInstanceId":{
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "pattern": "^[a-zA-Z0-9-]+$",
+      "description": "The specific instance id of the microservice generating the event, for example the lambda id or pod name",
+      "examples": ["lambda-1", "pod-1234" ]
+    },    
     "version": {
       "type": "string",
       "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",

@@ -1,36 +1,41 @@
 {
-  "type": "uk.nhs.notify.ordering.order.read",
-  "source": "/nhs/england/notify/data-plane/ordering",
-  "subject": "customer/1308e5aa-7fb3-44a4-8a71-df65ed457d58/order/b090a2c4-5898-494f-97de-3359b20405c3/item/5b445cd4-50be-42c4-9396-2776feec248f",
+  "type": "uk.nhs.notify.ordering.order.read.v1",
+  "source": "/nhs/england/notify/production/dev-79244/data-plane/ordering",
+  "subject": "customer/4d9b24d4-cbc2-4c06-87fa-12d87c73547e/order/351f9a6e-b2ae-45ab-a2e3-69f52f07b2f5/item/52dd9e20-8771-42df-a1b8-4caacf33cacd",
   "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json",
   "data": {
     "notify-payload": {
       "notify-data": {
-        "nhsNumber": "9438507868"
+        "nhsNumber": "9434765919"
       },
       "notify-metadata": {
         "teamResponsible": "Team 1",
         "notifyDomain": "Ordering",
-        "microservice": "KqZnk",
-        "version": "9993530563.75.0-532394596p.25.0+Yr.TeNZQh7lF.VjTVi.KWV6u6zQssb.s-H69.qrjZ3.JbL3bickgQJ.56krs5L.E4.3b"
+        "microservice": "6e7I",
+        "repositoryUrl": "https://fbhaNvxg.pbvSzWEybULenMQr5igPaJuNDiePlqS,s6fmrPaq5W,eUT.ezbGeA8Jm",
+        "accountId": "uhhbdp0q6",
+        "environment": "production",
+        "instance": "dev-79244",
+        "microserviceInstanceId": "8",
+        "version": "847675.972.0-6700kdTS.0.0.1983zz4z0yby.708092.5407.2514.75220.523lnoYEWJg.SAhbwp"
       }
     }
   },
   "profileversion": "1.0.0",
   "profilepublished": "2025-10",
   "specversion": "1.0",
-  "id": "6a1acfb4-b1db-4298-a9f4-e19eadc5befa",
-  "time": "1907-02-21T14:26:11.0Z",
+  "id": "f0c27485-8eb4-4e92-abee-eb5192ed93ce",
+  "time": "2025-10-03T14:08:40.604Z",
   "datacontenttype": "application/json",
-  "traceparent": "00-6ab4e395d6780d4dbf96ec65c8732f0a-6120ab894b564c77-99",
-  "tracestate": "ea Lorem id adipisicing",
-  "partitionkey": "hal7ohcf",
-  "recordedtime": "1922-02-06T18:49:03.0Z",
-  "sampledrate": 73141575,
-  "sequence": "49008559498889074416",
-  "severitytext": "WARN",
-  "severitynumber": 3,
-  "dataclassification": "internal",
-  "dataregulation": "HIPAA",
-  "datacategory": "sensitive"
+  "traceparent": "00-f2d05262e63dc40de5ac7bbf66d606de-4c265db55b118b0e-01",
+  "tracestate": "aute",
+  "partitionkey": "customer-4d9b24d4",
+  "recordedtime": "2025-10-03T14:08:41.604Z",
+  "sampledrate": 1,
+  "sequence": "00000000000367805643",
+  "severitytext": "FATAL",
+  "severitynumber": 5,
+  "dataclassification": "confidential",
+  "dataregulation": "GDPR",
+  "datacategory": "standard"
 }

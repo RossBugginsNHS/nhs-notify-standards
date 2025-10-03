@@ -13,7 +13,7 @@
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#specversion">specversion</a></td><td>String=1.0</td></tr><tr><td colspan="2"><a href="#id">id</a></td><td>String</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td rowspan="10"><a href="#type">type</a></td><td rowspan="10">All of:</td><td><a href="#type-0">NHS Notify event type pattern (String)</a></td></tr>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#profileversion">profileversion</a></td><td>String=1.0.0</td></tr><tr><td colspan="2"><a href="#profilepublished">profilepublished</a></td><td>String=2025-10</td></tr><tr><td colspan="2"><a href="#specversion">specversion</a></td><td>String=1.0</td></tr><tr><td colspan="2"><a href="#id">id</a></td><td>String</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td rowspan="10"><a href="#type">type</a></td><td rowspan="10">All of:</td><td><a href="#type-0">NHS Notify versioned event type pattern (String)</a></td></tr>
 <tr><td><a href="#type-1">Disallow 'completed' token (String)</a></td></tr>
 <tr><td><a href="#type-2">Disallow 'finished' token (String)</a></td></tr>
 <tr><td><a href="#type-3">Disallow 'updated' token (String)</a></td></tr>
@@ -31,6 +31,8 @@
 
 ```
 {
+    "profileversion": "1.0.0",
+    "profilepublished": "2025-10",
     "specversion": "1.0",
     "id": "6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111",
     "source": "/data-plane/ordering",
@@ -68,6 +70,60 @@
 
 
 <hr />
+
+
+## profileversion
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">NHS Notify CloudEvents profile semantic version.</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">Yes</td>
+    </tr>
+    <tr>
+      <th>Const</th>
+      <td colspan="2">1.0.0</td>
+    </tr><tr>
+      <th>Pattern</th>
+      <td colspan="2">^[0-9]+\.[0-9]+\.[0-9]+$</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+## profilepublished
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">NHS Notify CloudEvents profile publication date (YYYY-MM).</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">Yes</td>
+    </tr>
+    <tr>
+      <th>Const</th>
+      <td colspan="2">2025-10</td>
+    </tr><tr>
+      <th>Pattern</th>
+      <td colspan="2">^\d{4}-\d{2}$</td>
+    </tr>
+  </tbody>
+</table>
+
+
 
 
 ## specversion
@@ -134,7 +190,7 @@
   <tbody>
     <tr>
       <th>Description</th>
-      <td colspan="2">Logical event producer path starting /data-plane or /control-plane followed by lowercase segments.</td>
+      <td colspan="2">Logical event producer path: /nhs/england/notify/{environment}/{instance}/{plane}[/{service}...] where environment&#x3D;production|staging|development|uat, instance&#x3D;primary|secondary|dev-{digits}, plane&#x3D;data-plane|control-plane, and optional service/lowercase tokens follow.</td>
     </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
@@ -143,16 +199,16 @@
     </tr>
     <tr>
       <th>Min Length</th>
-      <td colspan="2">12</td>
+      <td colspan="2">40</td>
     </tr><tr>
       <th>Format</th>
       <td colspan="2">uri-reference</td>
     </tr><tr>
       <th>Pattern</th>
-      <td colspan="2">^/(data-plane|control-plane)(?:/[a-z0-9-]+)*$</td>
+      <td colspan="2">^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/(data-plane|control-plane)(?:/[a-z0-9-]+)*$</td>
     </tr><tr>
       <th>Examples</th>
-      <td colspan="2"><li>/data-plane/ordering</li><li>/control-plane/audit</li></td>
+      <td colspan="2"><li>/nhs/england/notify/production/primary/data-plane/ordering</li><li>/nhs/england/notify/staging/secondary/control-plane/audit</li><li>/nhs/england/notify/development/dev-12345/data-plane/ordering</li></td>
     </tr>
   </tbody>
 </table>
@@ -200,9 +256,9 @@
   <tbody>
     <tr>
       <th>Description</th>
-      <td colspan="2">Event type (uk.nhs.notify.*) using reverse-DNS style; ambiguous verbs (completed, finished, updated, changed, processed, handled, status, started, failed) disallowed.</td>
+      <td colspan="2">Versioned event type (uk.nhs.notify.*.&lt;segments&gt;.vN) using reverse-DNS style; final segment MUST be .v&lt;digits&gt;; ambiguous verbs (completed, finished, updated, changed, processed, handled, status, started, failed) disallowed.</td>
     </tr>
-    <tr><tr><td rowspan="10"><a href="#type">Type</a></td><td rowspan="10">All of:</td><td><a href="#type-0">NHS Notify event type pattern (String)</a></td></tr>
+    <tr><tr><td rowspan="10"><a href="#type">Type</a></td><td rowspan="10">All of:</td><td><a href="#type-0">NHS Notify versioned event type pattern (String)</a></td></tr>
 <tr><td><a href="#type-1">Disallow 'completed' token (String)</a></td></tr>
 <tr><td><a href="#type-2">Disallow 'finished' token (String)</a></td></tr>
 <tr><td><a href="#type-3">Disallow 'updated' token (String)</a></td></tr>
@@ -221,27 +277,27 @@
       <td colspan="2">1</td>
     </tr><tr>
       <th>Examples</th>
-      <td colspan="2"><li>uk.nhs.notify.ordering.order.read</li></td>
+      <td colspan="2"><li>uk.nhs.notify.ordering.order.read.v1</li></td>
     </tr>
   </tbody>
 </table>
 
 
 
-### <a id="type-0"></a> type.0 – NHS Notify event type pattern
+### <a id="type-0"></a> type.0 – NHS Notify versioned event type pattern
 <table class="jssd-property-table">
   <tbody>
     <tr>
       <th>Description</th>
-      <td colspan="2">Event type (uk.nhs.notify.*) using reverse-DNS style; lowercase alphanumerics and dots only.</td>
+      <td colspan="2">Versioned event type (uk.nhs.notify.*.&lt;segments&gt;.vN) using reverse-DNS style segments ending with .v&lt;digits&gt; (e.g. .v1, .v10).</td>
     </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Pattern</th>
-      <td colspan="2">^uk\.nhs\.notify\.[a-z0-9]+(\.[a-z0-9]+)*$</td>
+      <td colspan="2">^uk\.nhs\.notify\.[a-z0-9]+(?:\.[a-z0-9]+)*\.v[0-9]+$</td>
     </tr><tr>
       <th>Examples</th>
-      <td colspan="2"><li>uk.nhs.notify.ordering.order.read</li></td>
+      <td colspan="2"><li>uk.nhs.notify.ordering.order.read.v1</li></td>
     </tr>
   </tbody>
 </table>
@@ -862,13 +918,28 @@
 ```
 {
     "$id": "nhs-notify-profile.schema.json",
+    "$anchor": "nhs-notify-profile",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "title": "NHS Notify CloudEvents Profile",
     "description": "NHS Notify profile for CloudEvents 1.0 including additional governance and tracing attributes.",
     "type": "object",
     "additionalProperties": false,
-    "$comment": "CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.",
+    "$comment": "id includes the published date. CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.",
     "properties": {
+        "profileversion": {
+            "type": "string",
+            "const": "1.0.0",
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+            "description": "NHS Notify CloudEvents profile semantic version.",
+            "$comment": "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
+        },
+        "profilepublished": {
+            "type": "string",
+            "const": "2025-10",
+            "pattern": "^\\d{4}-\\d{2}$",
+            "description": "NHS Notify CloudEvents profile publication date (YYYY-MM).",
+            "$comment": "Publication date of this profile version (YYYY-MM)."
+        },
         "specversion": {
             "type": "string",
             "const": "1.0",
@@ -890,15 +961,16 @@
         },
         "source": {
             "type": "string",
-            "pattern": "^/(data-plane|control-plane)(?:/[a-z0-9-]+)*$",
-            "minLength": 12,
+            "pattern": "^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/(data-plane|control-plane)(?:/[a-z0-9-]+)*$",
+            "minLength": 40,
             "format": "uri-reference",
-            "description": "Logical event producer path starting /data-plane or /control-plane followed by lowercase segments.",
+            "description": "Logical event producer path: /nhs/england/notify/{environment}/{instance}/{plane}[/{service}...] where environment=production|staging|development|uat, instance=primary|secondary|dev-{digits}, plane=data-plane|control-plane, and optional service/lowercase tokens follow.",
             "examples": [
-                "/data-plane/ordering",
-                "/control-plane/audit"
+                "/nhs/england/notify/production/primary/data-plane/ordering",
+                "/nhs/england/notify/staging/secondary/control-plane/audit",
+                "/nhs/england/notify/development/dev-12345/data-plane/ordering"
             ],
-            "$comment": "Must begin with '/data-plane' or '/control-plane'. Subsequent segments: lowercase alphanumeric or hyphen. No trailing '/'."
+            "$comment": "Segments: /nhs/england/notify/{environment}/{instance}/{plane}[/{token}...]; environment in (production|staging|development|uat); instance in (primary|secondary|dev-<digits> for ephemeral/dev sandboxes); plane in (data-plane|control-plane); subsequent optional segments: lowercase alphanumeric or hyphen; no trailing slash."
         },
         "subject": {
             "type": "string",
@@ -916,14 +988,14 @@
             "minLength": 1,
             "allOf": [
                 {
-                    "name": "NHS Notify event type pattern",
+                    "name": "NHS Notify versioned event type pattern",
                     "type": "string",
-                    "pattern": "^uk\\.nhs\\.notify\\.[a-z0-9]+(\\.[a-z0-9]+)*$",
-                    "description": "Event type (uk.nhs.notify.*) using reverse-DNS style; lowercase alphanumerics and dots only.",
+                    "pattern": "^uk\\.nhs\\.notify\\.[a-z0-9]+(?:\\.[a-z0-9]+)*\\.v[0-9]+$",
+                    "description": "Versioned event type (uk.nhs.notify.*.<segments>.vN) using reverse-DNS style segments ending with .v<digits> (e.g. .v1, .v10).",
                     "examples": [
-                        "uk.nhs.notify.ordering.order.read"
+                        "uk.nhs.notify.ordering.order.read.v1"
                     ],
-                    "$comment": "NHS naming: lower-dot namespaced; allowed chars a-z0-9 and dots."
+                    "$comment": "Segments: lowercase a-z0-9; final segment is version marker v<digits>. Allows arbitrary positive integer (no leading zero rule enforced)."
                 },
                 {
                     "name": "Disallow 'completed' token",
@@ -998,11 +1070,11 @@
                     "description": "Disallow 'failed'; model the concrete failure (e.g. payment.authorization.failed -> payment.authorization.rejected)."
                 }
             ],
-            "description": "Event type (uk.nhs.notify.*) using reverse-DNS style; ambiguous verbs (completed, finished, updated, changed, processed, handled, status, started, failed) disallowed.",
+            "description": "Versioned event type (uk.nhs.notify.*.<segments>.vN) using reverse-DNS style; final segment MUST be .v<digits>; ambiguous verbs (completed, finished, updated, changed, processed, handled, status, started, failed) disallowed.",
             "examples": [
-                "uk.nhs.notify.ordering.order.read"
+                "uk.nhs.notify.ordering.order.read.v1"
             ],
-            "$comment": "NHS naming: lower-dot namespaced; allowed chars a-z0-9 and dots; banned tokens: completed, finished, updated, changed, processed, handled, status, started, failed."
+            "$comment": "NHS naming: lower-dot namespaced; version suffix required (.v<digits>); banned tokens anywhere before version: completed, finished, updated, changed, processed, handled, status, started, failed."
         },
         "time": {
             "type": "string",
@@ -1196,7 +1268,9 @@
         "recordedtime",
         "severitynumber",
         "traceparent",
-        "data"
+        "data",
+        "profileversion",
+        "profilepublished"
     ],
     "dependentRequired": {
         "severitynumber": [
@@ -1208,7 +1282,7 @@
             "if": {
                 "properties": {
                     "source": {
-                        "pattern": "^/data-plane"
+                        "pattern": "^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/data-plane"
                     }
                 },
                 "required": [
@@ -1363,6 +1437,8 @@
     ],
     "examples": [
         {
+            "profileversion": "1.0.0",
+            "profilepublished": "2025-10",
             "specversion": "1.0",
             "id": "6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111",
             "source": "/data-plane/ordering",
