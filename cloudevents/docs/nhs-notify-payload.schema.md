@@ -28,7 +28,6 @@
     "notify-metadata": {
         "teamResponsible": "Team 1",
         "notifyDomain": "Ordering",
-        "version": "1.3.0",
         "microservice": "order-service"
     }
 }
@@ -48,7 +47,6 @@
     "notify-metadata": {
         "teamResponsible": "Team 2",
         "notifyDomain": "Reporting",
-        "version": "2.0.0",
         "microservice": "reporting-api"
     }
 }
@@ -138,7 +136,7 @@
 </table>
 
 ### Properties
-  <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#notify-metadatateamresponsible">teamResponsible</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatanotifydomain">notifyDomain</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatamicroservice">microservice</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatarepositoryurl">repositoryUrl</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadataaccountid">accountId</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadataenvironment">environment</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatainstance">instance</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatamicroserviceinstanceid">microserviceInstanceId</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadataversion">version</a></td><td>String</td></tr></tbody></table>
+  <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#notify-metadatateamresponsible">teamResponsible</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatanotifydomain">notifyDomain</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatamicroservice">microservice</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatarepositoryurl">repositoryUrl</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadataaccountid">accountId</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadataenvironment">environment</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatainstance">instance</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatamicroserviceinstanceid">microserviceInstanceId</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatamicroserviceversion">microserviceVersion</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatacommitsha">commitSha</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatabuildtimestamp">buildTimestamp</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadataservicetier">serviceTier</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadataregion">region</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatapseudonymisationlevel">pseudonymisationLevel</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadatareplayindicator">replayIndicator</a></td><td>Boolean</td></tr><tr><td colspan="2"><a href="#notify-metadataoriginaleventid">originalEventId</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadataintegrityhash">integrityHash</a></td><td>String</td></tr><tr><td colspan="2"><a href="#notify-metadataproducedbytype">producedByType</a></td><td>String</td></tr></tbody></table>
 
 
 
@@ -191,7 +189,6 @@
                 {
                     "teamResponsible": "Team 1",
                     "notifyDomain": "Ordering",
-                    "version": "1.3.0",
                     "microservice": "order-service"
                 }
             ]
@@ -217,7 +214,6 @@
             "notify-metadata": {
                 "teamResponsible": "Team 1",
                 "notifyDomain": "Ordering",
-                "version": "1.3.0",
                 "microservice": "order-service"
             }
         },
@@ -229,7 +225,6 @@
             "notify-metadata": {
                 "teamResponsible": "Team 2",
                 "notifyDomain": "Reporting",
-                "version": "2.0.0",
                 "microservice": "reporting-api"
             }
         }

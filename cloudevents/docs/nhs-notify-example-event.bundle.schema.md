@@ -619,7 +619,6 @@
                                         {
                                             "teamResponsible": "Team 1",
                                             "notifyDomain": "Ordering",
-                                            "version": "1.3.0",
                                             "microservice": "order-service"
                                         }
                                     ],
@@ -628,10 +627,30 @@
                                     "type": "object",
                                     "additionalProperties": false,
                                     "required": [
-                                        "version",
+                                        "microserviceVersion",
+                                        "microservice",
+                                        "repositoryUrl",
+                                        "accountId",
+                                        "environment",
+                                        "instance",
+                                        "microserviceInstanceId",
                                         "teamResponsible",
                                         "notifyDomain"
                                     ],
+                                    "$defs": {
+                                        "commitSha": {
+                                            "type": "string",
+                                            "pattern": "^[0-9a-f]{7,40}$"
+                                        },
+                                        "uuid": {
+                                            "type": "string",
+                                            "format": "uuid"
+                                        },
+                                        "sha256prefixed": {
+                                            "type": "string",
+                                            "pattern": "^sha256:[0-9a-f]{64}$"
+                                        }
+                                    },
                                     "properties": {
                                         "teamResponsible": {
                                             "type": "string",
@@ -723,13 +742,100 @@
                                                 "pod-1234"
                                             ]
                                         },
-                                        "version": {
+                                        "microserviceVersion": {
                                             "type": "string",
                                             "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
-                                            "description": "Semantic version (SemVer 2.0.0) of the producing microservice at emit time.",
+                                            "description": "Semantic version (SemVer 2.0.0) of the producing microservice at emit time. eg useful for blue green deployments.",
                                             "examples": [
                                                 "1.3.0",
                                                 "2.0.0-beta.1"
+                                            ]
+                                        },
+                                        "commitSha": {
+                                            "$ref": "#/$defs/commitSha",
+                                            "description": "Git commit SHA of the producing build (7-40 hex).",
+                                            "examples": [
+                                                "a1b2c3d",
+                                                "d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2"
+                                            ]
+                                        },
+                                        "buildTimestamp": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "description": "Timestamp the microservice build artifact was created (UTC).",
+                                            "examples": [
+                                                "2025-10-03T10:15:30.123Z"
+                                            ]
+                                        },
+                                        "serviceTier": {
+                                            "type": "string",
+                                            "enum": [
+                                                "critical",
+                                                "standard",
+                                                "experimental"
+                                            ],
+                                            "description": "Operational criticality tier of the service emitting the event.",
+                                            "examples": [
+                                                "critical"
+                                            ]
+                                        },
+                                        "region": {
+                                            "type": "string",
+                                            "enum": [
+                                                "eu-west-2",
+                                                "eu-west-1",
+                                                "eu-central-1"
+                                            ],
+                                            "description": "Deployment region / geography for the emitting instance.",
+                                            "examples": [
+                                                "eu-west-2"
+                                            ]
+                                        },
+                                        "pseudonymisationLevel": {
+                                            "type": "string",
+                                            "enum": [
+                                                "none",
+                                                "tokenised",
+                                                "pseudonymised",
+                                                "anonymised"
+                                            ],
+                                            "description": "Degree of personal data transformation applied to the domain payload prior to emission.",
+                                            "examples": [
+                                                "none"
+                                            ]
+                                        },
+                                        "replayIndicator": {
+                                            "type": "boolean",
+                                            "description": "True if this event is a replay/backfill of a previously emitted event (not a new business occurrence).",
+                                            "examples": [
+                                                false
+                                            ]
+                                        },
+                                        "originalEventId": {
+                                            "$ref": "#/$defs/uuid",
+                                            "description": "Identifier of the original event when replayIndicator=true.",
+                                            "examples": [
+                                                "6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111"
+                                            ]
+                                        },
+                                        "integrityHash": {
+                                            "$ref": "#/$defs/sha256prefixed",
+                                            "description": "Content integrity hash over the canonical notify-payload (stable key order), prefixed with 'sha256:'.",
+                                            "examples": [
+                                                "sha256:3f786850e387550fdab836ed7e6dc881de23001b1a2b3c4d5e6f7a8b9c0d1e2f"
+                                            ]
+                                        },
+                                        "producedByType": {
+                                            "type": "string",
+                                            "enum": [
+                                                "lambda",
+                                                "container",
+                                                "vm",
+                                                "other"
+                                            ],
+                                            "description": "The type of compute resource producing the event.",
+                                            "examples": [
+                                                "lambda"
                                             ]
                                         }
                                     }
@@ -755,7 +861,6 @@
                                     "notify-metadata": {
                                         "teamResponsible": "Team 1",
                                         "notifyDomain": "Ordering",
-                                        "version": "1.3.0",
                                         "microservice": "order-service"
                                     }
                                 },
@@ -767,7 +872,6 @@
                                     "notify-metadata": {
                                         "teamResponsible": "Team 2",
                                         "notifyDomain": "Reporting",
-                                        "version": "2.0.0",
                                         "microservice": "reporting-api"
                                     }
                                 }
@@ -1284,6 +1388,18 @@
             "type": "object",
             "description": "Placeholder for control-plane specific properties (extend in concrete event schemas).",
             "$comment": "As with DataPlane, add identifying / required properties here (e.g. 'plane': 'control'). Ensure divergence for better validation and consumer code generation."
+        },
+        "commitSha": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{7,40}$"
+        },
+        "uuid": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "sha256prefixed": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
         }
     },
     "examples": [

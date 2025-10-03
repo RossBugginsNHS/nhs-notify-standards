@@ -93,6 +93,17 @@ async function main() {
         if (dataPlane) root.$defs.DataPlane = dataPlane;
         if (controlPlane) root.$defs.ControlPlane = controlPlane;
       } catch {}
+      // Hoist notify-metadata nested $defs (e.g., commitSha, uuid, sha256prefixed) so flattened refs resolve
+      try {
+        const metaDefs = root.allOf?.[0]?.properties?.data?.properties?.['notify-payload']?.properties?.['notify-metadata']?.$defs;
+        if (metaDefs && typeof metaDefs === 'object') {
+          for (const [k,v] of Object.entries(metaDefs)) {
+            if (!(k in root.$defs)) {
+              root.$defs[k] = v;
+            }
+          }
+        }
+      } catch {}
       function rewriteRefs(node: any) {
         if (!node || typeof node !== 'object') return;
         for (const key of Object.keys(node)) {
@@ -101,6 +112,10 @@ async function main() {
             const match = val.match(/#\/allOf\/0\/properties\/data\/properties\/notify-payload\/%24defs\/(DataPlane|ControlPlane)$/);
             if (match) {
               node[key] = `#/$defs/${match[1]}`;
+            }
+            const metaMatch = val.match(/#\/allOf\/0\/properties\/data\/properties\/notify-payload\/properties\/notify-metadata\/%24defs\/(commitSha|uuid|sha256prefixed)/);
+            if (metaMatch) {
+              node[key] = `#/$defs/${metaMatch[1]}`;
             }
           } else if (typeof val === 'object') {
             rewriteRefs(val);

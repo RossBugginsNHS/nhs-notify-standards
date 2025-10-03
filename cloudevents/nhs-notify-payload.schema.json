@@ -31,7 +31,7 @@
       "$ref": "./nhs-notify-metadata.schema.json",
       "description": "Standard metadata set shared across Notify events.",
       "examples": [
-        {"teamResponsible": "Team 1", "notifyDomain": "Ordering", "version": "1.3.0", "microservice": "order-service"}
+        {"teamResponsible": "Team 1", "notifyDomain": "Ordering", "microservice": "order-service"}
       ]
     }
   },
@@ -51,11 +51,11 @@
   "examples": [
     {
       "notify-data": {"nhsNumber": "9434765919"},
-      "notify-metadata": {"teamResponsible": "Team 1", "notifyDomain": "Ordering", "version": "1.3.0", "microservice": "order-service"}
+      "notify-metadata": {"teamResponsible": "Team 1", "notifyDomain": "Ordering", "microservice": "order-service"}
     },
     {
       "notify-data": {"plane": "control", "action": "rotate-keys"},
-      "notify-metadata": {"teamResponsible": "Team 2", "notifyDomain": "Reporting", "version": "2.0.0", "microservice": "reporting-api"}
+      "notify-metadata": {"teamResponsible": "Team 2", "notifyDomain": "Reporting",  "microservice": "reporting-api"}
     }
   ]
 }

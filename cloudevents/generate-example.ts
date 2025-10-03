@@ -1,6 +1,7 @@
 import $RefParser from "json-schema-ref-parser";
 import jsf from "json-schema-faker";
 import fs from "fs";
+import crypto from "crypto";
 
 // Utility random helpers (non-cryptographic; deterministic constraints only)
 function randomInt(max: number) { return Math.floor(Math.random() * max); }
@@ -54,7 +55,7 @@ async function main() {
 
     // 2. Generate a stable type if schema didn't const it (avoid banned verbs)
     if (!example.type || typeof example.type !== 'string') {
-      example.type = 'uk.nhs.notify.ordering.order.read';
+      example.type = 'uk.nhs.notify.ordering.order.read.v1';
     }
 
     // 3. Generate IDs
@@ -138,10 +139,42 @@ async function main() {
     // Enforce required metadata schema fields & align environment/instance semantics
     meta.teamResponsible = meta.teamResponsible || 'Team 1';
     meta.notifyDomain = meta.notifyDomain || 'Ordering';
-    meta.version = meta.version || '1.3.0';
+    // Remove legacy 'version' field if present
+    if ('version' in meta) {
+      delete meta.version;
+    }
+    // environment mapping (uat source -> testing metadata)
     meta.environment = env === 'uat' ? 'testing' : (['development','staging','production'].includes(env) ? env : 'development');
     meta.instance = instance;
     meta.microservice = meta.microservice || 'order-service';
+    // Required new metadata fields
+    meta.microserviceVersion = meta.microserviceVersion || '1.3.0';
+    meta.repositoryUrl = meta.repositoryUrl || 'https://github.com/nhsdigital/nhs-notify-standards';
+    meta.accountId = meta.accountId || '123456789012';
+    meta.microserviceInstanceId = meta.microserviceInstanceId || 'pod-1';
+    // Newly added optional provenance / governance fields
+    meta.commitSha = meta.commitSha || (randomHex(12));
+    meta.buildTimestamp = meta.buildTimestamp || now.toISOString();
+    meta.serviceTier = meta.serviceTier || 'standard';
+    meta.region = meta.region || 'eu-west-2';
+    meta.pseudonymisationLevel = meta.pseudonymisationLevel || 'none';
+    // Replay semantics default false
+    if (typeof meta.replayIndicator !== 'boolean') meta.replayIndicator = false;
+    if (meta.replayIndicator && !meta.originalEventId) meta.originalEventId = uuid();
+
+    // Compute integrityHash over canonical notify-data JSON (sorted keys) if not present
+    if (!meta.integrityHash) {
+      const canonicalise = (obj: any): string => {
+        if (obj === null || typeof obj !== 'object') return JSON.stringify(obj);
+        if (Array.isArray(obj)) return '[' + obj.map(canonicalise).join(',') + ']';
+        const keys = Object.keys(obj).sort();
+        return '{' + keys.map(k => JSON.stringify(k) + ':' + canonicalise(obj[k])).join(',') + '}';
+      };
+      const notifyData = payload['notify-data'] ?? {};
+      const canonical = canonicalise(notifyData);
+      const digest = crypto.createHash('sha256').update(canonical).digest('hex');
+      meta.integrityHash = `sha256:${digest}`;
+    }
 
     // 13. datacontenttype & dataschema stable defaults
     example.datacontenttype = 'application/json';
