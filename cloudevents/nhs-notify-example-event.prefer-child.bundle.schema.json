@@ -258,16 +258,16 @@
     },
     "source": {
       "type": "string",
-      "pattern": "^/(data-plane|control-plane)(?:/[a-z0-9-]+)*$",
+      "pattern": "^/nhs/england/notify/(data-plane|control-plane)(?:/[a-z0-9-]+)*$",
       "minLength": 12,
       "format": "uri-reference",
       "description": "Logical event producer path starting /data-plane or /control-plane followed by lowercase segments.",
       "examples": [
-        "/data-plane/ordering",
-        "/control-plane/audit"
+        "/nhs/england/notify/data-plane/ordering",
+        "/nhs/england/notify/control-plane/audit"
       ],
       "$comment": "Must begin with '/data-plane' or '/control-plane'. Subsequent segments: lowercase alphanumeric or hyphen. No trailing '/'.",
-      "const": "/data-plane/ordering"
+      "const": "/nhs/england/notify/data-plane/ordering"
     },
     "subject": {
       "type": "string",
@@ -467,6 +467,20 @@
         }
       ]
     },
+    "profileversion": {
+      "type": "string",
+      "const": "1.0.0",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "NHS Notify CloudEvents profile semantic version.",
+      "$comment": "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
+    },
+    "profilepublished": {
+      "type": "string",
+      "const": "2025-10",
+      "pattern": "^\\d{4}-\\d{2}$",
+      "description": "NHS Notify CloudEvents profile publication date (YYYY-MM).",
+      "$comment": "Publication date of this profile version (YYYY-MM)."
+    },
     "specversion": {
       "type": "string",
       "const": "1.0",
@@ -642,7 +656,9 @@
     "time",
     "recordedtime",
     "severitynumber",
-    "traceparent"
+    "traceparent",
+    "profileversion",
+    "profilepublished"
   ],
   "$defs": {
     "ExamplePayload": {

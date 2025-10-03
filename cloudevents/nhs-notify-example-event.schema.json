@@ -15,9 +15,9 @@
     },
     "source": {
       "type": "string",
-      "const": "/data-plane/ordering",
+      "const": "/nhs/england/notify/data-plane/ordering",
       "description": "Event source for ordering domain examples.",
-      "examples": ["/data-plane/ordering"]
+      "examples": ["/nhs/england/notify/data-plane/ordering"]
     },
     "subject": {
       "type": "string",

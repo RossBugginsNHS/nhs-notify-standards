@@ -23,7 +23,7 @@ validate:
 	node validate.js nhs-notify-example-event.flattened.schema.json output-example-event.json
 	node validate.js nhs-notify-example-event.prefer-child.bundle.schema.json output-example-event.json
 
-docs: bundle-all flatten-all bundle-flatten-preferchild validate
+docs: generate-default bundle-all flatten-all bundle-flatten-preferchild validate
 	npm run docs
 
 bundle-example:

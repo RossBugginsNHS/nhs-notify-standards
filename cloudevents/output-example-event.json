@@ -1,34 +1,36 @@
 {
   "type": "uk.nhs.notify.ordering.order.read",
-  "source": "/data-plane/ordering",
-  "subject": "customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d",
+  "source": "/nhs/england/notify/data-plane/ordering",
+  "subject": "customer/1308e5aa-7fb3-44a4-8a71-df65ed457d58/order/b090a2c4-5898-494f-97de-3359b20405c3/item/5b445cd4-50be-42c4-9396-2776feec248f",
   "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json",
   "data": {
     "notify-payload": {
       "notify-data": {
-        "nhsNumber": "688793 3721"
+        "nhsNumber": "9438507868"
       },
       "notify-metadata": {
         "teamResponsible": "Team 1",
         "notifyDomain": "Ordering",
-        "microservice": "gdvpGdXX",
-        "version": "39970690.0.355999-3651227925p.719397679.6812939930.065599286cA7x.792275308t7aZLo1MhSy.14530588.9639908529qJkdo+4GN2X.or7GMj.g0UvV8V"
+        "microservice": "KqZnk",
+        "version": "9993530563.75.0-532394596p.25.0+Yr.TeNZQh7lF.VjTVi.KWV6u6zQssb.s-H69.qrjZ3.JbL3bickgQJ.56krs5L.E4.3b"
       }
     }
   },
+  "profileversion": "1.0.0",
+  "profilepublished": "2025-10",
   "specversion": "1.0",
-  "id": "e0683e65-08f3-4fc5-96a3-6b9464463651",
-  "time": "1969-04-23T01:20:50.0Z",
+  "id": "6a1acfb4-b1db-4298-a9f4-e19eadc5befa",
+  "time": "1907-02-21T14:26:11.0Z",
   "datacontenttype": "application/json",
-  "traceparent": "00-70a3dadcb47c723504897717562f0390-6212cf4166203791-6e",
-  "tracestate": "ut esse reprehenderit officia",
-  "partitionkey": "-ljk3de",
-  "recordedtime": "1936-06-12T07:05:03.0Z",
-  "sampledrate": 40323627,
-  "sequence": "88641791672934156767",
-  "severitytext": "DEBUG",
-  "severitynumber": 1,
-  "dataclassification": "restricted",
-  "dataregulation": "ISO-27001",
+  "traceparent": "00-6ab4e395d6780d4dbf96ec65c8732f0a-6120ab894b564c77-99",
+  "tracestate": "ea Lorem id adipisicing",
+  "partitionkey": "hal7ohcf",
+  "recordedtime": "1922-02-06T18:49:03.0Z",
+  "sampledrate": 73141575,
+  "sequence": "49008559498889074416",
+  "severitytext": "WARN",
+  "severitynumber": 3,
+  "dataclassification": "internal",
+  "dataregulation": "HIPAA",
   "datacategory": "sensitive"
 }
