@@ -57,7 +57,7 @@
               "description": "Example data-plane object for illustrative purposes."
             },
             "notify-metadata": {
-              "$ref": "#/$defs/ExampleMetadata",
+              "allOf": [{ "$ref": "#/$defs/ExampleMetadata" }, { "$ref": "./nhs-notify-metadata.schema.json" }],
               "description": "Example metadata block constrained for this example."
             }
           }
