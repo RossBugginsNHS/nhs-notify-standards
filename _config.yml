@@ -22,5 +22,5 @@ title: NHS Notify Standards
 # email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
   Standards for NHS Notify
-baseurl: "cloudevents/schemas/"
-url: "https://aiva2.web-gateway.dev.nhsnotify.national.nhs.uk" # the base hostname & protocol for your site, e.g. http://example.com
+#baseurl: "cloudevents/schemas/"
+#url: "https://aiva2.web-gateway.dev.nhsnotify.national.nhs.uk" # the base hostname & protocol for your site, e.g. http://example.com
