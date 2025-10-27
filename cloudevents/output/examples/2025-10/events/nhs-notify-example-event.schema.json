@@ -1,0 +1,82 @@
+{
+  "$id": "/examples/2025-10/events/nhs-notify-example-event.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "$ref": "../example-profile.schema.json"
+    }
+  ],
+  "description": "Example  event",
+  "examples": [
+    {
+      "data": {
+        "notify-payload": {
+          "notify-data": {
+            "nhsNumber": "9434765919"
+          },
+          "notify-metadata": {
+            "notifyDomain": "Ordering",
+            "teamResponsible": "Team 1"
+          }
+        }
+      },
+      "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.yaml",
+      "id": "6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111",
+      "recordedtime": "2025-10-01T10:15:30.250Z",
+      "severitynumber": 1,
+      "severitytext": "DEBUG",
+      "source": "/data-plane/example",
+      "specversion": "1.0",
+      "subject": "customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d",
+      "time": "2025-10-01T10:15:30.000Z",
+      "traceparent": "00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01",
+      "type": "uk.nhs.notify.example.order.read.v1"
+    }
+  ],
+  "properties": {
+    "data": {
+      "$ref": "../data/nhs-notify-example-event-data.schema.json",
+      "description": "Example payload wrapper containing notify-payload."
+    },
+    "dataschema": {
+      "const": "../data/nhs-notify-example-event-data.schema.json",
+      "description": "Canonical URI of the example event's data schema.",
+      "examples": [
+        "nhs-notify-example-event-data.schema.json"
+      ],
+      "type": "string"
+    },
+    "source": {
+      "description": "Event source for ordering domain examples.",
+      "examples": [
+        "/nhs/england/notify/production/primary/data-plane/example"
+      ],
+      "pattern": "^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/data-plane/example",
+      "type": "string"
+    },
+    "subject": {
+      "description": "Path in the form customer/{id}/order/{id}/item/{id} where each {{id}} is a UUID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx).",
+      "examples": [
+        "customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d"
+      ],
+      "pattern": "^customer/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/order/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/item/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+      "type": "string"
+    },
+    "type": {
+      "const": "uk.nhs.notify.example.order.read.v1",
+      "description": "Concrete versioned event type string for this example event (.vN suffix).",
+      "examples": [
+        "uk.nhs.notify.example.order.read.v1"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "source",
+    "dataschema",
+    "data"
+  ],
+  "title": "Example Event",
+  "type": "object"
+}

@@ -1,0 +1,81 @@
+{
+  "$comment": "Notify Payload",
+  "$defs": {
+    "ControlPlane": {
+      "$comment": "As with DataPlane, add identifying / required properties here (e.g. 'plane': 'control'). Ensure divergence for better validation and consumer code generation.",
+      "description": "Placeholder for control-plane specific properties (extend in concrete event schemas).",
+      "type": "object"
+    },
+    "DataPlane": {
+      "$comment": "Add required fields here (e.g. 'plane': 'data') or domain-specific attributes; when distinct from ControlPlane, change notify-data.anyOf to oneOf to enforce exclusivity.",
+      "description": "Placeholder for data-plane specific properties (extend in concrete event schemas).",
+      "type": "object"
+    }
+  },
+  "$id": "/common/2025-10/defs/nhs-notify-payload.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "examples": [
+    {
+      "notify-data": {
+        "nhsNumber": "9434765919"
+      },
+      "notify-metadata": {
+        "microservice": "order-service",
+        "notifyDomain": "Ordering",
+        "teamResponsible": "Team 1"
+      }
+    },
+    {
+      "notify-data": {
+        "action": "rotate-keys",
+        "plane": "control"
+      },
+      "notify-metadata": {
+        "microservice": "reporting-api",
+        "notifyDomain": "Reporting",
+        "teamResponsible": "Team 2"
+      }
+    }
+  ],
+  "properties": {
+    "notify-data": {
+      "$comment": "Union of two variant payload shapes. anyOf is used (instead of oneOf) because the two variants are currently placeholders and not mutually differentiable. Once DataPlane and ControlPlane gain distinct required properties or a discriminator, switch to oneOf (and optionally add a 'plane' enum property) to prevent ambiguous matches.",
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DataPlane"
+        },
+        {
+          "$ref": "#/$defs/ControlPlane"
+        }
+      ],
+      "description": "Domain specific data attributes (variant: DataPlane | ControlPlane).",
+      "examples": [
+        {
+          "nhsNumber": "9434765919"
+        },
+        {
+          "action": "rotate-keys",
+          "plane": "control"
+        }
+      ],
+      "type": "object"
+    },
+    "notify-metadata": {
+      "$ref": "./nhs-notify-metadata.schema.json",
+      "description": "Standard metadata set shared across Notify events.",
+      "examples": [
+        {
+          "microservice": "order-service",
+          "notifyDomain": "Ordering",
+          "teamResponsible": "Team 1"
+        }
+      ]
+    }
+  },
+  "required": [
+    "notify-data",
+    "notify-metadata"
+  ],
+  "type": "object"
+}

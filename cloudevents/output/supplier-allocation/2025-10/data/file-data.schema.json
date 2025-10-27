@@ -1,0 +1,16 @@
+{
+  "$id": "/supplier-allocation/2025-10/data/file-data.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Example data type",
+  "properties": {
+    "something": {
+      "$ref": "../defs/someobject.schema.json#/properties/something"
+    }
+  },
+  "required": [
+    "something"
+  ],
+  "title": "Example data type",
+  "type": "object"
+}

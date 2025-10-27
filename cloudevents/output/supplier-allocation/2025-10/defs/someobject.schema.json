@@ -1,0 +1,19 @@
+{
+  "$id": "/supplier-allocation/2025-10/defs/someobject.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Reusable types for NHS Notify payload schemas.",
+  "properties": {
+    "something": {
+      "description": "Example reusable property definition",
+      "examples": [
+        "example value"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "something"
+  ],
+  "title": "NHS Common Types v1.0.0",
+  "type": "object"
+}

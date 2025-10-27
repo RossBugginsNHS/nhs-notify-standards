@@ -2,13 +2,13 @@
 
 **Event Type:** `uk.nhs.notify.example.order.read.v1`
 
-**Source:** `/nhs/england/notify/uat/secondary/data-plane/example`
+**Source:** `/nhs/england/notify/staging/primary/data-plane/example`
 
-**Subject:** `customer/f5fdfccc-fead-cb4a-fe5a-34eeec0ddef8/order/dbccee72-ea05-0fb7-af12-b2d1c9c4e24f/item/c4d2fcee-1bab-a03d-9b40-f57c6dff6d4c`
+**Subject:** `customer/9b11fa83-cd00-6b52-0b19-c53a61fbbdeb/order/d5dee68c-bb94-6bfe-fffa-c9bbade58eae/item/9ecadd0c-f9fa-3dc5-af41-09b8ac8fdded`
 
-**Event ID:** `278c521f-c378-4b47-bd79-c09331509712`
+**Event ID:** `b12d6bff-aab2-489f-9e09-3fd4ed1f70d9`
 
-**Timestamp:** 2025-10-27T21:18:08.281Z
+**Timestamp:** 2025-10-27T21:37:23.639Z
 
 ## Related Schema Documentation
 
@@ -21,8 +21,8 @@
 ```json
 {
   "type": "uk.nhs.notify.example.order.read.v1",
-  "source": "/nhs/england/notify/uat/secondary/data-plane/example",
-  "subject": "customer/f5fdfccc-fead-cb4a-fe5a-34eeec0ddef8/order/dbccee72-ea05-0fb7-af12-b2d1c9c4e24f/item/c4d2fcee-1bab-a03d-9b40-f57c6dff6d4c",
+  "source": "/nhs/england/notify/staging/primary/data-plane/example",
+  "subject": "customer/9b11fa83-cd00-6b52-0b19-c53a61fbbdeb/order/d5dee68c-bb94-6bfe-fffa-c9bbade58eae/item/9ecadd0c-f9fa-3dc5-af41-09b8ac8fdded",
   "dataschema": "../data/nhs-notify-example-event-data.schema.json",
   "data": {
     "nhsNumber": "9434765919"
@@ -30,19 +30,19 @@
   "profileversion": "1.0.0",
   "profilepublished": "2025-10",
   "specversion": "1.0",
-  "id": "278c521f-c378-4b47-bd79-c09331509712",
-  "time": "2025-10-27T21:18:08.281Z",
+  "id": "b12d6bff-aab2-489f-9e09-3fd4ed1f70d9",
+  "time": "2025-10-27T21:37:23.639Z",
   "datacontenttype": "application/json",
-  "traceparent": "00-621b943a1908c5a50752ec64ab4ea046-f1905bf1d2481da7-01",
-  "tracestate": "in ex",
-  "partitionkey": "customer-f5fdfccc",
-  "recordedtime": "2025-10-27T21:18:09.281Z",
+  "traceparent": "00-70d6ad367f9e48022b8e926ca47604e3-197b0c413a1153a2-01",
+  "tracestate": "in dolore consectetur adipisicing Excepteur",
+  "partitionkey": "customer-9b11fa83",
+  "recordedtime": "2025-10-27T21:37:24.639Z",
   "sampledrate": 1,
-  "sequence": "00000000000785160899",
+  "sequence": "00000000000665691524",
   "severitytext": "ERROR",
   "severitynumber": 4,
-  "dataclassification": "restricted",
+  "dataclassification": "confidential",
   "dataregulation": "NIST-800-53",
-  "datacategory": "non-sensitive"
+  "datacategory": "sensitive"
 }
 ```

@@ -3,6 +3,9 @@ include scripts/init.mk
 
 .PHONY: build publish publish-json publish-yaml generate test deploy clean build-docs update-readme
 
+config:: _install-dependencies version # Configure development environment (main) @Configuration
+	npm install
+
 build:
 	@echo "=== Building all schemas ==="
 	$(MAKE) -C src build
@@ -36,11 +39,13 @@ deploy:
 	@echo ""
 	@echo "✅ Build complete: local schemas tested and distribution schemas ready!"
 
-clean:
+clean::
 	@echo "=== Cleaning output/ and schemas/ directories ==="
 	rm -rf ./output
 	rm -rf ./schemas
 	rm -rf ./docs
+	rm -rf .version
+	rm -f version.json
 	@echo ""
 
 build-docs:
