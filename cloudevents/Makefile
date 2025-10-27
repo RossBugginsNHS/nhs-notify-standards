@@ -32,8 +32,7 @@ clean:
 	rm -rf ./docs
 	@echo ""
 
-build-docs: deploy
-	rm -fr ./docs/*
+build-docs:
 	@echo "=== Generating documentation for all schemas ==="
 	npm run build-docs -- ./output ./docs
 
