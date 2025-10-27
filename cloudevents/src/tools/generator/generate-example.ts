@@ -1,6 +1,7 @@
 import $RefParser from "json-schema-ref-parser";
 import jsf from "json-schema-faker";
 import fs from "fs";
+import path from "path";
 import crypto from "crypto";
 
 // Utility random helpers (non-cryptographic; deterministic constraints only)
@@ -186,6 +187,12 @@ async function main() {
     example.dataclassification = example.dataclassification || 'restricted';
     example.dataregulation = example.dataregulation || 'ISO-27001';
     example.datacategory = example.datacategory || 'sensitive';
+  }
+
+  // Ensure output directory exists
+  const outputDir = path.dirname(outputPath);
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
   }
 
   fs.writeFileSync(outputPath, JSON.stringify(example, null, 2));

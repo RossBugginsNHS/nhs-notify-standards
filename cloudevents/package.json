@@ -4,10 +4,12 @@
   "type": "module",
   "main": "generate-example.ts",
   "scripts": {
-    "generate": "ts-node generate-example.ts $@",
+    "generate": "ts-node src/tools/generator/generate-example.ts $@",
     "docs": "node generate-docs.cjs",
-  "bundle": "ts-node bundle-schema.ts",
-  "bundle:prefer-child": "ts-node bundle-schema-prefer-child.ts"
+    "validate": "node src/tools/validator/validate.js $@",
+    "bundle": "ts-node src/tools/generator/bundle-schema.ts",
+    "bundle:prefer-child": "ts-node src/tools/generator/bundle-schema-prefer-child.ts",
+    "build": "ts-node src/tools/builder/build-schema.ts"
   },
   "dependencies": {
     "ajv": "^8.0.0",

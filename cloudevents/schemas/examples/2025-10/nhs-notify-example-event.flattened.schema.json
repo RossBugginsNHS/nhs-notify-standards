@@ -1,5 +1,5 @@
 {
-  "$id": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event.prefer-child.bundle.schema.json",
+  "$id": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event.flattened.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Example Event",
   "description": "Example  event",
@@ -164,6 +164,11 @@
   "properties": {
     "type": {
       "type": "string",
+      "const": "uk.nhs.notify.ordering.order.read.v1",
+      "description": "Concrete versioned event type string for this example event (.vN suffix). | Versioned event type (uk.nhs.notify.*.<segments>.vN) using reverse-DNS style; final segment MUST be .v<digits>; ambiguous verbs (completed, finished, updated, changed, processed, handled, status, started, failed) disallowed.",
+      "examples": [
+        "uk.nhs.notify.ordering.order.read.v1"
+      ],
       "minLength": 1,
       "allOf": [
         {
@@ -249,59 +254,63 @@
           "description": "Disallow 'failed'; model the concrete failure (e.g. payment.authorization.failed -> payment.authorization.rejected)."
         }
       ],
-      "description": "Versioned event type (uk.nhs.notify.*.<segments>.vN) using reverse-DNS style; final segment MUST be .v<digits>; ambiguous verbs (completed, finished, updated, changed, processed, handled, status, started, failed) disallowed.",
-      "examples": [
-        "uk.nhs.notify.ordering.order.read.v1"
-      ],
-      "$comment": "NHS naming: lower-dot namespaced; version suffix required (.v<digits>); banned tokens anywhere before version: completed, finished, updated, changed, processed, handled, status, started, failed.",
-      "const": "uk.nhs.notify.ordering.order.read.v1"
+      "$comment": "NHS naming: lower-dot namespaced; version suffix required (.v<digits>); banned tokens anywhere before version: completed, finished, updated, changed, processed, handled, status, started, failed."
     },
     "source": {
       "type": "string",
-      "pattern": "^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/(data-plane|control-plane)(?:/[a-z0-9-]+)*$",
-      "minLength": 40,
-      "format": "uri-reference",
-      "description": "Logical event producer path: /nhs/england/notify/{environment}/{instance}/{plane}[/{service}...] where environment=production|staging|development|uat, instance=primary|secondary|dev-{digits}, plane=data-plane|control-plane, and optional service/lowercase tokens follow.",
+      "description": "Event source for ordering domain examples. | Logical event producer path: /nhs/england/notify/{environment}/{instance}/{plane}[/{service}...] where environment=production|staging|development|uat, instance=primary|secondary|dev-{digits}, plane=data-plane|control-plane, and optional service/lowercase tokens follow.",
       "examples": [
         "/nhs/england/notify/production/primary/data-plane/ordering",
         "/nhs/england/notify/staging/secondary/control-plane/audit",
         "/nhs/england/notify/development/dev-12345/data-plane/ordering"
       ],
-      "$comment": "Segments: /nhs/england/notify/{environment}/{instance}/{plane}[/{token}...]; environment in (production|staging|development|uat); instance in (primary|secondary|dev-<digits> for ephemeral/dev sandboxes); plane in (data-plane|control-plane); subsequent optional segments: lowercase alphanumeric or hyphen; no trailing slash.",
       "allOf": [
         {
           "type": "string",
           "pattern": "^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/data-plane/ordering",
-          "description": "Parent pattern"
+          "description": "Original pattern: Event source for ordering domain examples."
+        },
+        {
+          "type": "string",
+          "pattern": "^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/(data-plane|control-plane)(?:/[a-z0-9-]+)*$",
+          "description": "Merged pattern: Logical event producer path: /nhs/england/notify/{environment}/{instance}/{plane}[/{service}...] where environment=production|staging|development|uat, instance=primary|secondary|dev-{digits}, plane=data-plane|control-plane, and optional service/lowercase tokens follow."
         }
-      ]
+      ],
+      "minLength": 40,
+      "format": "uri-reference",
+      "$comment": "Segments: /nhs/england/notify/{environment}/{instance}/{plane}[/{token}...]; environment in (production|staging|development|uat); instance in (primary|secondary|dev-<digits> for ephemeral/dev sandboxes); plane in (data-plane|control-plane); subsequent optional segments: lowercase alphanumeric or hyphen; no trailing slash."
     },
     "subject": {
       "type": "string",
-      "pattern": "^(?:[a-z0-9-]+)(?:/[a-z0-9-]+)*$",
-      "minLength": 5,
-      "format": "uri-reference",
-      "description": "Resource path (no leading slash) within the source made of lowercase segments separated by '/'.",
+      "description": "Path in the form customer/{id}/order/{id}/item/{id} where each {{id}} is a UUID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx). | Resource path (no leading slash) within the source made of lowercase segments separated by '/'.",
       "examples": [
         "customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d"
       ],
-      "$comment": "URI path: must not start with '/', only lowercase alphanumeric and hyphen segments separated by '/', must not end with '/'.",
       "allOf": [
         {
           "type": "string",
           "pattern": "^customer/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/order/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/item/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
-          "description": "Parent pattern"
+          "description": "Original pattern: Path in the form customer/{id}/order/{id}/item/{id} where each {{id}} is a UUID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)."
+        },
+        {
+          "type": "string",
+          "pattern": "^(?:[a-z0-9-]+)(?:/[a-z0-9-]+)*$",
+          "description": "Merged pattern: Resource path (no leading slash) within the source made of lowercase segments separated by '/'."
         }
-      ]
+      ],
+      "minLength": 5,
+      "format": "uri-reference",
+      "$comment": "URI path: must not start with '/', only lowercase alphanumeric and hyphen segments separated by '/', must not end with '/'."
     },
     "dataschema": {
       "type": "string",
-      "description": "URI of a schema that describes the event payload (notify-payload).",
+      "const": "./nhs-notify-example-event-data.schema.json",
+      "description": "Canonical URI of the example event's data schema. | URI of a schema that describes the event payload (notify-payload).",
       "examples": [
+        "nhs-notify-example-event-data.schema.json",
         "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json"
       ],
-      "$comment": "URI to event payload schema.",
-      "const": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json"
+      "$comment": "URI to event payload schema."
     },
     "data": {
       "allOf": [
@@ -996,5 +1005,5 @@
       }
     }
   ],
-  "$comment": "Bundled schema (prefer-child merge variant)."
+  "$comment": "Bundled schema (all external $ref inlined)."
 }

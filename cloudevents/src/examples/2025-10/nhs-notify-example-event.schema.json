@@ -1,11 +1,8 @@
 {
-  "$id": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Example Event",
   "description": "Example  event",
-  "allOf": [
-    { "$ref": "./nhs-notify-profile.schema.json" }
-  ],
+  "allOf": [{ "$ref": "../../common/2025-10/nhs-notify-profile.schema.json" }],
   "properties": {
     "type": {
       "type": "string",
@@ -29,21 +26,16 @@
     },
     "dataschema": {
       "type": "string",
-      "const": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json",
+      "const": "./nhs-notify-example-event-data.schema.json",
       "description": "Canonical URI of the example event's data schema.",
-      "examples": ["https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json"]
+      "examples": ["nhs-notify-example-event-data.schema.json"]
     },
     "data": {
       "$ref": "#/$defs/ExamplePayload",
       "description": "Example payload wrapper containing notify-payload."
     }
   },
-  "required": [
-    "type",
-    "source",
-    "dataschema",
-    "data"
-  ],
+  "required": ["type", "source", "dataschema", "data"],
   "$defs": {
     "ExamplePayload": {
       "type": "object",
@@ -57,7 +49,12 @@
               "description": "Example data-plane object for illustrative purposes."
             },
             "notify-metadata": {
-              "allOf": [{ "$ref": "#/$defs/ExampleMetadata" }, { "$ref": "./nhs-notify-metadata.schema.json" }],
+              "allOf": [
+                { "$ref": "#/$defs/ExampleMetadata" },
+                {
+                  "$ref": "../../common/2025-10/nhs-notify-metadata.schema.json"
+                }
+              ],
               "description": "Example metadata block constrained for this example."
             }
           }
@@ -91,13 +88,12 @@
         }
       }
     }
-  }
-  ,
+  },
   "examples": [
     {
       "specversion": "1.0",
       "id": "6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111",
-  "type": "uk.nhs.notify.ordering.order.read.v1",
+      "type": "uk.nhs.notify.ordering.order.read.v1",
       "source": "/data-plane/ordering",
       "subject": "customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d",
       "time": "2025-10-01T10:15:30.000Z",
@@ -109,7 +105,10 @@
       "data": {
         "notify-payload": {
           "notify-data": { "nhsNumber": "9434765919" },
-          "notify-metadata": { "teamResponsible": "Team 1", "notifyDomain": "Ordering" }
+          "notify-metadata": {
+            "teamResponsible": "Team 1",
+            "notifyDomain": "Ordering"
+          }
         }
       }
     }

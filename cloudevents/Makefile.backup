@@ -1,0 +1,134 @@
+# Makefile for cloudevents-example-generator
+
+.PHONY: generate clean docs bundle-example bundle-profile bundle-all validate validate-default validate-bundle generate-default build-common build-examples build-all build-local build-dist-common build-dist-examples build-dist-all build-dist
+
+config:
+	echo "All started"
+
+generate:
+	npm run generate -- $(ARGS)
+
+publish_version = 2025-10
+schema_base_url = https://notify.nhs.uk/cloudevents/schemas
+
+example_event_output = ./output/examples/events/output-example-event.json
+example_event_schema = ./output/examples/$(publish_version)/nhs-notify-example-event.schema.json
+nhs_notify_profile_schema = ./output/common/$(publish_version)/nhs-notify-profile.schema.json
+
+# Local build targets (output/ directory, relative $id)
+build-local-common:
+	@echo "Building common schemas to output/..."
+	npm run build -- ./src/common/$(publish_version)/nhs-notify-metadata.schema.json ./output/common/$(publish_version)
+	npm run build -- ./src/common/$(publish_version)/nhs-notify-payload.schema.json ./output/common/$(publish_version)
+	npm run build -- ./src/common/$(publish_version)/nhs-notify-profile.schema.json ./output/common/$(publish_version)
+	npm run build -- ./src/common/$(publish_version)/nhs-number.schema.json ./output/common/$(publish_version)
+
+build-local-examples:
+	@echo "Building example schemas to output/..."
+	npm run build -- ./src/examples/$(publish_version)/nhs-notify-example-event-data.schema.json ./output/examples/$(publish_version)
+	npm run build -- ./src/examples/$(publish_version)/nhs-notify-example-event.schema.json ./output/examples/$(publish_version)
+
+bundle-local-common:
+	@echo "Bundling common schemas in output/..."
+	npm run bundle -- ./output/common/$(publish_version)/nhs-notify-profile.schema.json ./output/common/$(publish_version)/nhs-notify-profile.bundle.schema.json
+	npm run bundle -- --flatten ./output/common/$(publish_version)/nhs-notify-profile.schema.json ./output/common/$(publish_version)/nhs-notify-profile.flattened.schema.json
+
+bundle-local-examples:
+	@echo "Bundling example schemas in output/..."
+	npm run bundle -- ./output/examples/$(publish_version)/nhs-notify-example-event.schema.json ./output/examples/$(publish_version)/nhs-notify-example-event.bundle.schema.json
+	npm run bundle -- --flatten ./output/examples/$(publish_version)/nhs-notify-example-event.schema.json ./output/examples/$(publish_version)/nhs-notify-example-event.flattened.schema.json
+
+build-local-all: build-local-common build-local-examples bundle-local-common bundle-local-examples
+	@echo "All schemas built to output/ successfully!"
+
+# Distribution build targets (schemas/ directory, public URL $id)
+build-dist-common:
+	@echo "Building common schemas to schemas/ with public URLs..."
+	npm run build -- ./src/common/$(publish_version)/nhs-notify-metadata.schema.json ./schemas/common/$(publish_version) $(schema_base_url)
+	npm run build -- ./src/common/$(publish_version)/nhs-notify-payload.schema.json ./schemas/common/$(publish_version) $(schema_base_url)
+	npm run build -- ./src/common/$(publish_version)/nhs-notify-profile.schema.json ./schemas/common/$(publish_version) $(schema_base_url)
+	npm run build -- ./src/common/$(publish_version)/nhs-number.schema.json ./schemas/common/$(publish_version) $(schema_base_url)
+
+build-dist-examples:
+	@echo "Building example schemas to schemas/ with public URLs..."
+	npm run build -- ./src/examples/$(publish_version)/nhs-notify-example-event-data.schema.json ./schemas/examples/$(publish_version) $(schema_base_url)
+	npm run build -- ./src/examples/$(publish_version)/nhs-notify-example-event.schema.json ./schemas/examples/$(publish_version) $(schema_base_url)
+
+bundle-dist-common:
+	@echo "Bundling common schemas in schemas/..."
+	npm run bundle -- ./output/common/$(publish_version)/nhs-notify-profile.schema.json ./schemas/common/$(publish_version)/nhs-notify-profile.bundle.schema.json
+	npm run bundle -- --flatten ./output/common/$(publish_version)/nhs-notify-profile.schema.json ./schemas/common/$(publish_version)/nhs-notify-profile.flattened.schema.json
+
+bundle-dist-examples:
+	@echo "Bundling example schemas in schemas/..."
+	npm run bundle -- ./output/examples/$(publish_version)/nhs-notify-example-event.schema.json ./schemas/examples/$(publish_version)/nhs-notify-example-event.bundle.schema.json
+	npm run bundle -- --flatten ./output/examples/$(publish_version)/nhs-notify-example-event.schema.json ./schemas/examples/$(publish_version)/nhs-notify-example-event.flattened.schema.json
+
+build-dist-all: build-dist-common build-dist-examples bundle-dist-common bundle-dist-examples
+	@echo "All schemas built to schemas/ with public URLs successfully!"
+
+build-dist: validate-example-event build-dist-all
+	@echo "Building distribution schemas to schemas/"
+
+generate-example-event:
+	npm run generate -- $(example_event_schema) $(example_event_output)
+
+validate-example-event: validate-example-event-against-example validate-example-event-against--notify-profile
+	echo "Validation complete"
+
+validate-example-event-against-example:
+	npm run validate -- --base ./output $(example_event_schema) $(example_event_output)
+
+validate-example-event-against--notify-profile:
+	npm run validate -- --base ./output $(nhs_notify_profile_schema) $(example_event_output)
+
+test: 
+	make validate-example-event
+
+build:
+	@echo "=== Building local schemas ==="
+	make build-local-all
+	@echo ""
+	@echo "=== Generating example event ==="
+	make generate-example-event
+	@echo ""
+	@echo "=== Testing  ==="
+	make test
+	@echo ""
+	@echo "=== Building distribution schemas (only if validation passed) ==="
+	make build-dist-all
+	@echo ""
+	@echo "✅ Build complete: local schemas tested and distribution schemas ready!"
+
+
+validate: bundle-all flatten-all bundle-flatten-preferchild
+	node validate.js nhs-notify-example-event.schema.json output-example-event.json
+	node validate.js nhs-notify-profile.schema.json output-example-event.json
+	node validate.js nhs-notify-example-event.bundle.schema.json output-example-event.json
+	node validate.js nhs-notify-example-event.flattened.schema.json output-example-event.json
+	node validate.js nhs-notify-example-event.prefer-child.bundle.schema.json output-example-event.json
+
+docs: generate-default bundle-all flatten-all bundle-flatten-preferchild validate
+	npm run docs
+
+bundle-example:
+	npm run bundle -- nhs-notify-example-event.schema.json nhs-notify-example-event.bundle.schema.json
+
+bundle-profile:
+	npm run bundle -- nhs-notify-profile.schema.json nhs-notify-profile.bundle.schema.json
+
+bundle-all: bundle-example bundle-profile
+
+flatten-example:
+	npm run bundle -- --flatten nhs-notify-example-event.schema.json nhs-notify-example-event.flattened.schema.json
+
+flatten-profile:
+	npm run bundle -- --flatten nhs-notify-profile.schema.json nhs-notify-profile.flattened.schema.json
+
+flatten-all: flatten-example flatten-profile
+
+validate-bundle: bundle-example
+	node validate.js nhs-notify-example-event.bundle.schema.json output-example-event.json
+
+bundle-flatten-preferchild:
+	npm run bundle:prefer-child -- --flatten nhs-notify-example-event.schema.json nhs-notify-example-event.prefer-child.bundle.schema.json
