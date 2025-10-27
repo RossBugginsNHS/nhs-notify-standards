@@ -1,0 +1,32 @@
+{
+  "$id": "https://notify.nhs.uk/cloudevents/schemas/supplier-allocation/2025-10/events/file-received.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://notify.nhs.uk/cloudevents/schemas/supplier-allocation/2025-10/supplier-allocation-profile.schema.json"
+    }
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "uk.nhs.notify.supplier.allocation.file.received.v1",
+      "description": "Concrete versioned event type string for this example event (.vN suffix).",
+      "examples": [
+        "uk.nhs.notify.supplier.allocation.file.received.v1"
+      ]
+    },
+    "dataschema": {
+      "type": "string",
+      "const": "https://notify.nhs.uk/cloudevents/schemas/supplier-allocation/2025-10/data/file-received-data.schema.json",
+      "description": "Canonical URI of the example event's data schema.",
+      "examples": [
+        "file-received-data.schema.json"
+      ]
+    },
+    "data": {
+      "$ref": "https://notify.nhs.uk/cloudevents/schemas/supplier-allocation/2025-10/data/file-received-data.schema.json",
+      "description": "Example payload wrapper containing notify-payload."
+    }
+  }
+}
