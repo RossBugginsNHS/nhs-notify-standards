@@ -2,13 +2,13 @@
 
 **Event Type:** `uk.nhs.notify.example.order.read.v1`
 
-**Source:** `/nhs/england/notify/staging/primary/data-plane/example`
+**Source:** `/nhs/england/notify/uat/secondary/data-plane/example`
 
-**Subject:** `customer/9b11fa83-cd00-6b52-0b19-c53a61fbbdeb/order/d5dee68c-bb94-6bfe-fffa-c9bbade58eae/item/9ecadd0c-f9fa-3dc5-af41-09b8ac8fdded`
+**Subject:** `customer/e0076de8-a26d-1dea-9fef-77d67e1d27cf/order/a5a227db-8d2d-a8dd-9fd1-b974e5efda5e/item/c7204bf4-1b26-96de-1fba-7cfc1fa45efa`
 
-**Event ID:** `b12d6bff-aab2-489f-9e09-3fd4ed1f70d9`
+**Event ID:** `0ffb5f51-80a0-49fa-bd60-dd489b24e89a`
 
-**Timestamp:** 2025-10-27T21:37:23.639Z
+**Timestamp:** 2025-10-27T21:39:31.606Z
 
 ## Related Schema Documentation
 
@@ -21,8 +21,8 @@
 ```json
 {
   "type": "uk.nhs.notify.example.order.read.v1",
-  "source": "/nhs/england/notify/staging/primary/data-plane/example",
-  "subject": "customer/9b11fa83-cd00-6b52-0b19-c53a61fbbdeb/order/d5dee68c-bb94-6bfe-fffa-c9bbade58eae/item/9ecadd0c-f9fa-3dc5-af41-09b8ac8fdded",
+  "source": "/nhs/england/notify/uat/secondary/data-plane/example",
+  "subject": "customer/e0076de8-a26d-1dea-9fef-77d67e1d27cf/order/a5a227db-8d2d-a8dd-9fd1-b974e5efda5e/item/c7204bf4-1b26-96de-1fba-7cfc1fa45efa",
   "dataschema": "../data/nhs-notify-example-event-data.schema.json",
   "data": {
     "nhsNumber": "9434765919"
@@ -30,18 +30,18 @@
   "profileversion": "1.0.0",
   "profilepublished": "2025-10",
   "specversion": "1.0",
-  "id": "b12d6bff-aab2-489f-9e09-3fd4ed1f70d9",
-  "time": "2025-10-27T21:37:23.639Z",
+  "id": "0ffb5f51-80a0-49fa-bd60-dd489b24e89a",
+  "time": "2025-10-27T21:39:31.606Z",
   "datacontenttype": "application/json",
-  "traceparent": "00-70d6ad367f9e48022b8e926ca47604e3-197b0c413a1153a2-01",
-  "tracestate": "in dolore consectetur adipisicing Excepteur",
-  "partitionkey": "customer-9b11fa83",
-  "recordedtime": "2025-10-27T21:37:24.639Z",
+  "traceparent": "00-3ad56d1bb7df241016c90b67fba88349-cfd462b2fa566ce8-01",
+  "tracestate": "fugiat dolor magna exercitation in",
+  "partitionkey": "customer-e0076de8",
+  "recordedtime": "2025-10-27T21:39:32.606Z",
   "sampledrate": 1,
-  "sequence": "00000000000665691524",
-  "severitytext": "ERROR",
-  "severitynumber": 4,
-  "dataclassification": "confidential",
+  "sequence": "00000000000906580115",
+  "severitytext": "INFO",
+  "severitynumber": 2,
+  "dataclassification": "internal",
   "dataregulation": "NIST-800-53",
   "datacategory": "sensitive"
 }

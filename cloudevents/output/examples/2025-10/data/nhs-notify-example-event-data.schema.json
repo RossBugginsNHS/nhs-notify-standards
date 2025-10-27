@@ -1,13 +1,10 @@
 {
   "$id": "/examples/2025-10/data/nhs-notify-example-event-data.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "additionalProperties": false,
+  "title": "Example data type",
   "description": "Example data type",
-  "examples": [
-    {
-      "nhsNumber": "9434765919"
-    }
-  ],
+  "type": "object",
+  "additionalProperties": false,
   "properties": {
     "nhsNumber": {
       "$ref": "../../../common/2025-10/defs/nhs-number.schema.json#/properties/nhsNumber",
@@ -22,6 +19,9 @@
   "required": [
     "nhsNumber"
   ],
-  "title": "Example data type",
-  "type": "object"
+  "examples": [
+    {
+      "nhsNumber": "9434765919"
+    }
+  ]
 }
