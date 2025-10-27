@@ -33,7 +33,7 @@ EVENT_NAMES = $(sort $(patsubst %.schema.yaml,%,$(notdir $(EVENT_SCHEMAS))))
 # Domain profile for testing events (use first profile schema if it exists, otherwise use domain name)
 DOMAIN_PROFILE = $(if $(PROFILE_NAMES),$(OUTPUT_DIR)/$(word 1,$(PROFILE_NAMES)).schema.json,$(OUTPUT_DIR)/$(DOMAIN).schema.json)
 
-.PHONY: build publish generate test deploy clean
+.PHONY: build publish publish-json publish-yaml generate test deploy clean
 
 build:
 	@echo "Building $(DOMAIN) schemas to output/..."
@@ -72,7 +72,7 @@ build:
 		done; \
 	fi
 
-publish:
+publish-json:
 	@echo "Publishing $(DOMAIN) schemas with public URLs..."
 	@if [ -n "$(PROFILE_NAMES)" ]; then \
 		echo "Publishing profile schemas..."; \
@@ -108,6 +108,44 @@ publish:
 			cd $(ROOT_DIR) && npm run bundle -- --flatten $(OUTPUT_DIR)/events/$$schema.schema.json $(SCHEMAS_DIR)/events/$$schema.flattened.schema.json || exit 1; \
 		done; \
 	fi
+
+publish-yaml:
+	@echo "Publishing $(DOMAIN) YAML schemas alongside JSON..."
+	@if [ -n "$(PROFILE_NAMES)" ]; then \
+		echo "Converting profile schemas to YAML..."; \
+		for schema in $(PROFILE_NAMES); do \
+			echo "  - $$schema"; \
+			node $(ROOT_DIR)/src/tools/generator/json-to-yaml.cjs $(SCHEMAS_DIR)/$$schema.schema.json $(SCHEMAS_DIR)/$$schema.schema.yaml || exit 1; \
+		done; \
+	fi
+	@if [ -n "$(DEFS_NAMES)" ]; then \
+		echo "Converting defs schemas to YAML..."; \
+		for schema in $(DEFS_NAMES); do \
+			echo "  - $$schema"; \
+			node $(ROOT_DIR)/src/tools/generator/json-to-yaml.cjs $(SCHEMAS_DIR)/defs/$$schema.json $(SCHEMAS_DIR)/defs/$$schema.yaml || exit 1; \
+		done; \
+	fi
+	@if [ -n "$(DATA_NAMES)" ]; then \
+		echo "Converting data schemas to YAML..."; \
+		for schema in $(DATA_NAMES); do \
+			echo "  - $$schema"; \
+			node $(ROOT_DIR)/src/tools/generator/json-to-yaml.cjs $(SCHEMAS_DIR)/data/$$schema.json $(SCHEMAS_DIR)/data/$$schema.yaml || exit 1; \
+		done; \
+	fi
+	@if [ -n "$(EVENT_NAMES)" ]; then \
+		echo "Converting event schemas to YAML..."; \
+		for schema in $(EVENT_NAMES); do \
+			echo "  - $$schema (including bundle & flatten)"; \
+			node $(ROOT_DIR)/src/tools/generator/json-to-yaml.cjs $(SCHEMAS_DIR)/events/$$schema.schema.json $(SCHEMAS_DIR)/events/$$schema.schema.yaml || exit 1; \
+			node $(ROOT_DIR)/src/tools/generator/json-to-yaml.cjs $(SCHEMAS_DIR)/events/$$schema.bundle.schema.json $(SCHEMAS_DIR)/events/$$schema.bundle.schema.yaml || exit 1; \
+			node $(ROOT_DIR)/src/tools/generator/json-to-yaml.cjs $(SCHEMAS_DIR)/events/$$schema.flattened.schema.json $(SCHEMAS_DIR)/events/$$schema.flattened.schema.yaml || exit 1; \
+		done; \
+	fi
+
+publish:
+	@echo "Publishing $(DOMAIN) schemas (JSON + YAML)..."
+	$(MAKE) publish-json
+	$(MAKE) publish-yaml
 
 generate:
 	@if [ -n "$(EVENT_NAMES)" ]; then \

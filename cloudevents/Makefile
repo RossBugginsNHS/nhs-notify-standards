@@ -1,14 +1,22 @@
 # Makefile for cloudevents - orchestrates src/ subdomain Makefiles
 
-.PHONY: build publish generate test deploy clean
+.PHONY: build publish publish-json publish-yaml generate test deploy clean build-docs update-readme
 
 build:
 	@echo "=== Building all schemas ==="
 	$(MAKE) -C src build
 
 publish:
-	@echo "=== Publishing all schemas ==="
+	@echo "=== Publishing all schemas (JSON + YAML) ==="
 	$(MAKE) -C src publish
+
+publish-json:
+	@echo "=== Publishing all schemas (JSON only) ==="
+	$(MAKE) -C src publish-json
+
+publish-yaml:
+	@echo "=== Publishing all schemas (YAML only) ==="
+	$(MAKE) -C src publish-yaml
 
 generate:
 	@echo "=== Generating all events ==="
@@ -23,6 +31,7 @@ deploy:
 	$(MAKE) clean
 	$(MAKE) -C src deploy
 	make build-docs
+	make update-readme
 	@echo ""
 	@echo "✅ Build complete: local schemas tested and distribution schemas ready!"
 
@@ -37,4 +46,7 @@ build-docs:
 	@echo "=== Generating documentation for all schemas ==="
 	npm run build-docs -- ./output ./docs
 
-
+update-readme:
+	@echo "=== Updating README tables ==="
+	node src/tools/generator/update-readme.cjs
+	@echo ""
