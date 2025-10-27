@@ -1,4 +1,5 @@
 # Makefile for cloudevents - orchestrates src/ subdomain Makefiles
+include scripts/init.mk
 
 .PHONY: build publish publish-json publish-yaml generate test deploy clean build-docs update-readme
 
@@ -50,3 +51,8 @@ update-readme:
 	@echo "=== Updating README tables ==="
 	node src/tools/generator/update-readme.cjs
 	@echo ""
+
+version:
+	rm -f .version
+	make version-create-effective-file dir=.
+	echo "{ \"schemaVersion\": 1, \"label\": \"version\", \"message\": \"$$(head -n 1 .version 2> /dev/null || echo unknown)\", \"color\": \"orange\" }" > version.json
