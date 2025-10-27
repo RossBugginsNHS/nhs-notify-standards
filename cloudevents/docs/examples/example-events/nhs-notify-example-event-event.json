@@ -1,7 +1,7 @@
 {
   "type": "uk.nhs.notify.example.order.read.v1",
-  "source": "/nhs/england/notify/staging/dev-448206/data-plane/example",
-  "subject": "customer/fddedbeb-7d77-bde0-b509-1a82ecf57d54/order/ac313cd2-d21b-9ebf-abf5-cea639d79ce3/item/65decaf9-d693-dbf8-0d4b-db7a46481dfd",
+  "source": "/nhs/england/notify/production/dev-64/data-plane/example",
+  "subject": "customer/6cc9bc9f-df8b-7b60-de6a-cb44efcf5de8/order/70bdada7-1bca-efbb-fd6e-ec50f7ac895f/item/6b9fdb4c-af7d-d0a0-0930-1f46e6acaee3",
   "dataschema": "../data/nhs-notify-example-event-data.schema.json",
   "data": {
     "nhsNumber": "9434765919"
@@ -9,18 +9,18 @@
   "profileversion": "1.0.0",
   "profilepublished": "2025-10",
   "specversion": "1.0",
-  "id": "ce37c1a8-a48d-47de-b14c-05c3f65f62f2",
-  "time": "2025-10-27T21:45:06.444Z",
+  "id": "6c5851cf-6e09-4900-93ec-5999e6a645d2",
+  "time": "2025-10-27T21:49:40.966Z",
   "datacontenttype": "application/json",
-  "traceparent": "00-e9d9688387ed8eedd622217d521a43d5-1570c737b4e3c4af-01",
-  "tracestate": "nisi quis velit Duis",
-  "partitionkey": "customer-fddedbeb",
-  "recordedtime": "2025-10-27T21:45:07.444Z",
+  "traceparent": "00-af8faa4d323ef108065ad47563d4513d-169135f3e2be30c8-01",
+  "tracestate": "dolor occaecat",
+  "partitionkey": "customer-6cc9bc9f",
+  "recordedtime": "2025-10-27T21:49:41.966Z",
   "sampledrate": 1,
-  "sequence": "00000000000489777012",
-  "severitytext": "ERROR",
-  "severitynumber": 4,
-  "dataclassification": "internal",
-  "dataregulation": "GDPR",
-  "datacategory": "special-category"
+  "sequence": "00000000000800992942",
+  "severitytext": "WARN",
+  "severitynumber": 3,
+  "dataclassification": "public",
+  "dataregulation": "PCI-DSS",
+  "datacategory": "sensitive"
 }
