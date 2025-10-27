@@ -30,52 +30,14 @@ properties:
     examples:
       - nhs-notify-example-event-data.schema.yaml
   data:
-    $ref: "#/$defs/ExamplePayload"
+    $ref: "../data/nhs-notify-example-event-data.schema.yaml"
     description: Example payload wrapper containing notify-payload.
 required:
   - type
   - source
   - dataschema
   - data
-$defs:
-  ExamplePayload:
-    type: object
-    description: Wrapper for notify-payload used only in this example event schema.
-    properties:
-      notify-payload:
-        type: object
-        properties:
-          notify-data:
-            $ref: "#/$defs/ExampleData"
-            description: Example data-plane object for illustrative purposes.
-          notify-metadata:
-            allOf:
-              - $ref: "#/$defs/ExampleMetadata"
-              - $ref: ../../../common/2025-10/defs/nhs-notify-metadata.schema.yaml
-            description: Example metadata block constrained for this example.
-  ExampleData:
-    $ref: ../data/nhs-notify-example-event-data.schema.yaml
-    description: Example data schema reference binding.
-  ExampleMetadata:
-    $ref: "#/$defs/TeamAlphaBravoMetadata"
-    description: Example metadata schema reference binding.
-  TeamAlphaBravoMetadata:
-    $comment: Notify Metadata
-    type: object
-    description: Restricted example metadata subset used for illustrative purposes only.
-    properties:
-      teamResponsible:
-        type: string
-        const: Team 1
-        description: Owning team for the example metadata.
-        examples:
-          - Team 1
-      notifyDomain:
-        type: string
-        const: Ordering
-        description: Domain for the example metadata (Ordering).
-        examples:
-          - Ordering
+
 examples:
   - specversion: "1.0"
     id: 6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111

@@ -22,6 +22,7 @@ deploy:
 	@echo "=== Deploying all schemas ==="
 	$(MAKE) clean
 	$(MAKE) -C src deploy
+	make build-docs
 	@echo ""
 	@echo "✅ Build complete: local schemas tested and distribution schemas ready!"
 
