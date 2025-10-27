@@ -1,0 +1,50 @@
+{
+  "type": "uk.nhs.notify.ordering.order.read.v1",
+  "source": "/nhs/england/notify/uat/dev-35159/data-plane/ordering",
+  "subject": "customer/89f0239d-5301-4afd-9bc6-2d70feab840b/order/43e90964-3544-46ab-a771-6bdb6fc27fa0/item/41ee3bf9-02d9-4941-8aa6-6c0516dcda7d",
+  "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json",
+  "data": {
+    "notify-payload": {
+      "notify-data": {
+        "nhsNumber": "9434765919"
+      },
+      "notify-metadata": {
+        "teamResponsible": "Team 1",
+        "notifyDomain": "Ordering",
+        "microservice": "fDGkf9dF",
+        "repositoryUrl": "http://fBQ.ysWcQmQJzSIaqrn-rYuDyyZdplqw,qJusj4q8FFFaxDllaM3im-wu",
+        "accountId": "Mbz7OOQjG6",
+        "environment": "testing",
+        "instance": "dev-35159",
+        "microserviceInstanceId": "x6t",
+        "microserviceVersion": "77.0.21466598136",
+        "commitSha": "31c76989074131baea7",
+        "buildTimestamp": "1966-05-14T15:14:33.0Z",
+        "serviceTier": "critical",
+        "region": "eu-west-1",
+        "pseudonymisationLevel": "pseudonymised",
+        "replayIndicator": true,
+        "originalEventId": "1ea58ddc-2c46-4f7a-a0fc-c2c465e66f03",
+        "integrityHash": "sha256:9a3f360d5fa956ec38831bcb8aa7e6958a58c2456ebf359939b1bef8c140fdb9",
+        "producedByType": "other"
+      }
+    }
+  },
+  "profileversion": "1.0.0",
+  "profilepublished": "2025-10",
+  "specversion": "1.0",
+  "id": "29daa248-077b-436a-96a7-fc9807f9ef93",
+  "time": "2025-10-03T14:41:23.049Z",
+  "datacontenttype": "application/json",
+  "traceparent": "00-948d1bf5003c8930ca0fd884f924affe-ea99663a1892db67-01",
+  "tracestate": "sint tempor ut",
+  "partitionkey": "customer-89f0239d",
+  "recordedtime": "2025-10-03T14:41:24.049Z",
+  "sampledrate": 1,
+  "sequence": "00000000000589246421",
+  "severitytext": "FATAL",
+  "severitynumber": 5,
+  "dataclassification": "public",
+  "dataregulation": "PCI-DSS",
+  "datacategory": "sensitive"
+}
