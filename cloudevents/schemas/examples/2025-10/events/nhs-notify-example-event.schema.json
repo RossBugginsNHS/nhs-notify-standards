@@ -3,6 +3,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Example Event",
   "description": "Example  event",
+  "type": "object",
   "allOf": [
     {
       "$ref": "https://notify.nhs.uk/cloudevents/schemas/examples/2025-10/example-profile.schema.json"

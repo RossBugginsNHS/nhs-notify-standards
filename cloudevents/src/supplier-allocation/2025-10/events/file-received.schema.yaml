@@ -1,4 +1,5 @@
 $schema: https://json-schema.org/draft/2020-12/schema
+type: object
 allOf:
   - $ref: ../supplier-allocation-profile.schema.yaml
 properties:
@@ -10,10 +11,10 @@ properties:
       - uk.nhs.notify.supplier.allocation.file.received.v1
   dataschema:
     type: string
-    const: ../data/file-received.schema-data.yaml
+    const: ../data/file-received-data.schema.yaml
     description: Canonical URI of the example event's data schema.
     examples:
-      - file-received.schema-data.yaml
+      - file-received-data.schema.yaml
   data:
-    $ref: ../data/file-received.schema-data.yaml
+    $ref: ../data/file-received-data.schema.yaml
     description: Example payload wrapper containing notify-payload.

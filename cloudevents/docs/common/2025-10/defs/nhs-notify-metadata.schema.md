@@ -6,7 +6,7 @@
 
 <table>
 <tbody>
-<tr><th>$id</th><td>nhs-notify-metadata.schema.json</td></tr>
+<tr><th>$id</th><td>/common/2025-10/defs/nhs-notify-metadata.schema.json</td></tr>
 <tr><th>$schema</th><td>https://json-schema.org/draft/2020-12/schema</td></tr>
 </tbody>
 </table>
@@ -579,7 +579,7 @@
 ## Schema
 ```
 {
-    "$id": "nhs-notify-metadata.schema.json",
+    "$id": "/common/2025-10/defs/nhs-notify-metadata.schema.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "title": "NHS Notify Metadata",
     "type": "object",

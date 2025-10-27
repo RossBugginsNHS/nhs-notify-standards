@@ -207,12 +207,13 @@ function buildSchema(
       .replace(/\.yml$/, '.json');
     schemaId = `${baseUrl}/${jsonRelativePath.replace(/\\/g, "/")}`;
   } else {
-    // Use relative path from output root
+    // Use relative path from output root with leading /
+    // This allows relative $refs to resolve correctly in AJV
     const relativePath = path.relative(
       path.join(process.cwd(), "output"),
       outputPath
     );
-    schemaId = relativePath.replace(/\\/g, "/");
+    schemaId = "/" + relativePath.replace(/\\/g, "/");
   }
 
   // Process the schema: add $id and transform $refs

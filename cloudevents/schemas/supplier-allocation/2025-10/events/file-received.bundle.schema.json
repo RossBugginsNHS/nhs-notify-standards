@@ -1,9 +1,13 @@
 {
-  "$id": "supplier-allocation/2025-10/events/file-received.schema.json",
+  "$id": "https://notify.nhs.uk/cloudevents/schemas/supplier-allocation/2025-10/events/file-received.bundle.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
   "allOf": [
     {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "NHS Notify Supplier Allocation Profile",
+      "description": "NHS Notify Supplier Allocation profile for CloudEvents 1.0 including additional governance and tracing attributes.",
+      "type": "object",
       "allOf": [
         {
           "$anchor": "nhs-notify-profile",
@@ -565,10 +569,10 @@
     },
     "dataschema": {
       "type": "string",
-      "const": "../data/file-received.schema-data.json",
+      "const": "../data/file-received-data.schema.json",
       "description": "Canonical URI of the example event's data schema.",
       "examples": [
-        "file-received.schema-data.json"
+        "file-received-data.schema.json"
       ]
     },
     "data": {

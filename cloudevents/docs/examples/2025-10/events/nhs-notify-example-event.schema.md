@@ -6,14 +6,14 @@
 
 <table>
 <tbody>
-<tr><th>$id</th><td>nhs-notify-example-event.schema.json</td></tr>
+<tr><th>$id</th><td>/examples/2025-10/events/nhs-notify-example-event.schema.json</td></tr>
 <tr><th>$schema</th><td>https://json-schema.org/draft/2020-12/schema</td></tr>
 </tbody>
 </table>
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#type">type</a></td><td>String=uk.nhs.notify.ordering.order.read.v1</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2" rowspan="1">All of:</td><td>Object (of type <a href="./nhs-notify-profile.schema.html">NHS Notify CloudEvents Profile</a>)</td></tr></tbody></table>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#type">type</a></td><td>String=uk.nhs.notify.ordering.order.read.v1</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=../data/nhs-notify-example-event-data.schema.json</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2" rowspan="1">All of:</td><td>Object (of type <a href="../example-profile.schema.html">NHS Notify Example Event Profile</a>)</td></tr></tbody></table>
 
 
 ## Example
@@ -32,7 +32,7 @@
     "traceparent": "00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01",
     "severitynumber": 1,
     "severitytext": "DEBUG",
-    "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json",
+    "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.yaml",
     "data": {
         "notify-payload": {
             "notify-data": {
@@ -149,10 +149,10 @@
     </tr>
     <tr>
       <th>Const</th>
-      <td colspan="2">https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json</td>
+      <td colspan="2">../data/nhs-notify-example-event-data.schema.json</td>
     </tr><tr>
       <th>Examples</th>
-      <td colspan="2"><li>https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json</li></td>
+      <td colspan="2"><li>nhs-notify-example-event-data.schema.json</li></td>
     </tr>
   </tbody>
 </table>
@@ -205,7 +205,7 @@
   <tbody>
     <tr>
       <th>$id</th>
-      <td colspan="2">nhs-notify-example-event-data.schema.json</td>
+      <td colspan="2">/examples/2025-10/data/nhs-notify-example-event-data.schema.json</td>
     </tr>
     <tr>
       <th>Title</th>
@@ -309,8 +309,7 @@
       <th>Description</th>
       <td colspan="2">Example metadata block constrained for this example.</td>
     </tr>
-    <tr><tr><td rowspan="2"><a href="#type">Type</a></td><td rowspan="2">All of:</td><td><a href="#type-0">Object</a></td></tr>
-<tr><td><a href="#type-1">Object</a></td></tr></tr>
+    <tr><tr><td rowspan="2">Type</td><td rowspan="2">All of:</td><td>Object</td></tr><tr><td>Object</td></tr></tr>
     <tr>
       <th>Required</th>
       <td colspan="2">No</td>
@@ -391,7 +390,7 @@
   <tbody>
     <tr>
       <th>$id</th>
-      <td colspan="2">nhs-notify-metadata.schema.json</td>
+      <td colspan="2">/common/2025-10/defs/nhs-notify-metadata.schema.json</td>
     </tr>
     <tr>
       <th>Title</th>
@@ -857,13 +856,14 @@
 ## Schema
 ```
 {
-    "$id": "nhs-notify-example-event.schema.json",
+    "$id": "/examples/2025-10/events/nhs-notify-example-event.schema.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "title": "Example Event",
     "description": "Example  event",
+    "type": "object",
     "allOf": [
         {
-            "$ref": "./nhs-notify-profile.schema.json"
+            "$ref": "../example-profile.schema.json"
         }
     ],
     "properties": {
@@ -893,10 +893,10 @@
         },
         "dataschema": {
             "type": "string",
-            "const": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json",
+            "const": "../data/nhs-notify-example-event-data.schema.json",
             "description": "Canonical URI of the example event's data schema.",
             "examples": [
-                "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json"
+                "nhs-notify-example-event-data.schema.json"
             ]
         },
         "data": {
@@ -928,7 +928,7 @@
                                     "$ref": "#/$defs/ExampleMetadata"
                                 },
                                 {
-                                    "$ref": "./nhs-notify-metadata.schema.json"
+                                    "$ref": "../../../common/2025-10/defs/nhs-notify-metadata.schema.json"
                                 }
                             ],
                             "description": "Example metadata block constrained for this example."
@@ -938,7 +938,7 @@
             }
         },
         "ExampleData": {
-            "$ref": "./nhs-notify-example-event-data.schema.json",
+            "$ref": "../data/nhs-notify-example-event-data.schema.json",
             "description": "Example data schema reference binding."
         },
         "ExampleMetadata": {
@@ -981,7 +981,7 @@
             "traceparent": "00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01",
             "severitynumber": 1,
             "severitytext": "DEBUG",
-            "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json",
+            "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.yaml",
             "data": {
                 "notify-payload": {
                     "notify-data": {

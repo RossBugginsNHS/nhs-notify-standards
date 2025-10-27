@@ -29,6 +29,12 @@ clean:
 	@echo "=== Cleaning output/ and schemas/ directories ==="
 	rm -rf ./output
 	rm -rf ./schemas
+	rm -rf ./docs
 	@echo ""
+
+build-docs: deploy
+	rm -fr ./docs/*
+	@echo "=== Generating documentation for all schemas ==="
+	npm run build-docs -- ./output ./docs
 
 

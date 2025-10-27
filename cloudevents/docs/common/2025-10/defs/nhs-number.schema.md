@@ -6,7 +6,7 @@
 
 <table>
 <tbody>
-<tr><th>$id</th><td>nhs-number.schema.json</td></tr>
+<tr><th>$id</th><td>/common/2025-10/defs/nhs-number.schema.json</td></tr>
 <tr><th>$schema</th><td>https://json-schema.org/draft/2020-12/schema</td></tr>
 </tbody>
 </table>
@@ -62,7 +62,9 @@
 
 
 
-### <a id="nhsnumber-0"></a> nhsNumber.0
+### nhsNumber.0
+
+
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -86,7 +88,9 @@
 
 
 
-### <a id="nhsnumber-1"></a> nhsNumber.1
+### nhsNumber.1
+
+
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -121,7 +125,7 @@
 ## Schema
 ```
 {
-    "$id": "nhs-number.schema.json",
+    "$id": "/common/2025-10/defs/nhs-number.schema.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "title": "NHS Common Types v1.0.0",
     "description": "Reusable types for NHS Notify payload schemas.",

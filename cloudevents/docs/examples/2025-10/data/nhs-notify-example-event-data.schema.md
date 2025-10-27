@@ -6,7 +6,7 @@
 
 <table>
 <tbody>
-<tr><th>$id</th><td>nhs-notify-example-event-data.schema.json</td></tr>
+<tr><th>$id</th><td>/examples/2025-10/data/nhs-notify-example-event-data.schema.json</td></tr>
 <tr><th>$schema</th><td>https://json-schema.org/draft/2020-12/schema</td></tr>
 </tbody>
 </table>
@@ -33,7 +33,7 @@
 
 ## nhsNumber
 
-  <p>Defined in <a href="./nhs-number.schema.html#/properties/nhsnumber">./nhs-number.schema.html#/properties/nhsnumber</a></p>
+  <p>Defined in <a href="../../../common/2025-10/defs/nhs-number.schema.html#/properties/nhsnumber">../../../common/2025-10/defs/nhs-number.schema.html#/properties/nhsnumber</a></p>
 
 <table class="jssd-property-table">
   <tbody>
@@ -63,7 +63,7 @@
 ## Schema
 ```
 {
-    "$id": "nhs-notify-example-event-data.schema.json",
+    "$id": "/examples/2025-10/data/nhs-notify-example-event-data.schema.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "title": "Example data type",
     "description": "Example data type",
@@ -71,7 +71,7 @@
     "additionalProperties": false,
     "properties": {
         "nhsNumber": {
-            "$ref": "./nhs-number.schema.json#/properties/nhsNumber",
+            "$ref": "../../../common/2025-10/defs/nhs-number.schema.json#/properties/nhsNumber",
             "description": "Example patient's NHS Number (accepts canonical or formatted forms).",
             "examples": [
                 "9434765919",

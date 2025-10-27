@@ -5,7 +5,7 @@
   "main": "generate-example.ts",
   "scripts": {
     "generate": "ts-node src/tools/generator/generate-example.ts $@",
-    "docs": "node generate-docs.cjs",
+    "build-docs": "node src/tools/generator/generate-docs.cjs",
     "validate": "node src/tools/validator/validate.js $@",
     "bundle": "ts-node src/tools/generator/bundle-schema.ts",
     "bundle:prefer-child": "ts-node src/tools/generator/bundle-schema-prefer-child.ts",

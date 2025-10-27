@@ -6,23 +6,14 @@
 
 <table>
 <tbody>
-<tr><th>$id</th><td>nhs-notify-profile.schema.json</td></tr>
+<tr><th>$id</th><td>/common/2025-10/nhs-notify-profile.schema.json</td></tr>
 <tr><th>$schema</th><td>https://json-schema.org/draft/2020-12/schema</td></tr>
 </tbody>
 </table>
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#profileversion">profileversion</a></td><td>String=1.0.0</td></tr><tr><td colspan="2"><a href="#profilepublished">profilepublished</a></td><td>String=2025-10</td></tr><tr><td colspan="2"><a href="#specversion">specversion</a></td><td>String=1.0</td></tr><tr><td colspan="2"><a href="#id">id</a></td><td>String</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td rowspan="10"><a href="#type">type</a></td><td rowspan="10">All of:</td><td><a href="#type-0">NHS Notify versioned event type pattern (String)</a></td></tr>
-<tr><td><a href="#type-1">Disallow 'completed' token (String)</a></td></tr>
-<tr><td><a href="#type-2">Disallow 'finished' token (String)</a></td></tr>
-<tr><td><a href="#type-3">Disallow 'updated' token (String)</a></td></tr>
-<tr><td><a href="#type-4">Disallow 'changed' token (String)</a></td></tr>
-<tr><td><a href="#type-5">Disallow 'processed' token (String)</a></td></tr>
-<tr><td><a href="#type-6">Disallow 'handled' token (String)</a></td></tr>
-<tr><td><a href="#type-7">Disallow 'status' token (String)</a></td></tr>
-<tr><td><a href="#type-8">Disallow 'started' token (String)</a></td></tr>
-<tr><td><a href="#type-9">Disallow 'failed' token (String)</a></td></tr><tr><td colspan="2"><a href="#time">time</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacontenttype">datacontenttype</a></td><td>String=application/json</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2"><a href="#traceparent">traceparent</a></td><td>String</td></tr><tr><td colspan="2"><a href="#tracestate">tracestate</a></td><td>String</td></tr><tr><td colspan="2"><a href="#partitionkey">partitionkey</a></td><td>String</td></tr><tr><td colspan="2"><a href="#recordedtime">recordedtime</a></td><td>String</td></tr><tr><td colspan="2"><a href="#sampledrate">sampledrate</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#sequence">sequence</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitytext">severitytext</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitynumber">severitynumber</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#dataclassification">dataclassification</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataregulation">dataregulation</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacategory">datacategory</a></td><td>String</td></tr><tr><td colspan="2" rowspan="7">All of:</td><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr></tbody></table>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#profileversion">profileversion</a></td><td>String=1.0.0</td></tr><tr><td colspan="2"><a href="#profilepublished">profilepublished</a></td><td>String=2025-10</td></tr><tr><td colspan="2"><a href="#specversion">specversion</a></td><td>String=1.0</td></tr><tr><td colspan="2"><a href="#id">id</a></td><td>String</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td rowspan="10">type</td><td rowspan="10">All of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td colspan="2"><a href="#time">time</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacontenttype">datacontenttype</a></td><td>String=application/json</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2"><a href="#traceparent">traceparent</a></td><td>String</td></tr><tr><td colspan="2"><a href="#tracestate">tracestate</a></td><td>String</td></tr><tr><td colspan="2"><a href="#partitionkey">partitionkey</a></td><td>String</td></tr><tr><td colspan="2"><a href="#recordedtime">recordedtime</a></td><td>String</td></tr><tr><td colspan="2"><a href="#sampledrate">sampledrate</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#sequence">sequence</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitytext">severitytext</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitynumber">severitynumber</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#dataclassification">dataclassification</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataregulation">dataregulation</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacategory">datacategory</a></td><td>String</td></tr><tr><td colspan="2" rowspan="7">All of:</td><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr></tbody></table>
 
 
 ## Example
@@ -47,7 +38,7 @@
     "severitytext": "DEBUG",
     "severitynumber": 1,
     "datacontenttype": "application/json",
-    "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json",
+    "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.yaml",
     "dataclassification": "restricted",
     "dataregulation": "ISO-27001",
     "datacategory": "sensitive",
@@ -249,7 +240,7 @@
 
 
 
-## <a id="type"></a> type
+## type
 
 
 <table class="jssd-property-table">
@@ -258,16 +249,7 @@
       <th>Description</th>
       <td colspan="2">Versioned event type (uk.nhs.notify.*.&lt;segments&gt;.vN) using reverse-DNS style; final segment MUST be .v&lt;digits&gt;; ambiguous verbs (completed, finished, updated, changed, processed, handled, status, started, failed) disallowed.</td>
     </tr>
-    <tr><tr><td rowspan="10"><a href="#type">Type</a></td><td rowspan="10">All of:</td><td><a href="#type-0">NHS Notify versioned event type pattern (String)</a></td></tr>
-<tr><td><a href="#type-1">Disallow 'completed' token (String)</a></td></tr>
-<tr><td><a href="#type-2">Disallow 'finished' token (String)</a></td></tr>
-<tr><td><a href="#type-3">Disallow 'updated' token (String)</a></td></tr>
-<tr><td><a href="#type-4">Disallow 'changed' token (String)</a></td></tr>
-<tr><td><a href="#type-5">Disallow 'processed' token (String)</a></td></tr>
-<tr><td><a href="#type-6">Disallow 'handled' token (String)</a></td></tr>
-<tr><td><a href="#type-7">Disallow 'status' token (String)</a></td></tr>
-<tr><td><a href="#type-8">Disallow 'started' token (String)</a></td></tr>
-<tr><td><a href="#type-9">Disallow 'failed' token (String)</a></td></tr></tr>
+    <tr><tr><td rowspan="10">Type</td><td rowspan="10">All of:</td><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr><tr><td>String</td></tr></tr>
     <tr>
       <th>Required</th>
       <td colspan="2">Yes</td>
@@ -284,7 +266,9 @@
 
 
 
-### <a id="type-0"></a> type.0 – NHS Notify versioned event type pattern
+### type.0
+
+
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -305,13 +289,11 @@
 
 
 
-### <a id="type-1"></a> type.1 – Disallow 'completed' token
+### type.1
+
+
 <table class="jssd-property-table">
   <tbody>
-    <tr>
-      <th>Disallowed Pattern</th>
-      <td colspan="2"><code>(?:^|\.)completed(?:\.|$)</code></td>
-    </tr>
     <tr>
       <th>Description</th>
       <td colspan="2">Disallow ambiguous past tense token &#x27;completed&#x27;. Use a domain-specific verb like read, created, published.</td>
@@ -324,13 +306,11 @@
 
 
 
-### <a id="type-2"></a> type.2 – Disallow 'finished' token
+### type.2
+
+
 <table class="jssd-property-table">
   <tbody>
-    <tr>
-      <th>Disallowed Pattern</th>
-      <td colspan="2"><code>(?:^|\.)finished(?:\.|$)</code></td>
-    </tr>
     <tr>
       <th>Description</th>
       <td colspan="2">Disallow &#x27;finished&#x27; which is temporal and ambiguous; choose a workflow-specific terminal verb.</td>
@@ -343,13 +323,11 @@
 
 
 
-### <a id="type-3"></a> type.3 – Disallow 'updated' token
+### type.3
+
+
 <table class="jssd-property-table">
   <tbody>
-    <tr>
-      <th>Disallowed Pattern</th>
-      <td colspan="2"><code>(?:^|\.)updated(?:\.|$)</code></td>
-    </tr>
     <tr>
       <th>Description</th>
       <td colspan="2">Disallow &#x27;updated&#x27;; prefer a concrete action (e.g. order.modified.v1 -&gt; order.change.applied).</td>
@@ -362,13 +340,11 @@
 
 
 
-### <a id="type-4"></a> type.4 – Disallow 'changed' token
+### type.4
+
+
 <table class="jssd-property-table">
   <tbody>
-    <tr>
-      <th>Disallowed Pattern</th>
-      <td colspan="2"><code>(?:^|\.)changed(?:\.|$)</code></td>
-    </tr>
     <tr>
       <th>Description</th>
       <td colspan="2">Disallow vague &#x27;changed&#x27;; specify the nature of the change (e.g. status.changed -&gt; status.transitioned).</td>
@@ -381,13 +357,11 @@
 
 
 
-### <a id="type-5"></a> type.5 – Disallow 'processed' token
+### type.5
+
+
 <table class="jssd-property-table">
   <tbody>
-    <tr>
-      <th>Disallowed Pattern</th>
-      <td colspan="2"><code>(?:^|\.)processed(?:\.|$)</code></td>
-    </tr>
     <tr>
       <th>Description</th>
       <td colspan="2">Disallow &#x27;processed&#x27;; state WHAT happened, not that a process occurred.</td>
@@ -400,13 +374,11 @@
 
 
 
-### <a id="type-6"></a> type.6 – Disallow 'handled' token
+### type.6
+
+
 <table class="jssd-property-table">
   <tbody>
-    <tr>
-      <th>Disallowed Pattern</th>
-      <td colspan="2"><code>(?:^|\.)handled(?:\.|$)</code></td>
-    </tr>
     <tr>
       <th>Description</th>
       <td colspan="2">Disallow &#x27;handled&#x27;; overly generic and not business meaningful.</td>
@@ -419,13 +391,11 @@
 
 
 
-### <a id="type-7"></a> type.7 – Disallow 'status' token
+### type.7
+
+
 <table class="jssd-property-table">
   <tbody>
-    <tr>
-      <th>Disallowed Pattern</th>
-      <td colspan="2"><code>(?:^|\.)status(?:\.|$)</code></td>
-    </tr>
     <tr>
       <th>Description</th>
       <td colspan="2">Disallow bare &#x27;status&#x27;; event types should represent a domain occurrence, not a generic label.</td>
@@ -438,13 +408,11 @@
 
 
 
-### <a id="type-8"></a> type.8 – Disallow 'started' token
+### type.8
+
+
 <table class="jssd-property-table">
   <tbody>
-    <tr>
-      <th>Disallowed Pattern</th>
-      <td colspan="2"><code>(?:^|\.)started(?:\.|$)</code></td>
-    </tr>
     <tr>
       <th>Description</th>
       <td colspan="2">Disallow &#x27;started&#x27;; prefer a specific lifecycle action (e.g. session.opened).</td>
@@ -457,13 +425,11 @@
 
 
 
-### <a id="type-9"></a> type.9 – Disallow 'failed' token
+### type.9
+
+
 <table class="jssd-property-table">
   <tbody>
-    <tr>
-      <th>Disallowed Pattern</th>
-      <td colspan="2"><code>(?:^|\.)failed(?:\.|$)</code></td>
-    </tr>
     <tr>
       <th>Description</th>
       <td colspan="2">Disallow &#x27;failed&#x27;; model the concrete failure (e.g. payment.authorization.failed -&gt; payment.authorization.rejected).</td>
@@ -572,34 +538,6 @@
     
   </tbody>
 </table>
-
-### Properties
-  <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#datanotify-payload">notify-payload</a></td><td>Object (of type <a href="./nhs-notify-payload.schema.html">./nhs-notify-payload.schema.html</a>)</td></tr></tbody></table>
-
-
-### data.notify-payload
-
-  <p>Defined in <a href="./nhs-notify-payload.schema.html">./nhs-notify-payload.schema.html</a></p>
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>$id</th>
-      <td colspan="2">nhs-notify-payload.schema.json</td>
-    </tr>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">Structured Notify payload containing domain data (notify-data) and metadata (notify-metadata).</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">Object (of type <a href="./nhs-notify-payload.schema.html">./nhs-notify-payload.schema.html</a>)</td></tr>
-    <tr>
-      <th>Required</th>
-      <td colspan="2">Yes</td>
-    </tr>
-    
-  </tbody>
-</table>
-
 
 
 
@@ -917,7 +855,7 @@
 ## Schema
 ```
 {
-    "$id": "nhs-notify-profile.schema.json",
+    "$id": "/common/2025-10/nhs-notify-profile.schema.json",
     "$anchor": "nhs-notify-profile",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "title": "NHS Notify CloudEvents Profile",
@@ -1104,16 +1042,6 @@
         },
         "data": {
             "type": "object",
-            "additionalProperties": false,
-            "required": [
-                "notify-payload"
-            ],
-            "properties": {
-                "notify-payload": {
-                    "$ref": "./nhs-notify-payload.schema.json",
-                    "description": "Structured Notify payload containing domain data (notify-data) and metadata (notify-metadata)."
-                }
-            },
             "description": "Container object wrapping the structured Notify payload.",
             "examples": [
                 {
@@ -1453,7 +1381,7 @@
             "severitytext": "DEBUG",
             "severitynumber": 1,
             "datacontenttype": "application/json",
-            "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json",
+            "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.yaml",
             "dataclassification": "restricted",
             "dataregulation": "ISO-27001",
             "datacategory": "sensitive",

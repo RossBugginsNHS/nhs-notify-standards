@@ -6,7 +6,7 @@
 
 <table>
 <tbody>
-<tr><th>$id</th><td>nhs-notify-payload.schema.json</td></tr>
+<tr><th>$id</th><td>/common/2025-10/defs/nhs-notify-payload.schema.json</td></tr>
 <tr><th>$schema</th><td>https://json-schema.org/draft/2020-12/schema</td></tr>
 </tbody>
 </table>
@@ -77,7 +77,9 @@
 
 
 
-### <a id="notify-data-0"></a> notify-data.0
+### notify-data.0
+
+
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -92,7 +94,9 @@
 
 
 
-### <a id="notify-data-1"></a> notify-data.1
+### notify-data.1
+
+
 <table class="jssd-property-table">
   <tbody>
     <tr>
@@ -116,7 +120,7 @@
   <tbody>
     <tr>
       <th>$id</th>
-      <td colspan="2">nhs-notify-metadata.schema.json</td>
+      <td colspan="2">/common/2025-10/defs/nhs-notify-metadata.schema.json</td>
     </tr>
     <tr>
       <th>Title</th>
@@ -150,7 +154,7 @@
 ## Schema
 ```
 {
-    "$id": "nhs-notify-payload.schema.json",
+    "$id": "/common/2025-10/defs/nhs-notify-payload.schema.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$comment": "Notify Payload",
     "type": "object",

@@ -53,14 +53,29 @@ async function main() {
       dereference: { circular: 'ignore' }
     });
 
-    // Optionally set/override $id for the bundled artifact (remove query strings, etc.)
+    // Set $id to match the output file's relative path from output root
+    // This matches how build-schema.ts calculates $id for modular schemas
     if (typeof bundled === 'object' && bundled) {
-      const baseName = path.basename(outFile);
-      const idCandidate = `https://nhsdigital.github.io/nhs-notify-standards/cloudevents/${baseName}`;
-      // Only set if not already meaningful
-      if (!('$id' in bundled) || (bundled as any).$id?.includes('example') ) {
-        (bundled as any).$id = idCandidate;
+      // Calculate relative path from output root (or current working directory if not in output/)
+      const outFileAbs = path.isAbsolute(outFile) ? outFile : path.join(process.cwd(), outFile);
+      const outputRoot = path.join(process.cwd(), 'output');
+      let schemaId: string;
+      
+      if (outFileAbs.startsWith(outputRoot)) {
+        // Output file is in output/ - use relative path from output root with leading /
+        // This allows relative $refs to resolve correctly in AJV
+        schemaId = "/" + path.relative(outputRoot, outFileAbs).replace(/\\/g, '/');
+      } else if (outFileAbs.includes('/schemas/')) {
+        // Output file is in schemas/ (published) - might have base URL, use relative from schemas root
+        const schemasRoot = path.join(process.cwd(), 'schemas');
+        const relativePath = path.relative(schemasRoot, outFileAbs).replace(/\\/g, '/');
+        schemaId = `https://notify.nhs.uk/cloudevents/schemas/${relativePath}`;
+      } else {
+        // Fallback: use basename
+        schemaId = path.basename(outFile);
       }
+      
+      (bundled as any).$id = schemaId;
       (bundled as any).$comment = ((bundled as any).$comment ? (bundled as any).$comment + ' | ' : '') + 'Bundled schema (all external $ref inlined).';
 
       // Strip nested $id fields to avoid AJV treating sub-schemas as separate roots and breaking local $ref resolution.
