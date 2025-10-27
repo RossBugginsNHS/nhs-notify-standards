@@ -115,67 +115,23 @@ async function main() {
     if (!example.data || typeof example.data !== 'object') {
       example.data = {} as any;
     }
-    if (!('notify-payload' in example.data)) {
-      example.data['notify-payload'] = {};
-    }
-    const np = example.data['notify-payload'];
-    if (typeof np !== 'object' || np === null) {
-      example.data['notify-payload'] = {};
-    }
-    const payload = example.data['notify-payload'];
-    if (!payload['notify-data']) {
-      payload['notify-data'] = { nhsNumber: '9434765919' }; // Valid checksum
-    }
-    // Ensure nhsNumber remains valid even if faker overrides
-    else if (payload['notify-data'] && typeof payload['notify-data'].nhsNumber === 'string') {
-      // Replace with known valid if custom faker produced invalid value
-      if (payload['notify-data'].nhsNumber !== '9434765919') {
-        payload['notify-data'].nhsNumber = '9434765919';
-      }
-    }
-    if (!payload['notify-metadata']) {
-      payload['notify-metadata'] = {};
-    }
-    const meta = payload['notify-metadata'];
-    // Enforce required metadata schema fields & align environment/instance semantics
-    meta.teamResponsible = meta.teamResponsible || 'Team 1';
-    meta.notifyDomain = meta.notifyDomain || 'Ordering';
-    // Remove legacy 'version' field if present
-    if ('version' in meta) {
-      delete meta.version;
-    }
-    // environment mapping (uat source -> testing metadata)
-    meta.environment = env === 'uat' ? 'testing' : (['development','staging','production'].includes(env) ? env : 'development');
-    meta.instance = instance;
-    meta.microservice = meta.microservice || 'order-service';
-    // Required new metadata fields
-    meta.microserviceVersion = meta.microserviceVersion || '1.3.0';
-    meta.repositoryUrl = meta.repositoryUrl || 'https://github.com/nhsdigital/nhs-notify-standards';
-    meta.accountId = meta.accountId || '123456789012';
-    meta.microserviceInstanceId = meta.microserviceInstanceId || 'pod-1';
-    // Newly added optional provenance / governance fields
-    meta.commitSha = meta.commitSha || (randomHex(12));
-    meta.buildTimestamp = meta.buildTimestamp || now.toISOString();
-    meta.serviceTier = meta.serviceTier || 'standard';
-    meta.region = meta.region || 'eu-west-2';
-    meta.pseudonymisationLevel = meta.pseudonymisationLevel || 'none';
-    // Replay semantics default false
-    if (typeof meta.replayIndicator !== 'boolean') meta.replayIndicator = false;
-    if (meta.replayIndicator && !meta.originalEventId) meta.originalEventId = uuid();
 
-    // Compute integrityHash over canonical notify-data JSON (sorted keys) if not present
-    if (!meta.integrityHash) {
-      const canonicalise = (obj: any): string => {
-        if (obj === null || typeof obj !== 'object') return JSON.stringify(obj);
-        if (Array.isArray(obj)) return '[' + obj.map(canonicalise).join(',') + ']';
-        const keys = Object.keys(obj).sort();
-        return '{' + keys.map(k => JSON.stringify(k) + ':' + canonicalise(obj[k])).join(',') + '}';
-      };
-      const notifyData = payload['notify-data'] ?? {};
-      const canonical = canonicalise(notifyData);
-      const digest = crypto.createHash('sha256').update(canonical).digest('hex');
-      meta.integrityHash = `sha256:${digest}`;
-    }
+    // Recursively find and set any nhsNumber property to a valid value
+    const setValidNhsNumber = (obj: any): void => {
+      if (!obj || typeof obj !== 'object') return;
+      
+      for (const key in obj) {
+        if (key === 'nhsNumber' && typeof obj[key] === 'string') {
+          // Set to known valid NHS number with correct checksum
+          obj[key] = '9434765919';
+        } else if (typeof obj[key] === 'object' && obj[key] !== null) {
+          // Recursively search nested objects and arrays
+          setValidNhsNumber(obj[key]);
+        }
+      }
+    };
+    
+    setValidNhsNumber(example.data);
 
     // 13. datacontenttype & dataschema stable defaults
     example.datacontenttype = 'application/json';

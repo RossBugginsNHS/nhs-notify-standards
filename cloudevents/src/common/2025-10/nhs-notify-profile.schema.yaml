@@ -4,14 +4,14 @@ title: NHS Notify CloudEvents Profile
 description: NHS Notify profile for CloudEvents 1.0 including additional governance and tracing attributes.
 type: object
 additionalProperties: false
-$comment: 'id includes the published date. CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.'
+$comment: "id includes the published date. CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec."
 properties:
   profileversion:
     type: string
     const: 1.0.0
     pattern: ^[0-9]+\.[0-9]+\.[0-9]+$
     description: NHS Notify CloudEvents profile semantic version.
-    $comment: 'Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change.'
+    $comment: "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
   profilepublished:
     type: string
     const: 2025-10
@@ -20,11 +20,11 @@ properties:
     $comment: Publication date of this profile version (YYYY-MM).
   specversion:
     type: string
-    const: '1.0'
+    const: "1.0"
     description: CloudEvents specification version (fixed to 1.0).
     examples:
-      - '1.0'
-    $comment: 'CloudEvents version used. Core attributes: specversion,id,source,type (+ optional subject,time,datacontenttype,dataschema,data). Ref: CloudEvents core spec.'
+      - "1.0"
+    $comment: "CloudEvents version used. Core attributes: specversion,id,source,type (+ optional subject,time,datacontenttype,dataschema,data). Ref: CloudEvents core spec."
   id:
     type: string
     format: uuid
@@ -38,12 +38,12 @@ properties:
     pattern: ^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/(data-plane|control-plane)(?:/[a-z0-9-]+)*$
     minLength: 40
     format: uri-reference
-    description: 'Logical event producer path: /nhs/england/notify/{environment}/{instance}/{plane}[/{service}...] where environment=production|staging|development|uat, instance=primary|secondary|dev-{digits}, plane=data-plane|control-plane, and optional service/lowercase tokens follow.'
+    description: "Logical event producer path: /nhs/england/notify/{environment}/{instance}/{plane}[/{service}...] where environment=production|staging|development|uat, instance=primary|secondary|dev-{digits}, plane=data-plane|control-plane, and optional service/lowercase tokens follow."
     examples:
       - /nhs/england/notify/production/primary/data-plane/ordering
       - /nhs/england/notify/staging/secondary/control-plane/audit
       - /nhs/england/notify/development/dev-12345/data-plane/ordering
-    $comment: 'Segments: /nhs/england/notify/{environment}/{instance}/{plane}[/{token}...]; environment in (production|staging|development|uat); instance in (primary|secondary|dev-<digits> for ephemeral/dev sandboxes); plane in (data-plane|control-plane); subsequent optional segments: lowercase alphanumeric or hyphen; no trailing slash.'
+    $comment: "Segments: /nhs/england/notify/{environment}/{instance}/{plane}[/{token}...]; environment in (production|staging|development|uat); instance in (primary|secondary|dev-<digits> for ephemeral/dev sandboxes); plane in (data-plane|control-plane); subsequent optional segments: lowercase alphanumeric or hyphen; no trailing slash."
   subject:
     type: string
     pattern: ^(?:[a-z0-9-]+)(?:/[a-z0-9-]+)*$
@@ -52,7 +52,7 @@ properties:
     description: Resource path (no leading slash) within the source made of lowercase segments separated by '/'.
     examples:
       - customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d
-    $comment: 'URI path: must not start with ''/'', only lowercase alphanumeric and hyphen segments separated by ''/'', must not end with ''/''.'
+    $comment: "URI path: must not start with '/', only lowercase alphanumeric and hyphen segments separated by '/', must not end with '/'."
   type:
     type: string
     minLength: 1
@@ -63,7 +63,7 @@ properties:
         description: Versioned event type (uk.nhs.notify.*.<segments>.vN) using reverse-DNS style segments ending with .v<digits> (e.g. .v1, .v10).
         examples:
           - uk.nhs.notify.ordering.order.read.v1
-        $comment: 'Segments: lowercase a-z0-9; final segment is version marker v<digits>. Allows arbitrary positive integer (no leading zero rule enforced).'
+        $comment: "Segments: lowercase a-z0-9; final segment is version marker v<digits>. Allows arbitrary positive integer (no leading zero rule enforced)."
       - name: Disallow 'completed' token
         type: string
         not:
@@ -112,13 +112,13 @@ properties:
     description: Versioned event type (uk.nhs.notify.*.<segments>.vN) using reverse-DNS style; final segment MUST be .v<digits>; ambiguous verbs (completed, finished, updated, changed, processed, handled, status, started, failed) disallowed.
     examples:
       - uk.nhs.notify.ordering.order.read.v1
-    $comment: 'NHS naming: lower-dot namespaced; version suffix required (.v<digits>); banned tokens anywhere before version: completed, finished, updated, changed, processed, handled, status, started, failed.'
+    $comment: "NHS naming: lower-dot namespaced; version suffix required (.v<digits>); banned tokens anywhere before version: completed, finished, updated, changed, processed, handled, status, started, failed."
   time:
     type: string
     format: date-time
     description: Timestamp when the event occurred (RFC 3339).
     examples:
-      - '2025-10-01T10:15:30.000Z'
+      - "2025-10-01T10:15:30.000Z"
     $comment: RFC3339 UTC occurred-at (REQUIRED in NHS profile).
   datacontenttype:
     type: string
@@ -135,18 +135,11 @@ properties:
     $comment: URI to event payload schema.
   data:
     type: object
-    additionalProperties: false
-    required:
-      - notify-payload
-    properties:
-      notify-payload:
-        $ref: ./nhs-notify-payload.schema.yaml
-        description: Structured Notify payload containing domain data (notify-data) and metadata (notify-metadata).
     description: Container object wrapping the structured Notify payload.
     examples:
       - notify-payload:
           notify-data:
-            nhsNumber: '9434765919'
+            nhsNumber: "9434765919"
           notify-metadata:
             teamResponsible: Team 1
             notifyDomain: Ordering
@@ -180,12 +173,12 @@ properties:
     format: date-time
     description: Timestamp when the event was recorded/persisted (should be >= time).
     examples:
-      - '2025-10-01T10:15:30.250Z'
+      - "2025-10-01T10:15:30.250Z"
     $comment: Bitemporal created-at; should be >= time.
   sampledrate:
     type: integer
     minimum: 1
-    description: 'Sampling factor: number of similar occurrences this event represents.'
+    description: "Sampling factor: number of similar occurrences this event represents."
     examples:
       - 5
     $comment: Integer > 0 indicating how many similar occurrences this event represents.
@@ -194,7 +187,7 @@ properties:
     pattern: ^\d{20}$
     description: Zero-padded 20 digit numeric sequence (lexicographically sortable).
     examples:
-      - '00000000000000000042'
+      - "00000000000000000042"
     $comment: Lexicographically comparable ordering string per source. Must be a string of exactly 20 digits, left-padded with zeros, representing a 64-bit unsigned integer.
   severitytext:
     type: string
@@ -251,7 +244,7 @@ properties:
     description: Data category classification (e.g. standard, special-category).
     examples:
       - sensitive
-    $comment: 'Example: special-category (GDPR), phi (HIPAA).'
+    $comment: "Example: special-category (GDPR), phi (HIPAA)."
 required:
   - specversion
   - id
@@ -280,7 +273,7 @@ allOf:
         subject:
           pattern: ^customer/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}(?:/(?:[a-z0-9-]+|[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}))*$
           $comment: When source is /data-plane..., subject must start with customer/{uuid} and may have further segments which are either lowercase tokens or UUIDs.
-          description: 'Subject path for data-plane events: customer/{uuid}[/...].'
+          description: "Subject path for data-plane events: customer/{uuid}[/...]."
       required:
         - subject
   - if:
@@ -358,17 +351,17 @@ allOf:
 examples:
   - profileversion: 1.0.0
     profilepublished: 2025-10
-    specversion: '1.0'
+    specversion: "1.0"
     id: 6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111
     source: /data-plane/ordering
     subject: customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d
     type: uk.nhs.notify.ordering.order.read
-    time: '2025-10-01T10:15:30.000Z'
-    recordedtime: '2025-10-01T10:15:30.250Z'
+    time: "2025-10-01T10:15:30.000Z"
+    recordedtime: "2025-10-01T10:15:30.250Z"
     traceparent: 00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01
     tracestate: rojo=00f067aa0ba902b7,congo=t61rcWkgMzE
     partitionkey: customer-920fca11
-    sequence: '00000000000000000042'
+    sequence: "00000000000000000042"
     severitytext: DEBUG
     severitynumber: 1
     datacontenttype: application/json
@@ -380,7 +373,7 @@ examples:
     data:
       notify-payload:
         notify-data:
-          nhsNumber: '9434765919'
+          nhsNumber: "9434765919"
         notify-metadata:
           teamResponsible: Team 1
           notifyDomain: Ordering

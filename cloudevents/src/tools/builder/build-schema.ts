@@ -35,6 +35,7 @@ function processRefs(
   schema: any,
   sourceDir: string,
   outputBaseDir: string,
+  sourceSchemaPath: string,
   baseUrl?: string
 ): any {
   if (typeof schema !== "object" || schema === null) {
@@ -43,7 +44,7 @@ function processRefs(
 
   if (Array.isArray(schema)) {
     return schema.map((item) =>
-      processRefs(item, sourceDir, outputBaseDir, baseUrl)
+      processRefs(item, sourceDir, outputBaseDir, sourceSchemaPath, baseUrl)
     );
   }
 
@@ -81,10 +82,27 @@ function processRefs(
           result[key] = fragment ? `${baseUrl}/${urlPath}#${fragment}` : `${baseUrl}/${urlPath}`;
         } else {
           // Keep as relative path but update to point to built location (output will be .json)
-          const fromOutputFile = path.dirname(
-            path.join(outputBaseDir, path.basename(sourceSchemaPath).replace(/\.yaml$/, '.json').replace(/\.yml$/, '.json'))
+          // Calculate where our current file will be in output
+          const sourceRelativePath = path.relative(
+            path.join(process.cwd(), "src"),
+            sourceSchemaPath
           );
-          const toBuiltFile = path.join(outputBaseDir, "..", "..", outputRelativePath);
+          const outputFileRelativePath = sourceRelativePath
+            .replace(/\.yaml$/, '.json')
+            .replace(/\.yml$/, '.json');
+          const fromOutputFile = path.join(
+            process.cwd(), 
+            "output",
+            path.dirname(outputFileRelativePath)
+          );
+          
+          // Calculate where the referenced file will be in output
+          const toBuiltFile = path.join(
+            process.cwd(),
+            "output",
+            outputRelativePath
+          );
+          
           let relativeRef = path
             .relative(fromOutputFile, toBuiltFile)
             .replace(/\\/g, "/");
@@ -137,7 +155,7 @@ function processRefs(
         return example;
       });
     } else if (typeof value === "object") {
-      result[key] = processRefs(value, sourceDir, outputBaseDir, baseUrl);
+      result[key] = processRefs(value, sourceDir, outputBaseDir, sourceSchemaPath, baseUrl);
     } else {
       result[key] = value;
     }
@@ -200,7 +218,7 @@ function buildSchema(
   // Process the schema: add $id and transform $refs
   const builtSchema = {
     $id: schemaId,
-    ...processRefs(schema, sourceDir, outputDir, baseUrl),
+    ...processRefs(schema, sourceDir, outputDir, sourceAbsolutePath, baseUrl),
   };
 
   // Write the built schema

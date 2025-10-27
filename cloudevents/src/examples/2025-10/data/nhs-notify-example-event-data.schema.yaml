@@ -5,13 +5,13 @@ type: object
 additionalProperties: false
 properties:
   nhsNumber:
-    $ref: ../../common/2025-10/nhs-number.schema.yaml#/properties/nhsNumber
+    $ref: ../../../common/2025-10/defs/nhs-number.schema.yaml#/properties/nhsNumber
     description: Example patient's NHS Number (accepts canonical or formatted forms).
     examples:
-      - '9434765919'
+      - "9434765919"
       - 943 476 5919
       - 943-476-5919
 required:
   - nhsNumber
 examples:
-  - nhsNumber: '9434765919'
+  - nhsNumber: "9434765919"

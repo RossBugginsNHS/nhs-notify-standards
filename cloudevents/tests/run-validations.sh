@@ -37,11 +37,16 @@ for schema_path in "${SCHEMAS[@]}"; do
     
     echo "[$index/$total] Validating against: $schema_name"
     
-    if npm run validate -- --base "$BASE_DIR" "$schema_path" "$DATA_FILE" 2>&1 | grep -q "Valid!"; then
+    # Capture the validation output
+    validation_output=$(npm run validate -- --base "$BASE_DIR" "$schema_path" "$DATA_FILE" 2>&1)
+    
+    if echo "$validation_output" | grep -q "Valid!"; then
         echo "✅ PASS"
         ((passed++))
     else
         echo "❌ FAIL"
+        # Show the actual error output
+        echo "$validation_output" | grep -v "^>" | grep -v "^$" | head -20
         failed=1
     fi
     

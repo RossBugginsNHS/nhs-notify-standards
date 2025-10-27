@@ -1,0 +1,16 @@
+{
+  "$id": "https://notify.nhs.uk/cloudevents/schemas/supplier-allocation/2025-10/data/file-received.schema-data.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Example data type",
+  "description": "Example data type",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "something": {
+      "$ref": "https://notify.nhs.uk/cloudevents/schemas/supplier-allocation/2025-10/defs/someobject.json#/properties/something"
+    }
+  },
+  "required": [
+    "something"
+  ]
+}
