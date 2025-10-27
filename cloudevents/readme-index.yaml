@@ -3,7 +3,7 @@
 # To regenerate, run: make update-readme
 # To customize labels and purposes, edit: readme-metadata.yaml
 
-generated: '2025-10-27T21:39:43.218Z'
+generated: '2025-10-27T21:45:17.732Z'
 common:
   schemas:
     - type: NHS Notify Metadata

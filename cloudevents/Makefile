@@ -33,6 +33,7 @@ test:
 deploy:
 	@echo "=== Deploying all schemas ==="
 	$(MAKE) clean
+	$(MAKE) version
 	$(MAKE) -C src deploy
 	make build-docs
 	make update-readme
@@ -58,6 +59,7 @@ update-readme:
 	@echo ""
 
 version:
+	@echo "=== Creating version files ==="
 	rm -f .version
 	make version-create-effective-file dir=.
 	echo "{ \"schemaVersion\": 1, \"label\": \"version\", \"message\": \"$$(head -n 1 .version 2> /dev/null || echo unknown)\", \"color\": \"orange\" }" > version.json
