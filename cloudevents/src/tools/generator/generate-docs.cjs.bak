@@ -2,55 +2,85 @@
 /**
  * Generate static documentation for JSON Schemas using json-schema-static-docs.
  *
- * Usage: node generate-docs.cjs <input-dir> <output-dir>
- *
- * The script will generate markdown documentation for all JSON schemas in the input
- * directory, preserving the folder structure in the output directory.
+ * We normalise all schemas into a temporary directory with simplified $id values (the file names)
+ * so that relative $ref resolution works locally and we avoid remote HTTP fetches during doc generation.
  */
 const path = require("path");
 const fs = require("fs");
 const JsonSchemaStaticDocs = require("json-schema-static-docs");
 
+const SOURCE_GLOB_PREFIX = "nhs-";
+
 (async () => {
-  // Parse command line arguments
-  const args = process.argv.slice(2);
-  if (args.length < 2) {
-    console.error("Usage: node generate-docs.cjs <input-dir> <output-dir>");
-    console.error("Example: node generate-docs.cjs ./output ./docs");
+  const repoRoot = __dirname;
+  const tempDir = path.join(repoRoot, ".schema-docs-tmp");
+  const outputPath = path.join(repoRoot, "docs");
+
+  if (!fs.existsSync(tempDir)) {
+    fs.mkdirSync(tempDir);
+  }
+
+  // Collect base schema files in project root (authoritative sources)
+  const allFiles = fs.readdirSync(repoRoot);
+  const baseSchemas = allFiles.filter(
+    (f) => f.startsWith(SOURCE_GLOB_PREFIX) && f.endsWith(".schema.json")
+  );
+  if (baseSchemas.length === 0) {
+    console.error(
+      "No schema files found matching pattern:",
+      SOURCE_GLOB_PREFIX + "*.schema.json"
+    );
     process.exit(1);
   }
 
-  const inputDir = path.resolve(args[0]);
-  const outputDir = path.resolve(args[1]);
+  // Collect variant schemas (bundled & flattened) in repo root (by naming convention)
+  const variantSchemas = allFiles.filter(
+    (f) =>
+      f.startsWith(SOURCE_GLOB_PREFIX) &&
+      (f.endsWith(".bundle.schema.json") ||
+        f.endsWith(".flattened.schema.json"))
+  );
 
-  console.log("Input directory:", inputDir);
-  console.log("Output directory:", outputDir);
+  const allSchemaFiles = [
+    ...baseSchemas.map((f) => ({ file: f, variant: false })),
+    ...variantSchemas.map((f) => ({ file: f, variant: true })),
+  ];
 
-  if (!fs.existsSync(inputDir)) {
-    console.error("Input directory does not exist:", inputDir);
-    process.exit(1);
+  // Normalise schemas into temp dir
+  for (const { file, variant } of allSchemaFiles) {
+    const srcPath = path.join(repoRoot, file);
+    try {
+      const raw = fs.readFileSync(srcPath, "utf-8");
+      const json = JSON.parse(raw);
+      const baseName = path.basename(file);
+      json.$id = baseName; // simplified id
+      if (variant) {
+        // Add variant metadata to description/title
+        const variantTag = file.includes(".flattened.")
+          ? "Flattened"
+          : "Bundled";
+        json.title = json.title
+          ? `${json.title} (${variantTag})`
+          : `${baseName} (${variantTag})`;
+        json.$comment =
+          (json.$comment ? json.$comment + " | " : "") +
+          `${variantTag} variant included in docs.`;
+      }
+      const outPath = path.join(tempDir, baseName);
+      fs.writeFileSync(outPath, JSON.stringify(json, null, 2));
+    } catch (e) {
+      console.warn("Skipping schema (failed to parse):", file, e.message);
+    }
   }
 
-  if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true });
-  }
-
-  console.log("Generating documentation...");
-
-  // Generate documentation directly from input directory
-  // Include all .schema.json files, excluding example event JSON files
+  // Provide a custom formats + relaxed strictness for custom "nhs-number" format.
   const generator = new JsonSchemaStaticDocs({
-    inputPath: inputDir,
-    outputPath: outputDir,
-    inputFileGlob: "**/*.schema.{yml,json}",
+    inputPath: tempDir,
+    outputPath,
     jsonSchemaVersion: "https://json-schema.org/draft/2020-12/schema",
     ajvOptions: {
       allowUnionTypes: true,
       strict: false,
-      strictSchema: false,
-      strictTypes: false,
-      strictTuples: false,
-      strictRequired: false,
       formats: {
         "nhs-number": {
           type: "string",
@@ -60,40 +90,19 @@ const JsonSchemaStaticDocs = require("json-schema-static-docs");
       },
     },
   });
+
   try {
     await generator.generate();
+    console.log("Static schema docs generated at", outputPath);
 
-    console.log(`\n✅ Documentation generated in: ${outputDir}`);
-  } catch (err) {
-    console.error("Failed to generate docs:", err);
-    process.exit(1);
-  }
-
-  // Post-processing: add anchors for property allOf subsections and link them in the top Properties table.
-
-  try {
-    const outputPath = outputDir;
-
+    // Post-processing: add anchors for property allOf subsections and link them in the top Properties table.
     try {
-      // Recursively find all .md files
-      const findMarkdownFiles = (dir) => {
-        let results = [];
-        const items = fs.readdirSync(dir, { withFileTypes: true });
-        for (const item of items) {
-          const fullPath = path.join(dir, item.name);
-          if (item.isDirectory()) {
-            results = results.concat(findMarkdownFiles(fullPath));
-          } else if (item.isFile() && item.name.endsWith(".md")) {
-            results.push(fullPath);
-          }
-        }
-        return results;
-      };
-
-      const docsFiles = findMarkdownFiles(outputPath);
-
-      for (const mdFilePath of docsFiles) {
-        let md = fs.readFileSync(mdFilePath, "utf-8");
+      const docsFiles = fs
+        .readdirSync(outputPath)
+        .filter((f) => f.endsWith(".md"));
+      for (const f of docsFiles) {
+        const p = path.join(outputPath, f);
+        let md = fs.readFileSync(p, "utf-8");
 
         // 1. Add explicit anchors for headings like `### type.0` so we can link deterministically.
         md = md.replace(
@@ -213,14 +222,12 @@ const JsonSchemaStaticDocs = require("json-schema-static-docs");
           // non-fatal
         }
 
-        fs.writeFileSync(mdFilePath, md, "utf-8");
+        fs.writeFileSync(p, md, "utf-8");
 
         // 3. Surface 'not' patterns from original schema allOf subschemas (disallowed patterns) into each subsection table.
         try {
-          // Find corresponding schema file - replace .md with .json and look in inputDir
-          const relativePath = path.relative(outputPath, mdFilePath);
-          const schemaJsonName = relativePath.replace(/\.md$/, ".json");
-          const schemaPath = path.join(inputDir, schemaJsonName);
+          const schemaJsonName = f.replace(/\.md$/, ".json");
+          const schemaPath = path.join(repoRoot, schemaJsonName);
           if (fs.existsSync(schemaPath)) {
             const schema = JSON.parse(fs.readFileSync(schemaPath, "utf-8"));
             if (schema && schema.properties) {
@@ -597,10 +604,10 @@ const JsonSchemaStaticDocs = require("json-schema-static-docs");
               } catch (e) {
                 // non-fatal
               }
-              fs.writeFileSync(mdFilePath, md, "utf-8");
+              fs.writeFileSync(p, md, "utf-8");
             }
           }
-          fs.writeFileSync(mdFilePath, md, "utf-8");
+          fs.writeFileSync(p, md, "utf-8");
         } catch (e) {
           // Non-fatal: continue
         }

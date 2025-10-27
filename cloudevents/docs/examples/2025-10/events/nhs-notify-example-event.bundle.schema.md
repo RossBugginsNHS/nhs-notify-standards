@@ -305,7 +305,8 @@
       <th>Description</th>
       <td colspan="2">Example metadata block constrained for this example.</td>
     </tr>
-    <tr><tr><td rowspan="2">Type</td><td rowspan="2">All of:</td><td>Object</td></tr><tr><td>Object</td></tr></tr>
+    <tr><tr><td rowspan="2"><a href="#type">Type</a></td><td rowspan="2">All of:</td><td><a href="#type-0">Object</a></td></tr>
+<tr><td><a href="#type-1">Object</a></td></tr></tr>
     <tr>
       <th>Required</th>
       <td colspan="2">No</td>
