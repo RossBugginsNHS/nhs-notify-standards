@@ -205,7 +205,7 @@ function updateReadme(generatedContent) {
   const before = readme.substring(0, startIndex);
   const after = readme.substring(endIndex);
 
-  const newReadme = before + "\n" + generatedContent + "\n" + after;
+  const newReadme = before + "\n" + generatedContent + "\n\n" + after;
 
   fs.writeFileSync(README_FILE, newReadme, "utf8");
 

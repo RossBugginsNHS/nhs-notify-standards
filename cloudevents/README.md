@@ -87,6 +87,7 @@ cloudevents/
 | ---------- | -------------- | ------------- |
 | **File Printed** | [`docs/supplier-allocation/example-events/file-printed-event.json`](docs/supplier-allocation/example-events/file-printed-event.json) | [`docs/supplier-allocation/example-events/file-printed-event.md`](docs/supplier-allocation/example-events/file-printed-event.md) |
 | **File Received** | [`docs/supplier-allocation/example-events/file-received-event.json`](docs/supplier-allocation/example-events/file-received-event.json) | [`docs/supplier-allocation/example-events/file-received-event.md`](docs/supplier-allocation/example-events/file-received-event.md) |
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Schema Variants Explained
