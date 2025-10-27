@@ -33,7 +33,7 @@ async function main() {
   
   const [ schemaPathRaw, outputPath ] = args;
   if (!schemaPathRaw || !outputPath) {
-    console.error("Usage: ts-node generate-example.ts [--plane=data|control] <schema.json> <output.json>");
+    console.error("Usage: ts-node generate-example.ts [--plane=data|control] <schema.json|yaml> <output.json>");
     process.exit(1);
   }
   // Add cache-busting query param if schemaPath is a URL

@@ -3,19 +3,20 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import yaml from "js-yaml";
 
 // Get command line arguments
 const [sourceSchemaPath, outputDir, baseUrl] = process.argv.slice(2);
 
 if (!sourceSchemaPath || !outputDir) {
   console.error(
-    "Usage: ts-node build-schema.ts <source-schema.json> <output-dir> [base-url]"
+    "Usage: ts-node build-schema.ts <source-schema.json|yaml> <output-dir> [base-url]"
   );
   console.error(
-    "Example: ts-node build-schema.ts src/common/2025-10/nhs-notify-profile.schema.json output/common/2025-10"
+    "Example: ts-node build-schema.ts src/common/2025-10/nhs-notify-profile.schema.yaml output/common/2025-10"
   );
   console.error(
-    "With URL: ts-node build-schema.ts src/common/2025-10/nhs-notify-profile.schema.json output/common/2025-10 https://schema.notify.nhs.uk"
+    "With URL: ts-node build-schema.ts src/common/2025-10/nhs-notify-profile.schema.yaml output/common/2025-10 https://schema.notify.nhs.uk"
   );
   process.exit(1);
 }
@@ -55,9 +56,12 @@ function processRefs(
         result[key] = value;
       }
       // Transform relative file path references (including simple filenames)
-      else if (value.startsWith("..") || value.startsWith(".") || value.endsWith(".json")) {
+      else if (value.startsWith("..") || value.startsWith(".") || value.endsWith(".json") || value.endsWith(".yaml") || value.endsWith(".yml") || value.includes(".yaml#") || value.includes(".yml#") || value.includes(".json#")) {
+        // Split ref into path and fragment
+        const [refPath, fragment] = value.split("#");
+        
         // Resolve the absolute path of the referenced schema
-        const resolvedPath = path.resolve(sourceDir, value);
+        const resolvedPath = path.resolve(sourceDir, refPath);
         
         // Calculate what the output path would be for this referenced schema
         // Assumes the same directory structure is maintained in output
@@ -66,27 +70,72 @@ function processRefs(
           resolvedPath
         );
         
+        // Convert YAML extensions to JSON for the output references
+        const outputRelativePath = relativePath
+          .replace(/\.yaml$/, '.json')
+          .replace(/\.yml$/, '.json');
+        
         if (baseUrl) {
-          // Convert to URL
-          const urlPath = relativePath.replace(/\\/g, "/");
-          result[key] = `${baseUrl}/${urlPath}`;
+          // Convert to URL (output will be .json)
+          const urlPath = outputRelativePath.replace(/\\/g, "/");
+          result[key] = fragment ? `${baseUrl}/${urlPath}#${fragment}` : `${baseUrl}/${urlPath}`;
         } else {
-          // Keep as relative path but update to point to built location
+          // Keep as relative path but update to point to built location (output will be .json)
           const fromOutputFile = path.dirname(
-            path.join(outputBaseDir, path.basename(sourceSchemaPath))
+            path.join(outputBaseDir, path.basename(sourceSchemaPath).replace(/\.yaml$/, '.json').replace(/\.yml$/, '.json'))
           );
-          const toBuiltFile = path.join(outputBaseDir, "..", "..", relativePath);
-          const relativeRef = path
+          const toBuiltFile = path.join(outputBaseDir, "..", "..", outputRelativePath);
+          let relativeRef = path
             .relative(fromOutputFile, toBuiltFile)
             .replace(/\\/g, "/");
-          result[key] = relativeRef.startsWith(".")
+          relativeRef = relativeRef.startsWith(".")
             ? relativeRef
             : `./${relativeRef}`;
+          result[key] = fragment ? `${relativeRef}#${fragment}` : relativeRef;
         }
       } else {
         // Keep absolute URLs as-is
         result[key] = value;
       }
+    } else if (key === "const" && typeof value === "string" && (value.endsWith(".yaml") || value.endsWith(".yml") || value.endsWith(".json") || value.includes(".yaml#") || value.includes(".yml#") || value.includes(".json#") || (value.startsWith("./") && value.includes("schema")))) {
+      // Transform const values that reference schema files
+      // First convert .yaml to .json
+      let constValue = value.replace(/\.yaml(#|$)/, '.json$1').replace(/\.yml(#|$)/, '.json$1');
+      
+      // If it's a relative path and we have a baseUrl, convert to full URL
+      if ((constValue.startsWith("./") || constValue.startsWith("../")) && baseUrl) {
+        const [refPath, fragment] = constValue.split("#");
+        const resolvedPath = path.resolve(sourceDir, refPath);
+        const relativePath = path.relative(
+          path.join(process.cwd(), "src"),
+          resolvedPath
+        );
+        const urlPath = relativePath.replace(/\\/g, "/");
+        constValue = fragment ? `${baseUrl}/${urlPath}#${fragment}` : `${baseUrl}/${urlPath}`;
+      }
+      
+      result[key] = constValue;
+    } else if (key === "examples" && Array.isArray(value)) {
+      // Transform examples array - convert .yaml to .json in string values, and apply URL if baseUrl is set
+      result[key] = value.map(example => {
+        if (typeof example === "string") {
+          let exampleValue = example.replace(/\.yaml$/, '.json').replace(/\.yml$/, '.json');
+          
+          // If it's a relative path and we have a baseUrl, convert to full URL
+          if ((exampleValue.startsWith("./") || exampleValue.startsWith("../")) && baseUrl && exampleValue.includes("schema")) {
+            const resolvedPath = path.resolve(sourceDir, exampleValue);
+            const relativePath = path.relative(
+              path.join(process.cwd(), "src"),
+              resolvedPath
+            );
+            const urlPath = relativePath.replace(/\\/g, "/");
+            exampleValue = `${baseUrl}/${urlPath}`;
+          }
+          
+          return exampleValue;
+        }
+        return example;
+      });
     } else if (typeof value === "object") {
       result[key] = processRefs(value, sourceDir, outputBaseDir, baseUrl);
     } else {
@@ -109,10 +158,19 @@ function buildSchema(
   const sourceAbsolutePath = path.resolve(sourceSchemaPath);
   const sourceDir = path.dirname(sourceAbsolutePath);
   const sourceContent = fs.readFileSync(sourceAbsolutePath, "utf-8");
-  const schema: JsonSchema = JSON.parse(sourceContent);
+  
+  // Parse based on file extension
+  let schema: JsonSchema;
+  if (sourceSchemaPath.endsWith('.yaml') || sourceSchemaPath.endsWith('.yml')) {
+    schema = yaml.load(sourceContent) as JsonSchema;
+  } else {
+    schema = JSON.parse(sourceContent);
+  }
 
-  // Calculate the output path
-  const schemaFileName = path.basename(sourceSchemaPath);
+  // Calculate the output path - always output as JSON
+  const schemaFileName = path.basename(sourceSchemaPath)
+    .replace(/\.yaml$/, '.json')
+    .replace(/\.yml$/, '.json');
   const outputPath = path.join(outputDir, schemaFileName);
 
   // Ensure output directory exists
@@ -121,12 +179,15 @@ function buildSchema(
   // Calculate the $id
   let schemaId: string;
   if (baseUrl) {
-    // Use provided base URL
+    // Use provided base URL - output will be .json
     const relativePath = path.relative(
       path.join(process.cwd(), "src"),
       sourceAbsolutePath
     );
-    schemaId = `${baseUrl}/${relativePath.replace(/\\/g, "/")}`;
+    const jsonRelativePath = relativePath
+      .replace(/\.yaml$/, '.json')
+      .replace(/\.yml$/, '.json');
+    schemaId = `${baseUrl}/${jsonRelativePath.replace(/\\/g, "/")}`;
   } else {
     // Use relative path from output root
     const relativePath = path.relative(

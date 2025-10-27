@@ -1,9 +1,0 @@
-{
-  "$id": "https://notify.nhs.uk/cloudevents/schemas/supplier-allocation/2025-10/supplier-allocation.schema.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "allOf": [
-    {
-      "$ref": "https://notify.nhs.uk/cloudevents/schemas/common/2025-10/nhs-notify-profile.schema.json"
-    }
-  ]
-}

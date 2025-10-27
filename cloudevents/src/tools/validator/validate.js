@@ -2,6 +2,7 @@ import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 import fs from "fs";
 import path from "path";
+import yaml from "js-yaml";
 
 // Parse command line arguments
 const args = process.argv.slice(2);
@@ -20,7 +21,7 @@ for (let i = 0; i < args.length; i++) {
 
 if (!schemaPath || !dataPath) {
   console.error(
-    "Usage: node validate.js [--base <base-dir>] <schema.json> <data.json>"
+    "Usage: node validate.js [--base <base-dir>] <schema.json|yaml> <data.json>"
   );
   console.error(
     "  --base: Base directory for resolving schema references (default: auto-detect 'src' or schema directory)"
@@ -55,33 +56,43 @@ if (baseDir) {
   }
 }
 
-// Load all .schema.json files in the schema directory
-function findAllJsonFiles(dir) {
+// Load all .schema.json and .schema.yaml files in the schema directory
+function findAllSchemaFiles(dir) {
   let results = [];
   const list = fs.readdirSync(dir);
   for (const file of list) {
     const filePath = path.join(dir, file);
     const stat = fs.statSync(filePath);
     if (stat && stat.isDirectory()) {
-      results = results.concat(findAllJsonFiles(filePath));
-    } else if (file.endsWith(".json") || file.endsWith(".schema.json")) {
+      results = results.concat(findAllSchemaFiles(filePath));
+    } else if (
+      file.endsWith(".json") ||
+      file.endsWith(".schema.json") ||
+      file.endsWith(".yaml") ||
+      file.endsWith(".yml")
+    ) {
       results.push(filePath);
     }
   }
   return results;
 }
 
-const allJsonFiles = findAllJsonFiles(schemaDir);
+const allSchemaFiles = findAllSchemaFiles(schemaDir);
 const schemas = {};
 const schemasById = {};
 
-for (const fullPath of allJsonFiles) {
+for (const fullPath of allSchemaFiles) {
   const relPath = "./" + path.relative(schemaDir, fullPath).replace(/\\/g, "/");
   const file = path.basename(fullPath);
   const absolutePath = path.resolve(fullPath);
   let content;
   try {
-    content = JSON.parse(fs.readFileSync(fullPath, "utf-8"));
+    const fileContent = fs.readFileSync(fullPath, "utf-8");
+    if (fullPath.endsWith(".yaml") || fullPath.endsWith(".yml")) {
+      content = yaml.load(fileContent);
+    } else {
+      content = JSON.parse(fileContent);
+    }
   } catch (e) {
     continue;
   }
@@ -203,12 +214,20 @@ function diagnoseNhsNumber(raw) {
 }
 
 // Always overwrite the main schema's $id to its absolute file path
-let mainSchemaFile = allJsonFiles.find(
+let mainSchemaFile = allSchemaFiles.find(
   (f) => path.resolve(schemaPath) === path.resolve(f)
 );
-let mainSchema = mainSchemaFile
-  ? schemas[path.resolve(mainSchemaFile)]
-  : JSON.parse(fs.readFileSync(schemaPath, "utf-8"));
+let mainSchema;
+if (mainSchemaFile) {
+  mainSchema = schemas[path.resolve(mainSchemaFile)];
+} else {
+  const mainContent = fs.readFileSync(schemaPath, "utf-8");
+  if (schemaPath.endsWith(".yaml") || schemaPath.endsWith(".yml")) {
+    mainSchema = yaml.load(mainContent);
+  } else {
+    mainSchema = JSON.parse(mainContent);
+  }
+}
 if (mainSchemaFile) {
   mainSchema.$id = path.resolve(mainSchemaFile);
 }

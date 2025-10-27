@@ -12,8 +12,10 @@
     "build": "ts-node src/tools/builder/build-schema.ts"
   },
   "dependencies": {
+    "@types/js-yaml": "^4.0.9",
     "ajv": "^8.0.0",
     "ajv-formats": "^3.0.1",
+    "js-yaml": "^4.1.0",
     "json-schema-faker": "^0.5.0-rc23",
     "json-schema-ref-parser": "^9.0.9"
   },

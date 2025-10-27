@@ -32,7 +32,7 @@ async function main() {
   }
   const [entry, outFile] = filtered;
   if (!entry || !outFile) {
-    console.error('Usage: ts-node bundle-schema.ts [--flatten] <entry-schema.json> <output-file.json>');
+    console.error('Usage: ts-node bundle-schema.ts [--flatten] <entry-schema.json|yaml> <output-file.json>');
     process.exit(1);
   }
 
