@@ -1,5 +1,5 @@
 {
-  "$id": "https://notify.nhs.uk/cloudevents/schemas/supplier-allocation/2025-10/events/file-received.schema.json",
+  "$id": "https://notify.nhs.uk/cloudevents/schemas/supplier-allocation/2025-10/events/file-printed.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "allOf": [
@@ -10,10 +10,10 @@
   "properties": {
     "type": {
       "type": "string",
-      "const": "uk.nhs.notify.supplier.allocation.file.received.v1",
+      "const": "uk.nhs.notify.supplier.allocation.file.printed.v1",
       "description": "Concrete versioned event type string for this example event (.vN suffix).",
       "examples": [
-        "uk.nhs.notify.supplier.allocation.file.received.v1"
+        "uk.nhs.notify.supplier.allocation.file.printed.v1"
       ]
     },
     "source": {

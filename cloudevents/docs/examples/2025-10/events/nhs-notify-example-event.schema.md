@@ -13,7 +13,7 @@
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#type">type</a></td><td>String=uk.nhs.notify.ordering.order.read.v1</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=../data/nhs-notify-example-event-data.schema.json</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object (of type <a href="../data/nhs-notify-example-event-data.schema.html">Example data type</a>)</td></tr><tr><td colspan="2" rowspan="1">All of:</td><td>Object (of type <a href="../example-profile.schema.html">NHS Notify Example Event Profile</a>)</td></tr></tbody></table>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#type">type</a></td><td>String=uk.nhs.notify.example.order.read.v1</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=../data/nhs-notify-example-event-data.schema.json</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object (of type <a href="../data/nhs-notify-example-event-data.schema.html">Example data type</a>)</td></tr><tr><td colspan="2" rowspan="1">All of:</td><td>Object (of type <a href="../example-profile.schema.html">NHS Notify Example Event Profile</a>)</td></tr></tbody></table>
 
 
 ## Example
@@ -24,8 +24,8 @@
 {
     "specversion": "1.0",
     "id": "6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111",
-    "type": "uk.nhs.notify.ordering.order.read.v1",
-    "source": "/data-plane/ordering",
+    "type": "uk.nhs.notify.example.order.read.v1",
+    "source": "/data-plane/example",
     "subject": "customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d",
     "time": "2025-10-01T10:15:30.000Z",
     "recordedtime": "2025-10-01T10:15:30.250Z",
@@ -68,10 +68,10 @@
     </tr>
     <tr>
       <th>Const</th>
-      <td colspan="2">uk.nhs.notify.ordering.order.read.v1</td>
+      <td colspan="2">uk.nhs.notify.example.order.read.v1</td>
     </tr><tr>
       <th>Examples</th>
-      <td colspan="2"><li>uk.nhs.notify.ordering.order.read.v1</li></td>
+      <td colspan="2"><li>uk.nhs.notify.example.order.read.v1</li></td>
     </tr>
   </tbody>
 </table>
@@ -95,10 +95,10 @@
     </tr>
     <tr>
       <th>Pattern</th>
-      <td colspan="2">^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/data-plane/ordering</td>
+      <td colspan="2">^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/data-plane/example</td>
     </tr><tr>
       <th>Examples</th>
-      <td colspan="2"><li>/nhs/england/notify/production/primary/data-plane/ordering</li></td>
+      <td colspan="2"><li>/nhs/england/notify/production/primary/data-plane/example</li></td>
     </tr>
   </tbody>
 </table>
@@ -215,18 +215,18 @@
     "properties": {
         "type": {
             "type": "string",
-            "const": "uk.nhs.notify.ordering.order.read.v1",
+            "const": "uk.nhs.notify.example.order.read.v1",
             "description": "Concrete versioned event type string for this example event (.vN suffix).",
             "examples": [
-                "uk.nhs.notify.ordering.order.read.v1"
+                "uk.nhs.notify.example.order.read.v1"
             ]
         },
         "source": {
             "type": "string",
-            "pattern": "^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/data-plane/ordering",
+            "pattern": "^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/data-plane/example",
             "description": "Event source for ordering domain examples.",
             "examples": [
-                "/nhs/england/notify/production/primary/data-plane/ordering"
+                "/nhs/england/notify/production/primary/data-plane/example"
             ]
         },
         "subject": {
@@ -260,8 +260,8 @@
         {
             "specversion": "1.0",
             "id": "6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111",
-            "type": "uk.nhs.notify.ordering.order.read.v1",
-            "source": "/data-plane/ordering",
+            "type": "uk.nhs.notify.example.order.read.v1",
+            "source": "/data-plane/example",
             "subject": "customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d",
             "time": "2025-10-01T10:15:30.000Z",
             "recordedtime": "2025-10-01T10:15:30.250Z",

@@ -1,51 +1,19 @@
 
 
-# Example Event
+# 
 
-<p>Example  event</p>
+
 
 <table>
 <tbody>
-<tr><th>$id</th><td>/examples/2025-10/events/nhs-notify-example-event.bundle.schema.json</td></tr>
+<tr><th>$id</th><td>/supplier-allocation/2025-10/events/file-printed.bundle.schema.json</td></tr>
 <tr><th>$schema</th><td>https://json-schema.org/draft/2020-12/schema</td></tr>
 </tbody>
 </table>
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#type">type</a></td><td>String=uk.nhs.notify.example.order.read.v1</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=../data/nhs-notify-example-event-data.schema.json</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2" rowspan="1">All of:</td><td>Object</td></tr></tbody></table>
-
-
-## Example
-
-
-
-```
-{
-    "specversion": "1.0",
-    "id": "6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111",
-    "type": "uk.nhs.notify.example.order.read.v1",
-    "source": "/data-plane/example",
-    "subject": "customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d",
-    "time": "2025-10-01T10:15:30.000Z",
-    "recordedtime": "2025-10-01T10:15:30.250Z",
-    "traceparent": "00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01",
-    "severitynumber": 1,
-    "severitytext": "DEBUG",
-    "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.yaml",
-    "data": {
-        "notify-payload": {
-            "notify-data": {
-                "nhsNumber": "9434765919"
-            },
-            "notify-metadata": {
-                "teamResponsible": "Team 1",
-                "notifyDomain": "Ordering"
-            }
-        }
-    }
-}
-```
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#type">type</a></td><td>String=uk.nhs.notify.supplier.allocation.file.printed.v1</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=../data/file-data.schema.json</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2" rowspan="1">All of:</td><td>Object</td></tr></tbody></table>
 
 
 
@@ -64,14 +32,14 @@
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Required</th>
-      <td colspan="2">Yes</td>
+      <td colspan="2">No</td>
     </tr>
     <tr>
       <th>Const</th>
-      <td colspan="2">uk.nhs.notify.example.order.read.v1</td>
+      <td colspan="2">uk.nhs.notify.supplier.allocation.file.printed.v1</td>
     </tr><tr>
       <th>Examples</th>
-      <td colspan="2"><li>uk.nhs.notify.example.order.read.v1</li></td>
+      <td colspan="2"><li>uk.nhs.notify.supplier.allocation.file.printed.v1</li></td>
     </tr>
   </tbody>
 </table>
@@ -86,34 +54,7 @@
   <tbody>
     <tr>
       <th>Description</th>
-      <td colspan="2">Event source for ordering domain examples.</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">String</td></tr>
-    <tr>
-      <th>Required</th>
-      <td colspan="2">Yes</td>
-    </tr>
-    <tr>
-      <th>Pattern</th>
-      <td colspan="2">^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/data-plane/example</td>
-    </tr><tr>
-      <th>Examples</th>
-      <td colspan="2"><li>/nhs/england/notify/production/primary/data-plane/example</li></td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-## subject
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">Path in the form customer/{id}/order/{id}/item/{id} where each {{id}} is a UUID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx).</td>
+      <td colspan="2">Event source for supplier allocation examples.</td>
     </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
@@ -122,10 +63,10 @@
     </tr>
     <tr>
       <th>Pattern</th>
-      <td colspan="2">^customer/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/order/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/item/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$</td>
+      <td colspan="2">^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/data-plane/supplierallocation</td>
     </tr><tr>
       <th>Examples</th>
-      <td colspan="2"><li>customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d</li></td>
+      <td colspan="2"><li>/nhs/england/notify/production/primary/data-plane/supplierallocation</li></td>
     </tr>
   </tbody>
 </table>
@@ -145,14 +86,14 @@
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Required</th>
-      <td colspan="2">Yes</td>
+      <td colspan="2">No</td>
     </tr>
     <tr>
       <th>Const</th>
-      <td colspan="2">../data/nhs-notify-example-event-data.schema.json</td>
+      <td colspan="2">../data/file-data.schema.json</td>
     </tr><tr>
       <th>Examples</th>
-      <td colspan="2"><li>nhs-notify-example-event-data.schema.json</li></td>
+      <td colspan="2"><li>file-data.schema.json</li></td>
     </tr>
   </tbody>
 </table>
@@ -176,85 +117,36 @@
     <tr><th>Type</th><td colspan="2">Object</td></tr>
     <tr>
       <th>Required</th>
-      <td colspan="2">Yes</td>
+      <td colspan="2">No</td>
     </tr>
     
   </tbody>
 </table>
 
 ### Properties
-  <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td rowspan="2">nhsNumber</td><td rowspan="2">Any of:</td><td>String</td></tr><tr><td>String</td></tr></tbody></table>
+  <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#datasomething">something</a></td><td>String</td></tr></tbody></table>
 
 
-### data.nhsNumber
+### data.something
 
 
 <table class="jssd-property-table">
   <tbody>
     <tr>
       <th>Description</th>
-      <td colspan="2">Example patient&#x27;s NHS Number (accepts canonical or formatted forms).</td>
+      <td colspan="2">Example reusable property definition</td>
     </tr>
-    <tr><tr><td rowspan="2">Type</td><td rowspan="2">Any of:</td><td>String</td></tr><tr><td>String</td></tr></tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Required</th>
       <td colspan="2">Yes</td>
     </tr>
-    
-  </tbody>
-</table>
-
-
-
-### data.nhsNumber.0
-
-
-<table class="jssd-property-table">
-  <tbody>
     <tr>
-      <th>Description</th>
-      <td colspan="2">NHS Number (10 digits; last digit is a Modulus-11 check digit).</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">String</td></tr>
-    <tr>
-      <th>Format</th>
-      <td colspan="2">nhs-number</td>
-    </tr><tr>
-      <th>Pattern</th>
-      <td colspan="2">^[0-9]{10}$</td>
-    </tr><tr>
       <th>Examples</th>
-      <td colspan="2"><li>9434765919</li><li>1234567890</li></td>
+      <td colspan="2"><li>example value</li></td>
     </tr>
   </tbody>
 </table>
-
-
-
-
-### data.nhsNumber.1
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">Human-entered NHS Number (accepts 3-3-4 with optional spaces or hyphens).</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">String</td></tr>
-    <tr>
-      <th>Format</th>
-      <td colspan="2">nhs-number</td>
-    </tr><tr>
-      <th>Pattern</th>
-      <td colspan="2">^(?:[0-9]{3}[- ]?[0-9]{3}[- ]?[0-9]{4})$</td>
-    </tr><tr>
-      <th>Examples</th>
-      <td colspan="2"><li>943 476 5919</li><li>943-476-5919</li><li>9434765919</li></td>
-    </tr>
-  </tbody>
-</table>
-
 
 
 
@@ -270,16 +162,14 @@
 ## Schema
 ```
 {
-    "$id": "/examples/2025-10/events/nhs-notify-example-event.bundle.schema.json",
+    "$id": "/supplier-allocation/2025-10/events/file-printed.bundle.schema.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "title": "Example Event",
-    "description": "Example  event",
     "type": "object",
     "allOf": [
         {
             "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "title": "NHS Notify Example Event Profile",
-            "description": "NHS Notify Example Event profile for CloudEvents 1.0 including additional governance and tracing attributes.",
+            "title": "NHS Notify Supplier Allocation Profile",
+            "description": "NHS Notify Supplier Allocation profile for CloudEvents 1.0 including additional governance and tracing attributes.",
             "type": "object",
             "allOf": [
                 {
@@ -837,13 +727,13 @@
                         {
                             "name": "NHS Notify versioned event type pattern",
                             "type": "string",
-                            "pattern": "^uk\\.nhs\\.notify\\.example\\.[a-z0-9]+(?:\\.[a-z0-9]+)*\\.v[0-9]+$"
+                            "pattern": "^uk\\.nhs\\.notify\\.supplier\\.allocation\\.[a-z0-9]+(?:\\.[a-z0-9]+)*\\.v[0-9]+$"
                         }
                     ]
                 },
                 "source": {
                     "type": "string",
-                    "pattern": "^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/(data-plane|control-plane)/example",
+                    "pattern": "^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/(data-plane|control-plane)/supplierallocation",
                     "minLength": 40,
                     "format": "uri-reference"
                 }
@@ -853,34 +743,26 @@
     "properties": {
         "type": {
             "type": "string",
-            "const": "uk.nhs.notify.example.order.read.v1",
+            "const": "uk.nhs.notify.supplier.allocation.file.printed.v1",
             "description": "Concrete versioned event type string for this example event (.vN suffix).",
             "examples": [
-                "uk.nhs.notify.example.order.read.v1"
+                "uk.nhs.notify.supplier.allocation.file.printed.v1"
             ]
         },
         "source": {
             "type": "string",
-            "pattern": "^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/data-plane/example",
-            "description": "Event source for ordering domain examples.",
+            "pattern": "^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/data-plane/supplierallocation",
+            "description": "Event source for supplier allocation examples.",
             "examples": [
-                "/nhs/england/notify/production/primary/data-plane/example"
-            ]
-        },
-        "subject": {
-            "type": "string",
-            "pattern": "^customer/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/order/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/item/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
-            "description": "Path in the form customer/{id}/order/{id}/item/{id} where each {{id}} is a UUID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx).",
-            "examples": [
-                "customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d"
+                "/nhs/england/notify/production/primary/data-plane/supplierallocation"
             ]
         },
         "dataschema": {
             "type": "string",
-            "const": "../data/nhs-notify-example-event-data.schema.json",
+            "const": "../data/file-data.schema.json",
             "description": "Canonical URI of the example event's data schema.",
             "examples": [
-                "nhs-notify-example-event-data.schema.json"
+                "file-data.schema.json"
             ]
         },
         "data": {
@@ -890,82 +772,19 @@
             "type": "object",
             "additionalProperties": false,
             "properties": {
-                "nhsNumber": {
-                    "description": "Example patient's NHS Number (accepts canonical or formatted forms).",
+                "something": {
+                    "type": "string",
+                    "description": "Example reusable property definition",
                     "examples": [
-                        "9434765919",
-                        "943 476 5919",
-                        "943-476-5919"
-                    ],
-                    "anyOf": [
-                        {
-                            "$comment": "Canonical stored form: exactly 10 digits (no spaces or hyphens).\n10-digit requirement and check-digit semantics come from the NHS Data Dictionary.\nRef: NHS Number attribute & algorithm (Modulus 11).",
-                            "type": "string",
-                            "description": "NHS Number (10 digits; last digit is a Modulus-11 check digit).",
-                            "pattern": "^[0-9]{10}$",
-                            "format": "nhs-number",
-                            "examples": [
-                                "9434765919",
-                                "1234567890"
-                            ]
-                        },
-                        {
-                            "$comment": "UI/ingress tolerant form: allows 3-3-4 with optional spaces/hyphens. Still only digits once separators are removed.\nDisplay guidance to use 3-3-4 spacing; systems should accept flexible input.",
-                            "type": "string",
-                            "description": "Human-entered NHS Number (accepts 3-3-4 with optional spaces or hyphens).",
-                            "pattern": "^(?:[0-9]{3}[- ]?[0-9]{3}[- ]?[0-9]{4})$",
-                            "format": "nhs-number",
-                            "examples": [
-                                "943 476 5919",
-                                "943-476-5919",
-                                "9434765919"
-                            ]
-                        }
+                        "example value"
                     ]
                 }
             },
             "required": [
-                "nhsNumber"
-            ],
-            "examples": [
-                {
-                    "nhsNumber": "9434765919"
-                }
+                "something"
             ]
         }
     },
-    "required": [
-        "type",
-        "source",
-        "dataschema",
-        "data"
-    ],
-    "examples": [
-        {
-            "specversion": "1.0",
-            "id": "6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111",
-            "type": "uk.nhs.notify.example.order.read.v1",
-            "source": "/data-plane/example",
-            "subject": "customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d",
-            "time": "2025-10-01T10:15:30.000Z",
-            "recordedtime": "2025-10-01T10:15:30.250Z",
-            "traceparent": "00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01",
-            "severitynumber": 1,
-            "severitytext": "DEBUG",
-            "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.yaml",
-            "data": {
-                "notify-payload": {
-                    "notify-data": {
-                        "nhsNumber": "9434765919"
-                    },
-                    "notify-metadata": {
-                        "teamResponsible": "Team 1",
-                        "notifyDomain": "Ordering"
-                    }
-                }
-            }
-        }
-    ],
     "$comment": "Bundled schema (all external $ref inlined).",
     "$defs": {}
 }

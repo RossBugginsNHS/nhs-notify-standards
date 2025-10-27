@@ -6,14 +6,14 @@
 
 <table>
 <tbody>
-<tr><th>$id</th><td>/supplier-allocation/2025-10/events/file-received.schema.json</td></tr>
+<tr><th>$id</th><td>/supplier-allocation/2025-10/events/file-printed.schema.json</td></tr>
 <tr><th>$schema</th><td>https://json-schema.org/draft/2020-12/schema</td></tr>
 </tbody>
 </table>
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#type">type</a></td><td>String=uk.nhs.notify.supplier.allocation.file.received.v1</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=../data/file-data.schema.json</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object (of type <a href="../data/file-data.schema.html">Example data type</a>)</td></tr><tr><td colspan="2" rowspan="1">All of:</td><td>Object (of type <a href="../supplier-allocation-profile.schema.html">NHS Notify Supplier Allocation Profile</a>)</td></tr></tbody></table>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#type">type</a></td><td>String=uk.nhs.notify.supplier.allocation.file.printed.v1</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=../data/file-data.schema.json</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object (of type <a href="../data/file-data.schema.html">Example data type</a>)</td></tr><tr><td colspan="2" rowspan="1">All of:</td><td>Object (of type <a href="../supplier-allocation-profile.schema.html">NHS Notify Supplier Allocation Profile</a>)</td></tr></tbody></table>
 
 
 
@@ -36,10 +36,10 @@
     </tr>
     <tr>
       <th>Const</th>
-      <td colspan="2">uk.nhs.notify.supplier.allocation.file.received.v1</td>
+      <td colspan="2">uk.nhs.notify.supplier.allocation.file.printed.v1</td>
     </tr><tr>
       <th>Examples</th>
-      <td colspan="2"><li>uk.nhs.notify.supplier.allocation.file.received.v1</li></td>
+      <td colspan="2"><li>uk.nhs.notify.supplier.allocation.file.printed.v1</li></td>
     </tr>
   </tbody>
 </table>
@@ -143,7 +143,7 @@
 ## Schema
 ```
 {
-    "$id": "/supplier-allocation/2025-10/events/file-received.schema.json",
+    "$id": "/supplier-allocation/2025-10/events/file-printed.schema.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
     "allOf": [
@@ -154,10 +154,10 @@
     "properties": {
         "type": {
             "type": "string",
-            "const": "uk.nhs.notify.supplier.allocation.file.received.v1",
+            "const": "uk.nhs.notify.supplier.allocation.file.printed.v1",
             "description": "Concrete versioned event type string for this example event (.vN suffix).",
             "examples": [
-                "uk.nhs.notify.supplier.allocation.file.received.v1"
+                "uk.nhs.notify.supplier.allocation.file.printed.v1"
             ]
         },
         "source": {

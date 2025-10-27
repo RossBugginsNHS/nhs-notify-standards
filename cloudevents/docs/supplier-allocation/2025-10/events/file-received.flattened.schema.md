@@ -13,14 +13,15 @@
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#type">type</a></td><td>String=uk.nhs.notify.supplier.allocation.file.received.v1</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=../data/file-received-data.schema.json</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2" rowspan="1">All of:</td><td>Object</td></tr></tbody></table>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td rowspan="1"><a href="#type">type</a></td><td rowspan="1">All of:</td><td><a href="#type-0">NHS Notify versioned event type pattern (String)</a></td></tr><tr><td rowspan="2"><a href="#source">source</a></td><td rowspan="2">All of:</td><td><a href="#source-0">Original pattern: Event source for supplier allocation examples (String)</a></td></tr>
+<tr><td><a href="#source-1">Merged pattern constraint (String)</a></td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=../data/file-data.schema.json</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2" rowspan="1">All of:</td><td>Object</td></tr></tbody></table>
 
 
 
 <hr />
 
 
-## type
+## <a id="type"></a> type
 
 
 <table class="jssd-property-table">
@@ -29,7 +30,7 @@
       <th>Description</th>
       <td colspan="2">Concrete versioned event type string for this example event (.vN suffix).</td>
     </tr>
-    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr><tr><td rowspan="1"><a href="#type">Type</a></td><td rowspan="1">All of:</td><td><a href="#type-0">NHS Notify versioned event type pattern (String)</a></td></tr></tr>
     <tr>
       <th>Required</th>
       <td colspan="2">No</td>
@@ -38,11 +39,95 @@
       <th>Const</th>
       <td colspan="2">uk.nhs.notify.supplier.allocation.file.received.v1</td>
     </tr><tr>
+      <th>Min Length</th>
+      <td colspan="2">1</td>
+    </tr><tr>
       <th>Examples</th>
       <td colspan="2"><li>uk.nhs.notify.supplier.allocation.file.received.v1</li></td>
     </tr>
   </tbody>
 </table>
+
+
+
+### <a id="type-0"></a> type.0 – NHS Notify versioned event type pattern
+<table class="jssd-property-table">
+  <tbody>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Pattern</th>
+      <td colspan="2">^uk\.nhs\.notify\.supplier\.allocation\.[a-z0-9]+(?:\.[a-z0-9]+)*\.v[0-9]+$</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+## <a id="source"></a> source
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Event source for supplier allocation examples.</td>
+    </tr>
+    <tr><tr><td rowspan="2"><a href="#type">Type</a></td><td rowspan="2">All of:</td><td><a href="#type-0">NHS Notify versioned event type pattern (String)</a></td></tr>
+<tr><td><a href="#type-1">String</a></td></tr></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">No</td>
+    </tr>
+    <tr>
+      <th>Min Length</th>
+      <td colspan="2">40</td>
+    </tr><tr>
+      <th>Format</th>
+      <td colspan="2">uri-reference</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>/nhs/england/notify/production/primary/data-plane/supplierallocation</li></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+### <a id="source-0"></a> source.0 – Original pattern: Event source for supplier allocation examples
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Original pattern: Event source for supplier allocation examples.</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Pattern</th>
+      <td colspan="2">^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/data-plane/supplierallocation</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### <a id="source-1"></a> source.1 – Merged pattern constraint
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Merged pattern constraint</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Pattern</th>
+      <td colspan="2">^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/(data-plane|control-plane)/supplierallocation</td>
+    </tr>
+  </tbody>
+</table>
+
 
 
 
@@ -63,10 +148,10 @@
     </tr>
     <tr>
       <th>Const</th>
-      <td colspan="2">../data/file-received-data.schema.json</td>
+      <td colspan="2">../data/file-data.schema.json</td>
     </tr><tr>
       <th>Examples</th>
-      <td colspan="2"><li>file-received-data.schema.json</li></td>
+      <td colspan="2"><li>file-data.schema.json</li></td>
     </tr>
   </tbody>
 </table>
@@ -693,14 +778,43 @@
             "description": "Concrete versioned event type string for this example event (.vN suffix).",
             "examples": [
                 "uk.nhs.notify.supplier.allocation.file.received.v1"
+            ],
+            "minLength": 1,
+            "allOf": [
+                {
+                    "name": "NHS Notify versioned event type pattern",
+                    "type": "string",
+                    "pattern": "^uk\\.nhs\\.notify\\.supplier\\.allocation\\.[a-z0-9]+(?:\\.[a-z0-9]+)*\\.v[0-9]+$"
+                }
             ]
+        },
+        "source": {
+            "type": "string",
+            "description": "Event source for supplier allocation examples.",
+            "examples": [
+                "/nhs/england/notify/production/primary/data-plane/supplierallocation"
+            ],
+            "allOf": [
+                {
+                    "type": "string",
+                    "pattern": "^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/data-plane/supplierallocation",
+                    "description": "Original pattern: Event source for supplier allocation examples."
+                },
+                {
+                    "type": "string",
+                    "pattern": "^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/(data-plane|control-plane)/supplierallocation",
+                    "description": "Merged pattern constraint"
+                }
+            ],
+            "minLength": 40,
+            "format": "uri-reference"
         },
         "dataschema": {
             "type": "string",
-            "const": "../data/file-received-data.schema.json",
+            "const": "../data/file-data.schema.json",
             "description": "Canonical URI of the example event's data schema.",
             "examples": [
-                "file-received-data.schema.json"
+                "file-data.schema.json"
             ]
         },
         "data": {

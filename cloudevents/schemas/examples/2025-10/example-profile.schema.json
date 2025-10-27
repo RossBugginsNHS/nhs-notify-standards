@@ -8,5 +8,24 @@
     {
       "$ref": "https://notify.nhs.uk/cloudevents/schemas/common/2025-10/nhs-notify-profile.schema.json"
     }
-  ]
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "minLength": 1,
+      "allOf": [
+        {
+          "name": "NHS Notify versioned event type pattern",
+          "type": "string",
+          "pattern": "^uk\\.nhs\\.notify\\.example\\.[a-z0-9]+(?:\\.[a-z0-9]+)*\\.v[0-9]+$"
+        }
+      ]
+    },
+    "source": {
+      "type": "string",
+      "pattern": "^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/(data-plane|control-plane)/example",
+      "minLength": 40,
+      "format": "uri-reference"
+    }
+  }
 }

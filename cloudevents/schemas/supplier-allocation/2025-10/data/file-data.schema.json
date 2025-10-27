@@ -1,5 +1,5 @@
 {
-  "$id": "https://notify.nhs.uk/cloudevents/schemas/supplier-allocation/2025-10/data/file-received-data.schema.json",
+  "$id": "https://notify.nhs.uk/cloudevents/schemas/supplier-allocation/2025-10/data/file-data.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Example data type",
   "description": "Example data type",

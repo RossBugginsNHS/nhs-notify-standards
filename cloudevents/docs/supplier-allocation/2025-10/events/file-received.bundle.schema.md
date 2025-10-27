@@ -13,7 +13,7 @@
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#type">type</a></td><td>String=uk.nhs.notify.supplier.allocation.file.received.v1</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=../data/file-received-data.schema.json</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2" rowspan="1">All of:</td><td>Object</td></tr></tbody></table>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#type">type</a></td><td>String=uk.nhs.notify.supplier.allocation.file.received.v1</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=../data/file-data.schema.json</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2" rowspan="1">All of:</td><td>Object</td></tr></tbody></table>
 
 
 
@@ -47,6 +47,33 @@
 
 
 
+## source
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Event source for supplier allocation examples.</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">No</td>
+    </tr>
+    <tr>
+      <th>Pattern</th>
+      <td colspan="2">^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/data-plane/supplierallocation</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>/nhs/england/notify/production/primary/data-plane/supplierallocation</li></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
 ## dataschema
 
 
@@ -63,10 +90,10 @@
     </tr>
     <tr>
       <th>Const</th>
-      <td colspan="2">../data/file-received-data.schema.json</td>
+      <td colspan="2">../data/file-data.schema.json</td>
     </tr><tr>
       <th>Examples</th>
-      <td colspan="2"><li>file-received-data.schema.json</li></td>
+      <td colspan="2"><li>file-data.schema.json</li></td>
     </tr>
   </tbody>
 </table>
@@ -691,7 +718,26 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "minLength": 1,
+                    "allOf": [
+                        {
+                            "name": "NHS Notify versioned event type pattern",
+                            "type": "string",
+                            "pattern": "^uk\\.nhs\\.notify\\.supplier\\.allocation\\.[a-z0-9]+(?:\\.[a-z0-9]+)*\\.v[0-9]+$"
+                        }
+                    ]
+                },
+                "source": {
+                    "type": "string",
+                    "pattern": "^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/(data-plane|control-plane)/supplierallocation",
+                    "minLength": 40,
+                    "format": "uri-reference"
+                }
+            }
         }
     ],
     "properties": {
@@ -703,12 +749,20 @@
                 "uk.nhs.notify.supplier.allocation.file.received.v1"
             ]
         },
+        "source": {
+            "type": "string",
+            "pattern": "^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/data-plane/supplierallocation",
+            "description": "Event source for supplier allocation examples.",
+            "examples": [
+                "/nhs/england/notify/production/primary/data-plane/supplierallocation"
+            ]
+        },
         "dataschema": {
             "type": "string",
-            "const": "../data/file-received-data.schema.json",
+            "const": "../data/file-data.schema.json",
             "description": "Canonical URI of the example event's data schema.",
             "examples": [
-                "file-received-data.schema.json"
+                "file-data.schema.json"
             ]
         },
         "data": {

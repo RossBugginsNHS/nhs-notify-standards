@@ -33,7 +33,7 @@ async function main() {
   
   const [ schemaPathRaw, outputPath ] = args;
   if (!schemaPathRaw || !outputPath) {
-    console.error("Usage: ts-node generate-example.ts [--plane=data|control] <schema.json|yaml> <output.json>");
+    console.error("Usage: ts-node generate-example.ts <schema.json|yaml> <output.json>");
     process.exit(1);
   }
   // Add cache-busting query param if schemaPath is a URL
@@ -62,18 +62,76 @@ async function main() {
     // 3. Generate IDs
     example.id = uuid();
 
-    // 4. Environment / instance / plane domain (align with new source pattern)
-    const environments = ['production','staging','development','uat'];
-    const env = randomChoice(environments);
-    // instance: primary | secondary | dev-<digits>
-    const instance = randomChoice(['primary','secondary','dev-' + (10000 + randomInt(90000)).toString()]);
-    const plane = 'data-plane'; // default plane for example generation
-    // Attempt to infer domain token from schema patterns (fallback to 'ordering')
-    const domainToken = 'ordering';
-    example.source = `/nhs/england/notify/${env}/${instance}/${plane}/${domainToken}`;
-
-    // 5. Subject pattern customer/{uuid}/order/{uuid}/item/{uuid}
-    example.subject = `customer/${uuid()}/order/${uuid()}/item/${uuid()}`;
+    // 4. Generate source from the most specific pattern (properties level, not allOf)
+    // jsf might generate from parent allOf pattern, so regenerate from properties.source directly
+    const sourceSchema = (dereferencedSchema as any).properties?.source;
+    if (sourceSchema && typeof sourceSchema === 'object' && sourceSchema.pattern) {
+      // Generate specifically from the properties.source schema to get the most specific pattern
+      const generatedSource = jsf.generate(sourceSchema);
+      if (typeof generatedSource === 'string') {
+        example.source = generatedSource;
+      }
+    }
+    
+    // 5. Generate subject from the most specific pattern (properties level, not allOf)
+    // Only override if properties.subject actually has a pattern (not inherited from parent)
+    const subjectSchema = (dereferencedSchema as any).properties?.subject;
+    const hasSpecificSubjectPattern = subjectSchema && 
+                                       typeof subjectSchema === 'object' && 
+                                       subjectSchema.pattern &&
+                                       !subjectSchema.$ref; // Make sure it's not just a ref
+    
+    if (hasSpecificSubjectPattern) {
+      // Generate specifically from the properties.subject schema to get the most specific pattern
+      const generatedSubject = jsf.generate(subjectSchema);
+      if (typeof generatedSubject === 'string') {
+        // Force lowercase to satisfy parent profile pattern requirements
+        example.subject = generatedSubject.toLowerCase();
+      }
+    } else {
+      // No specific subject pattern, check if there are conditionals (if/then) in allOf
+      // that apply based on other property values (like source)
+      // Recursively search through nested allOf arrays
+      const findConditionals = (schema: any): any[] => {
+        const conditionals: any[] = [];
+        if (Array.isArray(schema.allOf)) {
+          for (const item of schema.allOf) {
+            if (item.if && item.then) {
+              conditionals.push(item);
+            }
+            // Recursively search nested allOfs
+            conditionals.push(...findConditionals(item));
+          }
+        }
+        return conditionals;
+      };
+      
+      const conditionals = findConditionals(dereferencedSchema);
+      
+      for (const conditional of conditionals) {
+        // Check if the 'if' condition matches current example values
+        const ifMatches = Object.keys(conditional.if.properties || {}).every(propName => {
+          const ifPropSchema = conditional.if.properties[propName];
+          const exampleValue = (example as any)[propName];
+          // Check pattern match
+          if (ifPropSchema.pattern && exampleValue) {
+            const pattern = new RegExp(ifPropSchema.pattern);
+            return pattern.test(exampleValue);
+          }
+          return true;
+        });
+        
+        // If condition matches, use the 'then' subject pattern
+        if (ifMatches && conditional.then?.properties?.subject?.pattern) {
+          const thenSubjectSchema = conditional.then.properties.subject;
+          const generatedSubject = jsf.generate(thenSubjectSchema);
+          if (typeof generatedSubject === 'string') {
+            example.subject = generatedSubject.toLowerCase();
+            break; // Use first matching conditional
+          }
+        }
+      }
+    }
 
     // 6. Time & recordedtime: generate recent ISO times (UTC) ensuring recorded >= time
     const now = new Date();
@@ -135,9 +193,7 @@ async function main() {
 
     // 13. datacontenttype & dataschema stable defaults
     example.datacontenttype = 'application/json';
-    if (!example.dataschema) {
-      example.dataschema = 'https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.json';
-    }
+   
 
     // 14. Data classification defaults (pick consistent set)
     example.dataclassification = example.dataclassification || 'restricted';
