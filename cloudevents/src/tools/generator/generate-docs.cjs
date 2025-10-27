@@ -64,6 +64,85 @@ const JsonSchemaStaticDocs = require("json-schema-static-docs");
     await generator.generate();
 
     console.log(`\n✅ Documentation generated in: ${outputDir}`);
+
+    // Copy example event JSON files from output/*/example-events/ to docs/*/example-events/
+    console.log("\nCopying example event instances...");
+    const copyExampleEvents = (srcDir) => {
+      const items = fs.readdirSync(srcDir, { withFileTypes: true });
+      for (const item of items) {
+        const srcPath = path.join(srcDir, item.name);
+        if (item.isDirectory()) {
+          if (item.name === "example-events") {
+            // Found an example-events directory - copy its contents to docs
+            const relativePath = path.relative(inputDir, srcDir);
+            const destDir = path.join(
+              outputDir,
+              relativePath,
+              "example-events"
+            );
+
+            if (!fs.existsSync(destDir)) {
+              fs.mkdirSync(destDir, { recursive: true });
+            }
+
+            const eventFiles = fs
+              .readdirSync(srcPath)
+              .filter((f) => f.endsWith(".json"));
+            for (const eventFile of eventFiles) {
+              const srcFile = path.join(srcPath, eventFile);
+              const destFile = path.join(destDir, eventFile);
+              fs.copyFileSync(srcFile, destFile);
+              console.log(
+                `  Copied: ${path.relative(
+                  inputDir,
+                  srcFile
+                )} -> ${path.relative(outputDir, destFile)}`
+              );
+
+              // Generate markdown documentation for this example event
+              const mdFile = destFile.replace(".json", ".md");
+              const eventData = JSON.parse(fs.readFileSync(srcFile, "utf-8"));
+
+              // Find the corresponding event schema name
+              const eventBaseName = eventFile.replace("-event.json", "");
+              const domainPath = path.relative(
+                inputDir,
+                path.dirname(path.dirname(srcPath))
+              );
+
+              // Generate markdown content
+              let mdContent = `# ${eventData.type || "Example Event"}\n\n`;
+              mdContent += `**Event Type:** \`${eventData.type}\`\n\n`;
+              mdContent += `**Source:** \`${eventData.source}\`\n\n`;
+              if (eventData.subject) {
+                mdContent += `**Subject:** \`${eventData.subject}\`\n\n`;
+              }
+              mdContent += `**Event ID:** \`${eventData.id}\`\n\n`;
+              mdContent += `**Timestamp:** ${eventData.time}\n\n`;
+
+              mdContent += `## Related Schema Documentation\n\n`;
+              mdContent += `- [Event Schema](../${eventBaseName}.schema.md)\n`;
+              mdContent += `- [Event Schema (Bundled)](../${eventBaseName}.bundle.schema.md)\n`;
+              mdContent += `- [Event Schema (Flattened)](../${eventBaseName}.flattened.schema.md)\n\n`;
+
+              mdContent += `## Complete Event Instance\n\n`;
+              mdContent += "```json\n";
+              mdContent += JSON.stringify(eventData, null, 2);
+              mdContent += "\n```\n";
+
+              fs.writeFileSync(mdFile, mdContent, "utf-8");
+              console.log(`  Generated: ${path.relative(outputDir, mdFile)}`);
+            }
+          } else {
+            // Recurse into subdirectories
+            copyExampleEvents(srcPath);
+          }
+        }
+      }
+    };
+
+    copyExampleEvents(inputDir);
+    console.log("✅ Example events copied to docs");
   } catch (err) {
     console.error("Failed to generate docs:", err);
     process.exit(1);

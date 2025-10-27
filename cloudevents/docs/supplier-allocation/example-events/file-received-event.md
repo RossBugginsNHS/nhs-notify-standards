@@ -1,0 +1,48 @@
+# uk.nhs.notify.supplier.allocation.file.received.v1
+
+**Event Type:** `uk.nhs.notify.supplier.allocation.file.received.v1`
+
+**Source:** `/nhs/england/notify/production/secondary/data-plane/supplierallocation`
+
+**Subject:** `customer/cf9ddf8e-c91b-eb1c-c0cb-be487cfcecdc/c5c3jkoygx/edaoq/37`
+
+**Event ID:** `2b04b81f-01b9-4e2d-8308-4522e8a02ad0`
+
+**Timestamp:** 2025-10-27T18:41:49.658Z
+
+## Related Schema Documentation
+
+- [Event Schema](../file-received.schema.md)
+- [Event Schema (Bundled)](../file-received.bundle.schema.md)
+- [Event Schema (Flattened)](../file-received.flattened.schema.md)
+
+## Complete Event Instance
+
+```json
+{
+  "type": "uk.nhs.notify.supplier.allocation.file.received.v1",
+  "source": "/nhs/england/notify/production/secondary/data-plane/supplierallocation",
+  "dataschema": "../data/file-data.schema.json",
+  "data": {
+    "something": "quis esse nisi aliqua"
+  },
+  "profileversion": "1.0.0",
+  "profilepublished": "2025-10",
+  "specversion": "1.0",
+  "id": "2b04b81f-01b9-4e2d-8308-4522e8a02ad0",
+  "subject": "customer/cf9ddf8e-c91b-eb1c-c0cb-be487cfcecdc/c5c3jkoygx/edaoq/37",
+  "time": "2025-10-27T18:41:49.658Z",
+  "datacontenttype": "application/json",
+  "traceparent": "00-38c3706f33ab6de027fa5be2c15be987-05d55e75cbc1db30-01",
+  "tracestate": "occaecat velit enim",
+  "partitionkey": "customer-cf9ddf8e",
+  "recordedtime": "2025-10-27T18:41:50.658Z",
+  "sampledrate": 1,
+  "sequence": "00000000000179554231",
+  "severitytext": "DEBUG",
+  "severitynumber": 1,
+  "dataclassification": "confidential",
+  "dataregulation": "GDPR",
+  "datacategory": "standard"
+}
+```

@@ -1,6 +1,6 @@
 {
-  "name": "Notify Loaded 1.0.16",
-  "image": "ghcr.io/nhsdigital/nhs-notify-devcontainer-loaded:1.0.16",
+  "name": "Notify Loaded 1.0.17",
+  "image": "ghcr.io/nhsdigital/nhs-notify-devcontainer-loaded:1.0.17",
   "containerEnv": {
     "UPDATEFROMTEMPLATE": "false",
     "SHOWWELCOME": "true",
