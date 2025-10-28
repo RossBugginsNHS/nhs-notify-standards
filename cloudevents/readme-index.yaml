@@ -3,7 +3,7 @@
 # To regenerate, run: make update-readme
 # To customize labels and purposes, edit: readme-metadata.yaml
 
-generated: '2025-10-28T08:58:23.965Z'
+generated: '2025-10-28T09:19:53.633Z'
 common:
   versions:
     - version: 2025-10
@@ -28,6 +28,7 @@ common:
           source: src/common/2025-10/nhs-notify-profile.schema.yaml
           published: schemas/common/2025-10/nhs-notify-profile.schema.json
           docs: docs/common/2025-10/nhs-notify-profile.schema.md
+      exampleEvents: []
     - version: 2025-11-draft
       schemas:
         - type: Log Item Data
@@ -60,6 +61,11 @@ common:
           source: src/common/2025-11-draft/nhs-notify-profile.schema.yaml
           published: schemas/common/2025-11-draft/nhs-notify-profile.schema.json
           docs: docs/common/2025-11-draft/nhs-notify-profile.schema.md
+      exampleEvents:
+        - name: Log Item
+          filename: log-item-event
+          json: docs/common/2025-11-draft/example-events/log-item-event.json
+          markdown: docs/common/2025-11-draft/example-events/log-item-event.md
   purposes:
     NHS Notify Profile: Base CloudEvents profile with required NHS governance and tracing attributes
     NHS Notify Payload: Common wrapper providing data plane and control plane variants with metadata
@@ -95,6 +101,11 @@ domains:
             source: src/examples/2025-10/example-profile.schema.yaml
             published: schemas/examples/2025-10/example-profile.schema.json
             docs: docs/examples/2025-10/example-profile.schema.md
+        exampleEvents:
+          - name: NHS Notify Example Event
+            filename: nhs-notify-example-event-event
+            json: docs/examples/2025-10/example-events/nhs-notify-example-event-event.json
+            markdown: docs/examples/2025-10/example-events/nhs-notify-example-event-event.md
       - version: 2025-11-draft
         schemas:
           - type: Data Schema
@@ -120,7 +131,11 @@ domains:
             source: src/examples/2025-11-draft/example-profile.schema.yaml
             published: schemas/examples/2025-11-draft/example-profile.schema.json
             docs: docs/examples/2025-11-draft/example-profile.schema.md
-    exampleEvents: []
+        exampleEvents:
+          - name: NHS Notify Example Event
+            filename: nhs-notify-example-event-event
+            json: docs/examples/2025-11-draft/example-events/nhs-notify-example-event-event.json
+            markdown: docs/examples/2025-11-draft/example-events/nhs-notify-example-event-event.md
   - name: supplier-allocation
     displayName: Supplier Allocation
     purpose: Production domain for supplier allocation file processing events
@@ -168,4 +183,12 @@ domains:
             source: src/supplier-allocation/2025-10/supplier-allocation-profile.schema.yaml
             published: schemas/supplier-allocation/2025-10/supplier-allocation-profile.schema.json
             docs: docs/supplier-allocation/2025-10/supplier-allocation-profile.schema.md
-    exampleEvents: []
+        exampleEvents:
+          - name: File Printed
+            filename: file-printed-event
+            json: docs/supplier-allocation/2025-10/example-events/file-printed-event.json
+            markdown: docs/supplier-allocation/2025-10/example-events/file-printed-event.md
+          - name: File Received
+            filename: file-received-event
+            json: docs/supplier-allocation/2025-10/example-events/file-received-event.json
+            markdown: docs/supplier-allocation/2025-10/example-events/file-received-event.md

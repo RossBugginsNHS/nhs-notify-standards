@@ -6,5 +6,6 @@
     "SHOWWELCOME": "true",
     "MAKECONFIG": "true",
     "GITHUBMONITOR": "false"
-  }
+  },
+  "postStartCommand": "mkdir -p ~/.gnupg && echo '## 1-day timeout' > ~/.gnupg/gpg-agent.conf && echo 'default-cache-ttl 86400' >> ~/.gnupg/gpg-agent.conf && echo 'max-cache-ttl 86400' >> ~/.gnupg/gpg-agent.conf && gpg-connect-agent reloadagent /bye 2>/dev/null || true"
 }

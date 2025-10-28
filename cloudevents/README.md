@@ -49,6 +49,12 @@ cloudevents/
 | **Log Item** | [`src/common/2025-11-draft/events/log-item.schema.yaml`](src/common/2025-11-draft/events/log-item.schema.yaml) | [`schemas/common/2025-11-draft/events/log-item.schema.json`](schemas/common/2025-11-draft/events/log-item.schema.json) | [`docs/common/2025-11-draft/events/log-item.schema.md`](docs/common/2025-11-draft/events/log-item.schema.md) |
 | **NHS Notify Profile** | [`src/common/2025-11-draft/nhs-notify-profile.schema.yaml`](src/common/2025-11-draft/nhs-notify-profile.schema.yaml) | [`schemas/common/2025-11-draft/nhs-notify-profile.schema.json`](schemas/common/2025-11-draft/nhs-notify-profile.schema.json) | [`docs/common/2025-11-draft/nhs-notify-profile.schema.md`](docs/common/2025-11-draft/nhs-notify-profile.schema.md) |
 
+#### Example Events
+
+| Event Name | Event Instance | Documentation |
+| ---------- | -------------- | ------------- |
+| **Log Item** | [`docs/common/2025-11-draft/example-events/log-item-event.json`](docs/common/2025-11-draft/example-events/log-item-event.json) | [`docs/common/2025-11-draft/example-events/log-item-event.md`](docs/common/2025-11-draft/example-events/log-item-event.md) |
+
 **Purpose:**
 
 - **NHS Notify Profile**: Base CloudEvents profile with required NHS governance and tracing attributes
@@ -70,6 +76,12 @@ cloudevents/
 | **Event (Flattened)** | _Generated_ | [`schemas/examples/2025-10/events/nhs-notify-example-event.flattened.schema.json`](schemas/examples/2025-10/events/nhs-notify-example-event.flattened.schema.json) | [`docs/examples/2025-10/events/nhs-notify-example-event.flattened.schema.md`](docs/examples/2025-10/events/nhs-notify-example-event.flattened.schema.md) |
 | **Profile** | [`src/examples/2025-10/example-profile.schema.yaml`](src/examples/2025-10/example-profile.schema.yaml) | [`schemas/examples/2025-10/example-profile.schema.json`](schemas/examples/2025-10/example-profile.schema.json) | [`docs/examples/2025-10/example-profile.schema.md`](docs/examples/2025-10/example-profile.schema.md) |
 
+#### Example Events
+
+| Event Name | Event Instance | Documentation |
+| ---------- | -------------- | ------------- |
+| **NHS Notify Example Event** | [`docs/examples/2025-10/example-events/nhs-notify-example-event-event.json`](docs/examples/2025-10/example-events/nhs-notify-example-event-event.json) | [`docs/examples/2025-10/example-events/nhs-notify-example-event-event.md`](docs/examples/2025-10/example-events/nhs-notify-example-event-event.md) |
+
 ### Version: 2025-11-draft
 
 | Schema Type | Source (YAML) | Published Schema | Documentation |
@@ -79,6 +91,12 @@ cloudevents/
 | **Event (Bundled)** | _Generated_ | [`schemas/examples/2025-11-draft/events/nhs-notify-example-event.bundle.schema.json`](schemas/examples/2025-11-draft/events/nhs-notify-example-event.bundle.schema.json) | [`docs/examples/2025-11-draft/events/nhs-notify-example-event.bundle.schema.md`](docs/examples/2025-11-draft/events/nhs-notify-example-event.bundle.schema.md) |
 | **Event (Flattened)** | _Generated_ | [`schemas/examples/2025-11-draft/events/nhs-notify-example-event.flattened.schema.json`](schemas/examples/2025-11-draft/events/nhs-notify-example-event.flattened.schema.json) | [`docs/examples/2025-11-draft/events/nhs-notify-example-event.flattened.schema.md`](docs/examples/2025-11-draft/events/nhs-notify-example-event.flattened.schema.md) |
 | **Profile** | [`src/examples/2025-11-draft/example-profile.schema.yaml`](src/examples/2025-11-draft/example-profile.schema.yaml) | [`schemas/examples/2025-11-draft/example-profile.schema.json`](schemas/examples/2025-11-draft/example-profile.schema.json) | [`docs/examples/2025-11-draft/example-profile.schema.md`](docs/examples/2025-11-draft/example-profile.schema.md) |
+
+#### Example Events
+
+| Event Name | Event Instance | Documentation |
+| ---------- | -------------- | ------------- |
+| **NHS Notify Example Event** | [`docs/examples/2025-11-draft/example-events/nhs-notify-example-event-event.json`](docs/examples/2025-11-draft/example-events/nhs-notify-example-event-event.json) | [`docs/examples/2025-11-draft/example-events/nhs-notify-example-event-event.md`](docs/examples/2025-11-draft/example-events/nhs-notify-example-event-event.md) |
 
 
 ## Supplier Allocation Domain
@@ -98,6 +116,13 @@ cloudevents/
 | **Event (Bundled)** | _Generated_ | [`schemas/supplier-allocation/2025-10/events/file-received.bundle.schema.json`](schemas/supplier-allocation/2025-10/events/file-received.bundle.schema.json) | [`docs/supplier-allocation/2025-10/events/file-received.bundle.schema.md`](docs/supplier-allocation/2025-10/events/file-received.bundle.schema.md) |
 | **Event (Flattened)** | _Generated_ | [`schemas/supplier-allocation/2025-10/events/file-received.flattened.schema.json`](schemas/supplier-allocation/2025-10/events/file-received.flattened.schema.json) | [`docs/supplier-allocation/2025-10/events/file-received.flattened.schema.md`](docs/supplier-allocation/2025-10/events/file-received.flattened.schema.md) |
 | **Profile** | [`src/supplier-allocation/2025-10/supplier-allocation-profile.schema.yaml`](src/supplier-allocation/2025-10/supplier-allocation-profile.schema.yaml) | [`schemas/supplier-allocation/2025-10/supplier-allocation-profile.schema.json`](schemas/supplier-allocation/2025-10/supplier-allocation-profile.schema.json) | [`docs/supplier-allocation/2025-10/supplier-allocation-profile.schema.md`](docs/supplier-allocation/2025-10/supplier-allocation-profile.schema.md) |
+
+#### Example Events
+
+| Event Name | Event Instance | Documentation |
+| ---------- | -------------- | ------------- |
+| **File Printed** | [`docs/supplier-allocation/2025-10/example-events/file-printed-event.json`](docs/supplier-allocation/2025-10/example-events/file-printed-event.json) | [`docs/supplier-allocation/2025-10/example-events/file-printed-event.md`](docs/supplier-allocation/2025-10/example-events/file-printed-event.md) |
+| **File Received** | [`docs/supplier-allocation/2025-10/example-events/file-received-event.json`](docs/supplier-allocation/2025-10/example-events/file-received-event.json) | [`docs/supplier-allocation/2025-10/example-events/file-received-event.md`](docs/supplier-allocation/2025-10/example-events/file-received-event.md) |
 
 
 <!-- AUTO-GENERATED-CONTENT:END -->

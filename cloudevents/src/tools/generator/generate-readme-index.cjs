@@ -250,14 +250,16 @@ function processDomain(domainName) {
       }
     }
 
+    // Find example events for this version
+    const versionDocsDir = path.join(domainDocsDir, version);
+    const exampleEvents = findExampleEvents(versionDocsDir);
+
     versionData.push({
       version: version,
       schemas: schemas,
+      exampleEvents: exampleEvents,
     });
   }
-
-  // Find example events (domain-level, not version-specific)
-  const exampleEvents = findExampleEvents(domainDocsDir);
 
   // Get purpose from metadata or use default
   let purpose = `${getSchemaName(domainName)} domain`;
@@ -274,7 +276,6 @@ function processDomain(domainName) {
     displayName: getSchemaName(domainName),
     purpose: purpose,
     versions: versionData,
-    exampleEvents: exampleEvents,
   };
 }
 
@@ -346,9 +347,14 @@ function processCommonSchemas() {
       });
     }
 
+    // Find example events for this version
+    const versionDocsDir = path.join(DOCS_DIR, "common", version);
+    const exampleEvents = findExampleEvents(versionDocsDir);
+
     versionData.push({
       version: version,
       schemas: schemas,
+      exampleEvents: exampleEvents,
     });
   }
 
@@ -393,8 +399,12 @@ function main() {
         (sum, v) => sum + v.schemas.length,
         0
       );
+      const totalExampleEvents = domain.versions.reduce(
+        (sum, v) => sum + (v.exampleEvents?.length || 0),
+        0
+      );
       console.log(
-        `  ✓ ${domain.displayName}: ${totalSchemas} schemas, ${domain.exampleEvents.length} example events`
+        `  ✓ ${domain.displayName}: ${totalSchemas} schemas, ${totalExampleEvents} example events`
       );
       domains.push(domain);
     }

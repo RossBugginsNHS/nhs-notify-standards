@@ -78,6 +78,14 @@ function renderCommonSchemas(common) {
 
     lines.push(renderTable(headers, rows));
     lines.push("");
+
+    // Render example events for this version if available
+    if (versionData.exampleEvents && versionData.exampleEvents.length > 0) {
+      lines.push("#### Example Events");
+      lines.push("");
+      lines.push(renderDomainExampleEvents(versionData.exampleEvents));
+      lines.push("");
+    }
   }
 
   lines.push("**Purpose:**");
@@ -155,12 +163,14 @@ function renderDomain(domain) {
     lines.push("");
     lines.push(renderDomainSchemas(versionData.schemas));
     lines.push("");
-  }
 
-  if (domain.exampleEvents && domain.exampleEvents.length > 0) {
-    lines.push("### Example Events");
-    lines.push("");
-    lines.push(renderDomainExampleEvents(domain.exampleEvents));
+    // Render example events for this version if available
+    if (versionData.exampleEvents && versionData.exampleEvents.length > 0) {
+      lines.push("#### Example Events");
+      lines.push("");
+      lines.push(renderDomainExampleEvents(versionData.exampleEvents));
+      lines.push("");
+    }
   }
 
   return lines.join("\n");
