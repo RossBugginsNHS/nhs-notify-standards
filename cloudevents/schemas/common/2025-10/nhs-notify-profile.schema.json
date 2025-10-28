@@ -8,6 +8,15 @@
   "additionalProperties": false,
   "$comment": "id includes the published date. CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.",
   "properties": {
+    "profilebuildversion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+-[0-9]{8}\\.[0-9]{6}\\+[0-9a-f]{7}$",
+      "description": "NHS Notify CloudEvents profile build version including timestamp and git commit hash.",
+      "examples": [
+        "1.0.0-20251028.080853+31a925a"
+      ],
+      "$comment": "Build version format: {semver}-{YYYYMMDD}.{HHMMSS}+{git-short-hash}. Generated at build time from .version file."
+    },
     "profileversion": {
       "type": "string",
       "const": "1.0.0",
@@ -341,6 +350,7 @@
     "severitynumber",
     "traceparent",
     "data",
+    "profilebuildversion",
     "profileversion",
     "profilepublished"
   ],
@@ -509,6 +519,7 @@
   ],
   "examples": [
     {
+      "profilebuildversion": "1.0.0-20251028.080853+31a925a",
       "profileversion": "1.0.0",
       "profilepublished": "2025-10",
       "specversion": "1.0",

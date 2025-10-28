@@ -13,7 +13,7 @@
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#profileversion">profileversion</a></td><td>String=1.0.0</td></tr><tr><td colspan="2"><a href="#profilepublished">profilepublished</a></td><td>String=2025-10</td></tr><tr><td colspan="2"><a href="#specversion">specversion</a></td><td>String=1.0</td></tr><tr><td colspan="2"><a href="#id">id</a></td><td>String</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td rowspan="10"><a href="#type">type</a></td><td rowspan="10">All of:</td><td><a href="#type-0">NHS Notify versioned event type pattern (String)</a></td></tr>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#profilebuildversion">profilebuildversion</a></td><td>String</td></tr><tr><td colspan="2"><a href="#profileversion">profileversion</a></td><td>String=1.0.0</td></tr><tr><td colspan="2"><a href="#profilepublished">profilepublished</a></td><td>String=2025-10</td></tr><tr><td colspan="2"><a href="#specversion">specversion</a></td><td>String=1.0</td></tr><tr><td colspan="2"><a href="#id">id</a></td><td>String</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td rowspan="10"><a href="#type">type</a></td><td rowspan="10">All of:</td><td><a href="#type-0">NHS Notify versioned event type pattern (String)</a></td></tr>
 <tr><td><a href="#type-1">Disallow 'completed' token (String)</a></td></tr>
 <tr><td><a href="#type-2">Disallow 'finished' token (String)</a></td></tr>
 <tr><td><a href="#type-3">Disallow 'updated' token (String)</a></td></tr>
@@ -31,6 +31,7 @@
 
 ```
 {
+    "profilebuildversion": "1.0.0-20251028.080853+31a925a",
     "profileversion": "1.0.0",
     "profilepublished": "2025-10",
     "specversion": "1.0",
@@ -70,6 +71,33 @@
 
 
 <hr />
+
+
+## profilebuildversion
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">NHS Notify CloudEvents profile build version including timestamp and git commit hash.</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">Yes</td>
+    </tr>
+    <tr>
+      <th>Pattern</th>
+      <td colspan="2">^[0-9]+\.[0-9]+\.[0-9]+-[0-9]{8}\.[0-9]{6}\+[0-9a-f]{7}$</td>
+    </tr><tr>
+      <th>Examples</th>
+      <td colspan="2"><li>1.0.0-20251028.080853+31a925a</li></td>
+    </tr>
+  </tbody>
+</table>
+
+
 
 
 ## profileversion
@@ -898,6 +926,15 @@
     "additionalProperties": false,
     "$comment": "id includes the published date. CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.",
     "properties": {
+        "profilebuildversion": {
+            "type": "string",
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+-[0-9]{8}\\.[0-9]{6}\\+[0-9a-f]{7}$",
+            "description": "NHS Notify CloudEvents profile build version including timestamp and git commit hash.",
+            "examples": [
+                "1.0.0-20251028.080853+31a925a"
+            ],
+            "$comment": "Build version format: {semver}-{YYYYMMDD}.{HHMMSS}+{git-short-hash}. Generated at build time from .version file."
+        },
         "profileversion": {
             "type": "string",
             "const": "1.0.0",
@@ -1231,6 +1268,7 @@
         "severitynumber",
         "traceparent",
         "data",
+        "profilebuildversion",
         "profileversion",
         "profilepublished"
     ],
@@ -1399,6 +1437,7 @@
     ],
     "examples": [
         {
+            "profilebuildversion": "1.0.0-20251028.080853+31a925a",
             "profileversion": "1.0.0",
             "profilepublished": "2025-10",
             "specversion": "1.0",
