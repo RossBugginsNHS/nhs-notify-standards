@@ -27,6 +27,16 @@ allOf:
             pattern: ^\d{4}-\d{2}(?:-draft)?$
             description: NHS Notify CloudEvents profile publication date (YYYY-MM) with optional -draft suffix.
             $comment: Publication date of this profile version (YYYY-MM) or (YYYY-MM-draft) for draft versions.
+          domainprofileversion:
+            type: string
+            pattern: ^[0-9]+\.[0-9]+\.[0-9]+$
+            description: NHS Notify domain specific CloudEvents profile semantic version. (optional)
+            $comment: "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
+          domainprofilepublished:
+            type: string
+            pattern: ^\d{4}-\d{2}(?:-draft)?$
+            description: NHS Notify domain specific CloudEvents profile publication date (YYYY-MM). (optional)
+            $comment: Publication date of this profile version (YYYY-MM).
           specversion:
             type: string
             const: "1.0"

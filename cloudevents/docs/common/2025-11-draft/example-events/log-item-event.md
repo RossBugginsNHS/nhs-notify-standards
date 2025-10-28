@@ -2,13 +2,13 @@
 
 **Event Type:** `uk.nhs.notify.logging.new.log.v1`
 
-**Source:** `/nhs/england/notify/development/secondary/data-plane/logging`
+**Source:** `/nhs/england/notify/staging/dev-90268782810/data-plane/logging`
 
-**Subject:** `customer/4a7b04e8-acda-2ed1-dcde-7b2f17d0cdcd/order/fb6a6cf2-952b-d3c3-5a70-d0ade9eeabf4/item/cd26fe5e-06fc-a5cb-5ca4-4aa19aecc8e6`
+**Subject:** `customer/d13fb0bf-520e-fd8c-dedb-737bc3bc3dcb/order/0d3cbe34-f2a7-f4e0-f903-a3e9bfd81d4f/item/dfc3bd89-c24b-a3a1-9c39-7fc3fe7dc779`
 
-**Event ID:** `565119a0-9bdd-4ee4-9219-e4b598640df6`
+**Event ID:** `42891457-1b96-4027-8f5a-c98770b741a1`
 
-**Timestamp:** 2025-10-28T08:52:27.759Z
+**Timestamp:** 2025-10-28T08:58:03.017Z
 
 ## Related Schema Documentation
 
@@ -21,30 +21,30 @@
 ```json
 {
   "type": "uk.nhs.notify.logging.new.log.v1",
-  "source": "/nhs/england/notify/development/secondary/data-plane/logging",
-  "subject": "customer/4a7b04e8-acda-2ed1-dcde-7b2f17d0cdcd/order/fb6a6cf2-952b-d3c3-5a70-d0ade9eeabf4/item/cd26fe5e-06fc-a5cb-5ca4-4aa19aecc8e6",
+  "source": "/nhs/england/notify/staging/dev-90268782810/data-plane/logging",
+  "subject": "customer/d13fb0bf-520e-fd8c-dedb-737bc3bc3dcb/order/0d3cbe34-f2a7-f4e0-f903-a3e9bfd81d4f/item/dfc3bd89-c24b-a3a1-9c39-7fc3fe7dc779",
   "dataschema": "../data/log-item-data.schema.json",
   "data": {
-    "info": "non ad dolore"
+    "info": "in"
   },
   "profileversion": "1.0.0",
   "profilepublished": "2025-11-draft",
-  "domainprofileversion": "2749516866.763.845049",
-  "domainprofilepublished": "2018-16",
+  "domainprofileversion": "30.259.9097",
+  "domainprofilepublished": "7755-27",
   "specversion": "1.0",
-  "id": "565119a0-9bdd-4ee4-9219-e4b598640df6",
-  "time": "2025-10-28T08:52:27.759Z",
+  "id": "42891457-1b96-4027-8f5a-c98770b741a1",
+  "time": "2025-10-28T08:58:03.017Z",
   "datacontenttype": "application/json",
-  "traceparent": "00-125e1653eb80cdfdab22704ff070dc0c-11c45c184e7aba5e-01",
-  "tracestate": "reprehenderit culpa",
-  "partitionkey": "customer-4a7b04e8",
-  "recordedtime": "2025-10-28T08:52:28.759Z",
+  "traceparent": "00-65b1a7d1c4cb94eba023f54e629b46b4-a2a318c681440f7d-01",
+  "tracestate": "nisi cupidatat",
+  "partitionkey": "customer-d13fb0bf",
+  "recordedtime": "2025-10-28T08:58:04.017Z",
   "sampledrate": 1,
-  "sequence": "00000000000113614501",
-  "severitytext": "INFO",
-  "severitynumber": 2,
-  "dataclassification": "internal",
-  "dataregulation": "ISO-27001",
-  "datacategory": "special-category"
+  "sequence": "00000000000800877171",
+  "severitytext": "ERROR",
+  "severitynumber": 4,
+  "dataclassification": "confidential",
+  "dataregulation": "HIPAA",
+  "datacategory": "sensitive"
 }
 ```

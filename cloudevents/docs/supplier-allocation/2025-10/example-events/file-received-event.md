@@ -2,13 +2,13 @@
 
 **Event Type:** `uk.nhs.notify.supplier.allocation.file.received.v1`
 
-**Source:** `/nhs/england/notify/development/secondary/data-plane/supplierallocation`
+**Source:** `/nhs/england/notify/development/primary/data-plane/supplierallocation`
 
-**Subject:** `customer/5b51f031-4d0b-bdcc-73d0-d8869df8dbcb/dw-te8orpj8/c8ebfb6d-97db-dcbf-bb0d-6fc9eceeb5db/9b5d53f2-14fb-ce01-1496-4dac7cfdcfae/e349ed2c-6c1c-d92b-bd0f-c4c904c9cdfa/d1f19fe8-b90b-130d-e3f9-cbeb3bcfea4c/f5d776fe-b468-5be2-3bd5-fcfeca748ed1`
+**Subject:** `customer/3ccff80f-4cbc-b1bd-d8c0-de90cd4eed8f/k65/605imm750x/z7n/ktp0/zpna3d/kc`
 
-**Event ID:** `2cf260a4-801b-49bd-bc5d-3ab61d09c878`
+**Event ID:** `7efc2312-5313-4313-b9b0-c2464ba06be1`
 
-**Timestamp:** 2025-10-28T08:52:42.232Z
+**Timestamp:** 2025-10-28T08:58:17.778Z
 
 ## Related Schema Documentation
 
@@ -21,28 +21,30 @@
 ```json
 {
   "type": "uk.nhs.notify.supplier.allocation.file.received.v1",
-  "source": "/nhs/england/notify/development/secondary/data-plane/supplierallocation",
+  "source": "/nhs/england/notify/development/primary/data-plane/supplierallocation",
   "dataschema": "../data/file-data.schema.json",
   "data": {
-    "something": "commodo aute voluptate amet"
+    "something": "labore adipisicing in"
   },
   "profileversion": "1.0.0",
   "profilepublished": "2025-10",
+  "domainprofileversion": "14.9444443.2",
+  "domainprofilepublished": "8965-28-draft",
   "specversion": "1.0",
-  "id": "2cf260a4-801b-49bd-bc5d-3ab61d09c878",
-  "subject": "customer/5b51f031-4d0b-bdcc-73d0-d8869df8dbcb/dw-te8orpj8/c8ebfb6d-97db-dcbf-bb0d-6fc9eceeb5db/9b5d53f2-14fb-ce01-1496-4dac7cfdcfae/e349ed2c-6c1c-d92b-bd0f-c4c904c9cdfa/d1f19fe8-b90b-130d-e3f9-cbeb3bcfea4c/f5d776fe-b468-5be2-3bd5-fcfeca748ed1",
-  "time": "2025-10-28T08:52:42.232Z",
+  "id": "7efc2312-5313-4313-b9b0-c2464ba06be1",
+  "subject": "customer/3ccff80f-4cbc-b1bd-d8c0-de90cd4eed8f/k65/605imm750x/z7n/ktp0/zpna3d/kc",
+  "time": "2025-10-28T08:58:17.778Z",
   "datacontenttype": "application/json",
-  "traceparent": "00-67e97294c84d49948a84a46368b7899e-66a86c2ecc524eb3-01",
-  "tracestate": "sed consequat ullamco laboris",
-  "partitionkey": "customer-5b51f031",
-  "recordedtime": "2025-10-28T08:52:43.232Z",
+  "traceparent": "00-bdeb3109961c5c19ff8418aeb420f801-69bd8afc97375a12-01",
+  "tracestate": "sint quis",
+  "partitionkey": "customer-3ccff80f",
+  "recordedtime": "2025-10-28T08:58:18.778Z",
   "sampledrate": 1,
-  "sequence": "00000000000052186130",
-  "severitytext": "ERROR",
-  "severitynumber": 4,
-  "dataclassification": "confidential",
-  "dataregulation": "PCI-DSS",
+  "sequence": "00000000000298518199",
+  "severitytext": "DEBUG",
+  "severitynumber": 1,
+  "dataclassification": "public",
+  "dataregulation": "GDPR",
   "datacategory": "sensitive"
 }
 ```

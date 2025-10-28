@@ -13,7 +13,7 @@
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#profileversion">profileversion</a></td><td>String=1.0.0</td></tr><tr><td colspan="2"><a href="#profilepublished">profilepublished</a></td><td>String=2025-10</td></tr><tr><td colspan="2"><a href="#specversion">specversion</a></td><td>String=1.0</td></tr><tr><td colspan="2"><a href="#id">id</a></td><td>String</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td rowspan="10"><a href="#type">type</a></td><td rowspan="10">All of:</td><td><a href="#type-0">NHS Notify versioned event type pattern (String)</a></td></tr>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#profileversion">profileversion</a></td><td>String=1.0.0</td></tr><tr><td colspan="2"><a href="#profilepublished">profilepublished</a></td><td>String=2025-10</td></tr><tr><td colspan="2"><a href="#domainprofileversion">domainprofileversion</a></td><td>String</td></tr><tr><td colspan="2"><a href="#domainprofilepublished">domainprofilepublished</a></td><td>String</td></tr><tr><td colspan="2"><a href="#specversion">specversion</a></td><td>String=1.0</td></tr><tr><td colspan="2"><a href="#id">id</a></td><td>String</td></tr><tr><td colspan="2"><a href="#source">source</a></td><td>String</td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td rowspan="10"><a href="#type">type</a></td><td rowspan="10">All of:</td><td><a href="#type-0">NHS Notify versioned event type pattern (String)</a></td></tr>
 <tr><td><a href="#type-1">Disallow 'completed' token (String)</a></td></tr>
 <tr><td><a href="#type-2">Disallow 'finished' token (String)</a></td></tr>
 <tr><td><a href="#type-3">Disallow 'updated' token (String)</a></td></tr>
@@ -117,6 +117,54 @@
       <th>Const</th>
       <td colspan="2">2025-10</td>
     </tr><tr>
+      <th>Pattern</th>
+      <td colspan="2">^\d{4}-\d{2}(?:-draft)?$</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+## domainprofileversion
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">NHS Notify domain specific CloudEvents profile semantic version. (optional)</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">No</td>
+    </tr>
+    <tr>
+      <th>Pattern</th>
+      <td colspan="2">^[0-9]+\.[0-9]+\.[0-9]+$</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+## domainprofilepublished
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">NHS Notify domain specific CloudEvents profile publication date (YYYY-MM). (optional)</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">No</td>
+    </tr>
+    <tr>
       <th>Pattern</th>
       <td colspan="2">^\d{4}-\d{2}(?:-draft)?$</td>
     </tr>
@@ -911,6 +959,18 @@
             "pattern": "^\\d{4}-\\d{2}(?:-draft)?$",
             "description": "NHS Notify CloudEvents profile publication date (YYYY-MM) with optional -draft suffix.",
             "$comment": "Publication date of this profile version (YYYY-MM) or (YYYY-MM-draft) for draft versions."
+        },
+        "domainprofileversion": {
+            "type": "string",
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+            "description": "NHS Notify domain specific CloudEvents profile semantic version. (optional)",
+            "$comment": "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
+        },
+        "domainprofilepublished": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}(?:-draft)?$",
+            "description": "NHS Notify domain specific CloudEvents profile publication date (YYYY-MM). (optional)",
+            "$comment": "Publication date of this profile version (YYYY-MM)."
         },
         "specversion": {
             "type": "string",
