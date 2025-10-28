@@ -291,15 +291,6 @@
                     "additionalProperties": false,
                     "$comment": "id includes the published date. CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.",
                     "properties": {
-                        "profilebuildversion": {
-                            "type": "string",
-                            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+-[0-9]{8}\\.[0-9]{6}\\+[0-9a-f]{7}$",
-                            "description": "NHS Notify CloudEvents profile build version including timestamp and git commit hash.",
-                            "examples": [
-                                "1.0.0-20251028.080853+31a925a"
-                            ],
-                            "$comment": "Build version format: {semver}-{YYYYMMDD}.{HHMMSS}+{git-short-hash}. Generated at build time from .version file."
-                        },
                         "profileversion": {
                             "type": "string",
                             "const": "1.0.0",
@@ -310,9 +301,9 @@
                         "profilepublished": {
                             "type": "string",
                             "const": "2025-10",
-                            "pattern": "^\\d{4}-\\d{2}$",
-                            "description": "NHS Notify CloudEvents profile publication date (YYYY-MM).",
-                            "$comment": "Publication date of this profile version (YYYY-MM)."
+                            "pattern": "^\\d{4}-\\d{2}(?:-draft)?$",
+                            "description": "NHS Notify CloudEvents profile publication date (YYYY-MM) with optional -draft suffix.",
+                            "$comment": "Publication date of this profile version (YYYY-MM) or (YYYY-MM-draft) for draft versions."
                         },
                         "specversion": {
                             "type": "string",
@@ -633,7 +624,6 @@
                         "severitynumber",
                         "traceparent",
                         "data",
-                        "profilebuildversion",
                         "profileversion",
                         "profilepublished"
                     ],
@@ -802,7 +792,6 @@
                     ],
                     "examples": [
                         {
-                            "profilebuildversion": "1.0.0-20251028.080853+31a925a",
                             "profileversion": "1.0.0",
                             "profilepublished": "2025-10",
                             "specversion": "1.0",
@@ -841,6 +830,20 @@
                 }
             ],
             "properties": {
+                "profileversion": {
+                    "type": "string",
+                    "const": "1.0.0",
+                    "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+                    "description": "NHS Notify CloudEvents profile semantic version.",
+                    "$comment": "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
+                },
+                "profilepublished": {
+                    "type": "string",
+                    "const": "2025-10",
+                    "pattern": "^\\d{4}-\\d{2}$",
+                    "description": "NHS Notify CloudEvents profile publication date (YYYY-MM).",
+                    "$comment": "Publication date of this profile version (YYYY-MM)."
+                },
                 "type": {
                     "type": "string",
                     "minLength": 1,

@@ -12,7 +12,7 @@ OUTPUT_BASE_DIR = $(ROOT_DIR)/output/$(DOMAIN)
 SCHEMAS_BASE_DIR = $(ROOT_DIR)/schemas/$(DOMAIN)
 OUTPUT_DIR = $(OUTPUT_BASE_DIR)/$(PUBLISH_VERSION)
 SCHEMAS_DIR = $(SCHEMAS_BASE_DIR)/$(PUBLISH_VERSION)
-EVENTS_DIR = $(OUTPUT_BASE_DIR)/example-events
+EVENTS_DIR = $(OUTPUT_DIR)/example-events
 SRC_DIR = $(ROOT_DIR)/src/$(DOMAIN)/$(PUBLISH_VERSION)
 
 # Profile schema paths for testing (from common domain)

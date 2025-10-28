@@ -5,10 +5,20 @@
 ### 2025-10
 - [common/2025-10/nhs-notify-profile.schema](common/2025-10/nhs-notify-profile.schema.md)
 
+### 2025-11-draft
+- [common/2025-11-draft/nhs-notify-profile.schema](common/2025-11-draft/nhs-notify-profile.schema.md)
+
 ## Examples
+
+### 2025-10
 - [examples/2025-10/example-profile.schema](examples/2025-10/example-profile.schema.md)
 
+### 2025-11-draft
+- [examples/2025-11-draft/example-profile.schema](examples/2025-11-draft/example-profile.schema.md)
+
 ## Supplier-allocation
+
+### 2025-10
 - [supplier-allocation/2025-10/supplier-allocation-profile.schema](supplier-allocation/2025-10/supplier-allocation-profile.schema.md)
 
 ## Common
@@ -18,7 +28,24 @@
 - [common/2025-10/defs/nhs-notify-payload.schema](common/2025-10/defs/nhs-notify-payload.schema.md)
 - [common/2025-10/defs/nhs-number.schema](common/2025-10/defs/nhs-number.schema.md)
 
+### 2025-11-draft
+
+#### Data
+- [common/2025-11-draft/data/log-item-data.schema](common/2025-11-draft/data/log-item-data.schema.md)
+
+#### Defs
+- [common/2025-11-draft/defs/nhs-notify-metadata.schema](common/2025-11-draft/defs/nhs-notify-metadata.schema.md)
+- [common/2025-11-draft/defs/nhs-notify-payload.schema](common/2025-11-draft/defs/nhs-notify-payload.schema.md)
+- [common/2025-11-draft/defs/nhs-number.schema](common/2025-11-draft/defs/nhs-number.schema.md)
+
+#### Events
+- [common/2025-11-draft/events/log-item.bundle.schema](common/2025-11-draft/events/log-item.bundle.schema.md)
+- [common/2025-11-draft/events/log-item.flattened.schema](common/2025-11-draft/events/log-item.flattened.schema.md)
+- [common/2025-11-draft/events/log-item.schema](common/2025-11-draft/events/log-item.schema.md)
+
 ## Examples
+
+### 2025-10
 
 #### Data
 - [examples/2025-10/data/nhs-notify-example-event-data.schema](examples/2025-10/data/nhs-notify-example-event-data.schema.md)
@@ -28,7 +55,19 @@
 - [examples/2025-10/events/nhs-notify-example-event.flattened.schema](examples/2025-10/events/nhs-notify-example-event.flattened.schema.md)
 - [examples/2025-10/events/nhs-notify-example-event.schema](examples/2025-10/events/nhs-notify-example-event.schema.md)
 
+### 2025-11-draft
+
+#### Data
+- [examples/2025-11-draft/data/nhs-notify-example-event-data.schema](examples/2025-11-draft/data/nhs-notify-example-event-data.schema.md)
+
+#### Events
+- [examples/2025-11-draft/events/nhs-notify-example-event.bundle.schema](examples/2025-11-draft/events/nhs-notify-example-event.bundle.schema.md)
+- [examples/2025-11-draft/events/nhs-notify-example-event.flattened.schema](examples/2025-11-draft/events/nhs-notify-example-event.flattened.schema.md)
+- [examples/2025-11-draft/events/nhs-notify-example-event.schema](examples/2025-11-draft/events/nhs-notify-example-event.schema.md)
+
 ## Supplier-allocation
+
+### 2025-10
 
 #### Data
 - [supplier-allocation/2025-10/data/file-data.schema](supplier-allocation/2025-10/data/file-data.schema.md)

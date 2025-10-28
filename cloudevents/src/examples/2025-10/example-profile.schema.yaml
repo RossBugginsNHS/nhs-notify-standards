@@ -5,6 +5,18 @@ type: object
 allOf:
   - $ref: ../../common/2025-10/nhs-notify-profile.schema.yaml
 properties:
+  profileversion:
+    type: string
+    const: 1.0.0
+    pattern: ^[0-9]+\.[0-9]+\.[0-9]+$
+    description: NHS Notify CloudEvents profile semantic version.
+    $comment: "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
+  profilepublished:
+    type: string
+    const: 2025-10
+    pattern: ^\d{4}-\d{2}$
+    description: NHS Notify CloudEvents profile publication date (YYYY-MM).
+    $comment: Publication date of this profile version (YYYY-MM).
   type:
     type: string
     minLength: 1

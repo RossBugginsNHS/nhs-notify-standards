@@ -199,52 +199,64 @@ function processDomain(domainName) {
   // Find all version directories
   const entries = fs.readdirSync(domainDir, { withFileTypes: true });
   const versions = entries
-    .filter((e) => e.isDirectory() && /^\d{4}-\d{2}$/.test(e.name))
-    .map((e) => e.name);
+    .filter((e) => e.isDirectory() && /^\d{4}-\d{2}(-draft)?$/.test(e.name))
+    .map((e) => e.name)
+    .sort(); // Sort versions chronologically
 
   if (versions.length === 0) return null;
 
-  // Use the first (likely only) version
-  const version = versions[0];
-  const versionDir = path.join(domainDir, version);
+  // Process all versions
+  const versionData = [];
+  for (const version of versions) {
+    const versionDir = path.join(domainDir, version);
 
-  // Find all schema files
-  const schemaFiles = findSchemaFiles(versionDir, versionDir);
+    // Find all schema files
+    const schemaFiles = findSchemaFiles(versionDir, versionDir);
 
-  // Organize schemas by category
-  const schemas = [];
-  const processedEvents = new Set();
+    // Organize schemas by category
+    const schemas = [];
+    const processedEvents = new Set();
 
-  for (const file of schemaFiles) {
-    const category = getSchemaCategory(file.relativePath, file.filename);
-    const schemaType = getSchemaType(file.filename, category);
+    for (const file of schemaFiles) {
+      const category = getSchemaCategory(file.relativePath, file.filename);
+      const schemaType = getSchemaType(file.filename, category);
 
-    const schema = {
-      type: schemaType,
-      category: category,
-      source: `src/${domainName}/${version}/${file.relativePath}`,
-      published: `schemas/${domainName}/${version}/${file.relativePath.replace(
-        ".yaml",
-        ".json"
-      )}`,
-      docs: `docs/${domainName}/${version}/${file.relativePath.replace(
-        ".yaml",
-        ".md"
-      )}`,
-    };
+      const schema = {
+        type: schemaType,
+        category: category,
+        source: `src/${domainName}/${version}/${file.relativePath}`,
+        published: `schemas/${domainName}/${version}/${file.relativePath.replace(
+          ".yaml",
+          ".json"
+        )}`,
+        docs: `docs/${domainName}/${version}/${file.relativePath.replace(
+          ".yaml",
+          ".md"
+        )}`,
+      };
 
-    schemas.push(schema);
+      schemas.push(schema);
 
-    // If this is an event schema, add generated variants
-    if (category === "events") {
-      const eventBaseName = file.filename.replace(".schema.yaml", "");
-      const variants = getGeneratedVariants(domainName, version, eventBaseName);
-      schemas.push(...variants);
-      processedEvents.add(eventBaseName);
+      // If this is an event schema, add generated variants
+      if (category === "events") {
+        const eventBaseName = file.filename.replace(".schema.yaml", "");
+        const variants = getGeneratedVariants(
+          domainName,
+          version,
+          eventBaseName
+        );
+        schemas.push(...variants);
+        processedEvents.add(eventBaseName);
+      }
     }
+
+    versionData.push({
+      version: version,
+      schemas: schemas,
+    });
   }
 
-  // Find example events
+  // Find example events (domain-level, not version-specific)
   const exampleEvents = findExampleEvents(domainDocsDir);
 
   // Get purpose from metadata or use default
@@ -260,9 +272,8 @@ function processDomain(domainName) {
   return {
     name: domainName,
     displayName: getSchemaName(domainName),
-    version: version,
     purpose: purpose,
-    schemas: schemas,
+    versions: versionData,
     exampleEvents: exampleEvents,
   };
 }
@@ -271,56 +282,78 @@ function processDomain(domainName) {
  * Process common schemas
  */
 function processCommonSchemas() {
-  const commonDir = path.join(SRC_DIR, "common", "2025-10");
+  const commonDir = path.join(SRC_DIR, "common");
 
   if (!fs.existsSync(commonDir)) return null;
 
-  const schemaFiles = findSchemaFiles(commonDir, commonDir);
-  const schemas = [];
+  // Find all version directories
+  const entries = fs.readdirSync(commonDir, { withFileTypes: true });
+  const versions = entries
+    .filter((e) => e.isDirectory() && /^\d{4}-\d{2}(-draft)?$/.test(e.name))
+    .map((e) => e.name)
+    .sort(); // Sort versions chronologically
 
-  for (const file of schemaFiles) {
-    const category = getSchemaCategory(file.relativePath, file.filename);
-    const schemaType = getSchemaType(file.filename, category);
+  if (versions.length === 0) return null;
 
-    schemas.push({
-      type: schemaType,
-      category: category,
-      source: `src/common/2025-10/${file.relativePath}`,
-      published: `schemas/common/2025-10/${file.relativePath.replace(
-        ".yaml",
-        ".json"
-      )}`,
-      docs: `docs/common/2025-10/${file.relativePath.replace(".yaml", ".md")}`,
-    });
-  }
+  // Process all versions
+  const versionData = [];
+  for (const version of versions) {
+    const versionDir = path.join(commonDir, version);
+    const schemaFiles = findSchemaFiles(versionDir, versionDir);
+    const schemas = [];
 
-  // Add generated bundled/flattened if they exist
-  const profileBaseName = "nhs-notify-profile";
-  const bundledPath = `schemas/common/2025-10/${profileBaseName}.bundle.schema.json`;
-  const flattenedPath = `schemas/common/2025-10/${profileBaseName}.flattened.schema.json`;
+    for (const file of schemaFiles) {
+      const category = getSchemaCategory(file.relativePath, file.filename);
+      const schemaType = getSchemaType(file.filename, category);
 
-  if (fs.existsSync(path.join(ROOT_DIR, bundledPath))) {
-    schemas.push({
-      type: "Profile (Bundled)",
-      category: "profile",
-      source: "_Generated_",
-      published: bundledPath,
-      docs: `docs/common/2025-10/${profileBaseName}.bundle.schema.md`,
-    });
-  }
+      schemas.push({
+        type: schemaType,
+        category: category,
+        source: `src/common/${version}/${file.relativePath}`,
+        published: `schemas/common/${version}/${file.relativePath.replace(
+          ".yaml",
+          ".json"
+        )}`,
+        docs: `docs/common/${version}/${file.relativePath.replace(
+          ".yaml",
+          ".md"
+        )}`,
+      });
+    }
 
-  if (fs.existsSync(path.join(ROOT_DIR, flattenedPath))) {
-    schemas.push({
-      type: "Profile (Flattened)",
-      category: "profile",
-      source: "_Generated_",
-      published: flattenedPath,
-      docs: `docs/common/2025-10/${profileBaseName}.flattened.schema.md`,
+    // Add generated bundled/flattened if they exist
+    const profileBaseName = "nhs-notify-profile";
+    const bundledPath = `schemas/common/${version}/${profileBaseName}.bundle.schema.json`;
+    const flattenedPath = `schemas/common/${version}/${profileBaseName}.flattened.schema.json`;
+
+    if (fs.existsSync(path.join(ROOT_DIR, bundledPath))) {
+      schemas.push({
+        type: "Profile (Bundled)",
+        category: "profile",
+        source: "_Generated_",
+        published: bundledPath,
+        docs: `docs/common/${version}/${profileBaseName}.bundle.schema.md`,
+      });
+    }
+
+    if (fs.existsSync(path.join(ROOT_DIR, flattenedPath))) {
+      schemas.push({
+        type: "Profile (Flattened)",
+        category: "profile",
+        source: "_Generated_",
+        published: flattenedPath,
+        docs: `docs/common/${version}/${profileBaseName}.flattened.schema.md`,
+      });
+    }
+
+    versionData.push({
+      version: version,
+      schemas: schemas,
     });
   }
 
   return {
-    schemas: schemas,
+    versions: versionData,
     purposes: metadata.common?.purposes || {
       "NHS Notify Profile":
         "Base CloudEvents profile with required NHS governance and tracing attributes",
@@ -356,8 +389,12 @@ function main() {
   for (const domainName of domainDirs) {
     const domain = processDomain(domainName);
     if (domain) {
+      const totalSchemas = domain.versions.reduce(
+        (sum, v) => sum + v.schemas.length,
+        0
+      );
       console.log(
-        `  ✓ ${domain.displayName}: ${domain.schemas.length} schemas, ${domain.exampleEvents.length} example events`
+        `  ✓ ${domain.displayName}: ${totalSchemas} schemas, ${domain.exampleEvents.length} example events`
       );
       domains.push(domain);
     }
@@ -387,8 +424,14 @@ function main() {
 
   fs.writeFileSync(OUTPUT_FILE, header + yamlContent, "utf8");
 
+  const totalCommonSchemas = common.versions.reduce(
+    (sum, v) => sum + v.schemas.length,
+    0
+  );
   console.log(`\n✅ Generated index: ${path.relative(ROOT_DIR, OUTPUT_FILE)}`);
-  console.log(`   - Common: ${common.schemas.length} schemas`);
+  console.log(
+    `   - Common: ${totalCommonSchemas} schemas across ${common.versions.length} version(s)`
+  );
   console.log(`   - Domains: ${domains.length}`);
 
   return index;

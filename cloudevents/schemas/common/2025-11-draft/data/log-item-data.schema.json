@@ -1,0 +1,16 @@
+{
+  "$id": "https://notify.nhs.uk/cloudevents/schemas/common/2025-11-draft/data/log-item-data.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Log info data",
+  "description": "Log info data",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "info": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "info"
+  ]
+}

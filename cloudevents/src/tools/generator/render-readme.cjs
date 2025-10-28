@@ -52,27 +52,34 @@ function renderCommonSchemas(common) {
   lines.push("## Common Schemas (Shared Across All Domains)");
   lines.push("");
 
-  const headers = [
-    "Schema",
-    "Source (YAML)",
-    "Published Schema",
-    "Documentation",
-  ];
-  const rows = [];
+  // Render each version
+  for (const versionData of common.versions) {
+    lines.push(`### Version: ${versionData.version}`);
+    lines.push("");
 
-  for (const schema of common.schemas) {
-    rows.push([
-      `**${schema.type}**`,
-      schema.source === "_Generated_"
-        ? schema.source
-        : `[\`${schema.source}\`](${schema.source})`,
-      `[\`${schema.published}\`](${schema.published})`,
-      `[\`${schema.docs}\`](${schema.docs})`,
-    ]);
+    const headers = [
+      "Schema",
+      "Source (YAML)",
+      "Published Schema",
+      "Documentation",
+    ];
+    const rows = [];
+
+    for (const schema of versionData.schemas) {
+      rows.push([
+        `**${schema.type}**`,
+        schema.source === "_Generated_"
+          ? schema.source
+          : `[\`${schema.source}\`](${schema.source})`,
+        `[\`${schema.published}\`](${schema.published})`,
+        `[\`${schema.docs}\`](${schema.docs})`,
+      ]);
+    }
+
+    lines.push(renderTable(headers, rows));
+    lines.push("");
   }
 
-  lines.push(renderTable(headers, rows));
-  lines.push("");
   lines.push("**Purpose:**");
   lines.push("");
 
@@ -142,14 +149,19 @@ function renderDomain(domain) {
   lines.push(`**Purpose:** ${domain.purpose}`);
   lines.push("");
 
-  lines.push("### Schemas");
-  lines.push("");
-  lines.push(renderDomainSchemas(domain.schemas));
-  lines.push("");
+  // Render each version
+  for (const versionData of domain.versions) {
+    lines.push(`### Version: ${versionData.version}`);
+    lines.push("");
+    lines.push(renderDomainSchemas(versionData.schemas));
+    lines.push("");
+  }
 
-  lines.push("### Example Events");
-  lines.push("");
-  lines.push(renderDomainExampleEvents(domain.exampleEvents));
+  if (domain.exampleEvents && domain.exampleEvents.length > 0) {
+    lines.push("### Example Events");
+    lines.push("");
+    lines.push(renderDomainExampleEvents(domain.exampleEvents));
+  }
 
   return lines.join("\n");
 }
@@ -228,8 +240,14 @@ function main() {
   const indexYaml = fs.readFileSync(INDEX_FILE, "utf8");
   const index = yaml.load(indexYaml);
 
+  const totalCommonSchemas = index.common.versions.reduce(
+    (sum, v) => sum + v.schemas.length,
+    0
+  );
   console.log(`📦 Loaded index (generated ${index.generated})`);
-  console.log(`   - Common: ${index.common.schemas.length} schemas`);
+  console.log(
+    `   - Common: ${totalCommonSchemas} schemas across ${index.common.versions.length} version(s)`
+  );
   console.log(`   - Domains: ${index.domains.length}`);
 
   // Generate content

@@ -1,0 +1,28 @@
+{
+  "type": "uk.nhs.notify.logging.new.log.v1",
+  "source": "/nhs/england/notify/development/secondary/data-plane/logging",
+  "subject": "customer/4a7b04e8-acda-2ed1-dcde-7b2f17d0cdcd/order/fb6a6cf2-952b-d3c3-5a70-d0ade9eeabf4/item/cd26fe5e-06fc-a5cb-5ca4-4aa19aecc8e6",
+  "dataschema": "../data/log-item-data.schema.json",
+  "data": {
+    "info": "non ad dolore"
+  },
+  "profileversion": "1.0.0",
+  "profilepublished": "2025-11-draft",
+  "domainprofileversion": "2749516866.763.845049",
+  "domainprofilepublished": "2018-16",
+  "specversion": "1.0",
+  "id": "565119a0-9bdd-4ee4-9219-e4b598640df6",
+  "time": "2025-10-28T08:52:27.759Z",
+  "datacontenttype": "application/json",
+  "traceparent": "00-125e1653eb80cdfdab22704ff070dc0c-11c45c184e7aba5e-01",
+  "tracestate": "reprehenderit culpa",
+  "partitionkey": "customer-4a7b04e8",
+  "recordedtime": "2025-10-28T08:52:28.759Z",
+  "sampledrate": 1,
+  "sequence": "00000000000113614501",
+  "severitytext": "INFO",
+  "severitynumber": 2,
+  "dataclassification": "internal",
+  "dataregulation": "ISO-27001",
+  "datacategory": "special-category"
+}

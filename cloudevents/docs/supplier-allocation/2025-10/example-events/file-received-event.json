@@ -1,0 +1,26 @@
+{
+  "type": "uk.nhs.notify.supplier.allocation.file.received.v1",
+  "source": "/nhs/england/notify/development/secondary/data-plane/supplierallocation",
+  "dataschema": "../data/file-data.schema.json",
+  "data": {
+    "something": "commodo aute voluptate amet"
+  },
+  "profileversion": "1.0.0",
+  "profilepublished": "2025-10",
+  "specversion": "1.0",
+  "id": "2cf260a4-801b-49bd-bc5d-3ab61d09c878",
+  "subject": "customer/5b51f031-4d0b-bdcc-73d0-d8869df8dbcb/dw-te8orpj8/c8ebfb6d-97db-dcbf-bb0d-6fc9eceeb5db/9b5d53f2-14fb-ce01-1496-4dac7cfdcfae/e349ed2c-6c1c-d92b-bd0f-c4c904c9cdfa/d1f19fe8-b90b-130d-e3f9-cbeb3bcfea4c/f5d776fe-b468-5be2-3bd5-fcfeca748ed1",
+  "time": "2025-10-28T08:52:42.232Z",
+  "datacontenttype": "application/json",
+  "traceparent": "00-67e97294c84d49948a84a46368b7899e-66a86c2ecc524eb3-01",
+  "tracestate": "sed consequat ullamco laboris",
+  "partitionkey": "customer-5b51f031",
+  "recordedtime": "2025-10-28T08:52:43.232Z",
+  "sampledrate": 1,
+  "sequence": "00000000000052186130",
+  "severitytext": "ERROR",
+  "severitynumber": 4,
+  "dataclassification": "confidential",
+  "dataregulation": "PCI-DSS",
+  "datacategory": "sensitive"
+}

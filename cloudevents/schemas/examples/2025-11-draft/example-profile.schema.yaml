@@ -1,0 +1,30 @@
+$id: https://notify.nhs.uk/cloudevents/schemas/examples/2025-11-draft/example-profile.schema.json
+$schema: https://json-schema.org/draft/2020-12/schema
+title: NHS Notify Example Event Profile
+description: NHS Notify Example Event profile for CloudEvents 1.0 including additional governance and tracing attributes.
+type: object
+allOf:
+  - $ref: https://notify.nhs.uk/cloudevents/schemas/common/2025-11-draft/nhs-notify-profile.schema.json
+properties:
+  domainprofileversion:
+    type: string
+    const: 1.0.0
+    description: NHS Notify CloudEvents profile semantic version.
+    $comment: "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
+  domainprofilepublished:
+    type: string
+    const: 2025-11-draft
+    description: NHS Notify CloudEvents profile publication date (YYYY-MM).
+    $comment: Publication date of this profile version (YYYY-MM).
+  type:
+    type: string
+    minLength: 1
+    allOf:
+      - name: NHS Notify versioned event type pattern
+        type: string
+        pattern: ^uk\.nhs\.notify\.example\.[a-z0-9]+(?:\.[a-z0-9]+)*\.v[0-9]+$
+  source:
+    type: string
+    pattern: ^/nhs/england/notify/(production|staging|development|uat)/(primary|secondary|dev-[0-9]+)/(data-plane|control-plane)/example
+    minLength: 40
+    format: uri-reference

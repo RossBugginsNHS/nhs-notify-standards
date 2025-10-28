@@ -2,7 +2,7 @@
 
 # Domain-specific settings
 DOMAIN = common
-SUPPORTED_VERSIONS = 2025-10
+SUPPORTED_VERSIONS = 2025-10 2025-11-draft
 DEFAULT_VERSION = 2025-10
 ROOT_DIR = $(shell cd ../.. && pwd)
 
