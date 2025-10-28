@@ -10,12 +10,7 @@ allOf:
     description: NHS Notify profile for CloudEvents 1.0 including additional governance and tracing attributes.
     type: object
     additionalProperties: false
-    $comment: |
-      Version: 1.0.0
-      Published: 2025-10
-      Domain: Common
-
-      id includes the published date. CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.
+    $comment: "id includes the published date. CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec."
     properties:
       specversion:
         type: string

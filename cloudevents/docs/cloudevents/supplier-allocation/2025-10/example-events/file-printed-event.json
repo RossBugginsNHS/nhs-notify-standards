@@ -1,0 +1,24 @@
+{
+  "type": "uk.nhs.notify.supplier.allocation.file.printed.v1",
+  "source": "/nhs/england/notify/uat/primary/data-plane/supplierallocation",
+  "dataschema": "../data/file-data.schema.json",
+  "data": {
+    "something": "magna occaecat commodo voluptate"
+  },
+  "specversion": "1.0",
+  "id": "54820a93-c626-4628-96dd-55acf5faf3b8",
+  "subject": "customer/d8ba5a01-f179-ed5e-0eca-058196eb4cc0/b49cbcf3-cab9-aada-a7ec-73f8d373e438/ogunxy",
+  "time": "2025-10-28T13:23:01.043Z",
+  "datacontenttype": "application/json",
+  "traceparent": "00-d1b697b3616664138cf2a624184a6ff9-75d164f390907f38-01",
+  "tracestate": "dolor laboris",
+  "partitionkey": "customer-d8ba5a01",
+  "recordedtime": "2025-10-28T13:23:02.043Z",
+  "sampledrate": 1,
+  "sequence": "00000000000679378830",
+  "severitytext": "WARN",
+  "severitynumber": 3,
+  "dataclassification": "public",
+  "dataregulation": "GDPR",
+  "datacategory": "sensitive"
+}

@@ -127,12 +127,12 @@ async function loadExternalSchema(uri) {
   if (!uri.startsWith('http://') && !uri.startsWith('https://')) {
     throw new Error(`Cannot load schema from URI: ${uri}`);
   }
-  
+
   try {
     const https = await import('https');
     const http = await import('http');
     const protocol = uri.startsWith('https://') ? https : http;
-    
+
     return new Promise((resolve, reject) => {
       const options = {
         headers: {
@@ -140,13 +140,13 @@ async function loadExternalSchema(uri) {
           'Accept': 'application/json, application/schema+json, */*'
         }
       };
-      
+
       protocol.get(uri, options, (res) => {
         if (res.statusCode !== 200) {
           reject(new Error(`HTTP ${res.statusCode} when fetching ${uri}`));
           return;
         }
-        
+
         let data = '';
         res.on('data', (chunk) => { data += chunk; });
         res.on('end', () => {
@@ -307,29 +307,58 @@ if (mainSchemaFile) {
     mainSchemaId = path.resolve(mainSchemaFile);
   }
 } else {
-  const mainContent = fs.readFileSync(schemaPath, "utf-8");
-  if (schemaPath.endsWith(".yaml") || schemaPath.endsWith(".yml")) {
-    mainSchema = yaml.load(mainContent);
+  // Schema file not found in the loaded schemas
+  // Check if the file exists locally
+  if (fs.existsSync(schemaPath)) {
+    const mainContent = fs.readFileSync(schemaPath, "utf-8");
+    if (schemaPath.endsWith(".yaml") || schemaPath.endsWith(".yml")) {
+      mainSchema = yaml.load(mainContent);
+    } else {
+      mainSchema = JSON.parse(mainContent);
+    }
+    mainSchemaId = mainSchema.$id || path.resolve(schemaPath);
   } else {
-    mainSchema = JSON.parse(mainContent);
+    // File doesn't exist locally
+    // Try to construct an HTTP URL based on the file path
+    // Example: /home/rb/.../output/common/2025-11-draft/nhs-notify-profile.schema.json
+    // becomes: https://notify.nhs.uk/cloudevents/schemas/common/2025-11-draft/nhs-notify-profile.schema.json
+
+    const match = schemaPath.match(/\/(common|examples|supplier-allocation)\/([^\/]+)\/(.+\.schema\.json)$/);
+    if (match) {
+      const [, domain, version, filename] = match;
+      mainSchemaId = `https://notify.nhs.uk/cloudevents/schemas/${domain}/${version}/${filename}`;
+      console.log(`⚠️  Local schema not found: ${schemaPath}`);
+      console.log(`   Will attempt to load from: ${mainSchemaId}`);
+      // We'll let AJV's loadSchema handle fetching this
+      mainSchema = null; // Will be loaded asynchronously
+    } else {
+      console.error(`❌ Schema file not found: ${schemaPath}`);
+      console.error(`   Could not determine HTTP URL for remote loading`);
+      process.exit(1);
+    }
   }
-  mainSchemaId = mainSchema.$id || path.resolve(schemaPath);
 }
 const data = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
 
 // Use async validation to support external schema loading
 (async () => {
   let validate;
-  
+
   // Remove the schema from AJV if it was already added, so we can compile it async
   try {
     ajv.removeSchema(mainSchemaId);
   } catch (e) {
     // Schema wasn't registered, that's fine
   }
-  
+
   // Always use compileAsync to support loading external schemas
-  validate = await ajv.compileAsync(mainSchema);
+  // If mainSchema is null, we use mainSchemaId as a reference to let AJV fetch it
+  if (mainSchema === null) {
+    // Use mainSchemaId as a $ref to trigger async loading
+    validate = await ajv.compileAsync({ $ref: mainSchemaId });
+  } else {
+    validate = await ajv.compileAsync(mainSchema);
+  }
   const valid = validate(data);
 
   if (valid) {

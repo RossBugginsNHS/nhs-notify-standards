@@ -37,6 +37,100 @@ const JsonSchemaStaticDocs = require("json-schema-static-docs");
 
   console.log("Generating documentation...");
 
+  // Function to load external schemas from HTTP URLs
+  const loadExternalSchema = async (uri) => {
+    console.log(`📥 Loading external schema: ${uri}`);
+
+    if (!uri.startsWith('http://') && !uri.startsWith('https://')) {
+      throw new Error(`Only HTTP(S) URLs supported for external schemas: ${uri}`);
+    }
+
+    try {
+      const https = await import('https');
+      const http = await import('http');
+      const protocol = uri.startsWith('https://') ? https.default : http.default;
+
+      return new Promise((resolve, reject) => {
+        const options = {
+          headers: {
+            'User-Agent': 'nhs-notify-schema-docs-generator/1.0',
+            'Accept': 'application/json, application/schema+json, */*'
+          }
+        };
+
+        protocol.get(uri, options, (res) => {
+          if (res.statusCode !== 200) {
+            reject(new Error(`HTTP ${res.statusCode} when fetching ${uri}`));
+            return;
+          }
+
+          let data = '';
+          res.on('data', (chunk) => { data += chunk; });
+          res.on('end', () => {
+            try {
+              const schema = JSON.parse(data);
+              console.log(`   ✅ Successfully loaded schema from ${uri}`);
+              resolve(schema);
+            } catch (e) {
+              reject(new Error(`Failed to parse JSON from ${uri}: ${e.message}`));
+            }
+          });
+        }).on('error', (e) => {
+          reject(new Error(`Failed to fetch ${uri}: ${e.message}`));
+        });
+      });
+    } catch (e) {
+      throw new Error(`Failed to load external schema ${uri}: ${e.message}`);
+    }
+  };
+
+  // Pre-scan schemas to find HTTP $ref references and pre-load them
+  const fastGlob = require("fast-glob");
+  const schemaFiles = await fastGlob(path.join(inputDir, "**/*.schema.{json,yml}"));
+  const externalRefs = new Set();
+
+  for (const schemaFile of schemaFiles) {
+    try {
+      const content = fs.readFileSync(schemaFile, "utf-8");
+      const schema = JSON.parse(content);
+
+      // Find all $ref that are HTTP URLs
+      const findHttpRefs = (obj) => {
+        if (!obj || typeof obj !== 'object') return;
+
+        if (obj.$ref && typeof obj.$ref === 'string' && obj.$ref.startsWith('http')) {
+          externalRefs.add(obj.$ref);
+        }
+
+        for (const key in obj) {
+          if (typeof obj[key] === 'object') {
+            findHttpRefs(obj[key]);
+          }
+        }
+      };
+
+      findHttpRefs(schema);
+    } catch (e) {
+      // Skip if can't parse
+    }
+  }
+
+  // Pre-load all external schemas
+  const externalSchemas = {};
+  if (externalRefs.size > 0) {
+    console.log(`\n🌐 Found ${externalRefs.size} external schema reference(s), pre-loading...`);
+    for (const ref of externalRefs) {
+      try {
+        const schema = await loadExternalSchema(ref);
+        externalSchemas[ref] = schema;
+      } catch (e) {
+        console.error(`   ❌ Failed to load ${ref}: ${e.message}`);
+        console.error(`   Continuing with documentation generation (may fail validation)...`);
+      }
+    }
+    console.log();
+  }
+
   // Generate documentation directly from input directory
   // Include all .schema.json files, excluding example event JSON files
   const generator = new JsonSchemaStaticDocs({
@@ -51,6 +145,8 @@ const JsonSchemaStaticDocs = require("json-schema-static-docs");
       strictTypes: false,
       strictTuples: false,
       strictRequired: false,
+      loadSchema: loadExternalSchema,
+      schemas: Object.values(externalSchemas), // Pre-add external schemas
       formats: {
         "nhs-number": {
           type: "string",
