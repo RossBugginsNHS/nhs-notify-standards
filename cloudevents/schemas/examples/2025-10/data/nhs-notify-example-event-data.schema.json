@@ -1,5 +1,5 @@
 {
-  "$id": "https://notify.nhs.uk/cloudevents/schemas/cloudevents/examples/2025-10/data/nhs-notify-example-event-data.schema.json",
+  "$id": "https://notify.nhs.uk/cloudevents/schemas/cloudevents/domains/examples/2025-10/data/nhs-notify-example-event-data.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Example data type",
   "description": "Example data type",
@@ -7,7 +7,7 @@
   "additionalProperties": false,
   "properties": {
     "nhsNumber": {
-      "$ref": "https://notify.nhs.uk/cloudevents/schemas/cloudevents/common/2025-10/defs/nhs-number.schema.json#/properties/nhsNumber",
+      "$ref": "https://notify.nhs.uk/cloudevents/schemas/../domains/common/2025-10/defs/nhs-number.schema.json#/properties/nhsNumber",
       "description": "Example patient's NHS Number (accepts canonical or formatted forms).",
       "examples": [
         "9434765919",

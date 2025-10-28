@@ -121,49 +121,92 @@ for (const fullPath of allSchemaFiles) {
   }
 }
 
-// Function to load external HTTP/HTTPS schemas
+// Function to load external HTTP/HTTPS schemas or base-relative paths
 async function loadExternalSchema(uri) {
-  // Only handle HTTP/HTTPS URLs
-  if (!uri.startsWith('http://') && !uri.startsWith('https://')) {
-    throw new Error(`Cannot load schema from URI: ${uri}`);
-  }
+  // Handle HTTP/HTTPS URLs
+  if (uri.startsWith('http://') || uri.startsWith('https://')) {
+    try {
+      const https = await import('https');
+      const http = await import('http');
+      const protocol = uri.startsWith('https://') ? https : http;
 
-  try {
-    const https = await import('https');
-    const http = await import('http');
-    const protocol = uri.startsWith('https://') ? https : http;
-
-    return new Promise((resolve, reject) => {
-      const options = {
-        headers: {
-          'User-Agent': 'nhs-notify-schema-validator/1.0',
-          'Accept': 'application/json, application/schema+json, */*'
-        }
-      };
-
-      protocol.get(uri, options, (res) => {
-        if (res.statusCode !== 200) {
-          reject(new Error(`HTTP ${res.statusCode} when fetching ${uri}`));
-          return;
-        }
-
-        let data = '';
-        res.on('data', (chunk) => { data += chunk; });
-        res.on('end', () => {
-          try {
-            const schema = JSON.parse(data);
-            resolve(schema);
-          } catch (e) {
-            reject(new Error(`Failed to parse JSON from ${uri}: ${e.message}`));
+      return new Promise((resolve, reject) => {
+        const options = {
+          headers: {
+            'User-Agent': 'nhs-notify-schema-validator/1.0',
+            'Accept': 'application/json, application/schema+json, */*'
           }
+        };
+
+        protocol.get(uri, options, (res) => {
+          if (res.statusCode !== 200) {
+            reject(new Error(`HTTP ${res.statusCode} when fetching ${uri}`));
+            return;
+          }
+
+          let data = '';
+          res.on('data', (chunk) => { data += chunk; });
+          res.on('end', () => {
+            try {
+              const schema = JSON.parse(data);
+              resolve(schema);
+            } catch (e) {
+              reject(new Error(`Failed to parse JSON from ${uri}: ${e.message}`));
+            }
+          });
+        }).on('error', (e) => {
+          reject(new Error(`Failed to fetch ${uri}: ${e.message}`));
         });
-      }).on('error', (e) => {
-        reject(new Error(`Failed to fetch ${uri}: ${e.message}`));
       });
-    });
-  } catch (e) {
-    throw new Error(`Failed to load external schema ${uri}: ${e.message}`);
+    } catch (e) {
+      throw new Error(`Failed to load external schema ${uri}: ${e.message}`);
+    }
   }
+
+  // Handle base-relative paths (starting with /)
+  if (uri.startsWith('/')) {
+    // First check if the schema is already loaded
+    if (schemas[uri]) {
+      // Return a copy without the $id to avoid conflicts when AJV tries to add it
+      const schemaCopy = { ...schemas[uri] };
+      delete schemaCopy.$id;
+      return schemaCopy;
+    }
+    
+    // Try to load from file system relative to baseDir/schemaDir
+    // Remove the leading slash to make it relative
+    let relativePath = uri.substring(1);
+    
+    // If the URI starts with a directory that matches the basename of schemaDir, remove it
+    // e.g. if schemaDir is /path/to/output and URI is /output/common/..., strip the /output part
+    const baseName = path.basename(schemaDir);
+    if (relativePath.startsWith(baseName + '/')) {
+      relativePath = relativePath.substring(baseName.length + 1);
+    }
+    
+    const filePath = path.join(schemaDir, relativePath);
+    if (fs.existsSync(filePath)) {
+      try {
+        const fileContent = fs.readFileSync(filePath, "utf-8");
+        let content;
+        if (filePath.endsWith(".yaml") || filePath.endsWith(".yml")) {
+          content = yaml.load(fileContent);
+        } else {
+          content = JSON.parse(fileContent);
+        }
+        // Cache it for future use
+        schemas[uri] = content;
+        // Return a copy without the $id to avoid conflicts when AJV tries to add it
+        const schemaCopy = { ...content };
+        delete schemaCopy.$id;
+        return schemaCopy;
+      } catch (e) {
+        throw new Error(`Failed to load schema from ${filePath}: ${e.message}`);
+      }
+    }
+  }
+
+  throw new Error(`Cannot load schema from URI: ${uri}`);
 }
 
 const ajv = new Ajv2020({ strict: false, loadSchema: loadExternalSchema });

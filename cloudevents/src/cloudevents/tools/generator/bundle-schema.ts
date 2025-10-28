@@ -22,17 +22,24 @@ import path from 'path';
 async function main() {
   const args = process.argv.slice(2);
   let flatten = false;
+  let rootDir: string | undefined;
   const filtered: string[] = [];
-  for (const a of args) {
+
+  for (let i = 0; i < args.length; i++) {
+    const a = args[i];
     if (a === '--flatten' || a === '--flatten-allof') {
       flatten = true;
+    } else if (a === '--root-dir' && i + 1 < args.length) {
+      rootDir = args[i + 1];
+      i++; // Skip the next argument as it's the root dir value
     } else {
       filtered.push(a);
     }
   }
+
   const [entry, outFile] = filtered;
   if (!entry || !outFile) {
-    console.error('Usage: ts-node bundle-schema.ts [--flatten] <entry-schema.json|yaml> <output-file.json>');
+    console.error('Usage: ts-node bundle-schema.ts [--flatten] [--root-dir <path>] <entry-schema.json|yaml> <output-file.json>');
     process.exit(1);
   }
 
@@ -64,7 +71,11 @@ async function main() {
     if (typeof bundled === 'object' && bundled) {
       // Calculate relative path from output root (or current working directory if not in output/)
       const outFileAbs = path.isAbsolute(outFile) ? outFile : path.join(process.cwd(), outFile);
-      const outputRoot = path.join(process.cwd(), 'output');
+
+      // Use provided root directory or fall back to current working directory
+      const repoRoot = rootDir ? path.resolve(rootDir) : process.cwd();
+      const outputRoot = path.join(repoRoot, 'output');
+
       let schemaId: string;
 
       if (outFileAbs.startsWith(outputRoot)) {
@@ -73,7 +84,7 @@ async function main() {
         schemaId = "/" + path.relative(outputRoot, outFileAbs).replace(/\\/g, '/');
       } else if (outFileAbs.includes('/schemas/')) {
         // Output file is in schemas/ (published) - might have base URL, use relative from schemas root
-        const schemasRoot = path.join(process.cwd(), 'schemas');
+        const schemasRoot = path.join(repoRoot, 'schemas');
         const relativePath = path.relative(schemasRoot, outFileAbs).replace(/\\/g, '/');
         schemaId = `https://notify.nhs.uk/cloudevents/schemas/${relativePath}`;
       } else {

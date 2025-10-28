@@ -241,7 +241,1509 @@
 </table>
 
 ### Properties
-  <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td rowspan="2">nhsNumber</td><td rowspan="2">Any of:</td><td>String</td></tr><tr><td>String</td></tr></tbody></table>
+  <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td rowspan="4"><a href="#weather">weather</a></td><td rowspan="4">All of:</td><td><a href="#weather-0">Object</a></td></tr>
+<tr><td><a href="#weather-1">Object</a></td></tr>
+<tr><td><a href="#weather-2">Object</a></td></tr>
+<tr><td><a href="#weather-3">Object</a></td></tr><tr><td rowspan="2">nhsNumber</td><td rowspan="2">Any of:</td><td>String</td></tr><tr><td>String</td></tr></tbody></table>
+
+
+### data.weather
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Title</th>
+      <td colspan="2"> - Weather Forecast schema</td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">A harmonised description of a Weather Forecast</td>
+    </tr>
+    <tr><tr><td rowspan="4"><a href="#type">Type</a></td><td rowspan="4">All of:</td><td><a href="#type-0">NHS Notify versioned event type pattern (Object)</a></td></tr>
+<tr><td><a href="#type-1">Object</a></td></tr>
+<tr><td><a href="#type-2">Object</a></td></tr>
+<tr><td><a href="#type-3">Object</a></td></tr></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">No</td>
+    </tr>
+    
+  </tbody>
+</table>
+
+
+
+### data.weather.0
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr><th>Type</th><td colspan="2">Object</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+### data.weather.0.id
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Relationship. Unique identifier of the entity</td>
+    </tr>
+    <tr><tr><td rowspan="2">Type</td><td rowspan="2">Any of:</td><td>String</td></tr><tr><td>String</td></tr></tr>
+    
+  </tbody>
+</table>
+
+
+
+### data.weather.0.id.0
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Identifier format of any NGSI entity</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Min Length</th>
+      <td colspan="2">1</td>
+    </tr><tr>
+      <th>Max Length</th>
+      <td colspan="2">256</td>
+    </tr><tr>
+      <th>Pattern</th>
+      <td colspan="2">^[\w\-\.\{\}\$\+\*\[\]&#x60;|~^@!,:\\]+$</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.weather.0.id.1
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Identifier format of any NGSI entity</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Format</th>
+      <td colspan="2">uri</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+### data.weather.0.dateCreated
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Entity creation timestamp. This will usually be allocated by the storage platform</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Format</th>
+      <td colspan="2">date-time</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.weather.0.dateModified
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Timestamp of the last modification of the entity. This will usually be allocated by the storage platform</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Format</th>
+      <td colspan="2">date-time</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.weather.0.source
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. A sequence of characters giving the original source of the entity data as a URL. Recommended to be the fully qualified domain name of the source provider, or the URL to the source object</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.0.name
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. The name of this item</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.0.alternateName
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. An alternative name for this item</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.0.description
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. A description of this item</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.0.dataProvider
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. A sequence of characters identifying the provider of the harmonised data entity</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.0.owner
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. A List containing a JSON encoded sequence of characters referencing the unique Ids of the owner(s)</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Array</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.0.seeAlso
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. list of uri pointing to additional resources about the item</td>
+    </tr>
+    <tr><tr><td rowspan="2">Type</td><td rowspan="2">One of:</td><td>Array</td></tr><tr><td>String</td></tr></tr>
+    
+  </tbody>
+</table>
+
+
+
+### data.weather.0.seeAlso.0
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr><th>Type</th><td colspan="2">Array</td></tr>
+    <tr>
+      <th>Min Items</th>
+      <td colspan="2">1</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.weather.0.seeAlso.1
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Format</th>
+      <td colspan="2">uri</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+### data.weather.1
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr><th>Type</th><td colspan="2">Object</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+### data.weather.1.location
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">GeoProperty. Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon</td>
+    </tr>
+    <tr><tr><td rowspan="6">Type</td><td rowspan="6">One of:</td><td>Object</td></tr><tr><td>Object</td></tr><tr><td>Object</td></tr><tr><td>Object</td></tr><tr><td>Object</td></tr><tr><td>Object</td></tr></tr>
+    
+  </tbody>
+</table>
+
+
+
+### data.weather.1.location.0
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Title</th>
+      <td colspan="2">GeoJSON Point</td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">GeoProperty. Geojson reference to the item. Point</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Object</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+### data.weather.1.location.0.type
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Enum</th>
+      <td colspan="2"><ul><li>Point</li></ul></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.weather.1.location.0.coordinates
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Coordinates of the Point</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Array</td></tr>
+    <tr>
+      <th>Min Items</th>
+      <td colspan="2">2</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.weather.1.location.0.bbox
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. BBox of the  Point</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Array</td></tr>
+    <tr>
+      <th>Min Items</th>
+      <td colspan="2">4</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+### data.weather.1.location.1
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Title</th>
+      <td colspan="2">GeoJSON LineString</td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">GeoProperty. Geojson reference to the item. LineString</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Object</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+### data.weather.1.location.1.type
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Enum</th>
+      <td colspan="2"><ul><li>LineString</li></ul></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.weather.1.location.1.coordinates
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Coordinates of the LineString</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Array</td></tr>
+    <tr>
+      <th>Min Items</th>
+      <td colspan="2">2</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.weather.1.location.1.bbox
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. BBox coordinates of the LineString</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Array</td></tr>
+    <tr>
+      <th>Min Items</th>
+      <td colspan="2">4</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+### data.weather.1.location.2
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Title</th>
+      <td colspan="2">GeoJSON Polygon</td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">GeoProperty. Geojson reference to the item. Polygon</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Object</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+### data.weather.1.location.2.type
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Enum</th>
+      <td colspan="2"><ul><li>Polygon</li></ul></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.weather.1.location.2.coordinates
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Coordinates of the Polygon</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Array</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.1.location.2.bbox
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. BBox coordinates of the Polygon</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Array</td></tr>
+    <tr>
+      <th>Min Items</th>
+      <td colspan="2">4</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+### data.weather.1.location.3
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Title</th>
+      <td colspan="2">GeoJSON MultiPoint</td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">GeoProperty. Geojson reference to the item. MultiPoint</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Object</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+### data.weather.1.location.3.type
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Enum</th>
+      <td colspan="2"><ul><li>MultiPoint</li></ul></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.weather.1.location.3.coordinates
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Coordinates of the MulitPoint</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Array</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.1.location.3.bbox
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. BBox coordinates of the LineString</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Array</td></tr>
+    <tr>
+      <th>Min Items</th>
+      <td colspan="2">4</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+### data.weather.1.location.4
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Title</th>
+      <td colspan="2">GeoJSON MultiLineString</td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">GeoProperty. Geojson reference to the item. MultiLineString</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Object</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+### data.weather.1.location.4.type
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Enum</th>
+      <td colspan="2"><ul><li>MultiLineString</li></ul></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.weather.1.location.4.coordinates
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Coordinates of the MultiLineString</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Array</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.1.location.4.bbox
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. BBox coordinates of the LineString</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Array</td></tr>
+    <tr>
+      <th>Min Items</th>
+      <td colspan="2">4</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+### data.weather.1.location.5
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Title</th>
+      <td colspan="2">GeoJSON MultiPolygon</td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">GeoProperty. Geojson reference to the item. MultiLineString</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Object</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+### data.weather.1.location.5.type
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Enum</th>
+      <td colspan="2"><ul><li>MultiPolygon</li></ul></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.weather.1.location.5.coordinates
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Coordinates of the MultiPolygon</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Array</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.1.location.5.bbox
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr><th>Type</th><td colspan="2">Array</td></tr>
+    <tr>
+      <th>Min Items</th>
+      <td colspan="2">4</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+### data.weather.1.address
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. The mailing address. Model:&#x27;https://schema.org/address&#x27;</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Object</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+### data.weather.1.address.streetAddress
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. The street address. Model:&#x27;https://schema.org/streetAddress&#x27;</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.1.address.addressLocality
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. The locality in which the street address is, and which is in the region. Model:&#x27;https://schema.org/addressLocality&#x27;</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.1.address.addressRegion
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. The region in which the locality is, and which is in the country. Model:&#x27;https://schema.org/addressRegion&#x27;</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.1.address.addressCountry
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. The country. For example, Spain. Model:&#x27;https://schema.org/addressCountry&#x27;</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.1.address.postalCode
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. The postal code. For example, 24004. Model:&#x27;https://schema.org/https://schema.org/postalCode&#x27;</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.1.address.postOfficeBoxNumber
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. The post office box number for PO box addresses. For example, 03578. Model:&#x27;https://schema.org/postOfficeBoxNumber&#x27;</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.1.address.streetNr
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Number identifying a specific property on a public street</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.1.address.district
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. A district is a type of administrative division that, in some countries, is managed by the local government</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+
+### data.weather.1.areaServed
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. The geographic area where a service or offered item is provided. Model:&#x27;https://schema.org/Text&#x27;</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+
+### data.weather.2
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr><th>Type</th><td colspan="2">Object</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+### data.weather.2.weatherType
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Text description of the weather. Model:&#x27;http://schema.org/Text&#x27;</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.2.visibility
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Model:&#x27;http://schema.org/Text&#x27;. Categories of visibility</td>
+    </tr>
+    <tr><tr><td rowspan="2">Type</td><td rowspan="2">Any of:</td><td>String</td></tr><tr><td>Number</td></tr></tr>
+    
+  </tbody>
+</table>
+
+
+
+### data.weather.2.visibility.0
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Enum</th>
+      <td colspan="2"><ul><li>veryPoor</li><li>poor</li><li>moderate</li><li>good</li><li>veryGood</li><li>excellent</li></ul></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.weather.2.visibility.1
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr><th>Type</th><td colspan="2">Number</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+
+### data.weather.2.windDirection
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Model:&#x27;http://schema.org/Number&#x27;. Direction of the wind bet</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Number</td></tr>
+    <tr>
+      <th>Maximum</th>
+      <td colspan="2">360</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.weather.2.windSpeed
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Model:&#x27;http//schema.org/Number&#x27;. Intensity of the wind</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Number</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.2.gustSpeed
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. A sudden burst of high-speed wind over the observed average wind speed lasting only for a few seconds</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Number</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.2.refPointOfInterest
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Relationship. Model:&#x27;http://schema.org/URL&#x27;. Point of interest related to the item</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.2.atmosphericPressure
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Model:&#x27;https://schema.org/Number&#x27;. The atmospheric pressure observed measured in Hecto Pascals. Units:&#x27;Hecto pascals&#x27;</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Number</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.2.illuminance
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Model:&#x27;https://schema.org/Number&#x27;. (https://en.wikipedia.org/wiki/Illuminance) observed measured in lux (lx) or lumens per square metre (cd·sr·m−2). Units:&#x27;Lux&#x27;</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Number</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.2.temperature
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Temperature of the item</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Number</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.2.feelsLikeTemperature
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Temperature appreciation of the item</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Number</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.2.relativeHumidity
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Humidity in the Air. Observed instantaneous relative humidity (water vapour in air)</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Number</td></tr>
+    <tr>
+      <th>Maximum</th>
+      <td colspan="2">1</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+### data.weather.3
+
+
+<table class="jssd-property-table">
+  <tbody>
+    
+    
+  </tbody>
+</table>
+
+
+
+### data.weather.3.type
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. NGSI Entity type. It has to be WeatherForecast</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Enum</th>
+      <td colspan="2"><ul><li>WeatherForecast</li></ul></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.weather.3.dateRetrieved
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Model:&#x27;https://schema.org/DateTime&#x27;. The date and time the forecast was retrieved in ISO8601 UTC format</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Format</th>
+      <td colspan="2">date-time</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.weather.3.dateIssued
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Model:&#x27;https://schema.org/DateTime&#x27;. The date and time the forecast was issued by the meteorological bureau in ISO8601 UTC format</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Format</th>
+      <td colspan="2">date-time</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.weather.3.validity
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Model:&#x27;https://schema.org/Text&#x27;. Includes the validity period for this forecast as a ISO8601 time interval. As a workaround for the lack of support of Orion Context Broker for datetime intervals, it can be used two separate attributes: &#x60;validFrom&#x60;, &#x60;validTo&#x60;</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.3.validFrom
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Model:&#x27;https://schema.org/Text&#x27;. Validity period start date and time</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Format</th>
+      <td colspan="2">date-time</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.weather.3.validTo
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Model:&#x27;https://schema.org/Text&#x27;. Validity period end date and time</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Format</th>
+      <td colspan="2">date-time</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+### data.weather.3.dayMaximum
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Model:&#x27;https://schema.org/StructuredValue&#x27;. Maximum values for the reported period. Subattributes:- &#x60;temperature&#x60; : Maximum temperature. See &#x60;WeatherForecast.temperature&#x60; for description and units. - &#x60;feelLikesTemperature&#x60;. Maximum feels like temperature. Same semantics and units as &#x60;WeatherForecast.feelsLikeTemperature&#x60;.-   &#x60;relativeHumidity&#x60;. Maximum relative humidity. Same semantics and units as &#x60;WeatherForecast.relativeHumidity&#x60;</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Object</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+### data.weather.3.dayMaximum.temperature
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Temperature of the item</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Number</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.3.dayMaximum.feelLikesTemperature
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Temperature appreciation of the item</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Number</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.3.dayMaximum.relativeHumidity
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Humidity in the Air. Observed instantaneous relative humidity (water vapour in air)</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Number</td></tr>
+    <tr>
+      <th>Maximum</th>
+      <td colspan="2">1</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+### data.weather.3.dayMinimum
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Model:&#x27;https://schema.org/Text&#x27;. Minimum values forecasted for the reported period.  Minimum values for the reported period. Subattributes:- &#x60;temperature&#x60; : Minimum temperature. See &#x60;WeatherForecast.temperature&#x60; for description and units. - &#x60;feelLikesTemperature&#x60;. Minimum feels like temperature. Same semantics and units as &#x60;WeatherForecast.feelsLikeTemperature&#x60;.- &#x60;relativeHumidity&#x60;. Minimum relative humidity. Same semantics and units as &#x60;WeatherForecast.relativeHumidity&#x60;</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Object</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+### data.weather.3.dayMinimum.temperature
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Temperature of the item</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Number</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.3.dayMinimum.feelLikesTemperature
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Temperature appreciation of the item</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Number</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.3.dayMinimum.relativeHumidity
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Humidity in the Air. Observed instantaneous relative humidity (water vapour in air)</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Number</td></tr>
+    <tr>
+      <th>Maximum</th>
+      <td colspan="2">1</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+### data.weather.3.uVIndexMax
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Model:&#x27;https://schema.org/Number&#x27;. The maximum UV index for the period, based on the World Health Organization&#x27;s UV Index measure. Normative references: [http://www.who.int/uv/intersunprogramme/activities/uv_index/en/](http://www.who.int/uv/intersunprogramme/activities/uv_index/en/)</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Number</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.3.precipitation
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Model:&#x27;https://schema.org/Number&#x27;. Amount of water rain expected. Units:&#x27;Liters per square meter&#x27;</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Number</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
+### data.weather.3.precipitationProbability
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Property. Model:&#x27;https://schema.org/Number&#x27;. Probability of rainfall.</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">Number</td></tr>
+    
+  </tbody>
+</table>
+
+
+
+
 
 
 ### data.nhsNumber
@@ -926,6 +2428,534 @@
             "type": "object",
             "additionalProperties": false,
             "properties": {
+                "weather": {
+                    "$schema": "https://json-schema.org/draft/2020-12/schema",
+                    "$schemaVersion": "0.0.3",
+                    "modelTags": "",
+                    "title": " - Weather Forecast schema",
+                    "description": "A harmonised description of a Weather Forecast",
+                    "type": "object",
+                    "allOf": [
+                        {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "anyOf": [
+                                        {
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 256,
+                                            "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+                                            "description": "Property. Identifier format of any NGSI entity"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "format": "uri",
+                                            "description": "Property. Identifier format of any NGSI entity"
+                                        }
+                                    ],
+                                    "description": "Relationship. Unique identifier of the entity"
+                                },
+                                "dateCreated": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "description": "Property. Entity creation timestamp. This will usually be allocated by the storage platform"
+                                },
+                                "dateModified": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "description": "Property. Timestamp of the last modification of the entity. This will usually be allocated by the storage platform"
+                                },
+                                "source": {
+                                    "type": "string",
+                                    "description": "Property. A sequence of characters giving the original source of the entity data as a URL. Recommended to be the fully qualified domain name of the source provider, or the URL to the source object"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "Property. The name of this item"
+                                },
+                                "alternateName": {
+                                    "type": "string",
+                                    "description": "Property. An alternative name for this item"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "Property. A description of this item"
+                                },
+                                "dataProvider": {
+                                    "type": "string",
+                                    "description": "Property. A sequence of characters identifying the provider of the harmonised data entity"
+                                },
+                                "owner": {
+                                    "type": "array",
+                                    "description": "Property. A List containing a JSON encoded sequence of characters referencing the unique Ids of the owner(s)",
+                                    "items": {
+                                        "$ref": "#/properties/data/properties/weather/allOf/0/properties/id"
+                                    }
+                                },
+                                "seeAlso": {
+                                    "oneOf": [
+                                        {
+                                            "type": "array",
+                                            "minItems": 1,
+                                            "items": {
+                                                "type": "string",
+                                                "format": "uri"
+                                            }
+                                        },
+                                        {
+                                            "type": "string",
+                                            "format": "uri"
+                                        }
+                                    ],
+                                    "description": "Property. list of uri pointing to additional resources about the item"
+                                }
+                            }
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "location": {
+                                    "oneOf": [
+                                        {
+                                            "title": "GeoJSON Point",
+                                            "type": "object",
+                                            "required": [
+                                                "type",
+                                                "coordinates"
+                                            ],
+                                            "description": "GeoProperty. Geojson reference to the item. Point",
+                                            "properties": {
+                                                "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "Point"
+                                                    ]
+                                                },
+                                                "coordinates": {
+                                                    "type": "array",
+                                                    "minItems": 2,
+                                                    "items": {
+                                                        "type": "number"
+                                                    },
+                                                    "description": "Property. Coordinates of the Point"
+                                                },
+                                                "bbox": {
+                                                    "type": "array",
+                                                    "minItems": 4,
+                                                    "items": {
+                                                        "type": "number"
+                                                    },
+                                                    "description": "Property. BBox of the  Point"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "title": "GeoJSON LineString",
+                                            "type": "object",
+                                            "required": [
+                                                "type",
+                                                "coordinates"
+                                            ],
+                                            "description": "GeoProperty. Geojson reference to the item. LineString",
+                                            "properties": {
+                                                "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "LineString"
+                                                    ]
+                                                },
+                                                "coordinates": {
+                                                    "type": "array",
+                                                    "minItems": 2,
+                                                    "description": "Property. Coordinates of the LineString",
+                                                    "items": {
+                                                        "type": "array",
+                                                        "minItems": 2,
+                                                        "items": {
+                                                            "type": "number"
+                                                        }
+                                                    }
+                                                },
+                                                "bbox": {
+                                                    "type": "array",
+                                                    "minItems": 4,
+                                                    "items": {
+                                                        "type": "number"
+                                                    },
+                                                    "description": "Property. BBox coordinates of the LineString"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "title": "GeoJSON Polygon",
+                                            "type": "object",
+                                            "required": [
+                                                "type",
+                                                "coordinates"
+                                            ],
+                                            "description": "GeoProperty. Geojson reference to the item. Polygon",
+                                            "properties": {
+                                                "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "Polygon"
+                                                    ]
+                                                },
+                                                "coordinates": {
+                                                    "type": "array",
+                                                    "description": "Property. Coordinates of the Polygon",
+                                                    "items": {
+                                                        "type": "array",
+                                                        "minItems": 4,
+                                                        "items": {
+                                                            "type": "array",
+                                                            "minItems": 2,
+                                                            "items": {
+                                                                "type": "number"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "bbox": {
+                                                    "type": "array",
+                                                    "minItems": 4,
+                                                    "items": {
+                                                        "type": "number"
+                                                    },
+                                                    "description": "Property. BBox coordinates of the Polygon"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "title": "GeoJSON MultiPoint",
+                                            "type": "object",
+                                            "required": [
+                                                "type",
+                                                "coordinates"
+                                            ],
+                                            "description": "GeoProperty. Geojson reference to the item. MultiPoint",
+                                            "properties": {
+                                                "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "MultiPoint"
+                                                    ]
+                                                },
+                                                "coordinates": {
+                                                    "type": "array",
+                                                    "description": "Property. Coordinates of the MulitPoint",
+                                                    "items": {
+                                                        "type": "array",
+                                                        "minItems": 2,
+                                                        "items": {
+                                                            "type": "number"
+                                                        }
+                                                    }
+                                                },
+                                                "bbox": {
+                                                    "type": "array",
+                                                    "minItems": 4,
+                                                    "items": {
+                                                        "type": "number"
+                                                    },
+                                                    "description": "Property. BBox coordinates of the LineString"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "title": "GeoJSON MultiLineString",
+                                            "type": "object",
+                                            "required": [
+                                                "type",
+                                                "coordinates"
+                                            ],
+                                            "description": "GeoProperty. Geojson reference to the item. MultiLineString",
+                                            "properties": {
+                                                "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "MultiLineString"
+                                                    ]
+                                                },
+                                                "coordinates": {
+                                                    "type": "array",
+                                                    "description": "Property. Coordinates of the MultiLineString",
+                                                    "items": {
+                                                        "type": "array",
+                                                        "minItems": 2,
+                                                        "items": {
+                                                            "type": "array",
+                                                            "minItems": 2,
+                                                            "items": {
+                                                                "type": "number"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "bbox": {
+                                                    "type": "array",
+                                                    "minItems": 4,
+                                                    "items": {
+                                                        "type": "number"
+                                                    },
+                                                    "description": "Property. BBox coordinates of the LineString"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "title": "GeoJSON MultiPolygon",
+                                            "type": "object",
+                                            "required": [
+                                                "type",
+                                                "coordinates"
+                                            ],
+                                            "description": "GeoProperty. Geojson reference to the item. MultiLineString",
+                                            "properties": {
+                                                "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "MultiPolygon"
+                                                    ]
+                                                },
+                                                "coordinates": {
+                                                    "type": "array",
+                                                    "description": "Property. Coordinates of the MultiPolygon",
+                                                    "items": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "array",
+                                                            "minItems": 4,
+                                                            "items": {
+                                                                "type": "array",
+                                                                "minItems": 2,
+                                                                "items": {
+                                                                    "type": "number"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "bbox": {
+                                                    "type": "array",
+                                                    "minItems": 4,
+                                                    "items": {
+                                                        "type": "number"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "description": "GeoProperty. Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
+                                },
+                                "address": {
+                                    "type": "object",
+                                    "description": "Property. The mailing address. Model:'https://schema.org/address'",
+                                    "properties": {
+                                        "streetAddress": {
+                                            "type": "string",
+                                            "description": "Property. The street address. Model:'https://schema.org/streetAddress'"
+                                        },
+                                        "addressLocality": {
+                                            "type": "string",
+                                            "description": "Property. The locality in which the street address is, and which is in the region. Model:'https://schema.org/addressLocality'"
+                                        },
+                                        "addressRegion": {
+                                            "type": "string",
+                                            "description": "Property. The region in which the locality is, and which is in the country. Model:'https://schema.org/addressRegion'"
+                                        },
+                                        "addressCountry": {
+                                            "type": "string",
+                                            "description": "Property. The country. For example, Spain. Model:'https://schema.org/addressCountry'"
+                                        },
+                                        "postalCode": {
+                                            "type": "string",
+                                            "description": "Property. The postal code. For example, 24004. Model:'https://schema.org/https://schema.org/postalCode'"
+                                        },
+                                        "postOfficeBoxNumber": {
+                                            "type": "string",
+                                            "description": "Property. The post office box number for PO box addresses. For example, 03578. Model:'https://schema.org/postOfficeBoxNumber'"
+                                        },
+                                        "streetNr": {
+                                            "type": "string",
+                                            "description": "Property. Number identifying a specific property on a public street"
+                                        },
+                                        "district": {
+                                            "type": "string",
+                                            "description": "Property. A district is a type of administrative division that, in some countries, is managed by the local government"
+                                        }
+                                    }
+                                },
+                                "areaServed": {
+                                    "type": "string",
+                                    "description": "Property. The geographic area where a service or offered item is provided. Model:'https://schema.org/Text'"
+                                }
+                            }
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "weatherType": {
+                                    "type": "string",
+                                    "description": "Property. Text description of the weather. Model:'http://schema.org/Text'"
+                                },
+                                "visibility": {
+                                    "description": "Property. Model:'http://schema.org/Text'. Categories of visibility",
+                                    "anyOf": [
+                                        {
+                                            "type": "string",
+                                            "enum": [
+                                                "veryPoor",
+                                                "poor",
+                                                "moderate",
+                                                "good",
+                                                "veryGood",
+                                                "excellent"
+                                            ]
+                                        },
+                                        {
+                                            "type": "number",
+                                            "minimum": 0
+                                        }
+                                    ]
+                                },
+                                "windDirection": {
+                                    "type": "number",
+                                    "description": "Property. Model:'http://schema.org/Number'. Direction of the wind bet",
+                                    "minimum": 0,
+                                    "maximum": 360
+                                },
+                                "windSpeed": {
+                                    "type": "number",
+                                    "description": "Property. Model:'http//schema.org/Number'. Intensity of the wind",
+                                    "minimum": 0
+                                },
+                                "gustSpeed": {
+                                    "type": "number",
+                                    "description": "Property. A sudden burst of high-speed wind over the observed average wind speed lasting only for a few seconds"
+                                },
+                                "refPointOfInterest": {
+                                    "type": "string",
+                                    "description": "Relationship. Model:'http://schema.org/URL'. Point of interest related to the item"
+                                },
+                                "atmosphericPressure": {
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "description": "Property. Model:'https://schema.org/Number'. The atmospheric pressure observed measured in Hecto Pascals. Units:'Hecto pascals'"
+                                },
+                                "illuminance": {
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "description": "Property. Model:'https://schema.org/Number'. (https://en.wikipedia.org/wiki/Illuminance) observed measured in lux (lx) or lumens per square metre (cd·sr·m−2). Units:'Lux'"
+                                },
+                                "temperature": {
+                                    "type": "number",
+                                    "description": "Property. Temperature of the item"
+                                },
+                                "feelsLikeTemperature": {
+                                    "type": "number",
+                                    "description": "Property. Temperature appreciation of the item"
+                                },
+                                "relativeHumidity": {
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "maximum": 1,
+                                    "description": "Property. Humidity in the Air. Observed instantaneous relative humidity (water vapour in air)"
+                                }
+                            }
+                        },
+                        {
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "enum": [
+                                        "WeatherForecast"
+                                    ],
+                                    "description": "Property. NGSI Entity type. It has to be WeatherForecast"
+                                },
+                                "dateRetrieved": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "description": "Property. Model:'https://schema.org/DateTime'. The date and time the forecast was retrieved in ISO8601 UTC format"
+                                },
+                                "dateIssued": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "description": "Property. Model:'https://schema.org/DateTime'. The date and time the forecast was issued by the meteorological bureau in ISO8601 UTC format"
+                                },
+                                "validity": {
+                                    "type": "string",
+                                    "description": "Property. Model:'https://schema.org/Text'. Includes the validity period for this forecast as a ISO8601 time interval. As a workaround for the lack of support of Orion Context Broker for datetime intervals, it can be used two separate attributes: `validFrom`, `validTo`"
+                                },
+                                "validFrom": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "description": "Property. Model:'https://schema.org/Text'. Validity period start date and time"
+                                },
+                                "validTo": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "description": "Property. Model:'https://schema.org/Text'. Validity period end date and time"
+                                },
+                                "dayMaximum": {
+                                    "type": "object",
+                                    "description": "Property. Model:'https://schema.org/StructuredValue'. Maximum values for the reported period. Subattributes:- `temperature` : Maximum temperature. See `WeatherForecast.temperature` for description and units. - `feelLikesTemperature`. Maximum feels like temperature. Same semantics and units as `WeatherForecast.feelsLikeTemperature`.-   `relativeHumidity`. Maximum relative humidity. Same semantics and units as `WeatherForecast.relativeHumidity`",
+                                    "properties": {
+                                        "temperature": {
+                                            "type": "number",
+                                            "description": "Property. Temperature of the item"
+                                        },
+                                        "feelLikesTemperature": {
+                                            "type": "number",
+                                            "description": "Property. Temperature appreciation of the item"
+                                        },
+                                        "relativeHumidity": {
+                                            "type": "number",
+                                            "minimum": 0,
+                                            "maximum": 1,
+                                            "description": "Property. Humidity in the Air. Observed instantaneous relative humidity (water vapour in air)"
+                                        }
+                                    }
+                                },
+                                "dayMinimum": {
+                                    "type": "object",
+                                    "description": "Property. Model:'https://schema.org/Text'. Minimum values forecasted for the reported period.  Minimum values for the reported period. Subattributes:- `temperature` : Minimum temperature. See `WeatherForecast.temperature` for description and units. - `feelLikesTemperature`. Minimum feels like temperature. Same semantics and units as `WeatherForecast.feelsLikeTemperature`.- `relativeHumidity`. Minimum relative humidity. Same semantics and units as `WeatherForecast.relativeHumidity`",
+                                    "properties": {
+                                        "temperature": {
+                                            "$ref": "#/properties/data/properties/weather/allOf/3/properties/dayMaximum/properties/temperature"
+                                        },
+                                        "feelLikesTemperature": {
+                                            "$ref": "#/properties/data/properties/weather/allOf/3/properties/dayMaximum/properties/feelLikesTemperature"
+                                        },
+                                        "relativeHumidity": {
+                                            "$ref": "#/properties/data/properties/weather/allOf/3/properties/dayMaximum/properties/relativeHumidity"
+                                        }
+                                    }
+                                },
+                                "uVIndexMax": {
+                                    "type": "number",
+                                    "description": "Property. Model:'https://schema.org/Number'. The maximum UV index for the period, based on the World Health Organization's UV Index measure. Normative references: [http://www.who.int/uv/intersunprogramme/activities/uv_index/en/](http://www.who.int/uv/intersunprogramme/activities/uv_index/en/)",
+                                    "minimum": 0
+                                },
+                                "precipitation": {
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "description": "Property. Model:'https://schema.org/Number'. Amount of water rain expected. Units:'Liters per square meter'"
+                                },
+                                "precipitationProbability": {
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "description": "Property. Model:'https://schema.org/Number'. Probability of rainfall."
+                                }
+                            }
+                        }
+                    ],
+                    "required": [
+                        "id",
+                        "type",
+                        "dateIssued"
+                    ]
+                },
                 "nhsNumber": {
                     "description": "Example patient's NHS Number (accepts canonical or formatted forms).",
                     "examples": [

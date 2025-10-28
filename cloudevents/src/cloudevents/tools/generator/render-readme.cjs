@@ -11,9 +11,9 @@ const fs = require("fs");
 const path = require("path");
 const yaml = require("js-yaml");
 
-const ROOT_DIR = path.resolve(__dirname, "../../../..");
+const ROOT_DIR = path.resolve(__dirname, "../../");
 const INDEX_FILE = path.join(ROOT_DIR, "readme-index.yaml");
-const README_FILE = path.join(ROOT_DIR, "README.md");
+const README_FILE = path.join(ROOT_DIR, "../../README.md");
 
 // Markers for where to insert generated content
 const START_MARKER = "<!-- AUTO-GENERATED-CONTENT:START -->";
@@ -48,7 +48,14 @@ function renderTable(headers, rows) {
  */
 function renderCommonSchemas(common) {
   const lines = [];
-
+  // If no common schemas, return empty section or skip
+  if (!common || !common.versions || common.versions.length === 0) {
+    lines.push("## Common Schemas (Shared Across All Domains)");
+    lines.push("");
+    lines.push("_No common schemas defined yet._");
+    lines.push("");
+    return lines.join("\n");
+  }
   lines.push("## Common Schemas (Shared Across All Domains)");
   lines.push("");
 
@@ -250,13 +257,12 @@ function main() {
   const indexYaml = fs.readFileSync(INDEX_FILE, "utf8");
   const index = yaml.load(indexYaml);
 
-  const totalCommonSchemas = index.common.versions.reduce(
-    (sum, v) => sum + v.schemas.length,
-    0
-  );
+  const totalCommonSchemas = index.common && index.common.versions
+    ? index.common.versions.reduce((sum, v) => sum + v.schemas.length, 0)
+    : 0;
   console.log(`📦 Loaded index (generated ${index.generated})`);
   console.log(
-    `   - Common: ${totalCommonSchemas} schemas across ${index.common.versions.length} version(s)`
+    `   - Common: ${totalCommonSchemas} schemas across ${index.common && index.common.versions ? index.common.versions.length : 0} version(s)`
   );
   console.log(`   - Domains: ${index.domains.length}`);
 

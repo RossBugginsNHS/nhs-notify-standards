@@ -188,7 +188,10 @@
 </table>
 
 ### Properties
-  <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td rowspan="2">nhsNumber</td><td rowspan="2">Any of:</td><td>String</td></tr><tr><td>String</td></tr></tbody></table>
+  <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td rowspan="4"><a href="#weather">weather</a></td><td rowspan="4">All of:</td><td><a href="#weather-0">Object</a></td></tr>
+<tr><td><a href="#weather-1">Object</a></td></tr>
+<tr><td><a href="#weather-2">Object</a></td></tr>
+<tr><td><a href="#weather-3">Object</a></td></tr><tr><td rowspan="2">nhsNumber</td><td rowspan="2">Any of:</td><td>String</td></tr><tr><td>String</td></tr></tbody></table>
 
 
 

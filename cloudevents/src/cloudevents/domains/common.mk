@@ -13,7 +13,8 @@ SCHEMAS_BASE_DIR = $(ROOT_DIR)/schemas/$(DOMAIN)
 OUTPUT_DIR = $(OUTPUT_BASE_DIR)/$(PUBLISH_VERSION)
 SCHEMAS_DIR = $(SCHEMAS_BASE_DIR)/$(PUBLISH_VERSION)
 EVENTS_DIR = $(OUTPUT_DIR)/example-events
-SRC_DIR = $(ROOT_DIR)/src/cloudevents/$(DOMAIN)/$(PUBLISH_VERSION)
+SRC_DIR = $(ROOT_DIR)/src/cloudevents/domains/$(DOMAIN)/$(PUBLISH_VERSION)
+CLOUD_EVENTS_DIR = $(ROOT_DIR)/src/cloudevents
 
 # Profile schema paths for testing (from common domain)
 PROFILE_SCHEMA = $(ROOT_DIR)/output/common/$(PUBLISH_VERSION)/nhs-notify-profile.schema.json
@@ -41,34 +42,34 @@ build:
 		echo "Building profile schemas..."; \
 		for schema in $(PROFILE_NAMES); do \
 			echo "  - $$schema"; \
-			cd $(ROOT_DIR) && npm run build -- $(SRC_DIR)/$$schema.schema.yaml $(OUTPUT_DIR) || exit 1; \
+			cd $(CLOUD_EVENTS_DIR) && npm run build -- --root-dir $(ROOT_DIR) $(SRC_DIR)/$$schema.schema.yaml $(OUTPUT_DIR) || exit 1; \
 		done; \
 	fi
 	@if [ -n "$(DEFS_NAMES)" ]; then \
 		echo "Building defs schemas..."; \
 		for schema in $(DEFS_NAMES); do \
 			echo "  - $$schema"; \
-			cd $(ROOT_DIR) && npm run build -- $(SRC_DIR)/defs/$$schema.yaml $(OUTPUT_DIR)/defs || exit 1; \
+			cd $(CLOUD_EVENTS_DIR) && npm run build -- --root-dir $(ROOT_DIR) $(SRC_DIR)/defs/$$schema.yaml $(OUTPUT_DIR)/defs || exit 1; \
 		done; \
 	fi
 	@if [ -n "$(DATA_NAMES)" ]; then \
 		echo "Building data schemas..."; \
 		for schema in $(DATA_NAMES); do \
 			echo "  - $$schema"; \
-			cd $(ROOT_DIR) && npm run build -- $(SRC_DIR)/data/$$schema.yaml $(OUTPUT_DIR)/data || exit 1; \
+			cd $(CLOUD_EVENTS_DIR) && npm run build -- --root-dir $(ROOT_DIR) $(SRC_DIR)/data/$$schema.yaml $(OUTPUT_DIR)/data || exit 1; \
 		done; \
 	fi
 	@if [ -n "$(EVENT_NAMES)" ]; then \
 		echo "Building event schemas..."; \
 		for schema in $(EVENT_NAMES); do \
 			echo "  - $$schema"; \
-			cd $(ROOT_DIR) && npm run build -- $(SRC_DIR)/events/$$schema.schema.yaml $(OUTPUT_DIR)/events || exit 1; \
+			cd $(CLOUD_EVENTS_DIR) && npm run build -- --root-dir $(ROOT_DIR) $(SRC_DIR)/events/$$schema.schema.yaml $(OUTPUT_DIR)/events || exit 1; \
 		done; \
 		echo "Bundling and flattening event schemas..."; \
 		for schema in $(EVENT_NAMES); do \
 			echo "  - $$schema (bundle & flatten)"; \
-			cd $(ROOT_DIR) && npm run bundle -- $(OUTPUT_DIR)/events/$$schema.schema.json $(OUTPUT_DIR)/events/$$schema.bundle.schema.json || exit 1; \
-			cd $(ROOT_DIR) && npm run bundle -- --flatten $(OUTPUT_DIR)/events/$$schema.schema.json $(OUTPUT_DIR)/events/$$schema.flattened.schema.json || exit 1; \
+			cd $(CLOUD_EVENTS_DIR) && npm run bundle -- --root-dir $(ROOT_DIR) $(OUTPUT_DIR)/events/$$schema.schema.json $(OUTPUT_DIR)/events/$$schema.bundle.schema.json || exit 1; \
+			cd $(CLOUD_EVENTS_DIR) && npm run bundle -- --flatten --root-dir $(ROOT_DIR) $(OUTPUT_DIR)/events/$$schema.schema.json $(OUTPUT_DIR)/events/$$schema.flattened.schema.json || exit 1; \
 		done; \
 	fi
 
@@ -78,34 +79,34 @@ publish-json:
 		echo "Publishing profile schemas..."; \
 		for schema in $(PROFILE_NAMES); do \
 			echo "  - $$schema"; \
-			cd $(ROOT_DIR) && npm run build -- $(SRC_DIR)/$$schema.schema.yaml $(SCHEMAS_DIR) $(SCHEMA_BASE_URL) || exit 1; \
+			cd $(CLOUD_EVENTS_DIR) && npm run build -- --root-dir $(ROOT_DIR) $(SRC_DIR)/$$schema.schema.yaml $(SCHEMAS_DIR) $(SCHEMA_BASE_URL) || exit 1; \
 		done; \
 	fi
 	@if [ -n "$(DEFS_NAMES)" ]; then \
 		echo "Publishing defs schemas..."; \
 		for schema in $(DEFS_NAMES); do \
 			echo "  - $$schema"; \
-			cd $(ROOT_DIR) && npm run build -- $(SRC_DIR)/defs/$$schema.yaml $(SCHEMAS_DIR)/defs $(SCHEMA_BASE_URL) || exit 1; \
+			cd $(CLOUD_EVENTS_DIR) && npm run build -- --root-dir $(ROOT_DIR) $(SRC_DIR)/defs/$$schema.yaml $(SCHEMAS_DIR)/defs $(SCHEMA_BASE_URL) || exit 1; \
 		done; \
 	fi
 	@if [ -n "$(DATA_NAMES)" ]; then \
 		echo "Publishing data schemas..."; \
 		for schema in $(DATA_NAMES); do \
 			echo "  - $$schema"; \
-			cd $(ROOT_DIR) && npm run build -- $(SRC_DIR)/data/$$schema.yaml $(SCHEMAS_DIR)/data $(SCHEMA_BASE_URL) || exit 1; \
+			cd $(CLOUD_EVENTS_DIR) && npm run build -- --root-dir $(ROOT_DIR) $(SRC_DIR)/data/$$schema.yaml $(SCHEMAS_DIR)/data $(SCHEMA_BASE_URL) || exit 1; \
 		done; \
 	fi
 	@if [ -n "$(EVENT_NAMES)" ]; then \
 		echo "Publishing event schemas..."; \
 		for schema in $(EVENT_NAMES); do \
 			echo "  - $$schema"; \
-			cd $(ROOT_DIR) && npm run build -- $(SRC_DIR)/events/$$schema.schema.yaml $(SCHEMAS_DIR)/events $(SCHEMA_BASE_URL) || exit 1; \
+			cd $(CLOUD_EVENTS_DIR) && npm run build -- --root-dir $(ROOT_DIR) $(SRC_DIR)/events/$$schema.schema.yaml $(SCHEMAS_DIR)/events $(SCHEMA_BASE_URL) || exit 1; \
 		done; \
 		echo "Bundling and flattening published event schemas..."; \
 		for schema in $(EVENT_NAMES); do \
 			echo "  - $$schema (bundle & flatten)"; \
-			cd $(ROOT_DIR) && npm run bundle -- $(OUTPUT_DIR)/events/$$schema.schema.json $(SCHEMAS_DIR)/events/$$schema.bundle.schema.json || exit 1; \
-			cd $(ROOT_DIR) && npm run bundle -- --flatten $(OUTPUT_DIR)/events/$$schema.schema.json $(SCHEMAS_DIR)/events/$$schema.flattened.schema.json || exit 1; \
+			cd $(CLOUD_EVENTS_DIR) && npm run bundle -- --root-dir $(ROOT_DIR) $(OUTPUT_DIR)/events/$$schema.schema.json $(SCHEMAS_DIR)/events/$$schema.bundle.schema.json || exit 1; \
+			cd $(CLOUD_EVENTS_DIR) && npm run bundle -- --flatten --root-dir $(ROOT_DIR) $(OUTPUT_DIR)/events/$$schema.schema.json $(SCHEMAS_DIR)/events/$$schema.flattened.schema.json || exit 1; \
 		done; \
 	fi
 
@@ -152,7 +153,7 @@ generate:
 		echo "Generating $(DOMAIN) events..."; \
 		for schema in $(EVENT_NAMES); do \
 			echo "  - $$schema"; \
-			cd $(ROOT_DIR) && npm run generate -- $(OUTPUT_DIR)/events/$$schema.schema.json $(EVENTS_DIR)/$$schema-event.json || exit 1; \
+			cd $(CLOUD_EVENTS_DIR) && npm run generate -- $(OUTPUT_DIR)/events/$$schema.schema.json $(EVENTS_DIR)/$$schema-event.json || exit 1; \
 		done; \
 	fi
 

@@ -4,6 +4,8 @@ description: Example data type
 type: object
 additionalProperties: false
 properties:
+  weather:
+    $ref: https://smart-data-models.github.io/dataModel.Weather/WeatherForecast/schema.json
   nhsNumber:
     $ref: ../../../common/2025-10/defs/nhs-number.schema.yaml#/properties/nhsNumber
     description: Example patient's NHS Number (accepts canonical or formatted forms).

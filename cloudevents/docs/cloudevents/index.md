@@ -1,12 +1,12 @@
 # Index
 
-## Common
+## Supplier-allocation
 
 ### 2025-10
-- [common/2025-10/nhs-notify-profile.schema](common/2025-10/nhs-notify-profile.schema.md)
-
-## Supplier-allocation
 - [supplier-allocation/2025-10/supplier-allocation-profile.schema](supplier-allocation/2025-10/supplier-allocation-profile.schema.md)
+
+## Common
+- [common/2025-10/nhs-notify-profile.schema](common/2025-10/nhs-notify-profile.schema.md)
 
 ## Examples
 - [examples/2025-10/example-profile.schema](examples/2025-10/example-profile.schema.md)
@@ -14,16 +14,9 @@
 ### 2025-11-draft
 - [examples/2025-11-draft/example-profile.schema](examples/2025-11-draft/example-profile.schema.md)
 
-## Common
+## Supplier-allocation
 
 ### 2025-10
-
-#### Defs
-- [common/2025-10/defs/nhs-notify-metadata.schema](common/2025-10/defs/nhs-notify-metadata.schema.md)
-- [common/2025-10/defs/nhs-notify-payload.schema](common/2025-10/defs/nhs-notify-payload.schema.md)
-- [common/2025-10/defs/nhs-number.schema](common/2025-10/defs/nhs-number.schema.md)
-
-## Supplier-allocation
 
 #### Data
 - [supplier-allocation/2025-10/data/file-data.schema](supplier-allocation/2025-10/data/file-data.schema.md)
@@ -38,6 +31,13 @@
 - [supplier-allocation/2025-10/events/file-received.bundle.schema](supplier-allocation/2025-10/events/file-received.bundle.schema.md)
 - [supplier-allocation/2025-10/events/file-received.flattened.schema](supplier-allocation/2025-10/events/file-received.flattened.schema.md)
 - [supplier-allocation/2025-10/events/file-received.schema](supplier-allocation/2025-10/events/file-received.schema.md)
+
+## Common
+
+#### Defs
+- [common/2025-10/defs/nhs-notify-metadata.schema](common/2025-10/defs/nhs-notify-metadata.schema.md)
+- [common/2025-10/defs/nhs-notify-payload.schema](common/2025-10/defs/nhs-notify-payload.schema.md)
+- [common/2025-10/defs/nhs-number.schema](common/2025-10/defs/nhs-number.schema.md)
 
 ## Examples
 

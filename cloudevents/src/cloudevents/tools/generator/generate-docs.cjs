@@ -84,7 +84,28 @@ const JsonSchemaStaticDocs = require("json-schema-static-docs");
     }
   };
 
-  // Pre-scan schemas to find HTTP $ref references and pre-load them
+  // Helper function to find all HTTP $ref references in a schema
+  const findHttpRefs = (obj, refs = new Set()) => {
+    if (!obj || typeof obj !== 'object') return refs;
+
+    if (obj.$ref && typeof obj.$ref === 'string') {
+      // Extract base URL without fragment
+      const refUrl = obj.$ref.split('#')[0];
+      if (refUrl.startsWith('http')) {
+        refs.add(refUrl);
+      }
+    }
+
+    for (const key in obj) {
+      if (typeof obj[key] === 'object') {
+        findHttpRefs(obj[key], refs);
+      }
+    }
+
+    return refs;
+  };
+
+  // Pre-scan schemas to find HTTP $ref references and pre-load them recursively
   const fastGlob = require("fast-glob");
   const schemaFiles = await fastGlob(path.join(inputDir, "**/*.schema.{json,yml}"));
   const externalRefs = new Set();
@@ -93,41 +114,46 @@ const JsonSchemaStaticDocs = require("json-schema-static-docs");
     try {
       const content = fs.readFileSync(schemaFile, "utf-8");
       const schema = JSON.parse(content);
-
-      // Find all $ref that are HTTP URLs
-      const findHttpRefs = (obj) => {
-        if (!obj || typeof obj !== 'object') return;
-
-        if (obj.$ref && typeof obj.$ref === 'string' && obj.$ref.startsWith('http')) {
-          externalRefs.add(obj.$ref);
-        }
-
-        for (const key in obj) {
-          if (typeof obj[key] === 'object') {
-            findHttpRefs(obj[key]);
-          }
-        }
-      };
-
-      findHttpRefs(schema);
+      findHttpRefs(schema, externalRefs);
     } catch (e) {
       // Skip if can't parse
     }
   }
 
-  // Pre-load all external schemas
+  // Recursively load all external schemas and their dependencies
   const externalSchemas = {};
-  if (externalRefs.size > 0) {
-    console.log(`\n🌐 Found ${externalRefs.size} external schema reference(s), pre-loading...`);
-    for (const ref of externalRefs) {
-      try {
-        const schema = await loadExternalSchema(ref);
-        externalSchemas[ref] = schema;
-      } catch (e) {
-        console.error(`   ❌ Failed to load ${ref}: ${e.message}`);
-        console.error(`   Continuing with documentation generation (may fail validation)...`);
-      }
+  const loadedUrls = new Set();
+
+  const loadSchemaRecursively = async (url) => {
+    if (loadedUrls.has(url)) {
+      return; // Already loaded
     }
+
+    loadedUrls.add(url);
+
+    try {
+      const schema = await loadExternalSchema(url);
+      externalSchemas[url] = schema;
+
+      // Find and load any dependencies in this schema
+      const deps = findHttpRefs(schema);
+      for (const dep of deps) {
+        if (!loadedUrls.has(dep)) {
+          await loadSchemaRecursively(dep);
+        }
+      }
+    } catch (e) {
+      console.error(`   ❌ Failed to load ${url}: ${e.message}`);
+      console.error(`   Continuing with documentation generation (may fail validation)...`);
+    }
+  };
+
+  if (externalRefs.size > 0) {
+    console.log(`\n🌐 Found ${externalRefs.size} external schema reference(s), pre-loading recursively...`);
+    for (const ref of externalRefs) {
+      await loadSchemaRecursively(ref);
+    }
+    console.log(`📦 Loaded ${loadedUrls.size} total external schema(s) including dependencies`);
     console.log();
   }
 

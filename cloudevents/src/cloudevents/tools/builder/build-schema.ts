@@ -5,18 +5,40 @@ import path from "path";
 import { fileURLToPath } from "url";
 import yaml from "js-yaml";
 
-// Get command line arguments
-const [sourceSchemaPath, outputDir, baseUrl] = process.argv.slice(2);
+// Parse command line arguments
+function parseArgs() {
+  const args = process.argv.slice(2);
+  let rootDir: string | undefined;
+  const filtered: string[] = [];
+
+  for (let i = 0; i < args.length; i++) {
+    const a = args[i];
+    if (a === '--root-dir' && i + 1 < args.length) {
+      rootDir = args[i + 1];
+      i++; // Skip the next argument as it's the root dir value
+    } else {
+      filtered.push(a);
+    }
+  }
+
+  return { rootDir, filtered };
+}
+
+const { rootDir, filtered } = parseArgs();
+const [sourceSchemaPath, outputDir, baseUrl] = filtered;
 
 if (!sourceSchemaPath || !outputDir) {
   console.error(
-    "Usage: ts-node build-schema.ts <source-schema.json|yaml> <output-dir> [base-url]"
+    "Usage: ts-node build-schema.ts [--root-dir <path>] <source-schema.json|yaml> <output-dir> [base-url]"
   );
   console.error(
     "Example: ts-node build-schema.ts src/common/2025-10/nhs-notify-profile.schema.yaml output/common/2025-10"
   );
   console.error(
     "With URL: ts-node build-schema.ts src/common/2025-10/nhs-notify-profile.schema.yaml output/common/2025-10 https://schema.notify.nhs.uk"
+  );
+  console.error(
+    "With root: ts-node build-schema.ts --root-dir /path/to/repo src/common/2025-10/nhs-notify-profile.schema.yaml output/common/2025-10"
   );
   process.exit(1);
 }
@@ -202,8 +224,9 @@ function buildSchema(
   let schemaId: string;
   if (baseUrl) {
     // Use provided base URL - output will be .json
+    const repoRoot = rootDir ? path.resolve(rootDir) : process.cwd();
     const relativePath = path.relative(
-      path.join(process.cwd(), "src"),
+      path.join(repoRoot, "src"),
       sourceAbsolutePath
     );
     const jsonRelativePath = relativePath
@@ -213,10 +236,9 @@ function buildSchema(
   } else {
     // Use relative path from output root with leading /
     // This allows relative $refs to resolve correctly in AJV
-    const relativePath = path.relative(
-      path.join(process.cwd(), "output"),
-      outputPath
-    );
+    const repoRoot = rootDir ? path.resolve(rootDir) : process.cwd();
+    const outputRoot = path.join(repoRoot, "output");
+    const relativePath = path.relative(outputRoot, outputPath);
     schemaId = "/" + relativePath.replace(/\\/g, "/");
   }
 

@@ -15,8 +15,8 @@ const fs = require("fs");
 const path = require("path");
 const yaml = require("js-yaml");
 
-const ROOT_DIR = path.resolve(__dirname, "../../../..");
-const SRC_DIR = path.join(ROOT_DIR, "src/cloudevents");
+const ROOT_DIR = path.resolve(__dirname, "../../");
+const SRC_DIR = path.join(ROOT_DIR, "domains");
 const SCHEMAS_DIR = path.join(ROOT_DIR, "schemas");
 const OUTPUT_FILE = path.join(ROOT_DIR, "readme-index.yaml");
 const METADATA_FILE = path.join(ROOT_DIR, "readme-metadata.yaml");
@@ -391,7 +391,7 @@ function main(docsBasePath) {
   if (docsBasePath) {
     DOCS_DIR = path.resolve(ROOT_DIR, docsBasePath);
   }
-  
+
   console.log("🔍 Scanning workspace structure...");
 
   // Process common schemas
@@ -447,15 +447,14 @@ function main(docsBasePath) {
 
 `;
 
-  fs.writeFileSync(OUTPUT_FILE, header + yamlContent, "utf8");
+fs.writeFileSync(OUTPUT_FILE, header + yamlContent, "utf8");
 
-  const totalCommonSchemas = common.versions.reduce(
-    (sum, v) => sum + v.schemas.length,
-    0
-  );
+  const totalCommonSchemas = common && common.versions
+    ? common.versions.reduce((sum, v) => sum + v.schemas.length, 0)
+    : 0;
   console.log(`\n✅ Generated index: ${path.relative(ROOT_DIR, OUTPUT_FILE)}`);
   console.log(
-    `   - Common: ${totalCommonSchemas} schemas across ${common.versions.length} version(s)`
+    `   - Common: ${totalCommonSchemas} schemas across ${common && common.versions ? common.versions.length : 0} version(s)`
   );
   console.log(`   - Domains: ${domains.length}`);
 

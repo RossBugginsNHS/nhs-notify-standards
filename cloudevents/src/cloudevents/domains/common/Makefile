@@ -1,10 +1,13 @@
-# Makefile for examples schemas
+# Makefile for common schemas
+
+MAKEFILE_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+
 
 # Domain-specific settings
-DOMAIN = examples
-SUPPORTED_VERSIONS = 2025-10 2025-11-draft
+DOMAIN = common
+SUPPORTED_VERSIONS = 2025-10
 DEFAULT_VERSION = 2025-10
-ROOT_DIR = $(shell cd ../../.. && pwd)
+ROOT_DIR = $(shell cd $(MAKEFILE_DIR)../../../.. && pwd)
 
 # Allow version override or build all
 PUBLISH_VERSION ?= $(DEFAULT_VERSION)

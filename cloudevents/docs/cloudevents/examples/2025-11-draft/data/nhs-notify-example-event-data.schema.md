@@ -13,7 +13,7 @@
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#nhsnumber">nhsNumber</a></td><td></td></tr></tbody></table>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#weather">weather</a></td><td>Object</td></tr><tr><td colspan="2"><a href="#nhsnumber">nhsNumber</a></td><td></td></tr></tbody></table>
 
 
 ## Example
@@ -29,6 +29,39 @@
 
 
 <hr />
+
+
+## weather
+
+  <p>Defined in <a href="https://smart-data-models.github.io/dataModel.Weather/WeatherForecast/schema.json">schema.json</a></p>
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>$id</th>
+      <td colspan="2">https://smart-data-models.github.io/dataModel.Weather/WeatherForecast/schema.json</td>
+    </tr>
+    <tr>
+      <th>Title</th>
+      <td colspan="2"> - Weather Forecast schema</td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">A harmonised description of a Weather Forecast</td>
+    </tr>
+    <tr><tr><td rowspan="4"><a href="#type">Type</a></td><td rowspan="4">All of:</td><td><a href="#type-0">Object</a></td></tr>
+<tr><td><a href="#type-1">Object</a></td></tr>
+<tr><td><a href="#type-2">Object</a></td></tr>
+<tr><td><a href="#type-3">Object</a></td></tr></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">No</td>
+    </tr>
+    
+  </tbody>
+</table>
+
+
 
 
 ## nhsNumber
@@ -70,6 +103,9 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
+        "weather": {
+            "$ref": "https://smart-data-models.github.io/dataModel.Weather/WeatherForecast/schema.json"
+        },
         "nhsNumber": {
             "$ref": "../../../common/2025-10/defs/nhs-number.schema.json#/properties/nhsNumber",
             "description": "Example patient's NHS Number (accepts canonical or formatted forms).",

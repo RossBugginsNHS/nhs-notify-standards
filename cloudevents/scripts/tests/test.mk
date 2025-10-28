@@ -70,7 +70,7 @@ test: # Run all the test tasks @Testing
 
 _test:
 	set -e
-	script="./scripts/tests/${name}.sh"
+	script="$(SCRIPTS_DIR)/tests/${name}.sh"
 	if [ -e "$${script}" ]; then
 		exec $${script}
 	else

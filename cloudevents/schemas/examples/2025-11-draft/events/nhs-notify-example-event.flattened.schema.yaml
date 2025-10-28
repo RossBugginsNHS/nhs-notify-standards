@@ -415,6 +415,378 @@ properties:
     type: object
     additionalProperties: false
     properties:
+      weather:
+        $schema: https://json-schema.org/draft/2020-12/schema
+        $schemaVersion: 0.0.3
+        modelTags: ""
+        title: " - Weather Forecast schema"
+        description: A harmonised description of a Weather Forecast
+        type: object
+        allOf:
+          - type: object
+            properties:
+              id:
+                anyOf:
+                  - type: string
+                    minLength: 1
+                    maxLength: 256
+                    pattern: ^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$
+                    description: Property. Identifier format of any NGSI entity
+                  - type: string
+                    format: uri
+                    description: Property. Identifier format of any NGSI entity
+                description: Relationship. Unique identifier of the entity
+              dateCreated:
+                type: string
+                format: date-time
+                description: Property. Entity creation timestamp. This will usually be allocated by the storage platform
+              dateModified:
+                type: string
+                format: date-time
+                description: Property. Timestamp of the last modification of the entity. This will usually be allocated by the storage platform
+              source:
+                type: string
+                description: Property. A sequence of characters giving the original source of the entity data as a URL. Recommended to be the fully qualified domain name of the source provider, or the URL to the source object
+              name:
+                type: string
+                description: Property. The name of this item
+              alternateName:
+                type: string
+                description: Property. An alternative name for this item
+              description:
+                type: string
+                description: Property. A description of this item
+              dataProvider:
+                type: string
+                description: Property. A sequence of characters identifying the provider of the harmonised data entity
+              owner:
+                type: array
+                description: Property. A List containing a JSON encoded sequence of characters referencing the unique Ids of the owner(s)
+                items:
+                  $ref: "#/properties/data/properties/weather/allOf/0/properties/id"
+              seeAlso:
+                oneOf:
+                  - type: array
+                    minItems: 1
+                    items:
+                      type: string
+                      format: uri
+                  - type: string
+                    format: uri
+                description: Property. list of uri pointing to additional resources about the item
+          - type: object
+            properties:
+              location:
+                oneOf:
+                  - title: GeoJSON Point
+                    type: object
+                    required:
+                      - type
+                      - coordinates
+                    description: GeoProperty. Geojson reference to the item. Point
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                          - Point
+                      coordinates:
+                        type: array
+                        minItems: 2
+                        items:
+                          type: number
+                        description: Property. Coordinates of the Point
+                      bbox:
+                        type: array
+                        minItems: 4
+                        items:
+                          type: number
+                        description: Property. BBox of the  Point
+                  - title: GeoJSON LineString
+                    type: object
+                    required:
+                      - type
+                      - coordinates
+                    description: GeoProperty. Geojson reference to the item. LineString
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                          - LineString
+                      coordinates:
+                        type: array
+                        minItems: 2
+                        description: Property. Coordinates of the LineString
+                        items:
+                          type: array
+                          minItems: 2
+                          items:
+                            type: number
+                      bbox:
+                        type: array
+                        minItems: 4
+                        items:
+                          type: number
+                        description: Property. BBox coordinates of the LineString
+                  - title: GeoJSON Polygon
+                    type: object
+                    required:
+                      - type
+                      - coordinates
+                    description: GeoProperty. Geojson reference to the item. Polygon
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                          - Polygon
+                      coordinates:
+                        type: array
+                        description: Property. Coordinates of the Polygon
+                        items:
+                          type: array
+                          minItems: 4
+                          items:
+                            type: array
+                            minItems: 2
+                            items:
+                              type: number
+                      bbox:
+                        type: array
+                        minItems: 4
+                        items:
+                          type: number
+                        description: Property. BBox coordinates of the Polygon
+                  - title: GeoJSON MultiPoint
+                    type: object
+                    required:
+                      - type
+                      - coordinates
+                    description: GeoProperty. Geojson reference to the item. MultiPoint
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                          - MultiPoint
+                      coordinates:
+                        type: array
+                        description: Property. Coordinates of the MulitPoint
+                        items:
+                          type: array
+                          minItems: 2
+                          items:
+                            type: number
+                      bbox:
+                        type: array
+                        minItems: 4
+                        items:
+                          type: number
+                        description: Property. BBox coordinates of the LineString
+                  - title: GeoJSON MultiLineString
+                    type: object
+                    required:
+                      - type
+                      - coordinates
+                    description: GeoProperty. Geojson reference to the item. MultiLineString
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                          - MultiLineString
+                      coordinates:
+                        type: array
+                        description: Property. Coordinates of the MultiLineString
+                        items:
+                          type: array
+                          minItems: 2
+                          items:
+                            type: array
+                            minItems: 2
+                            items:
+                              type: number
+                      bbox:
+                        type: array
+                        minItems: 4
+                        items:
+                          type: number
+                        description: Property. BBox coordinates of the LineString
+                  - title: GeoJSON MultiPolygon
+                    type: object
+                    required:
+                      - type
+                      - coordinates
+                    description: GeoProperty. Geojson reference to the item. MultiLineString
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                          - MultiPolygon
+                      coordinates:
+                        type: array
+                        description: Property. Coordinates of the MultiPolygon
+                        items:
+                          type: array
+                          items:
+                            type: array
+                            minItems: 4
+                            items:
+                              type: array
+                              minItems: 2
+                              items:
+                                type: number
+                      bbox:
+                        type: array
+                        minItems: 4
+                        items:
+                          type: number
+                description: GeoProperty. Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon
+              address:
+                type: object
+                description: Property. The mailing address. Model:'https://schema.org/address'
+                properties:
+                  streetAddress:
+                    type: string
+                    description: Property. The street address. Model:'https://schema.org/streetAddress'
+                  addressLocality:
+                    type: string
+                    description: Property. The locality in which the street address is, and which is in the region. Model:'https://schema.org/addressLocality'
+                  addressRegion:
+                    type: string
+                    description: Property. The region in which the locality is, and which is in the country. Model:'https://schema.org/addressRegion'
+                  addressCountry:
+                    type: string
+                    description: Property. The country. For example, Spain. Model:'https://schema.org/addressCountry'
+                  postalCode:
+                    type: string
+                    description: Property. The postal code. For example, 24004. Model:'https://schema.org/https://schema.org/postalCode'
+                  postOfficeBoxNumber:
+                    type: string
+                    description: Property. The post office box number for PO box addresses. For example, 03578. Model:'https://schema.org/postOfficeBoxNumber'
+                  streetNr:
+                    type: string
+                    description: Property. Number identifying a specific property on a public street
+                  district:
+                    type: string
+                    description: Property. A district is a type of administrative division that, in some countries, is managed by the local government
+              areaServed:
+                type: string
+                description: Property. The geographic area where a service or offered item is provided. Model:'https://schema.org/Text'
+          - type: object
+            properties:
+              weatherType:
+                type: string
+                description: Property. Text description of the weather. Model:'http://schema.org/Text'
+              visibility:
+                description: Property. Model:'http://schema.org/Text'. Categories of visibility
+                anyOf:
+                  - type: string
+                    enum:
+                      - veryPoor
+                      - poor
+                      - moderate
+                      - good
+                      - veryGood
+                      - excellent
+                  - type: number
+                    minimum: 0
+              windDirection:
+                type: number
+                description: Property. Model:'http://schema.org/Number'. Direction of the wind bet
+                minimum: 0
+                maximum: 360
+              windSpeed:
+                type: number
+                description: Property. Model:'http//schema.org/Number'. Intensity of the wind
+                minimum: 0
+              gustSpeed:
+                type: number
+                description: Property. A sudden burst of high-speed wind over the observed average wind speed lasting only for a few seconds
+              refPointOfInterest:
+                type: string
+                description: Relationship. Model:'http://schema.org/URL'. Point of interest related to the item
+              atmosphericPressure:
+                type: number
+                minimum: 0
+                description: Property. Model:'https://schema.org/Number'. The atmospheric pressure observed measured in Hecto Pascals. Units:'Hecto pascals'
+              illuminance:
+                type: number
+                minimum: 0
+                description: Property. Model:'https://schema.org/Number'. (https://en.wikipedia.org/wiki/Illuminance) observed measured in lux (lx) or lumens per square metre (cd·sr·m−2). Units:'Lux'
+              temperature:
+                type: number
+                description: Property. Temperature of the item
+              feelsLikeTemperature:
+                type: number
+                description: Property. Temperature appreciation of the item
+              relativeHumidity:
+                type: number
+                minimum: 0
+                maximum: 1
+                description: Property. Humidity in the Air. Observed instantaneous relative humidity (water vapour in air)
+          - properties:
+              type:
+                type: string
+                enum:
+                  - WeatherForecast
+                description: Property. NGSI Entity type. It has to be WeatherForecast
+              dateRetrieved:
+                type: string
+                format: date-time
+                description: Property. Model:'https://schema.org/DateTime'. The date and time the forecast was retrieved in ISO8601 UTC format
+              dateIssued:
+                type: string
+                format: date-time
+                description: Property. Model:'https://schema.org/DateTime'. The date and time the forecast was issued by the meteorological bureau in ISO8601 UTC format
+              validity:
+                type: string
+                description: "Property. Model:'https://schema.org/Text'. Includes the validity period for this forecast as a ISO8601 time interval. As a workaround for the lack of support of Orion Context Broker for datetime intervals, it can be used two separate attributes: `validFrom`, `validTo`"
+              validFrom:
+                type: string
+                format: date-time
+                description: Property. Model:'https://schema.org/Text'. Validity period start date and time
+              validTo:
+                type: string
+                format: date-time
+                description: Property. Model:'https://schema.org/Text'. Validity period end date and time
+              dayMaximum:
+                type: object
+                description: "Property. Model:'https://schema.org/StructuredValue'. Maximum values for the reported period. Subattributes:- `temperature` : Maximum temperature. See `WeatherForecast.temperature` for description and units. - `feelLikesTemperature`. Maximum feels like temperature. Same semantics and units as `WeatherForecast.feelsLikeTemperature`.-   `relativeHumidity`. Maximum relative humidity. Same semantics and units as `WeatherForecast.relativeHumidity`"
+                properties:
+                  temperature:
+                    type: number
+                    description: Property. Temperature of the item
+                  feelLikesTemperature:
+                    type: number
+                    description: Property. Temperature appreciation of the item
+                  relativeHumidity:
+                    type: number
+                    minimum: 0
+                    maximum: 1
+                    description: Property. Humidity in the Air. Observed instantaneous relative humidity (water vapour in air)
+              dayMinimum:
+                type: object
+                description: "Property. Model:'https://schema.org/Text'. Minimum values forecasted for the reported period.  Minimum values for the reported period. Subattributes:- `temperature` : Minimum temperature. See `WeatherForecast.temperature` for description and units. - `feelLikesTemperature`. Minimum feels like temperature. Same semantics and units as `WeatherForecast.feelsLikeTemperature`.- `relativeHumidity`. Minimum relative humidity. Same semantics and units as `WeatherForecast.relativeHumidity`"
+                properties:
+                  temperature:
+                    $ref: "#/properties/data/properties/weather/allOf/3/properties/dayMaximum/properties/temperature"
+                  feelLikesTemperature:
+                    $ref: "#/properties/data/properties/weather/allOf/3/properties/dayMaximum/properties/feelLikesTemperature"
+                  relativeHumidity:
+                    $ref: "#/properties/data/properties/weather/allOf/3/properties/dayMaximum/properties/relativeHumidity"
+              uVIndexMax:
+                type: number
+                description: "Property. Model:'https://schema.org/Number'. The maximum UV index for the period, based on the World Health Organization's UV Index measure. Normative references: [http://www.who.int/uv/intersunprogramme/activities/uv_index/en/](http://www.who.int/uv/intersunprogramme/activities/uv_index/en/)"
+                minimum: 0
+              precipitation:
+                type: number
+                minimum: 0
+                description: Property. Model:'https://schema.org/Number'. Amount of water rain expected. Units:'Liters per square meter'
+              precipitationProbability:
+                type: number
+                minimum: 0
+                description: Property. Model:'https://schema.org/Number'. Probability of rainfall.
+        required:
+          - id
+          - type
+          - dateIssued
       nhsNumber:
         description: Example patient's NHS Number (accepts canonical or formatted forms).
         examples:

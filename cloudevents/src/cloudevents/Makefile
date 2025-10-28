@@ -1,81 +1,88 @@
-# Makefile for all domain schemas - orchestrates subdomain Makefiles
+# Makefile for cloudevents - orchestrates src/ subdomain Makefiles
 
-DOMAINS = common examples supplier-allocation
-PUBLISH_VERSION ?= 2025-10
+# Get absolute path of this Makefile's directory
+DOCS_RELATIVE_PATH = ../../docs/cloudevents
+MAKEFILE_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
-.PHONY: build publish publish-json publish-yaml generate test deploy clean
+include ../../scripts/init.mk
+
+# Allow version override (default is set in src/Makefile)
+
+
+
+PUBLISH_VERSION ?= all
+CLOUDEVENTS_BASE_PATH = $(shell mkdir -p $(MAKEFILE_DIR)domains && cd $(MAKEFILE_DIR)domains && pwd)
+OUTPUT_BASE_PATH = $(shell mkdir -p $(MAKEFILE_DIR)../../output && cd $(MAKEFILE_DIR)../../output && pwd)
+SCHEMAS_BASE_PATH = $(shell mkdir -p $(MAKEFILE_DIR)../../schemas && cd $(MAKEFILE_DIR)../../schemas && pwd)
+DOCS_BASE_PATH = $(shell mkdir -p $(MAKEFILE_DIR)$(DOCS_RELATIVE_PATH) && cd $(MAKEFILE_DIR)$(DOCS_RELATIVE_PATH) && pwd)
+TOOLS_BASE_PATH = $(shell mkdir -p $(MAKEFILE_DIR)tools && cd $(MAKEFILE_DIR)tools && pwd)
+
+.PHONY: build publish publish-json publish-yaml generate test-domains deploy clean build-docs update-readme
+
+config:: _install-dependencies version # Configure development environment (main) @Configuration
+	npm install
 
 build:
-	@echo "=== Building all domains (version: $(PUBLISH_VERSION)) ==="
-	@for domain in $(DOMAINS); do \
-		echo ""; \
-		$(MAKE) -C $$domain build PUBLISH_VERSION=$(PUBLISH_VERSION) || exit 1; \
-	done
-	@echo ""
-	@echo "✅ All domains built successfully!"
+	@echo "=== Building all schemas (version: $(PUBLISH_VERSION)) ==="
+	$(MAKE) -C $(CLOUDEVENTS_BASE_PATH) build PUBLISH_VERSION=$(PUBLISH_VERSION)
 
 publish:
-	@echo "=== Publishing all domains (version: $(PUBLISH_VERSION)) ==="
-	@for domain in $(DOMAINS); do \
-		echo ""; \
-		$(MAKE) -C $$domain publish PUBLISH_VERSION=$(PUBLISH_VERSION) || exit 1; \
-	done
-	@echo ""
-	@echo "✅ All domains published successfully!"
+	@echo "=== Publishing all schemas (JSON + YAML, version: $(PUBLISH_VERSION)) ==="
+	$(MAKE) -C $(CLOUDEVENTS_BASE_PATH) publish PUBLISH_VERSION=$(PUBLISH_VERSION)
 
 publish-json:
-	@echo "=== Publishing all domains JSON (version: $(PUBLISH_VERSION)) ==="
-	@for domain in $(DOMAINS); do \
-		echo ""; \
-		$(MAKE) -C $$domain publish-json PUBLISH_VERSION=$(PUBLISH_VERSION) || exit 1; \
-	done
-	@echo ""
-	@echo "✅ All domains published (JSON) successfully!"
+	@echo "=== Publishing all schemas (JSON only, version: $(PUBLISH_VERSION)) ==="
+	$(MAKE) -C $(CLOUDEVENTS_BASE_PATH) publish-json PUBLISH_VERSION=$(PUBLISH_VERSION)
 
 publish-yaml:
-	@echo "=== Publishing all domains YAML (version: $(PUBLISH_VERSION)) ==="
-	@for domain in $(DOMAINS); do \
-		echo ""; \
-		$(MAKE) -C $$domain publish-yaml PUBLISH_VERSION=$(PUBLISH_VERSION) || exit 1; \
-	done
-	@echo ""
-	@echo "✅ All domains published (YAML) successfully!"
+	@echo "=== Publishing all schemas (YAML only, version: $(PUBLISH_VERSION)) ==="
+	$(MAKE) -C $(CLOUDEVENTS_BASE_PATH) publish-yaml PUBLISH_VERSION=$(PUBLISH_VERSION)
 
 generate:
-	@echo "=== Generating events for all domains (version: $(PUBLISH_VERSION)) ==="
-	@for domain in $(DOMAINS); do \
-		echo ""; \
-		$(MAKE) -C $$domain generate PUBLISH_VERSION=$(PUBLISH_VERSION) || exit 1; \
-	done
-	@echo ""
-	@echo "✅ All events generated successfully!"
+	@echo "=== Generating all events (version: $(PUBLISH_VERSION)) ==="
+	$(MAKE) -C $(CLOUDEVENTS_BASE_PATH) generate PUBLISH_VERSION=$(PUBLISH_VERSION)
 
-test:
-	@echo "=== Testing all domains (version: $(PUBLISH_VERSION)) ==="
-	@FAILED=0; \
-	for domain in $(DOMAINS); do \
-		echo ""; \
-		$(MAKE) -C $$domain test PUBLISH_VERSION=$(PUBLISH_VERSION) || FAILED=1; \
-	done; \
-	if [ $$FAILED -eq 1 ]; then \
-		echo ""; echo "❌ Some tests failed"; exit 1; \
-	else \
-		echo ""; echo "✅ All tests passed"; \
-	fi
+test-domains:
+	@echo "=== Running all tests (version: $(PUBLISH_VERSION)) ==="
+	$(MAKE) -C $(CLOUDEVENTS_BASE_PATH) test PUBLISH_VERSION=$(PUBLISH_VERSION)
 
 deploy:
-	@echo "=== Deploying all domains (version: $(PUBLISH_VERSION)) ==="
-	@for domain in $(DOMAINS); do \
-		echo ""; \
-		$(MAKE) -C $$domain deploy PUBLISH_VERSION=$(PUBLISH_VERSION) || exit 1; \
-	done
+	@echo "=== Deploying all schemas (version: $(PUBLISH_VERSION)) ==="
+	$(MAKE) clean
+	$(MAKE) version
+	$(MAKE) -C $(CLOUDEVENTS_BASE_PATH) deploy PUBLISH_VERSION=$(PUBLISH_VERSION)
+	make build-docs
+	make update-readme
 	@echo ""
-	@echo "✅ All domains deployed successfully!"
+	@echo "✅ Build complete: local schemas tested and distribution schemas ready!"
 
-clean:
-	@echo "=== Cleaning all domains (version: $(PUBLISH_VERSION)) ==="
-	@for domain in $(DOMAINS); do \
-		$(MAKE) -C $$domain clean PUBLISH_VERSION=$(PUBLISH_VERSION); \
-	done
+clean::
+	@echo "=== Cleaning output/ and schemas/ directories ==="
+	rm -rf $(OUTPUT_BASE_PATH)
+	rm -rf $(SCHEMAS_BASE_PATH)
+	rm -rf $(DOCS_BASE_PATH)
+	rm -rf .version
+	rm -f version.json
 	@echo ""
-	@echo "✅ All domains cleaned!"
+
+build-docs:
+	@echo "=== Generating documentation for all schemas ==="
+	@echo "OUTPUT_BASE_PATH: $(OUTPUT_BASE_PATH)"
+	@echo "DOCS_BASE_PATH: $(DOCS_BASE_PATH)"
+	@echo "MAKEFILE_DIR: $(MAKEFILE_DIR)"
+	@echo "DOCS_RELATIVE_PATH: $(DOCS_RELATIVE_PATH)"
+	@echo "COMPUTED PATH: $(shell cd $(MAKEFILE_DIR)$(DOCS_RELATIVE_PATH) && pwd)"
+
+	npm run build-docs -- $(OUTPUT_BASE_PATH) $(DOCS_BASE_PATH)
+
+update-readme:
+	@echo "=== Updating README tables ==="
+	npm run update-readme -- $(DOCS_BASE_PATH)
+#	node $(TOOLS_BASE_PATH)/generator/update-readme.cjs $(DOCS_BASE_PATH)
+	@echo ""
+
+version:
+	@echo "=== Creating version files ==="
+	rm -f .version
+	make version-create-effective-file dir=.
+	echo "{ \"schemaVersion\": 1, \"label\": \"version\", \"message\": \"$$(head -n 1 .version 2> /dev/null || echo unknown)\", \"color\": \"orange\" }" > version.json
