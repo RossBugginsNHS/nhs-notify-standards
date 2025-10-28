@@ -24,7 +24,7 @@
 <tr><td><a href="#type-8">Disallow 'started' token (String)</a></td></tr>
 <tr><td><a href="#type-9">Disallow 'failed' token (String)</a></td></tr><tr><td rowspan="2"><a href="#source">source</a></td><td rowspan="2">All of:</td><td><a href="#source-0">Original pattern: Event source for logging domain examples (String)</a></td></tr>
 <tr><td><a href="#source-1">Merged pattern: Logical event producer path: /nhs/england/notify/{environment}/{instance}/{plane}[/{service}...] where environment=production|staging|development|uat, instance=primary|secondary|dev-{digits}, plane=data-plane|control-plane, and optional service/lowercase tokens follow (String)</a></td></tr><tr><td rowspan="2"><a href="#subject">subject</a></td><td rowspan="2">All of:</td><td><a href="#subject-0">Original pattern: Path in the form customer/{id}/order/{id}/item/{id} where each {{id}} is a UUID (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) (String)</a></td></tr>
-<tr><td><a href="#subject-1">Merged pattern: Resource path (no leading slash) within the source made of lowercase segments separated by '/' (String)</a></td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=../data/log-item-data.schema.json</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2"><a href="#profileversion">profileversion</a></td><td>String=1.0.0</td></tr><tr><td colspan="2"><a href="#profilepublished">profilepublished</a></td><td>String=2025-11-draft</td></tr><tr><td colspan="2"><a href="#domainprofileversion">domainprofileversion</a></td><td>String</td></tr><tr><td colspan="2"><a href="#domainprofilepublished">domainprofilepublished</a></td><td>String</td></tr><tr><td colspan="2"><a href="#specversion">specversion</a></td><td>String=1.0</td></tr><tr><td colspan="2"><a href="#id">id</a></td><td>String</td></tr><tr><td colspan="2"><a href="#time">time</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacontenttype">datacontenttype</a></td><td>String=application/json</td></tr><tr><td colspan="2"><a href="#traceparent">traceparent</a></td><td>String</td></tr><tr><td colspan="2"><a href="#tracestate">tracestate</a></td><td>String</td></tr><tr><td colspan="2"><a href="#partitionkey">partitionkey</a></td><td>String</td></tr><tr><td colspan="2"><a href="#recordedtime">recordedtime</a></td><td>String</td></tr><tr><td colspan="2"><a href="#sampledrate">sampledrate</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#sequence">sequence</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitytext">severitytext</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitynumber">severitynumber</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#dataclassification">dataclassification</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataregulation">dataregulation</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacategory">datacategory</a></td><td>String</td></tr><tr><td colspan="2" rowspan="7">All of:</td><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr></tbody></table>
+<tr><td><a href="#subject-1">Merged pattern: Resource path (no leading slash) within the source made of lowercase segments separated by '/' (String)</a></td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=../data/log-item-data.schema.json</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2"><a href="#specversion">specversion</a></td><td>String=1.0</td></tr><tr><td colspan="2"><a href="#id">id</a></td><td>String</td></tr><tr><td colspan="2"><a href="#time">time</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacontenttype">datacontenttype</a></td><td>String=application/json</td></tr><tr><td colspan="2"><a href="#traceparent">traceparent</a></td><td>String</td></tr><tr><td colspan="2"><a href="#tracestate">tracestate</a></td><td>String</td></tr><tr><td colspan="2"><a href="#partitionkey">partitionkey</a></td><td>String</td></tr><tr><td colspan="2"><a href="#recordedtime">recordedtime</a></td><td>String</td></tr><tr><td colspan="2"><a href="#sampledrate">sampledrate</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#sequence">sequence</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitytext">severitytext</a></td><td>String</td></tr><tr><td colspan="2"><a href="#severitynumber">severitynumber</a></td><td>Integer</td></tr><tr><td colspan="2"><a href="#dataclassification">dataclassification</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataregulation">dataregulation</a></td><td>String</td></tr><tr><td colspan="2"><a href="#datacategory">datacategory</a></td><td>String</td></tr><tr><td colspan="2" rowspan="7">All of:</td><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr></tbody></table>
 
 
 ## Example
@@ -495,108 +495,6 @@
   </tbody>
 </table>
 
-
-
-
-
-## profileversion
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">NHS Notify CloudEvents profile semantic version.</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">String</td></tr>
-    <tr>
-      <th>Required</th>
-      <td colspan="2">Yes</td>
-    </tr>
-    <tr>
-      <th>Const</th>
-      <td colspan="2">1.0.0</td>
-    </tr><tr>
-      <th>Pattern</th>
-      <td colspan="2">^[0-9]+\.[0-9]+\.[0-9]+$</td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-## profilepublished
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">NHS Notify CloudEvents profile publication date (YYYY-MM).</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">String</td></tr>
-    <tr>
-      <th>Required</th>
-      <td colspan="2">Yes</td>
-    </tr>
-    <tr>
-      <th>Const</th>
-      <td colspan="2">2025-11-draft</td>
-    </tr><tr>
-      <th>Pattern</th>
-      <td colspan="2">^\d{4}-\d{2}(?:-draft)?$</td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-## domainprofileversion
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">NHS Notify CloudEvents profile semantic version.</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">String</td></tr>
-    <tr>
-      <th>Required</th>
-      <td colspan="2">No</td>
-    </tr>
-    <tr>
-      <th>Pattern</th>
-      <td colspan="2">^[0-9]+\.[0-9]+\.[0-9]+$</td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-## domainprofilepublished
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">NHS Notify CloudEvents profile publication date (YYYY-MM).</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">String</td></tr>
-    <tr>
-      <th>Required</th>
-      <td colspan="2">No</td>
-    </tr>
-    <tr>
-      <th>Pattern</th>
-      <td colspan="2">^\d{4}-\d{2}(?:-draft)?$</td>
-    </tr>
-  </tbody>
-</table>
 
 
 
@@ -1371,32 +1269,6 @@
             ],
             "$comment": "Domain payload (arbitrary JSON value)."
         },
-        "profileversion": {
-            "type": "string",
-            "const": "1.0.0",
-            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
-            "description": "NHS Notify CloudEvents profile semantic version.",
-            "$comment": "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
-        },
-        "profilepublished": {
-            "type": "string",
-            "const": "2025-11-draft",
-            "pattern": "^\\d{4}-\\d{2}(?:-draft)?$",
-            "description": "NHS Notify CloudEvents profile publication date (YYYY-MM).",
-            "$comment": "Publication date of this profile version (YYYY-MM)."
-        },
-        "domainprofileversion": {
-            "type": "string",
-            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
-            "description": "NHS Notify CloudEvents profile semantic version.",
-            "$comment": "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
-        },
-        "domainprofilepublished": {
-            "type": "string",
-            "pattern": "^\\d{4}-\\d{2}(?:-draft)?$",
-            "description": "NHS Notify CloudEvents profile publication date (YYYY-MM).",
-            "$comment": "Publication date of this profile version (YYYY-MM)."
-        },
         "specversion": {
             "type": "string",
             "const": "1.0",
@@ -1572,9 +1444,7 @@
         "time",
         "recordedtime",
         "severitynumber",
-        "traceparent",
-        "profileversion",
-        "profilepublished"
+        "traceparent"
     ],
     "examples": [
         {

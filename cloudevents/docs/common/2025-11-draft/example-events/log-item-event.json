@@ -1,28 +1,24 @@
 {
   "type": "uk.nhs.notify.logging.new.log.v1",
-  "source": "/nhs/england/notify/staging/dev-90268782810/data-plane/logging",
-  "subject": "customer/d13fb0bf-520e-fd8c-dedb-737bc3bc3dcb/order/0d3cbe34-f2a7-f4e0-f903-a3e9bfd81d4f/item/dfc3bd89-c24b-a3a1-9c39-7fc3fe7dc779",
+  "source": "/nhs/england/notify/staging/primary/data-plane/logging",
+  "subject": "customer/bea5c6b2-bdf4-2faa-cffc-e42f6ccec94d/order/c7df5c5d-8e0d-ebff-11a2-3db34fdbaa3c/item/cffd3d7b-2fff-9fce-cc2e-db0f40cbc50c",
   "dataschema": "../data/log-item-data.schema.json",
   "data": {
-    "info": "in"
+    "info": "cupidatat labore nostrud in"
   },
-  "profileversion": "1.0.0",
-  "profilepublished": "2025-11-draft",
-  "domainprofileversion": "30.259.9097",
-  "domainprofilepublished": "7755-27",
   "specversion": "1.0",
-  "id": "42891457-1b96-4027-8f5a-c98770b741a1",
-  "time": "2025-10-28T08:58:03.017Z",
+  "id": "367fe8bf-840e-4b13-b6ee-5dc9ffa42223",
+  "time": "2025-10-28T09:56:57.744Z",
   "datacontenttype": "application/json",
-  "traceparent": "00-65b1a7d1c4cb94eba023f54e629b46b4-a2a318c681440f7d-01",
-  "tracestate": "nisi cupidatat",
-  "partitionkey": "customer-d13fb0bf",
-  "recordedtime": "2025-10-28T08:58:04.017Z",
+  "traceparent": "00-9e13e6f799a97a83d3e12d5ea7c912bc-b03763d54a1e2aa3-01",
+  "tracestate": "quis sit ipsum minim qui",
+  "partitionkey": "customer-bea5c6b2",
+  "recordedtime": "2025-10-28T09:56:58.744Z",
   "sampledrate": 1,
-  "sequence": "00000000000800877171",
-  "severitytext": "ERROR",
-  "severitynumber": 4,
-  "dataclassification": "confidential",
+  "sequence": "00000000000314623944",
+  "severitytext": "WARN",
+  "severitynumber": 3,
+  "dataclassification": "restricted",
   "dataregulation": "HIPAA",
-  "datacategory": "sensitive"
+  "datacategory": "standard"
 }

@@ -30,7 +30,7 @@ jsf.option({ alwaysFakeOptionals: true });
 
 async function main() {
   const args = process.argv.slice(2);
-  
+
   const [ schemaPathRaw, outputPath ] = args;
   if (!schemaPathRaw || !outputPath) {
     console.error("Usage: ts-node generate-example.ts <schema.json|yaml> <output.json>");
@@ -51,8 +51,7 @@ async function main() {
   if (example && typeof example === 'object') {
     // 1. Enforce required CloudEvents profile fields if missing (some schemas rely on profile ref)
     example.specversion = '1.0';
-    if (!example.profileversion) example.profileversion = '1.0.0';
-    if (!example.profilepublished) example.profilepublished = '2025-10';
+
 
     // 2. Generate a stable type if schema didn't const it (avoid banned verbs)
     if (!example.type || typeof example.type !== 'string') {
@@ -72,15 +71,15 @@ async function main() {
         example.source = generatedSource;
       }
     }
-    
+
     // 5. Generate subject from the most specific pattern (properties level, not allOf)
     // Only override if properties.subject actually has a pattern (not inherited from parent)
     const subjectSchema = (dereferencedSchema as any).properties?.subject;
-    const hasSpecificSubjectPattern = subjectSchema && 
-                                       typeof subjectSchema === 'object' && 
+    const hasSpecificSubjectPattern = subjectSchema &&
+                                       typeof subjectSchema === 'object' &&
                                        subjectSchema.pattern &&
                                        !subjectSchema.$ref; // Make sure it's not just a ref
-    
+
     if (hasSpecificSubjectPattern) {
       // Generate specifically from the properties.subject schema to get the most specific pattern
       const generatedSubject = jsf.generate(subjectSchema);
@@ -105,9 +104,9 @@ async function main() {
         }
         return conditionals;
       };
-      
+
       const conditionals = findConditionals(dereferencedSchema);
-      
+
       for (const conditional of conditionals) {
         // Check if the 'if' condition matches current example values
         const ifMatches = Object.keys(conditional.if.properties || {}).every(propName => {
@@ -120,7 +119,7 @@ async function main() {
           }
           return true;
         });
-        
+
         // If condition matches, use the 'then' subject pattern
         if (ifMatches && conditional.then?.properties?.subject?.pattern) {
           const thenSubjectSchema = conditional.then.properties.subject;
@@ -177,7 +176,7 @@ async function main() {
     // Recursively find and set any nhsNumber property to a valid value
     const setValidNhsNumber = (obj: any): void => {
       if (!obj || typeof obj !== 'object') return;
-      
+
       for (const key in obj) {
         if (key === 'nhsNumber' && typeof obj[key] === 'string') {
           // Set to known valid NHS number with correct checksum
@@ -188,12 +187,12 @@ async function main() {
         }
       }
     };
-    
+
     setValidNhsNumber(example.data);
 
     // 13. datacontenttype & dataschema stable defaults
     example.datacontenttype = 'application/json';
-   
+
 
     // 14. Data classification defaults (pick consistent set)
     example.dataclassification = example.dataclassification || 'restricted';

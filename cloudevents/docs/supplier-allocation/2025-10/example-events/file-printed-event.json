@@ -1,28 +1,24 @@
 {
   "type": "uk.nhs.notify.supplier.allocation.file.printed.v1",
-  "source": "/nhs/england/notify/staging/dev-8469299131/data-plane/supplierallocation",
+  "source": "/nhs/england/notify/staging/secondary/data-plane/supplierallocation",
   "dataschema": "../data/file-data.schema.json",
   "data": {
-    "something": "sit do dolor non"
+    "something": "sunt sit ipsum sint sed"
   },
-  "profileversion": "1.0.0",
-  "profilepublished": "2025-10",
-  "domainprofileversion": "112428.6804.87635531283",
-  "domainprofilepublished": "0350-31",
   "specversion": "1.0",
-  "id": "f930e84b-f019-4a8a-815d-55bf9aca1910",
-  "subject": "customer/0e68fb4f-a0e1-7c02-c4e2-ffe34eb6cf51/e0e9b4bc-0cb5-b93f-1aba-9df3ce6ab33c/05rmtun",
-  "time": "2025-10-28T08:58:17.497Z",
+  "id": "c675eb26-1e55-4e66-990b-fabc007ebeb7",
+  "subject": "customer/320e45a3-7af2-dc8e-7d72-c9f12a6ebafa/ea-hw70q6kf/9574afdd-28a1-c8a9-590f-f067dae3cac4/baaa5bac-edd2-a464-8514-cb65e25326a7/s25ukm-h/si1xzc5bhw/e40af020-7c38-b1c2-eff0-8ebfe3f6bde8/d6146ebe-d21c-a296-93ec-e9bbd9189fad",
+  "time": "2025-10-28T09:57:12.843Z",
   "datacontenttype": "application/json",
-  "traceparent": "00-2a55c331fe26ce005b1a0c25eea5fc99-cbec75fe058dd3d4-01",
-  "tracestate": "occaecat commodo Duis",
-  "partitionkey": "customer-0e68fb4f",
-  "recordedtime": "2025-10-28T08:58:18.497Z",
+  "traceparent": "00-c57bfa198afe085311b760d97fe1e274-391a5312cae96793-01",
+  "tracestate": "ipsum irure nisi",
+  "partitionkey": "customer-320e45a3",
+  "recordedtime": "2025-10-28T09:57:13.843Z",
   "sampledrate": 1,
-  "sequence": "00000000000745909597",
-  "severitytext": "DEBUG",
-  "severitynumber": 1,
+  "sequence": "00000000000139743956",
+  "severitytext": "INFO",
+  "severitynumber": 2,
   "dataclassification": "restricted",
-  "dataregulation": "PCI-DSS",
-  "datacategory": "standard"
+  "dataregulation": "ISO-27001",
+  "datacategory": "sensitive"
 }

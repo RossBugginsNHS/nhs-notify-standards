@@ -1,28 +1,24 @@
 {
   "type": "uk.nhs.notify.supplier.allocation.file.received.v1",
-  "source": "/nhs/england/notify/development/primary/data-plane/supplierallocation",
+  "source": "/nhs/england/notify/staging/dev-715844/data-plane/supplierallocation",
   "dataschema": "../data/file-data.schema.json",
   "data": {
-    "something": "labore adipisicing in"
+    "something": "nulla exercitation id"
   },
-  "profileversion": "1.0.0",
-  "profilepublished": "2025-10",
-  "domainprofileversion": "14.9444443.2",
-  "domainprofilepublished": "8965-28-draft",
   "specversion": "1.0",
-  "id": "7efc2312-5313-4313-b9b0-c2464ba06be1",
-  "subject": "customer/3ccff80f-4cbc-b1bd-d8c0-de90cd4eed8f/k65/605imm750x/z7n/ktp0/zpna3d/kc",
-  "time": "2025-10-28T08:58:17.778Z",
+  "id": "8834b78d-731d-4a0a-94bc-254b0524de5a",
+  "subject": "customer/0d29728b-126d-eeff-711a-778e6ac8aaba",
+  "time": "2025-10-28T09:57:13.150Z",
   "datacontenttype": "application/json",
-  "traceparent": "00-bdeb3109961c5c19ff8418aeb420f801-69bd8afc97375a12-01",
-  "tracestate": "sint quis",
-  "partitionkey": "customer-3ccff80f",
-  "recordedtime": "2025-10-28T08:58:18.778Z",
+  "traceparent": "00-d740bfa6fd7df1ff8a7f004618b52c92-fcd79a35ce1430c4-01",
+  "tracestate": "dolore sint",
+  "partitionkey": "customer-0d29728b",
+  "recordedtime": "2025-10-28T09:57:14.150Z",
   "sampledrate": 1,
-  "sequence": "00000000000298518199",
-  "severitytext": "DEBUG",
-  "severitynumber": 1,
-  "dataclassification": "public",
-  "dataregulation": "GDPR",
-  "datacategory": "sensitive"
+  "sequence": "00000000000550406254",
+  "severitytext": "WARN",
+  "severitynumber": 3,
+  "dataclassification": "internal",
+  "dataregulation": "HIPAA",
+  "datacategory": "standard"
 }

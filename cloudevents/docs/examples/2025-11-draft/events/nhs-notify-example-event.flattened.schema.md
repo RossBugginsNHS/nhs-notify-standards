@@ -14,7 +14,7 @@
 ## Properties
 
 <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td rowspan="1"><a href="#type">type</a></td><td rowspan="1">All of:</td><td><a href="#type-0">NHS Notify versioned event type pattern (String)</a></td></tr><tr><td rowspan="2"><a href="#source">source</a></td><td rowspan="2">All of:</td><td><a href="#source-0">Original pattern: Event source for ordering domain examples (String)</a></td></tr>
-<tr><td><a href="#source-1">Merged pattern constraint (String)</a></td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=../data/nhs-notify-example-event-data.schema.json</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2"><a href="#domainprofileversion">domainprofileversion</a></td><td>String=1.0.0</td></tr><tr><td colspan="2"><a href="#domainprofilepublished">domainprofilepublished</a></td><td>String=2025-11-draft</td></tr><tr><td colspan="2" rowspan="1">All of:</td><td>Object</td></tr></tbody></table>
+<tr><td><a href="#source-1">Merged pattern constraint (String)</a></td></tr><tr><td colspan="2"><a href="#subject">subject</a></td><td>String</td></tr><tr><td colspan="2"><a href="#dataschema">dataschema</a></td><td>String=../data/nhs-notify-example-event-data.schema.json</td></tr><tr><td colspan="2"><a href="#data">data</a></td><td>Object</td></tr><tr><td colspan="2" rowspan="1">All of:</td><td>Object</td></tr></tbody></table>
 
 
 ## Example
@@ -318,54 +318,6 @@
 
 
 
-## domainprofileversion
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">NHS Notify CloudEvents profile semantic version.</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">String</td></tr>
-    <tr>
-      <th>Required</th>
-      <td colspan="2">No</td>
-    </tr>
-    <tr>
-      <th>Const</th>
-      <td colspan="2">1.0.0</td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-## domainprofilepublished
-
-
-<table class="jssd-property-table">
-  <tbody>
-    <tr>
-      <th>Description</th>
-      <td colspan="2">NHS Notify CloudEvents profile publication date (YYYY-MM).</td>
-    </tr>
-    <tr><th>Type</th><td colspan="2">String</td></tr>
-    <tr>
-      <th>Required</th>
-      <td colspan="2">No</td>
-    </tr>
-    <tr>
-      <th>Const</th>
-      <td colspan="2">2025-11-draft</td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
 
 
 
@@ -391,32 +343,6 @@
             "additionalProperties": false,
             "$comment": "id includes the published date. CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.",
             "properties": {
-                "profileversion": {
-                    "type": "string",
-                    "const": "1.0.0",
-                    "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
-                    "description": "NHS Notify CloudEvents profile semantic version.",
-                    "$comment": "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
-                },
-                "profilepublished": {
-                    "type": "string",
-                    "const": "2025-11-draft",
-                    "pattern": "^\\d{4}-\\d{2}(?:-draft)?$",
-                    "description": "NHS Notify CloudEvents profile publication date (YYYY-MM).",
-                    "$comment": "Publication date of this profile version (YYYY-MM)."
-                },
-                "domainprofileversion": {
-                    "type": "string",
-                    "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
-                    "description": "NHS Notify CloudEvents profile semantic version.",
-                    "$comment": "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
-                },
-                "domainprofilepublished": {
-                    "type": "string",
-                    "pattern": "^\\d{4}-\\d{2}(?:-draft)?$",
-                    "description": "NHS Notify CloudEvents profile publication date (YYYY-MM).",
-                    "$comment": "Publication date of this profile version (YYYY-MM)."
-                },
                 "specversion": {
                     "type": "string",
                     "const": "1.0",
@@ -735,9 +661,7 @@
                 "recordedtime",
                 "severitynumber",
                 "traceparent",
-                "data",
-                "profileversion",
-                "profilepublished"
+                "data"
             ],
             "dependentRequired": {
                 "severitynumber": [
@@ -1044,18 +968,6 @@
                     "nhsNumber": "9434765919"
                 }
             ]
-        },
-        "domainprofileversion": {
-            "type": "string",
-            "const": "1.0.0",
-            "description": "NHS Notify CloudEvents profile semantic version.",
-            "$comment": "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
-        },
-        "domainprofilepublished": {
-            "type": "string",
-            "const": "2025-11-draft",
-            "description": "NHS Notify CloudEvents profile publication date (YYYY-MM).",
-            "$comment": "Publication date of this profile version (YYYY-MM)."
         }
     },
     "required": [

@@ -6,16 +6,6 @@ type: object
 allOf:
   - $ref: https://notify.nhs.uk/cloudevents/schemas/common/2025-11-draft/nhs-notify-profile.schema.json
 properties:
-  domainprofileversion:
-    type: string
-    const: 1.0.0
-    description: NHS Notify CloudEvents profile semantic version.
-    $comment: "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
-  domainprofilepublished:
-    type: string
-    const: 2025-11-draft
-    description: NHS Notify CloudEvents profile publication date (YYYY-MM).
-    $comment: Publication date of this profile version (YYYY-MM).
   type:
     type: string
     minLength: 1

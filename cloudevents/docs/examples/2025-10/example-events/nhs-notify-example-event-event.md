@@ -2,13 +2,13 @@
 
 **Event Type:** `uk.nhs.notify.example.order.read.v1`
 
-**Source:** `/nhs/england/notify/uat/dev-176186791/data-plane/example`
+**Source:** `/nhs/england/notify/uat/secondary/data-plane/example`
 
-**Subject:** `customer/3aaef7cf-7423-63d9-ba2d-ecedc5cec3eb/order/3fb8be1c-5cdf-45db-ddde-f4df5fe39ff1/item/9fcab0d8-1916-49ff-73d1-a328883db85b`
+**Subject:** `customer/d5ca9bbe-4006-ec76-3577-cbf2c4c2efc7/order/bc4bc55c-7f1b-ddff-adfe-312dba6fa1d4/item/53c28081-51b2-92fd-5260-cfb2cbccfffa`
 
-**Event ID:** `c1520826-4848-4287-ae9d-294c920bb115`
+**Event ID:** `ba0a5968-5562-477b-b23b-d76e53c927e6`
 
-**Timestamp:** 2025-10-28T08:58:08.160Z
+**Timestamp:** 2025-10-28T09:57:02.976Z
 
 ## Related Schema Documentation
 
@@ -21,30 +21,26 @@
 ```json
 {
   "type": "uk.nhs.notify.example.order.read.v1",
-  "source": "/nhs/england/notify/uat/dev-176186791/data-plane/example",
-  "subject": "customer/3aaef7cf-7423-63d9-ba2d-ecedc5cec3eb/order/3fb8be1c-5cdf-45db-ddde-f4df5fe39ff1/item/9fcab0d8-1916-49ff-73d1-a328883db85b",
+  "source": "/nhs/england/notify/uat/secondary/data-plane/example",
+  "subject": "customer/d5ca9bbe-4006-ec76-3577-cbf2c4c2efc7/order/bc4bc55c-7f1b-ddff-adfe-312dba6fa1d4/item/53c28081-51b2-92fd-5260-cfb2cbccfffa",
   "dataschema": "../data/nhs-notify-example-event-data.schema.json",
   "data": {
     "nhsNumber": "9434765919"
   },
-  "profileversion": "1.0.0",
-  "profilepublished": "2025-10",
-  "domainprofileversion": "1370992.6395.77",
-  "domainprofilepublished": "5444-71-draft",
   "specversion": "1.0",
-  "id": "c1520826-4848-4287-ae9d-294c920bb115",
-  "time": "2025-10-28T08:58:08.160Z",
+  "id": "ba0a5968-5562-477b-b23b-d76e53c927e6",
+  "time": "2025-10-28T09:57:02.976Z",
   "datacontenttype": "application/json",
-  "traceparent": "00-eefb39b660f4e0e8df03f2ad92787739-d725c3c944bcf284-01",
-  "tracestate": "ipsum elit",
-  "partitionkey": "customer-3aaef7cf",
-  "recordedtime": "2025-10-28T08:58:09.160Z",
+  "traceparent": "00-04dc10f32baf37511c9a003fd45e9cb0-c5843d41ed4312fb-01",
+  "tracestate": "deserunt",
+  "partitionkey": "customer-d5ca9bbe",
+  "recordedtime": "2025-10-28T09:57:03.976Z",
   "sampledrate": 1,
-  "sequence": "00000000000654597755",
-  "severitytext": "TRACE",
-  "severitynumber": 0,
+  "sequence": "00000000000997597993",
+  "severitytext": "ERROR",
+  "severitynumber": 4,
   "dataclassification": "public",
-  "dataregulation": "CCPA",
+  "dataregulation": "ISO-27001",
   "datacategory": "special-category"
 }
 ```

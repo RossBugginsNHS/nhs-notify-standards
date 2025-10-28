@@ -6,28 +6,6 @@ type: object
 additionalProperties: false
 $comment: "id includes the published date. CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec."
 properties:
-  profileversion:
-    type: string
-    const: "1.0.0"
-    pattern: ^[0-9]+\.[0-9]+\.[0-9]+$
-    description: NHS Notify CloudEvents profile semantic version.
-    $comment: "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
-  profilepublished:
-    type: string
-    const: "2025-11-draft"
-    pattern: ^\d{4}-\d{2}(?:-draft)?$
-    description: NHS Notify CloudEvents profile publication date (YYYY-MM).
-    $comment: Publication date of this profile version (YYYY-MM).
-  domainprofileversion:
-    type: string
-    pattern: ^[0-9]+\.[0-9]+\.[0-9]+$
-    description: NHS Notify CloudEvents profile semantic version.
-    $comment: "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
-  domainprofilepublished:
-    type: string
-    pattern: ^\d{4}-\d{2}(?:-draft)?$
-    description: NHS Notify CloudEvents profile publication date (YYYY-MM).
-    $comment: Publication date of this profile version (YYYY-MM).
   specversion:
     type: string
     const: "1.0"
@@ -266,8 +244,6 @@ required:
   - severitynumber
   - traceparent
   - data
-  - profileversion
-  - profilepublished
 dependentRequired:
   severitynumber:
     - severitytext
@@ -359,9 +335,7 @@ allOf:
       required:
         - severitynumber
 examples:
-  - profileversion: 1.0.0
-    profilepublished: 2025-10
-    specversion: "1.0"
+  - specversion: "1.0"
     id: 6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111
     source: /data-plane/ordering
     subject: customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d

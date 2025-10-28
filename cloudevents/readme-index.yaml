@@ -3,7 +3,7 @@
 # To regenerate, run: make update-readme
 # To customize labels and purposes, edit: readme-metadata.yaml
 
-generated: '2025-10-28T09:19:53.633Z'
+generated: '2025-10-28T09:57:19.697Z'
 common:
   versions:
     - version: 2025-10

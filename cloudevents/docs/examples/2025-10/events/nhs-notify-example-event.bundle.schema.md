@@ -289,34 +289,8 @@
                     "description": "NHS Notify profile for CloudEvents 1.0 including additional governance and tracing attributes.",
                     "type": "object",
                     "additionalProperties": false,
-                    "$comment": "id includes the published date. CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.",
+                    "$comment": "Version: 1.0.0\nPublished: 2025-10\nDomain: Common\n\nid includes the published date. CloudEvents allows arbitrary extension attributes. NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.\n",
                     "properties": {
-                        "profileversion": {
-                            "type": "string",
-                            "const": "1.0.0",
-                            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
-                            "description": "NHS Notify CloudEvents profile semantic version.",
-                            "$comment": "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
-                        },
-                        "profilepublished": {
-                            "type": "string",
-                            "const": "2025-10",
-                            "pattern": "^\\d{4}-\\d{2}(?:-draft)?$",
-                            "description": "NHS Notify CloudEvents profile publication date (YYYY-MM) with optional -draft suffix.",
-                            "$comment": "Publication date of this profile version (YYYY-MM) or (YYYY-MM-draft) for draft versions."
-                        },
-                        "domainprofileversion": {
-                            "type": "string",
-                            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
-                            "description": "NHS Notify domain specific CloudEvents profile semantic version. (optional)",
-                            "$comment": "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
-                        },
-                        "domainprofilepublished": {
-                            "type": "string",
-                            "pattern": "^\\d{4}-\\d{2}(?:-draft)?$",
-                            "description": "NHS Notify domain specific CloudEvents profile publication date (YYYY-MM). (optional)",
-                            "$comment": "Publication date of this profile version (YYYY-MM)."
-                        },
                         "specversion": {
                             "type": "string",
                             "const": "1.0",
@@ -635,9 +609,7 @@
                         "recordedtime",
                         "severitynumber",
                         "traceparent",
-                        "data",
-                        "profileversion",
-                        "profilepublished"
+                        "data"
                     ],
                     "dependentRequired": {
                         "severitynumber": [
@@ -842,20 +814,6 @@
                 }
             ],
             "properties": {
-                "profileversion": {
-                    "type": "string",
-                    "const": "1.0.0",
-                    "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
-                    "description": "NHS Notify CloudEvents profile semantic version.",
-                    "$comment": "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
-                },
-                "profilepublished": {
-                    "type": "string",
-                    "const": "2025-10",
-                    "pattern": "^\\d{4}-\\d{2}$",
-                    "description": "NHS Notify CloudEvents profile publication date (YYYY-MM).",
-                    "$comment": "Publication date of this profile version (YYYY-MM)."
-                },
                 "type": {
                     "type": "string",
                     "minLength": 1,
