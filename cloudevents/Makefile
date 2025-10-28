@@ -1,49 +1,68 @@
-# Makefile for cloudevents-example-generator
+# Makefile for cloudevents - orchestrates src/ subdomain Makefiles
+include scripts/init.mk
 
-.PHONY: generate clean docs bundle-example bundle-profile bundle-all validate validate-default validate-bundle generate-default
+# Allow version override (default is set in src/Makefile)
+PUBLISH_VERSION ?= all
+
+.PHONY: build publish publish-json publish-yaml generate test deploy clean build-docs update-readme
+
+config:: _install-dependencies version # Configure development environment (main) @Configuration
+	npm install
+
+build:
+	@echo "=== Building all schemas (version: $(PUBLISH_VERSION)) ==="
+	$(MAKE) -C src build PUBLISH_VERSION=$(PUBLISH_VERSION)
+
+publish:
+	@echo "=== Publishing all schemas (JSON + YAML, version: $(PUBLISH_VERSION)) ==="
+	$(MAKE) -C src publish PUBLISH_VERSION=$(PUBLISH_VERSION)
+
+publish-json:
+	@echo "=== Publishing all schemas (JSON only, version: $(PUBLISH_VERSION)) ==="
+	$(MAKE) -C src publish-json PUBLISH_VERSION=$(PUBLISH_VERSION)
+
+publish-yaml:
+	@echo "=== Publishing all schemas (YAML only, version: $(PUBLISH_VERSION)) ==="
+	$(MAKE) -C src publish-yaml PUBLISH_VERSION=$(PUBLISH_VERSION)
 
 generate:
-	npm run generate -- $(ARGS)
+	@echo "=== Generating all events (version: $(PUBLISH_VERSION)) ==="
+	$(MAKE) -C src generate PUBLISH_VERSION=$(PUBLISH_VERSION)
 
-generate-default:
-	npm run generate -- nhs-notify-example-event.schema.json output-example-event.json
+test:
+	@echo "=== Running all tests (version: $(PUBLISH_VERSION)) ==="
+	$(MAKE) -C src test PUBLISH_VERSION=$(PUBLISH_VERSION)
 
-generate-root:
-	npm run generate -- nhs-notify-example-event.schema.json output-example-event.json
+deploy:
+	@echo "=== Deploying all schemas (version: $(PUBLISH_VERSION)) ==="
+	$(MAKE) clean
+	$(MAKE) version
+	$(MAKE) -C src deploy PUBLISH_VERSION=$(PUBLISH_VERSION)
+	make build-docs
+	make update-readme
+	@echo ""
+	@echo "✅ Build complete: local schemas tested and distribution schemas ready!"
 
-validate-default:
-	node validate.js nhs-notify-example-event.schema.json output-example-event.json
-	node validate.js nhs-notify-profile.schema.json output-example-event.json
+clean::
+	@echo "=== Cleaning output/ and schemas/ directories ==="
+	rm -rf ./output
+	rm -rf ./schemas
+	rm -rf ./docs
+	rm -rf .version
+	rm -f version.json
+	@echo ""
 
+build-docs:
+	@echo "=== Generating documentation for all schemas ==="
+	npm run build-docs -- ./output ./docs
 
-validate: bundle-all flatten-all bundle-flatten-preferchild
-	node validate.js nhs-notify-example-event.schema.json output-example-event.json
-	node validate.js nhs-notify-profile.schema.json output-example-event.json
-	node validate.js nhs-notify-example-event.bundle.schema.json output-example-event.json
-	node validate.js nhs-notify-example-event.flattened.schema.json output-example-event.json
-	node validate.js nhs-notify-example-event.prefer-child.bundle.schema.json output-example-event.json
+update-readme:
+	@echo "=== Updating README tables ==="
+	node src/tools/generator/update-readme.cjs
+	@echo ""
 
-docs: generate-default bundle-all flatten-all bundle-flatten-preferchild validate
-	npm run docs
-
-bundle-example:
-	npm run bundle -- nhs-notify-example-event.schema.json nhs-notify-example-event.bundle.schema.json
-
-bundle-profile:
-	npm run bundle -- nhs-notify-profile.schema.json nhs-notify-profile.bundle.schema.json
-
-bundle-all: bundle-example bundle-profile
-
-flatten-example:
-	npm run bundle -- --flatten nhs-notify-example-event.schema.json nhs-notify-example-event.flattened.schema.json
-
-flatten-profile:
-	npm run bundle -- --flatten nhs-notify-profile.schema.json nhs-notify-profile.flattened.schema.json
-
-flatten-all: flatten-example flatten-profile
-
-validate-bundle: bundle-example
-	node validate.js nhs-notify-example-event.bundle.schema.json output-example-event.json
-
-bundle-flatten-preferchild:
-	npm run bundle:prefer-child -- --flatten nhs-notify-example-event.schema.json nhs-notify-example-event.prefer-child.bundle.schema.json
+version:
+	@echo "=== Creating version files ==="
+	rm -f .version
+	make version-create-effective-file dir=.
+	echo "{ \"schemaVersion\": 1, \"label\": \"version\", \"message\": \"$$(head -n 1 .version 2> /dev/null || echo unknown)\", \"color\": \"orange\" }" > version.json

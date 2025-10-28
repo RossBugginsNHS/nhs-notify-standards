@@ -6,176 +6,328 @@ This folder contains the NHS Notify CloudEvents standards: a set of JSON Schemas
 
 CloudEvents is a vendor-neutral specification for describing event data. These standards provide:
 
-* JSON Schemas for CloudEvent profile / envelope, common payload wrapper, metadata and reusable NHS types
-* Example concrete event schema and example event data instance
-* Bundled + flattened build artifacts for easier downstream consumption
-* Generated markdown documentation for every schema
+- **Source schemas** (YAML) organized by domain with modular structure (profiles, definitions, data, events)
+- **Published schemas** (JSON) with public URLs for validation and distribution
+- **Generated documentation** (Markdown) for every schema
+- **Bundled + flattened** build artifacts for easier downstream consumption
+- **Example events** demonstrating usage
 
-## JSON Schema Files (authoritative sources)
+## Project Structure
 
-| File | Purpose |
-|------|---------|
-| [`nhs-notify-profile.schema.json`](nhs-notify-profile.schema.json) | Profile constraints applied to all NHS Notify CloudEvents (adds required attributes, formats, traceability fields, etc.). |
-| [`nhs-notify-profile.bundle.schema.json`](nhs-notify-profile.bundle.schema.json) | Bundled single-document version of the profile (all external `$ref` inlined; nested `$id` removed). |
-| [`nhs-notify-profile.flattened.schema.json`](nhs-notify-profile.flattened.schema.json) | Experimental: profile with top-level `allOf` object merges flattened where safe. |
-| [`nhs-notify-example-event.schema.json`](nhs-notify-example-event.schema.json) | Concrete example CloudEvent (envelope + `data` shape + refs to profile & payload pieces). |
-| [`nhs-notify-example-event.bundle.schema.json`](nhs-notify-example-event.bundle.schema.json) | Bundled variant of the example event schema (single file for distribution). |
-| [`nhs-notify-example-event.flattened.schema.json`](nhs-notify-example-event.flattened.schema.json) | Experimental flattened variant of the example event schema (merged properties). |
-| [`nhs-notify-example-event.prefer-child.bundle.schema.json`](nhs-notify-example-event.prefer-child.bundle.schema.json) | Bundled + prefer-child merged (experimental) variant of the example event schema. |
-| [`nhs-notify-example-event-data.schema.json`](nhs-notify-example-event-data.schema.json) | Schema describing only the `data` portion referenced by the example event. |
-| [`nhs-notify-payload.schema.json`](nhs-notify-payload.schema.json) | Common wrapper providing `notify-data` (domain/control plane variants) + `notify-metadata`. |
-| [`nhs-notify-metadata.schema.json`](nhs-notify-metadata.schema.json) | Common metadata fields (team, domain, version, service, etc.). |
-| [`nhs-number.schema.json`](nhs-number.schema.json) | Reusable NHS Number type (canonical and human formatted variants). |
-| [`output-example-event.json`](output-example-event.json) | Example instance that validates against the profile + example event schema. |
-
-Notes:
-* Bundled artifacts are produced via `json-schema-ref-parser` `bundle()` (not full dereference) to keep shared `$defs` unique.
-* Flattened artifacts attempt safe structural merge of `allOf` object schemas; treat as experimental and validate thoroughly before downstream use.
-
-## Generated Schema Documentation (markdown)
-
-Running `npm run docs` (or `make docs`) generates markdown docs under `docs/` for every schema.
-
-| Schema | Doc |
-|--------|-----|
-| Profile | [`docs/nhs-notify-profile.schema.md`](docs/nhs-notify-profile.schema.md) |
-| Profile (bundled) | [`docs/nhs-notify-profile.bundle.schema.md`](docs/nhs-notify-profile.bundle.schema.md) |
-| Profile (flattened) | [`docs/nhs-notify-profile.flattened.schema.md`](docs/nhs-notify-profile.flattened.schema.md) |
-| Example Event | [`docs/nhs-notify-example-event.schema.md`](docs/nhs-notify-example-event.schema.md) |
-| Example Event (bundled) | [`docs/nhs-notify-example-event.bundle.schema.md`](docs/nhs-notify-example-event.bundle.schema.md) |
-| Example Event (flattened) | [`docs/nhs-notify-example-event.flattened.schema.md`](docs/nhs-notify-example-event.flattened.schema.md) |
-| Example Event (prefer-child bundle) | [`docs/nhs-notify-example-event.prefer-child.bundle.schema.md`](docs/nhs-notify-example-event.prefer-child.bundle.schema.md) |
-| Example Event Data | [`docs/nhs-notify-example-event-data.schema.md`](docs/nhs-notify-example-event-data.schema.md) |
-| Payload Wrapper | [`docs/nhs-notify-payload.schema.md`](docs/nhs-notify-payload.schema.md) |
-| Metadata | [`docs/nhs-notify-metadata.schema.md`](docs/nhs-notify-metadata.schema.md) |
-| NHS Number Types | [`docs/nhs-number.schema.md`](docs/nhs-number.schema.md) |
-| Index | [`docs/index.md`](docs/index.md) |
-
-If you later publish via GitHub Pages you can link to the rendered markdown (or convert to HTML) directly; the `$id` values in bundled schemas are designed to point to a plausible published location.
-
-
-## Generating Example Data
-
-To generate example data from a schema, use the provided Makefile target:
-
-```sh
-make generate-default
+```
+cloudevents/
+├── src/                    # Source YAML schemas (authoritative)
+│   ├── common/            # Shared NHS Notify schemas
+│   ├── examples/          # Example event domain
+│   └── supplier-allocation/ # Supplier allocation domain
+├── schemas/               # Published JSON schemas (with public URLs)
+├── docs/                  # Generated markdown documentation
+├── output/                # Build artifacts (for local validation)
+└── Makefile              # Build, test, and deployment commands
 ```
 
-To validate:
+<!-- AUTO-GENERATED-CONTENT:START -->
+## Common Schemas (Shared Across All Domains)
 
-```sh
-make validate
+### Version: 2025-10
+
+| Schema | Source (YAML) | Published Schema | Documentation |
+| ------ | ------------- | ---------------- | ------------- |
+| **NHS Notify Metadata** | [`src/common/2025-10/defs/nhs-notify-metadata.schema.yaml`](src/common/2025-10/defs/nhs-notify-metadata.schema.yaml) | [`schemas/common/2025-10/defs/nhs-notify-metadata.schema.json`](schemas/common/2025-10/defs/nhs-notify-metadata.schema.json) | [`docs/common/2025-10/defs/nhs-notify-metadata.schema.md`](docs/common/2025-10/defs/nhs-notify-metadata.schema.md) |
+| **NHS Notify Payload** | [`src/common/2025-10/defs/nhs-notify-payload.schema.yaml`](src/common/2025-10/defs/nhs-notify-payload.schema.yaml) | [`schemas/common/2025-10/defs/nhs-notify-payload.schema.json`](schemas/common/2025-10/defs/nhs-notify-payload.schema.json) | [`docs/common/2025-10/defs/nhs-notify-payload.schema.md`](docs/common/2025-10/defs/nhs-notify-payload.schema.md) |
+| **NHS Number** | [`src/common/2025-10/defs/nhs-number.schema.yaml`](src/common/2025-10/defs/nhs-number.schema.yaml) | [`schemas/common/2025-10/defs/nhs-number.schema.json`](schemas/common/2025-10/defs/nhs-number.schema.json) | [`docs/common/2025-10/defs/nhs-number.schema.md`](docs/common/2025-10/defs/nhs-number.schema.md) |
+| **NHS Notify Profile** | [`src/common/2025-10/nhs-notify-profile.schema.yaml`](src/common/2025-10/nhs-notify-profile.schema.yaml) | [`schemas/common/2025-10/nhs-notify-profile.schema.json`](schemas/common/2025-10/nhs-notify-profile.schema.json) | [`docs/common/2025-10/nhs-notify-profile.schema.md`](docs/common/2025-10/nhs-notify-profile.schema.md) |
+
+### Version: 2025-11-draft
+
+| Schema | Source (YAML) | Published Schema | Documentation |
+| ------ | ------------- | ---------------- | ------------- |
+| **Log Item Data** | [`src/common/2025-11-draft/data/log-item-data.schema.yaml`](src/common/2025-11-draft/data/log-item-data.schema.yaml) | [`schemas/common/2025-11-draft/data/log-item-data.schema.json`](schemas/common/2025-11-draft/data/log-item-data.schema.json) | [`docs/common/2025-11-draft/data/log-item-data.schema.md`](docs/common/2025-11-draft/data/log-item-data.schema.md) |
+| **NHS Notify Metadata** | [`src/common/2025-11-draft/defs/nhs-notify-metadata.schema.yaml`](src/common/2025-11-draft/defs/nhs-notify-metadata.schema.yaml) | [`schemas/common/2025-11-draft/defs/nhs-notify-metadata.schema.json`](schemas/common/2025-11-draft/defs/nhs-notify-metadata.schema.json) | [`docs/common/2025-11-draft/defs/nhs-notify-metadata.schema.md`](docs/common/2025-11-draft/defs/nhs-notify-metadata.schema.md) |
+| **NHS Notify Payload** | [`src/common/2025-11-draft/defs/nhs-notify-payload.schema.yaml`](src/common/2025-11-draft/defs/nhs-notify-payload.schema.yaml) | [`schemas/common/2025-11-draft/defs/nhs-notify-payload.schema.json`](schemas/common/2025-11-draft/defs/nhs-notify-payload.schema.json) | [`docs/common/2025-11-draft/defs/nhs-notify-payload.schema.md`](docs/common/2025-11-draft/defs/nhs-notify-payload.schema.md) |
+| **NHS Number** | [`src/common/2025-11-draft/defs/nhs-number.schema.yaml`](src/common/2025-11-draft/defs/nhs-number.schema.yaml) | [`schemas/common/2025-11-draft/defs/nhs-number.schema.json`](schemas/common/2025-11-draft/defs/nhs-number.schema.json) | [`docs/common/2025-11-draft/defs/nhs-number.schema.md`](docs/common/2025-11-draft/defs/nhs-number.schema.md) |
+| **Log Item** | [`src/common/2025-11-draft/events/log-item.schema.yaml`](src/common/2025-11-draft/events/log-item.schema.yaml) | [`schemas/common/2025-11-draft/events/log-item.schema.json`](schemas/common/2025-11-draft/events/log-item.schema.json) | [`docs/common/2025-11-draft/events/log-item.schema.md`](docs/common/2025-11-draft/events/log-item.schema.md) |
+| **NHS Notify Profile** | [`src/common/2025-11-draft/nhs-notify-profile.schema.yaml`](src/common/2025-11-draft/nhs-notify-profile.schema.yaml) | [`schemas/common/2025-11-draft/nhs-notify-profile.schema.json`](schemas/common/2025-11-draft/nhs-notify-profile.schema.json) | [`docs/common/2025-11-draft/nhs-notify-profile.schema.md`](docs/common/2025-11-draft/nhs-notify-profile.schema.md) |
+
+#### Example Events
+
+| Event Name | Event Instance | Documentation |
+| ---------- | -------------- | ------------- |
+| **Log Item** | [`docs/common/2025-11-draft/example-events/log-item-event.json`](docs/common/2025-11-draft/example-events/log-item-event.json) | [`docs/common/2025-11-draft/example-events/log-item-event.md`](docs/common/2025-11-draft/example-events/log-item-event.md) |
+
+**Purpose:**
+
+- **NHS Notify Profile**: Base CloudEvents profile with required NHS governance and tracing attributes
+- **NHS Notify Payload**: Common wrapper providing data plane and control plane variants with metadata
+- **NHS Notify Metadata**: Common metadata fields (team, domain, version, service, etc.)
+- **NHS Number**: Reusable NHS Number type (canonical and human-readable formats)
+
+## Examples Domain
+
+**Purpose:** Demonstration event showing complete CloudEvents structure with NHS Notify profile, payload, and metadata
+
+### Version: 2025-10
+
+| Schema Type | Source (YAML) | Published Schema | Documentation |
+| ----------- | ------------- | ---------------- | ------------- |
+| **Data Schema** | [`src/examples/2025-10/data/nhs-notify-example-event-data.schema.yaml`](src/examples/2025-10/data/nhs-notify-example-event-data.schema.yaml) | [`schemas/examples/2025-10/data/nhs-notify-example-event-data.schema.json`](schemas/examples/2025-10/data/nhs-notify-example-event-data.schema.json) | [`docs/examples/2025-10/data/nhs-notify-example-event-data.schema.md`](docs/examples/2025-10/data/nhs-notify-example-event-data.schema.md) |
+| **Event Schema** | [`src/examples/2025-10/events/nhs-notify-example-event.schema.yaml`](src/examples/2025-10/events/nhs-notify-example-event.schema.yaml) | [`schemas/examples/2025-10/events/nhs-notify-example-event.schema.json`](schemas/examples/2025-10/events/nhs-notify-example-event.schema.json) | [`docs/examples/2025-10/events/nhs-notify-example-event.schema.md`](docs/examples/2025-10/events/nhs-notify-example-event.schema.md) |
+| **Event (Bundled)** | _Generated_ | [`schemas/examples/2025-10/events/nhs-notify-example-event.bundle.schema.json`](schemas/examples/2025-10/events/nhs-notify-example-event.bundle.schema.json) | [`docs/examples/2025-10/events/nhs-notify-example-event.bundle.schema.md`](docs/examples/2025-10/events/nhs-notify-example-event.bundle.schema.md) |
+| **Event (Flattened)** | _Generated_ | [`schemas/examples/2025-10/events/nhs-notify-example-event.flattened.schema.json`](schemas/examples/2025-10/events/nhs-notify-example-event.flattened.schema.json) | [`docs/examples/2025-10/events/nhs-notify-example-event.flattened.schema.md`](docs/examples/2025-10/events/nhs-notify-example-event.flattened.schema.md) |
+| **Profile** | [`src/examples/2025-10/example-profile.schema.yaml`](src/examples/2025-10/example-profile.schema.yaml) | [`schemas/examples/2025-10/example-profile.schema.json`](schemas/examples/2025-10/example-profile.schema.json) | [`docs/examples/2025-10/example-profile.schema.md`](docs/examples/2025-10/example-profile.schema.md) |
+
+#### Example Events
+
+| Event Name | Event Instance | Documentation |
+| ---------- | -------------- | ------------- |
+| **NHS Notify Example Event** | [`docs/examples/2025-10/example-events/nhs-notify-example-event-event.json`](docs/examples/2025-10/example-events/nhs-notify-example-event-event.json) | [`docs/examples/2025-10/example-events/nhs-notify-example-event-event.md`](docs/examples/2025-10/example-events/nhs-notify-example-event-event.md) |
+
+### Version: 2025-11-draft
+
+| Schema Type | Source (YAML) | Published Schema | Documentation |
+| ----------- | ------------- | ---------------- | ------------- |
+| **Data Schema** | [`src/examples/2025-11-draft/data/nhs-notify-example-event-data.schema.yaml`](src/examples/2025-11-draft/data/nhs-notify-example-event-data.schema.yaml) | [`schemas/examples/2025-11-draft/data/nhs-notify-example-event-data.schema.json`](schemas/examples/2025-11-draft/data/nhs-notify-example-event-data.schema.json) | [`docs/examples/2025-11-draft/data/nhs-notify-example-event-data.schema.md`](docs/examples/2025-11-draft/data/nhs-notify-example-event-data.schema.md) |
+| **Event Schema** | [`src/examples/2025-11-draft/events/nhs-notify-example-event.schema.yaml`](src/examples/2025-11-draft/events/nhs-notify-example-event.schema.yaml) | [`schemas/examples/2025-11-draft/events/nhs-notify-example-event.schema.json`](schemas/examples/2025-11-draft/events/nhs-notify-example-event.schema.json) | [`docs/examples/2025-11-draft/events/nhs-notify-example-event.schema.md`](docs/examples/2025-11-draft/events/nhs-notify-example-event.schema.md) |
+| **Event (Bundled)** | _Generated_ | [`schemas/examples/2025-11-draft/events/nhs-notify-example-event.bundle.schema.json`](schemas/examples/2025-11-draft/events/nhs-notify-example-event.bundle.schema.json) | [`docs/examples/2025-11-draft/events/nhs-notify-example-event.bundle.schema.md`](docs/examples/2025-11-draft/events/nhs-notify-example-event.bundle.schema.md) |
+| **Event (Flattened)** | _Generated_ | [`schemas/examples/2025-11-draft/events/nhs-notify-example-event.flattened.schema.json`](schemas/examples/2025-11-draft/events/nhs-notify-example-event.flattened.schema.json) | [`docs/examples/2025-11-draft/events/nhs-notify-example-event.flattened.schema.md`](docs/examples/2025-11-draft/events/nhs-notify-example-event.flattened.schema.md) |
+| **Profile** | [`src/examples/2025-11-draft/example-profile.schema.yaml`](src/examples/2025-11-draft/example-profile.schema.yaml) | [`schemas/examples/2025-11-draft/example-profile.schema.json`](schemas/examples/2025-11-draft/example-profile.schema.json) | [`docs/examples/2025-11-draft/example-profile.schema.md`](docs/examples/2025-11-draft/example-profile.schema.md) |
+
+#### Example Events
+
+| Event Name | Event Instance | Documentation |
+| ---------- | -------------- | ------------- |
+| **NHS Notify Example Event** | [`docs/examples/2025-11-draft/example-events/nhs-notify-example-event-event.json`](docs/examples/2025-11-draft/example-events/nhs-notify-example-event-event.json) | [`docs/examples/2025-11-draft/example-events/nhs-notify-example-event-event.md`](docs/examples/2025-11-draft/example-events/nhs-notify-example-event-event.md) |
+
+
+## Supplier Allocation Domain
+
+**Purpose:** Production domain for supplier allocation file processing events
+
+### Version: 2025-10
+
+| Schema Type | Source (YAML) | Published Schema | Documentation |
+| ----------- | ------------- | ---------------- | ------------- |
+| **File Data** | [`src/supplier-allocation/2025-10/data/file-data.schema.yaml`](src/supplier-allocation/2025-10/data/file-data.schema.yaml) | [`schemas/supplier-allocation/2025-10/data/file-data.schema.json`](schemas/supplier-allocation/2025-10/data/file-data.schema.json) | [`docs/supplier-allocation/2025-10/data/file-data.schema.md`](docs/supplier-allocation/2025-10/data/file-data.schema.md) |
+| **Definitions** | [`src/supplier-allocation/2025-10/defs/someobject.schema.yaml`](src/supplier-allocation/2025-10/defs/someobject.schema.yaml) | [`schemas/supplier-allocation/2025-10/defs/someobject.schema.json`](schemas/supplier-allocation/2025-10/defs/someobject.schema.json) | [`docs/supplier-allocation/2025-10/defs/someobject.schema.md`](docs/supplier-allocation/2025-10/defs/someobject.schema.md) |
+| **File Printed Event** | [`src/supplier-allocation/2025-10/events/file-printed.schema.yaml`](src/supplier-allocation/2025-10/events/file-printed.schema.yaml) | [`schemas/supplier-allocation/2025-10/events/file-printed.schema.json`](schemas/supplier-allocation/2025-10/events/file-printed.schema.json) | [`docs/supplier-allocation/2025-10/events/file-printed.schema.md`](docs/supplier-allocation/2025-10/events/file-printed.schema.md) |
+| **Event (Bundled)** | _Generated_ | [`schemas/supplier-allocation/2025-10/events/file-printed.bundle.schema.json`](schemas/supplier-allocation/2025-10/events/file-printed.bundle.schema.json) | [`docs/supplier-allocation/2025-10/events/file-printed.bundle.schema.md`](docs/supplier-allocation/2025-10/events/file-printed.bundle.schema.md) |
+| **Event (Flattened)** | _Generated_ | [`schemas/supplier-allocation/2025-10/events/file-printed.flattened.schema.json`](schemas/supplier-allocation/2025-10/events/file-printed.flattened.schema.json) | [`docs/supplier-allocation/2025-10/events/file-printed.flattened.schema.md`](docs/supplier-allocation/2025-10/events/file-printed.flattened.schema.md) |
+| **File Received Event** | [`src/supplier-allocation/2025-10/events/file-received.schema.yaml`](src/supplier-allocation/2025-10/events/file-received.schema.yaml) | [`schemas/supplier-allocation/2025-10/events/file-received.schema.json`](schemas/supplier-allocation/2025-10/events/file-received.schema.json) | [`docs/supplier-allocation/2025-10/events/file-received.schema.md`](docs/supplier-allocation/2025-10/events/file-received.schema.md) |
+| **Event (Bundled)** | _Generated_ | [`schemas/supplier-allocation/2025-10/events/file-received.bundle.schema.json`](schemas/supplier-allocation/2025-10/events/file-received.bundle.schema.json) | [`docs/supplier-allocation/2025-10/events/file-received.bundle.schema.md`](docs/supplier-allocation/2025-10/events/file-received.bundle.schema.md) |
+| **Event (Flattened)** | _Generated_ | [`schemas/supplier-allocation/2025-10/events/file-received.flattened.schema.json`](schemas/supplier-allocation/2025-10/events/file-received.flattened.schema.json) | [`docs/supplier-allocation/2025-10/events/file-received.flattened.schema.md`](docs/supplier-allocation/2025-10/events/file-received.flattened.schema.md) |
+| **Profile** | [`src/supplier-allocation/2025-10/supplier-allocation-profile.schema.yaml`](src/supplier-allocation/2025-10/supplier-allocation-profile.schema.yaml) | [`schemas/supplier-allocation/2025-10/supplier-allocation-profile.schema.json`](schemas/supplier-allocation/2025-10/supplier-allocation-profile.schema.json) | [`docs/supplier-allocation/2025-10/supplier-allocation-profile.schema.md`](docs/supplier-allocation/2025-10/supplier-allocation-profile.schema.md) |
+
+#### Example Events
+
+| Event Name | Event Instance | Documentation |
+| ---------- | -------------- | ------------- |
+| **File Printed** | [`docs/supplier-allocation/2025-10/example-events/file-printed-event.json`](docs/supplier-allocation/2025-10/example-events/file-printed-event.json) | [`docs/supplier-allocation/2025-10/example-events/file-printed-event.md`](docs/supplier-allocation/2025-10/example-events/file-printed-event.md) |
+| **File Received** | [`docs/supplier-allocation/2025-10/example-events/file-received-event.json`](docs/supplier-allocation/2025-10/example-events/file-received-event.json) | [`docs/supplier-allocation/2025-10/example-events/file-received-event.md`](docs/supplier-allocation/2025-10/example-events/file-received-event.md) |
+
+
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+## Schema Variants Explained
+
+### Modular Schemas (Source)
+
+- **YAML format**: Human-friendly, easier to edit and review
+- **Relative `$ref`s**: References between schemas use relative paths
+- **Organized structure**: Separated into profiles, definitions, data, and events
+- **Location**: `src/{domain}/{version}/`
+
+### Published Schemas (Distribution)
+
+- **JSON format**: Standard for schema validation tools
+- **Public URLs**: `$id` fields use `https://notify.nhs.uk/cloudevents/schemas/` URLs
+- **Absolute `$ref`s**: All references use public URLs for external consumption
+- **Location**: `schemas/{domain}/{version}/`
+
+### Bundled Schemas
+
+- **Self-contained**: All `$ref` dependencies inlined into a single file
+- **Shared `$defs`**: Common definitions kept only once (not fully dereferenced)
+- **Nested `$id` removed**: Prevents AJV resolution conflicts
+- **Use case**: Tools that cannot resolve external references, easier distribution
+
+### Flattened Schemas (Experimental)
+
+- **Merged properties**: Top-level `allOf` object schemas merged where safe
+- **Stricter constraints**: When conflicts occur, retains tighter restrictions
+- **Property-level `allOf`**: Incompatible constraints fall back to property-level combination
+- **Use case**: Simpler schema structure for some validation tools
+- **Note**: Always validate thoroughly before downstream use
+
+## Build Commands
+
+```bash
+# Build all schemas (YAML → JSON)
+make build
+
+# Deploy schemas to schemas/ with public URLs
+make deploy
+
+# Generate documentation
+make build-docs
+
+# Run validation tests
+make test
+
+# Clean all generated files
+make clean
+
+# Complete workflow
+make deploy build-docs
 ```
-
-This will run the generator and create a file locally in the `output` folder.
-
-## Producing a Single (Bundled) Schema
-
-Sometimes you may want a self-contained schema file with all `$ref` dependencies inlined (e.g. for tools that cannot resolve external references, or for distribution as one artifact). A bundling script is included.
-
-Bundle an entry schema (keeps shared `$defs` only once):
-
-```sh
-make bundle-example   # Bundles nhs-notify-example-event.schema.json
-make bundle-profile   # Bundles nhs-notify-profile.schema.json
-make bundle-all       # Both of the above
-```
-
-Outputs will be written to `output/*.bundle.schema.json`.
-
-Under the hood this uses `json-schema-ref-parser`'s `bundle` (not full `dereference`) so that circular/self references are preserved and shared definitions are not duplicated. If you prefer a fully expanded version (every ref replaced), you can adapt `bundle-schema.ts` to use `dereference()` instead.
-
-Direct invocation:
-
-```sh
-npm run bundle -- nhs-notify-example-event.schema.json output/nhs-notify-example-event.bundle.schema.json
-```
-
-The resulting bundled schema sets a new `$id` (pointing to where it would live on GitHub Pages) and annotates with a `$comment` indicating it is a bundled artifact.
-
-### Prefer-Child Merge Variant (Experimental)
-
-In some cases you may want duplicate property definitions coming from layered `allOf` segments (e.g. profile + concrete event + domain overlays) to resolve by taking the *most specific* (lowest child) version of the property while still accumulating restrictions (patterns, numeric ranges, enums) from ancestors. A separate script `bundle-schema-prefer-child.ts` provides this behavior when used with `--flatten`.
-
-Example usage:
-
-```sh
-npm run bundle:prefer-child -- --flatten nhs-notify-example-event.schema.json output/nhs-notify-example-event.prefer-child.bundle.schema.json
-```
-
-Key differences vs standard flatten:
-* Later (child) schema wins for core shape & descriptions; parent constraints are intersected where safe.
-* Patterns are ANDed by attaching the parent pattern as an additional `allOf` fragment if different.
-* Numeric minimum/maximum style keywords are tightened (intersection).
-* `enum` sets are intersected; single-value intersections collapse to `const`.
-* Object `properties` are recursively merged, with child overrides unless incompatible (then an `allOf` is emitted to surface conflict).
-* Irreconcilable conflicts (e.g. disjoint `type`) produce an `allOf` combination leaving detection to a validator.
-
-Treat this as experimental; always re-validate examples and downstream payloads after adopting.
-
-Validate using the bundled schema (Makefile target also regenerates it first):
-
-```sh
-make validate-bundle
-```
-
-Implementation detail: during bundling we strip nested `$id` values so AJV treats the result as a single document; otherwise AJV may try to resolve internal refs against those nested IDs and report MissingRefError.
-
-### Flattened Variant (Experimental)
-
-You can also produce an "allOf-flattened" schema which merges top-level object schemas pulled in via `allOf` (e.g., the profile) directly into the concrete event schema's `properties`.
-
-Generate:
-
-```sh
-make flatten-example
-```
-
-Notes:
-* When both schemas define the same property, merging prefers retaining stricter constraints; incompatible constraints fall back to a property-level `allOf` combination.
-* Distinct `enum` sets are intersected; if intersection becomes a single value it is collapsed to `const`.
-* Conflicting `pattern` values are kept via `allOf` of pattern fragments.
-* This is experimental—always validate against your examples to ensure the merged semantics match expectations.
 
 ## Usage
 
-1. **Validate CloudEvents:**
-    - Use the provided JSON Schema to validate your CloudEvent payloads for NHS Notify compatibility.
-    - Example (using the included Node.js script, which supports draft 2020-12):
-       ```sh
-       node validate.js nhs-notify-profile.schema.json output-example-event.json
-       ```
-    - The script will print validation errors if the data is invalid.
-2. **Reference Examples:**
-   - Use the example files as templates for constructing your own events.
-3. **Extend or Reuse:**
-   - The `common/nhs/` directory contains reusable schema components for NHS identifiers and codes.
+### Validate CloudEvents
+
+Use the published JSON Schema to validate your CloudEvent payloads:
+
+```javascript
+import Ajv from "ajv/dist/2020.js";
+import addFormats from "ajv-formats";
+
+const ajv = new Ajv({ strict: false });
+addFormats(ajv);
+
+// Load the published schema
+const schema = await fetch(
+  "https://notify.nhs.uk/cloudevents/schemas/examples/2025-10/events/nhs-notify-example-event.schema.json"
+).then((res) => res.json());
+
+// Validate your event
+const valid = ajv.validate(schema, yourEvent);
+if (!valid) {
+  console.error(ajv.errors);
+}
+```
+
+### Reference Examples
+
+Example event instances are generated during the build process:
+
+- `output/examples/example-events/nhs-notify-example-event-event.json`
+- `output/supplier-allocation/example-events/file-received-event.json`
+
+### Extend for New Domains
+
+1. Create a new domain folder under `src/`:
+
+   ```bash
+   mkdir -p src/my-domain/2025-10/{defs,data,events}
+   ```
+
+2. Create a domain Makefile:
+
+   ```makefile
+   # src/my-domain/Makefile
+   DOMAIN := my-domain
+   PUBLISH_VERSION := 2025-10
+   ROOT_DIR := $(shell cd ../.. && pwd)
+
+   include ../common.mk
+   ```
+
+3. Create your YAML schemas following the patterns in existing domains
+
+4. Build and test:
+   ```bash
+   cd src/my-domain
+   make build test
+   ```
 
 ## Development
 
-- Propose changes via pull request.
-- Keep schemas backward compatible where possible.
-- Coordinate with the FHIR IG team for cross-standard consistency.
+### Prerequisites
 
-## Regenerating Schema Documentation
-
-Markdown documentation is produced with `json-schema-static-docs` via `generate-docs.cjs`.
-
-```sh
-npm install        # first time only
-npm run docs       # or: make docs
+```bash
+npm install
 ```
 
-Outputs appear in `./docs/*.md`. Commit regenerated docs whenever schemas change so reviewers can diff both.
+### Schema Development Workflow
 
-To add a new schema:
-1. Create the new `*.schema.json` file.
-2. (If it should be bundled/flattened) add a Makefile target or invoke the existing `bundle` script.
-3. Update this README (JSON Schema Files + Generated Schema Documentation tables).
-4. Re-run `npm run docs` so a corresponding markdown file is created.
+1. **Edit source YAML** schemas in `src/{domain}/{version}/`
+2. **Build** to generate JSON: `make build`
+3. **Test** with validation: `make test`
+4. **Generate docs**: `make build-docs`
+5. **Review** changes in both schemas and documentation
+6. **Deploy** when ready: `make deploy`
+
+### Makefile Structure
+
+- **Root Makefile**: Top-level targets for building all domains
+- **src/common.mk**: Shared build logic (156 lines, used by all domains)
+- **src/{domain}/Makefile**: Domain-specific configuration (9 lines each)
+
+Benefits of distributed Makefiles:
+
+- ✅ 93% reduction in code duplication
+- ✅ Each domain can be built independently
+- ✅ Consistent build process across all domains
+- ✅ Easy to add new domains
+
+### Adding New Schemas
+
+To add a new schema to an existing domain:
+
+1. Create the YAML file in the appropriate directory:
+
+   - Profile: `src/{domain}/{version}/{domain}-profile.schema.yaml`
+   - Definitions: `src/{domain}/{version}/defs/*.schema.yaml`
+   - Data: `src/{domain}/{version}/data/*.schema.yaml`
+   - Events: `src/{domain}/{version}/events/*.schema.yaml`
+
+2. The build system auto-discovers new schemas - just run:
+
+   ```bash
+   make build
+   ```
+
+3. Update this README to include the new schema in the appropriate table
+
+4. Regenerate documentation:
+   ```bash
+   make build-docs
+   ```
+
+## Technical Notes
+
+### Schema `$id` Convention
+
+- **Local builds** (output/): Use leading `/` for AJV compatibility
+  - Example: `$id: /examples/2025-10/events/nhs-notify-example-event.schema.json`
+  - Enables relative `$ref` resolution in documentation generation
+- **Published schemas** (schemas/): Use full public URLs
+  - Example: `$id: https://notify.nhs.uk/cloudevents/schemas/examples/2025-10/events/nhs-notify-example-event.schema.json`
+  - Enables external consumers to resolve references
+
+### Bundled Schema Implementation
+
+Bundled artifacts are produced via `json-schema-ref-parser` `bundle()` (not full `dereference`) to:
+
+- Preserve circular references if any exist
+- Keep shared `$defs` unique (not duplicated)
+- Pull external file references into root schema's `$defs`
+- Strip nested `$id` values to avoid AJV resolution conflicts
+
+### Documentation Generation
+
+Markdown documentation uses `json-schema-static-docs` with:
+
+- JSON Schema 2020-12 support
+- Custom NHS Number format validation
+- Preserved folder structure from `output/` to `docs/`
+- All 15 schemas documented (modular + bundled + flattened)
 
 ## Related
 
 - [CloudEvents Specification](https://cloudevents.io/)
+- [JSON Schema 2020-12](https://json-schema.org/draft/2020-12/json-schema-core.html)
 - [NHS Notify FHIR IG](../fhir/README.md)
+
+## License
+
+See repository root for licensing information.

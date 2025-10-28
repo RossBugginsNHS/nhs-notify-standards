@@ -1,0 +1,48 @@
+# README Metadata
+#
+# This file contains manually curated metadata for the README generation.
+# Edit this file to customize domain purposes and schema labels.
+
+# Domain purposes
+domains:
+  examples:
+    purpose: "Demonstration event showing complete CloudEvents structure with NHS Notify profile, payload, and metadata"
+
+  supplier-allocation:
+    purpose: "Production domain for supplier allocation file processing events"
+
+# Common schema purposes (displayed as bullet list)
+common:
+  purposes:
+    "NHS Notify Profile": "Base CloudEvents profile with required NHS governance and tracing attributes"
+    "NHS Notify Payload": "Common wrapper providing data plane and control plane variants with metadata"
+    "NHS Notify Metadata": "Common metadata fields (team, domain, version, service, etc.)"
+    "NHS Number": "Reusable NHS Number type (canonical and human-readable formats)"
+
+# Schema type overrides - customize how schema names appear in tables
+# Format: filename (without .schema.yaml) -> display name
+schema_labels:
+  # Common
+  "nhs-notify-profile": "NHS Notify Profile"
+  "nhs-notify-payload": "NHS Notify Payload"
+  "nhs-notify-metadata": "NHS Notify Metadata"
+  "nhs-number": "NHS Number"
+
+  # Examples domain
+  "example-profile": "Profile"
+  "nhs-notify-example-event-data": "Data Schema"
+  "nhs-notify-example-event": "Event Schema"
+
+  # Supplier-allocation domain
+  "supplier-allocation-profile": "Profile"
+  "someobject": "Definitions"
+  "file-received-data": "File Received Data"
+  "file-received": "File Received Event"
+  "file-printed-data": "File Printed Data"
+  "file-printed": "File Printed Event"
+
+# Example event name overrides
+event_labels:
+  "nhs-notify-example-event-event": "NHS Notify Example Event"
+  "file-received-event": "File Received"
+  "file-printed-event": "File Printed"

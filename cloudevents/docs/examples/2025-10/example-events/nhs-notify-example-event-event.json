@@ -1,0 +1,24 @@
+{
+  "type": "uk.nhs.notify.example.order.read.v1",
+  "source": "/nhs/england/notify/uat/secondary/data-plane/example",
+  "subject": "customer/d5ca9bbe-4006-ec76-3577-cbf2c4c2efc7/order/bc4bc55c-7f1b-ddff-adfe-312dba6fa1d4/item/53c28081-51b2-92fd-5260-cfb2cbccfffa",
+  "dataschema": "../data/nhs-notify-example-event-data.schema.json",
+  "data": {
+    "nhsNumber": "9434765919"
+  },
+  "specversion": "1.0",
+  "id": "ba0a5968-5562-477b-b23b-d76e53c927e6",
+  "time": "2025-10-28T09:57:02.976Z",
+  "datacontenttype": "application/json",
+  "traceparent": "00-04dc10f32baf37511c9a003fd45e9cb0-c5843d41ed4312fb-01",
+  "tracestate": "deserunt",
+  "partitionkey": "customer-d5ca9bbe",
+  "recordedtime": "2025-10-28T09:57:03.976Z",
+  "sampledrate": 1,
+  "sequence": "00000000000997597993",
+  "severitytext": "ERROR",
+  "severitynumber": 4,
+  "dataclassification": "public",
+  "dataregulation": "ISO-27001",
+  "datacategory": "special-category"
+}
