@@ -1,12 +1,12 @@
 {
-  "$id": "https://notify.nhs.uk/cloudevents/schemas/common/2025-11-draft/events/log-item.schema.json",
+  "$id": "https://notify.nhs.uk/cloudevents/schemas/cloudevents/common/2025-11-draft/events/log-item.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Log Item",
   "description": "Log item event",
   "type": "object",
   "allOf": [
     {
-      "$ref": "https://notify.nhs.uk/cloudevents/schemas/common/2025-11-draft/nhs-notify-profile.schema.json"
+      "$ref": "https://notify.nhs.uk/cloudevents/schemas/cloudevents/common/2025-11-draft/nhs-notify-profile.schema.json"
     }
   ],
   "properties": {
@@ -36,14 +36,14 @@
     },
     "dataschema": {
       "type": "string",
-      "const": "https://notify.nhs.uk/cloudevents/schemas/common/2025-11-draft/data/log-item-data.schema.json",
+      "const": "https://notify.nhs.uk/cloudevents/schemas/cloudevents/common/2025-11-draft/data/log-item-data.schema.json",
       "description": "Canonical URI of the example event's data schema.",
       "examples": [
         "log-item-data.schema.json"
       ]
     },
     "data": {
-      "$ref": "https://notify.nhs.uk/cloudevents/schemas/common/2025-11-draft/data/log-item-data.schema.json",
+      "$ref": "https://notify.nhs.uk/cloudevents/schemas/cloudevents/common/2025-11-draft/data/log-item-data.schema.json",
       "description": "Example payload wrapper containing notify-payload."
     }
   },

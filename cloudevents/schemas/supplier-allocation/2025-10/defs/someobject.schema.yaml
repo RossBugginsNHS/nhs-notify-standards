@@ -1,4 +1,4 @@
-$id: https://notify.nhs.uk/cloudevents/schemas/supplier-allocation/2025-10/defs/someobject.schema.json
+$id: https://notify.nhs.uk/cloudevents/schemas/cloudevents/supplier-allocation/2025-10/defs/someobject.schema.json
 $schema: https://json-schema.org/draft/2020-12/schema
 title: NHS Common Types v1.0.0
 description: Reusable types for NHS Notify payload schemas.
