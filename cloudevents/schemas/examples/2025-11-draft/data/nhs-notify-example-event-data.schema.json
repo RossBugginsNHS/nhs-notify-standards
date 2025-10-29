@@ -1,5 +1,5 @@
 {
-  "$id": "https://notify.nhs.uk/cloudevents/schemas/cloudevents/domains/examples/2025-11-draft/data/nhs-notify-example-event-data.schema.json",
+  "$id": "https://notify.nhs.uk/cloudevents/schemas/examples/2025-11-draft/data/nhs-notify-example-event-data.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Example data type",
   "description": "Example data type",

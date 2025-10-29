@@ -1,4 +1,4 @@
-$id: https://notify.nhs.uk/cloudevents/schemas/cloudevents/domains/supplier-allocation/2025-12/supplier-allocation-profile.schema.json
+$id: https://notify.nhs.uk/cloudevents/schemas/supplier-allocation/2025-12/supplier-allocation-profile.schema.json
 $schema: https://json-schema.org/draft/2020-12/schema
 title: NHS Notify Supplier Allocation Profile
 description: NHS Notify Supplier Allocation profile for CloudEvents 1.0 including additional governance and tracing attributes.

@@ -14,6 +14,8 @@
 
 # Computed variables
 SCHEMA_BASE_URL ?= https://notify.nhs.uk/cloudevents/schemas
+# Strip "cloudevents/domains" from schema URLs to get cleaner GitHub Pages URLs
+SCHEMA_URL_STRIP_PREFIX ?= cloudevents/domains
 OUTPUT_BASE_DIR = $(ROOT_DIR)/output/$(DOMAIN)
 SCHEMAS_BASE_DIR = $(ROOT_DIR)/schemas/$(DOMAIN)
 OUTPUT_DIR = $(OUTPUT_BASE_DIR)/$(PUBLISH_VERSION)
@@ -79,28 +81,44 @@ publish-json:
 		echo "Publishing profile schemas..."; \
 		for schema in $(PROFILE_NAMES); do \
 			echo "  - $$schema"; \
-			cd $(CLOUD_EVENTS_DIR) && npm run build -- --root-dir $(ROOT_DIR) $(SRC_DIR)/$$schema.schema.yaml $(SCHEMAS_DIR) $(SCHEMA_BASE_URL) || exit 1; \
+			if [ -n "$(SCHEMA_URL_STRIP_PREFIX)" ]; then \
+				cd $(CLOUD_EVENTS_DIR) && npm run build -- --root-dir $(ROOT_DIR) --strip-prefix $(SCHEMA_URL_STRIP_PREFIX) $(SRC_DIR)/$$schema.schema.yaml $(SCHEMAS_DIR) $(SCHEMA_BASE_URL) || exit 1; \
+			else \
+				cd $(CLOUD_EVENTS_DIR) && npm run build -- --root-dir $(ROOT_DIR) $(SRC_DIR)/$$schema.schema.yaml $(SCHEMAS_DIR) $(SCHEMA_BASE_URL) || exit 1; \
+			fi; \
 		done; \
 	fi
 	@if [ -n "$(DEFS_NAMES)" ]; then \
 		echo "Publishing defs schemas..."; \
 		for schema in $(DEFS_NAMES); do \
 			echo "  - $$schema"; \
-			cd $(CLOUD_EVENTS_DIR) && npm run build -- --root-dir $(ROOT_DIR) $(SRC_DIR)/defs/$$schema.yaml $(SCHEMAS_DIR)/defs $(SCHEMA_BASE_URL) || exit 1; \
+			if [ -n "$(SCHEMA_URL_STRIP_PREFIX)" ]; then \
+				cd $(CLOUD_EVENTS_DIR) && npm run build -- --root-dir $(ROOT_DIR) --strip-prefix $(SCHEMA_URL_STRIP_PREFIX) $(SRC_DIR)/defs/$$schema.yaml $(SCHEMAS_DIR)/defs $(SCHEMA_BASE_URL) || exit 1; \
+			else \
+				cd $(CLOUD_EVENTS_DIR) && npm run build -- --root-dir $(ROOT_DIR) $(SRC_DIR)/defs/$$schema.yaml $(SCHEMAS_DIR)/defs $(SCHEMA_BASE_URL) || exit 1; \
+			fi; \
 		done; \
 	fi
 	@if [ -n "$(DATA_NAMES)" ]; then \
 		echo "Publishing data schemas..."; \
 		for schema in $(DATA_NAMES); do \
 			echo "  - $$schema"; \
-			cd $(CLOUD_EVENTS_DIR) && npm run build -- --root-dir $(ROOT_DIR) $(SRC_DIR)/data/$$schema.yaml $(SCHEMAS_DIR)/data $(SCHEMA_BASE_URL) || exit 1; \
+			if [ -n "$(SCHEMA_URL_STRIP_PREFIX)" ]; then \
+				cd $(CLOUD_EVENTS_DIR) && npm run build -- --root-dir $(ROOT_DIR) --strip-prefix $(SCHEMA_URL_STRIP_PREFIX) $(SRC_DIR)/data/$$schema.yaml $(SCHEMAS_DIR)/data $(SCHEMA_BASE_URL) || exit 1; \
+			else \
+				cd $(CLOUD_EVENTS_DIR) && npm run build -- --root-dir $(ROOT_DIR) $(SRC_DIR)/data/$$schema.yaml $(SCHEMAS_DIR)/data $(SCHEMA_BASE_URL) || exit 1; \
+			fi; \
 		done; \
 	fi
 	@if [ -n "$(EVENT_NAMES)" ]; then \
 		echo "Publishing event schemas..."; \
 		for schema in $(EVENT_NAMES); do \
 			echo "  - $$schema"; \
-			cd $(CLOUD_EVENTS_DIR) && npm run build -- --root-dir $(ROOT_DIR) $(SRC_DIR)/events/$$schema.schema.yaml $(SCHEMAS_DIR)/events $(SCHEMA_BASE_URL) || exit 1; \
+			if [ -n "$(SCHEMA_URL_STRIP_PREFIX)" ]; then \
+				cd $(CLOUD_EVENTS_DIR) && npm run build -- --root-dir $(ROOT_DIR) --strip-prefix $(SCHEMA_URL_STRIP_PREFIX) $(SRC_DIR)/events/$$schema.schema.yaml $(SCHEMAS_DIR)/events $(SCHEMA_BASE_URL) || exit 1; \
+			else \
+				cd $(CLOUD_EVENTS_DIR) && npm run build -- --root-dir $(ROOT_DIR) $(SRC_DIR)/events/$$schema.schema.yaml $(SCHEMAS_DIR)/events $(SCHEMA_BASE_URL) || exit 1; \
+			fi; \
 		done; \
 		echo "Bundling and flattening published event schemas..."; \
 		for schema in $(EVENT_NAMES); do \

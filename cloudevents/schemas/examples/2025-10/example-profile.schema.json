@@ -1,5 +1,5 @@
 {
-  "$id": "https://notify.nhs.uk/cloudevents/schemas/cloudevents/domains/examples/2025-10/example-profile.schema.json",
+  "$id": "https://notify.nhs.uk/cloudevents/schemas/examples/2025-10/example-profile.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "NHS Notify Example Event Profile",
   "description": "NHS Notify Example Event profile for CloudEvents 1.0 including additional governance and tracing attributes.",
