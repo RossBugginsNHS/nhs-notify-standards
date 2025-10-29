@@ -6,6 +6,6 @@ type: object
 additionalProperties: false
 properties:
   something:
-    $ref: https://notify.nhs.uk/cloudevents/schemas/../domains/supplier-allocation/2025-12/defs/someobject.schema.json#/properties/something
+    $ref: https://notify.nhs.uk/cloudevents/schemas/supplier-allocation/2025-12/defs/someobject.schema.json#/properties/something
 required:
   - something

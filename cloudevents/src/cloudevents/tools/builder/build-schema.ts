@@ -65,6 +65,7 @@ function processRefs(
   sourceDir: string,
   outputBaseDir: string,
   sourceSchemaPath: string,
+  repoRoot: string,
   baseUrl?: string,
   stripPrefix?: string
 ): any {
@@ -74,7 +75,7 @@ function processRefs(
 
   if (Array.isArray(schema)) {
     return schema.map((item) =>
-      processRefs(item, sourceDir, outputBaseDir, sourceSchemaPath, baseUrl, stripPrefix)
+      processRefs(item, sourceDir, outputBaseDir, sourceSchemaPath, repoRoot, baseUrl, stripPrefix)
     );
   }
 
@@ -101,7 +102,7 @@ function processRefs(
         // Calculate what the output path would be for this referenced schema
         // Assumes the same directory structure is maintained in output
         const relativePath = path.relative(
-          path.join(process.cwd(), "src"),
+          path.join(repoRoot, "src"),
           resolvedPath
         );
 
@@ -126,21 +127,21 @@ function processRefs(
           // Keep as relative path but update to point to built location (output will be .json)
           // Calculate where our current file will be in output
           const sourceRelativePath = path.relative(
-            path.join(process.cwd(), "src"),
+            path.join(repoRoot, "src"),
             sourceSchemaPath
           );
           const outputFileRelativePath = sourceRelativePath
             .replace(/\.yaml$/, '.json')
             .replace(/\.yml$/, '.json');
           const fromOutputFile = path.join(
-            process.cwd(),
+            repoRoot,
             "output",
             path.dirname(outputFileRelativePath)
           );
 
           // Calculate where the referenced file will be in output
           const toBuiltFile = path.join(
-            process.cwd(),
+            repoRoot,
             "output",
             outputRelativePath
           );
@@ -167,7 +168,7 @@ function processRefs(
         const [refPath, fragment] = constValue.split("#");
         const resolvedPath = path.resolve(sourceDir, refPath);
         const relativePath = path.relative(
-          path.join(process.cwd(), "src"),
+          path.join(repoRoot, "src"),
           resolvedPath
         );
         let urlPath = relativePath.replace(/\\/g, "/");
@@ -187,25 +188,25 @@ function processRefs(
 
         // Calculate the relative path from the output file location
         const sourceRelativePath = path.relative(
-          path.join(process.cwd(), "src"),
+          path.join(repoRoot, "src"),
           sourceSchemaPath
         );
         const outputFileRelativePath = sourceRelativePath
           .replace(/\.yaml$/, '.json')
           .replace(/\.yml$/, '.json');
         const fromOutputFile = path.join(
-          process.cwd(),
+          repoRoot,
           "output",
           path.dirname(outputFileRelativePath)
         );
 
         // Calculate where the referenced file will be in output
         const referencedRelativePath = path.relative(
-          path.join(process.cwd(), "src"),
+          path.join(repoRoot, "src"),
           resolvedPath
         );
         const toBuiltFile = path.join(
-          process.cwd(),
+          repoRoot,
           "output",
           referencedRelativePath.replace(/\.yaml$/, '.json').replace(/\.yml$/, '.json')
         );
@@ -232,7 +233,7 @@ function processRefs(
           if ((exampleValue.startsWith("./") || exampleValue.startsWith("../")) && baseUrl && exampleValue.includes("schema")) {
             const resolvedPath = path.resolve(sourceDir, exampleValue);
             const relativePath = path.relative(
-              path.join(process.cwd(), "src"),
+              path.join(repoRoot, "src"),
               resolvedPath
             );
             let urlPath = relativePath.replace(/\\/g, "/");
@@ -252,7 +253,7 @@ function processRefs(
         return example;
       });
     } else if (typeof value === "object") {
-      result[key] = processRefs(value, sourceDir, outputBaseDir, sourceSchemaPath, baseUrl, stripPrefix);
+      result[key] = processRefs(value, sourceDir, outputBaseDir, sourceSchemaPath, repoRoot, baseUrl, stripPrefix);
     } else {
       result[key] = value;
     }
@@ -292,11 +293,13 @@ function buildSchema(
   // Ensure output directory exists
   fs.mkdirSync(outputDir, { recursive: true });
 
+  // Calculate repo root once for all path operations
+  const repoRoot = rootDir ? path.resolve(rootDir) : process.cwd();
+
   // Calculate the $id
   let schemaId: string;
   if (baseUrl) {
     // Use provided base URL - output will be .json
-    const repoRoot = rootDir ? path.resolve(rootDir) : process.cwd();
     const relativePath = path.relative(
       path.join(repoRoot, "src"),
       sourceAbsolutePath
@@ -316,7 +319,6 @@ function buildSchema(
   } else {
     // Use relative path from output root with leading /
     // This allows relative $refs to resolve correctly in AJV
-    const repoRoot = rootDir ? path.resolve(rootDir) : process.cwd();
     const outputRoot = path.join(repoRoot, "output");
     const relativePath = path.relative(outputRoot, outputPath);
     schemaId = "/" + relativePath.replace(/\\/g, "/");
@@ -325,7 +327,7 @@ function buildSchema(
   // Process the schema: add $id and transform $refs
   const builtSchema = {
     $id: schemaId,
-    ...processRefs(schema, sourceDir, outputDir, sourceAbsolutePath, baseUrl, stripPrefix),
+    ...processRefs(schema, sourceDir, outputDir, sourceAbsolutePath, repoRoot, baseUrl, stripPrefix),
   };
 
   // Write the built schema

@@ -6,7 +6,7 @@
   "type": "object",
   "allOf": [
     {
-      "$ref": "https://notify.nhs.uk/cloudevents/schemas/../domains/examples/2025-10/example-profile.schema.json"
+      "$ref": "https://notify.nhs.uk/cloudevents/schemas/examples/2025-10/example-profile.schema.json"
     }
   ],
   "properties": {
@@ -36,14 +36,14 @@
     },
     "dataschema": {
       "type": "string",
-      "const": "https://notify.nhs.uk/cloudevents/schemas/../domains/examples/2025-10/data/nhs-notify-example-event-data.schema.json",
+      "const": "https://notify.nhs.uk/cloudevents/schemas/examples/2025-10/data/nhs-notify-example-event-data.schema.json",
       "description": "Canonical URI of the example event's data schema.",
       "examples": [
         "nhs-notify-example-event-data.schema.json"
       ]
     },
     "data": {
-      "$ref": "https://notify.nhs.uk/cloudevents/schemas/../domains/examples/2025-10/data/nhs-notify-example-event-data.schema.json",
+      "$ref": "https://notify.nhs.uk/cloudevents/schemas/examples/2025-10/data/nhs-notify-example-event-data.schema.json",
       "description": "Example payload wrapper containing notify-payload."
     }
   },
