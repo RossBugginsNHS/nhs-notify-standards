@@ -1,0 +1,1 @@
+{"$schema": "https://json-schema.org/draft/2020-12/schema", "test": "schema", "allOf": [{"$ref": "https://raw.githubusercontent.com/cloudevents/spec/main/cloudevents/formats/cloudevents.json"}]}
