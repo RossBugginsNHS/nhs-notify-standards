@@ -3,8 +3,8 @@ MAKEFILE_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
 # Domain-specific settings
 DOMAIN = supplier-allocation
-SUPPORTED_VERSIONS = 2025-10
-DEFAULT_VERSION = 2025-10
+SUPPORTED_VERSIONS = 2025-12
+DEFAULT_VERSION = 2025-12
 ROOT_DIR = $(shell cd $(MAKEFILE_DIR)../../../.. && pwd)
 
 # Allow version override or build all

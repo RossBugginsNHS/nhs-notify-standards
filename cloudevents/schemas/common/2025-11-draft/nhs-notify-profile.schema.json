@@ -1,5 +1,5 @@
 {
-  "$id": "https://notify.nhs.uk/cloudevents/schemas/cloudevents/domains/common/2025-10/nhs-notify-profile.schema.json",
+  "$id": "https://notify.nhs.uk/cloudevents/schemas/cloudevents/domains/common/2025-11-draft/nhs-notify-profile.schema.json",
   "$anchor": "nhs-notify-profile",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "NHS Notify CloudEvents Profile",
@@ -8,20 +8,6 @@
   "additionalProperties": false,
   "$comment": "id includes the published date.\nCloudEvents allows arbitrary extension attributes.\nNHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.\n",
   "properties": {
-    "profileversion": {
-      "type": "string",
-      "const": "1.0.0",
-      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
-      "description": "NHS Notify CloudEvents profile semantic version.",
-      "$comment": "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
-    },
-    "profilepublished": {
-      "type": "string",
-      "const": "2025-10",
-      "pattern": "^\\d{4}-\\d{2}(?:-draft)?$",
-      "description": "NHS Notify CloudEvents profile publication date (YYYY-MM) with optional -draft suffix.",
-      "$comment": "Publication date of this profile version (YYYY-MM) or (YYYY-MM-draft) for draft versions."
-    },
     "specversion": {
       "type": "string",
       "const": "1.0",
@@ -186,17 +172,22 @@
     },
     "data": {
       "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "notify-payload"
-      ],
-      "properties": {
-        "notify-payload": {
-          "$ref": "https://notify.nhs.uk/cloudevents/schemas/../domains/common/2025-10/defs/nhs-notify-payload.schema.json",
-          "description": "Structured Notify payload containing domain data (notify-data) and metadata (notify-metadata)."
+      "description": "Container object wrapping the structured Notify payload.",
+      "examples": [
+        {
+          "notify-payload": {
+            "notify-data": {
+              "nhsNumber": "9434765919"
+            },
+            "notify-metadata": {
+              "teamResponsible": "Team 1",
+              "notifyDomain": "Ordering",
+              "version": "1.3.0"
+            }
+          }
         }
-      },
-      "description": "Container object wrapping the structured Notify payload."
+      ],
+      "$comment": "Domain payload (arbitrary JSON value)."
     },
     "traceparent": {
       "type": "string",
@@ -326,8 +317,6 @@
     }
   },
   "required": [
-    "profileversion",
-    "profilepublished",
     "specversion",
     "id",
     "source",

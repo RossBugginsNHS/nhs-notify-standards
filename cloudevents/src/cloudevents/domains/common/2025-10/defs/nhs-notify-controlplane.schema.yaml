@@ -1,0 +1,5 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: NHS Notify Control Plane
+type: object
+description: Placeholder for control-plane specific properties (extend in concrete event schemas).
+$comment: 'As with DataPlane, add identifying / required properties here (e.g. ''plane'': ''control''). Ensure divergence for better validation and consumer code generation.'

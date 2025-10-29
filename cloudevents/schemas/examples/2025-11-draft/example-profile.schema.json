@@ -6,7 +6,7 @@
   "type": "object",
   "allOf": [
     {
-      "$ref": "https://notify.nhs.uk/cloudevents/schemas/common/2025-11-draft/nhs-notify-profile.schema.json"
+      "$ref": "https://notify.nhs.uk/cloudevents/schemas/../domains/common/2025-11-draft/nhs-notify-profile.schema.json"
     }
   ],
   "properties": {

@@ -3,7 +3,7 @@
 # To regenerate, run: make update-readme
 # To customize labels and purposes, edit: readme-metadata.yaml
 
-generated: '2025-10-28T16:21:29.309Z'
+generated: '2025-10-29T08:21:17.065Z'
 common:
   versions:
     - version: 2025-10
@@ -28,6 +28,14 @@ common:
           source: src/common/2025-10/nhs-notify-profile.schema.yaml
           published: schemas/common/2025-10/nhs-notify-profile.schema.json
           docs: ../../docs/cloudevents/common/2025-10/nhs-notify-profile.schema.md
+      exampleEvents: []
+    - version: 2025-11-draft
+      schemas:
+        - type: NHS Notify Profile
+          category: profile
+          source: src/common/2025-11-draft/nhs-notify-profile.schema.yaml
+          published: schemas/common/2025-11-draft/nhs-notify-profile.schema.json
+          docs: ../../docs/cloudevents/common/2025-11-draft/nhs-notify-profile.schema.md
       exampleEvents: []
   purposes:
     NHS Notify Profile: Base CloudEvents profile with required NHS governance and tracing attributes

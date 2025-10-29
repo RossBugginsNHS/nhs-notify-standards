@@ -38,6 +38,12 @@ cloudevents/
 | **NHS Number** | [`src/common/2025-10/defs/nhs-number.schema.yaml`](src/common/2025-10/defs/nhs-number.schema.yaml) | [`schemas/common/2025-10/defs/nhs-number.schema.json`](schemas/common/2025-10/defs/nhs-number.schema.json) | [`../../docs/cloudevents/common/2025-10/defs/nhs-number.schema.md`](../../docs/cloudevents/common/2025-10/defs/nhs-number.schema.md) |
 | **NHS Notify Profile** | [`src/common/2025-10/nhs-notify-profile.schema.yaml`](src/common/2025-10/nhs-notify-profile.schema.yaml) | [`schemas/common/2025-10/nhs-notify-profile.schema.json`](schemas/common/2025-10/nhs-notify-profile.schema.json) | [`../../docs/cloudevents/common/2025-10/nhs-notify-profile.schema.md`](../../docs/cloudevents/common/2025-10/nhs-notify-profile.schema.md) |
 
+### Version: 2025-11-draft
+
+| Schema | Source (YAML) | Published Schema | Documentation |
+| ------ | ------------- | ---------------- | ------------- |
+| **NHS Notify Profile** | [`src/common/2025-11-draft/nhs-notify-profile.schema.yaml`](src/common/2025-11-draft/nhs-notify-profile.schema.yaml) | [`schemas/common/2025-11-draft/nhs-notify-profile.schema.json`](schemas/common/2025-11-draft/nhs-notify-profile.schema.json) | [`../../docs/cloudevents/common/2025-11-draft/nhs-notify-profile.schema.md`](../../docs/cloudevents/common/2025-11-draft/nhs-notify-profile.schema.md) |
+
 **Purpose:**
 
 - **NHS Notify Profile**: Base CloudEvents profile with required NHS governance and tracing attributes

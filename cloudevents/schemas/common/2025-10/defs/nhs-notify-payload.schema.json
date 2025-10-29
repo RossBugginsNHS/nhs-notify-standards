@@ -13,10 +13,7 @@
       "type": "object",
       "anyOf": [
         {
-          "$ref": "#/$defs/DataPlane"
-        },
-        {
-          "$ref": "#/$defs/ControlPlane"
+          "$ref": "https://notify.nhs.uk/cloudevents/schemas/../domains/common/2025-10/defs/nhs-notify-dataplane.schema.json"
         }
       ],
       "description": "Domain specific data attributes (variant: DataPlane | ControlPlane).",
@@ -41,18 +38,6 @@
           "microservice": "order-service"
         }
       ]
-    }
-  },
-  "$defs": {
-    "DataPlane": {
-      "type": "object",
-      "description": "Placeholder for data-plane specific properties (extend in concrete event schemas).",
-      "$comment": "Add required fields here (e.g. 'plane': 'data') or domain-specific attributes; when distinct from ControlPlane, change notify-data.anyOf to oneOf to enforce exclusivity."
-    },
-    "ControlPlane": {
-      "type": "object",
-      "description": "Placeholder for control-plane specific properties (extend in concrete event schemas).",
-      "$comment": "As with DataPlane, add identifying / required properties here (e.g. 'plane': 'control'). Ensure divergence for better validation and consumer code generation."
     }
   },
   "examples": [

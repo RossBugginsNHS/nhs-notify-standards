@@ -22,9 +22,30 @@ get_schema_name() {
     echo "$name"
 }
 
+get_data_name() {
+    local path="$1"
+    # Get filename without path
+    local filename=$(basename "$path")
+    # Remove .schema.json extension
+    local name="${filename%.json}"
+    echo "$name"
+}
+
+data_file_name=$(get_data_name "$DATA_FILE")
+
+echo ""
 echo ""
 echo "=== Running Validation Tests ==="
-echo "Data file: $(basename "$DATA_FILE")"
+echo -e "Data File:\t $data_file_name"
+echo -e "Data Path:\t $(basename "$DATA_FILE")"
+echo ""
+echo "Testing against:"
+for schema_path in "${SCHEMAS[@]}"; do
+    schema_name=$(get_schema_name "$schema_path")
+    echo -e "Schema Name:\t $schema_name"
+    echo -e "Schema Path:\t $schema_path"
+done
+echo ""
 echo ""
 
 failed=0
@@ -32,24 +53,34 @@ passed=0
 total=${#SCHEMAS[@]}
 index=1
 
+
+
 for schema_path in "${SCHEMAS[@]}"; do
     schema_name=$(get_schema_name "$schema_path")
-    
-    echo "[$index/$total] Validating against: $schema_name"
-    
+
+    echo "[$index/$total] Validating"
+    echo -e "Schema Name:\t $schema_name"
+    echo -e "Data Name:\t $data_file_name"
+    echo -e "Schema Path:\t $schema_path"
+    echo -e "Data Path:\t $DATA_FILE"
+
+    echo ""
+
     # Capture the validation output
     validation_output=$(npm run validate -- --base "$BASE_DIR" "$schema_path" "$DATA_FILE" 2>&1)
-    
+
     if echo "$validation_output" | grep -q "Valid!"; then
         echo "✅ PASS"
+
         ((passed++))
     else
         echo "❌ FAIL"
+        echo "Error Details:"
         # Show the actual error output
         echo "$validation_output" | grep -v "^>" | grep -v "^$" | head -20
         failed=1
     fi
-    
+
     echo ""
     ((index++))
 done

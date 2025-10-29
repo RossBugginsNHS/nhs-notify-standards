@@ -20,6 +20,20 @@
           "additionalProperties": false,
           "$comment": "id includes the published date.\nCloudEvents allows arbitrary extension attributes.\nNHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.\n",
           "properties": {
+            "profileversion": {
+              "type": "string",
+              "const": "1.0.0",
+              "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+              "description": "NHS Notify CloudEvents profile semantic version.",
+              "$comment": "Increment: PATCH=add optional attrs; MINOR=add conditionally-required or new enums; MAJOR=breaking change."
+            },
+            "profilepublished": {
+              "type": "string",
+              "const": "2025-10",
+              "pattern": "^\\d{4}-\\d{2}(?:-draft)?$",
+              "description": "NHS Notify CloudEvents profile publication date (YYYY-MM) with optional -draft suffix.",
+              "$comment": "Publication date of this profile version (YYYY-MM) or (YYYY-MM-draft) for draft versions."
+            },
             "specversion": {
               "type": "string",
               "const": "1.0",
@@ -184,22 +198,82 @@
             },
             "data": {
               "type": "object",
-              "description": "Container object wrapping the structured Notify payload.",
-              "examples": [
-                {
-                  "notify-payload": {
+              "additionalProperties": false,
+              "required": [
+                "notify-payload"
+              ],
+              "properties": {
+                "notify-payload": {
+                  "description": "Structured Notify payload containing domain data (notify-data) and metadata (notify-metadata).",
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "$comment": "Notify Payload",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "notify-data",
+                    "notify-metadata"
+                  ],
+                  "properties": {
                     "notify-data": {
-                      "nhsNumber": "9434765919"
+                      "type": "object",
+                      "anyOf": [
+                        {
+                          "$schema": "https://json-schema.org/draft/2020-12/schema",
+                          "$comment": "Notify Data Plane",
+                          "type": "object",
+                          "description": "Placeholder for data-plane specific properties (extend in concrete event schemas)."
+                        }
+                      ],
+                      "description": "Domain specific data attributes (variant: DataPlane | ControlPlane).",
+                      "examples": [
+                        {
+                          "nhsNumber": "9434765919"
+                        },
+                        {
+                          "plane": "control",
+                          "action": "rotate-keys"
+                        }
+                      ],
+                      "$comment": "Union of two variant payload shapes. anyOf is used (instead of oneOf) because the two variants are currently placeholders and not mutually differentiable. Once DataPlane and ControlPlane gain distinct required properties or a discriminator, switch to oneOf (and optionally add a 'plane' enum property) to prevent ambiguous matches."
                     },
                     "notify-metadata": {
-                      "teamResponsible": "Team 1",
-                      "notifyDomain": "Ordering",
-                      "version": "1.3.0"
+                      "$ref": "#/properties/data/properties/notify-payload/properties/notify-metadata/allOf/0",
+                      "description": "Standard metadata set shared across Notify events.",
+                      "examples": [
+                        {
+                          "teamResponsible": "Team 1",
+                          "notifyDomain": "Ordering",
+                          "microservice": "order-service"
+                        }
+                      ]
                     }
-                  }
+                  },
+                  "examples": [
+                    {
+                      "notify-data": {
+                        "nhsNumber": "9434765919"
+                      },
+                      "notify-metadata": {
+                        "teamResponsible": "Team 1",
+                        "notifyDomain": "Ordering",
+                        "microservice": "order-service"
+                      }
+                    },
+                    {
+                      "notify-data": {
+                        "plane": "control",
+                        "action": "rotate-keys"
+                      },
+                      "notify-metadata": {
+                        "teamResponsible": "Team 2",
+                        "notifyDomain": "Reporting",
+                        "microservice": "reporting-api"
+                      }
+                    }
+                  ]
                 }
-              ],
-              "$comment": "Domain payload (arbitrary JSON value)."
+              },
+              "description": "Container object wrapping the structured Notify payload."
             },
             "traceparent": {
               "type": "string",
@@ -329,6 +403,8 @@
             }
           },
           "required": [
+            "profileversion",
+            "profilepublished",
             "specversion",
             "id",
             "source",
@@ -599,50 +675,312 @@
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "title": "Example data type",
       "type": "object",
-      "additionalProperties": false,
       "properties": {
-        "nhsNumber": {
-          "description": "Example patient's NHS Number (accepts canonical or formatted forms).",
-          "examples": [
-            "9434765919",
-            "943 476 5919",
-            "943-476-5919"
-          ],
-          "anyOf": [
-            {
-              "$comment": "Canonical stored form: exactly 10 digits (no spaces or hyphens).\n10-digit requirement and check-digit semantics come from the NHS Data Dictionary.\nRef: NHS Number attribute & algorithm (Modulus 11).",
-              "type": "string",
-              "description": "NHS Number (10 digits; last digit is a Modulus-11 check digit).",
-              "pattern": "^[0-9]{10}$",
-              "format": "nhs-number",
-              "examples": [
-                "9434765919",
-                "1234567890"
+        "notify-payload": {
+          "type": "object",
+          "description": "Example event data payload.",
+          "additionalProperties": false,
+          "properties": {
+            "notify-data": {
+              "type": "object",
+              "description": "Example notify data section.",
+              "additionalProperties": false,
+              "properties": {
+                "nhsNumber": {
+                  "description": "Example patient's NHS Number (accepts canonical or formatted forms).",
+                  "examples": [
+                    "9434765919",
+                    "943 476 5919",
+                    "943-476-5919"
+                  ],
+                  "anyOf": [
+                    {
+                      "$comment": "Canonical stored form: exactly 10 digits (no spaces or hyphens).\n10-digit requirement and check-digit semantics come from the NHS Data Dictionary.\nRef: NHS Number attribute & algorithm (Modulus 11).",
+                      "type": "string",
+                      "description": "NHS Number (10 digits; last digit is a Modulus-11 check digit).",
+                      "pattern": "^[0-9]{10}$",
+                      "format": "nhs-number",
+                      "examples": [
+                        "9434765919",
+                        "1234567890"
+                      ]
+                    },
+                    {
+                      "$comment": "UI/ingress tolerant form: allows 3-3-4 with optional spaces/hyphens. Still only digits once separators are removed.\nDisplay guidance to use 3-3-4 spacing; systems should accept flexible input.",
+                      "type": "string",
+                      "description": "Human-entered NHS Number (accepts 3-3-4 with optional spaces or hyphens).",
+                      "pattern": "^(?:[0-9]{3}[- ]?[0-9]{3}[- ]?[0-9]{4})$",
+                      "format": "nhs-number",
+                      "examples": [
+                        "943 476 5919",
+                        "943-476-5919",
+                        "9434765919"
+                      ]
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "nhsNumber"
               ]
             },
-            {
-              "$comment": "UI/ingress tolerant form: allows 3-3-4 with optional spaces/hyphens. Still only digits once separators are removed.\nDisplay guidance to use 3-3-4 spacing; systems should accept flexible input.",
-              "type": "string",
-              "description": "Human-entered NHS Number (accepts 3-3-4 with optional spaces or hyphens).",
-              "pattern": "^(?:[0-9]{3}[- ]?[0-9]{3}[- ]?[0-9]{4})$",
-              "format": "nhs-number",
-              "examples": [
-                "943 476 5919",
-                "943-476-5919",
-                "9434765919"
+            "notify-metadata": {
+              "type": "object",
+              "description": "Example notify metadata section.",
+              "allOf": [
+                {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "title": "NHS Notify Metadata",
+                  "type": "object",
+                  "description": "Notify Metadata",
+                  "additionalProperties": false,
+                  "required": [
+                    "microserviceVersion",
+                    "microservice",
+                    "repositoryUrl",
+                    "accountId",
+                    "environment",
+                    "instance",
+                    "microserviceInstanceId",
+                    "teamResponsible",
+                    "notifyDomain"
+                  ],
+                  "$defs": {
+                    "commitSha": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{7,40}$"
+                    },
+                    "uuid": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "sha256prefixed": {
+                      "type": "string",
+                      "pattern": "^sha256:[0-9a-f]{64}$"
+                    }
+                  },
+                  "properties": {
+                    "teamResponsible": {
+                      "type": "string",
+                      "enum": [
+                        "Team 1",
+                        "Team 2",
+                        "Team 3"
+                      ],
+                      "description": "Owning engineering team accountable for this event's domain logic.",
+                      "examples": [
+                        "Team 1"
+                      ]
+                    },
+                    "notifyDomain": {
+                      "type": "string",
+                      "enum": [
+                        "Ordering",
+                        "Delivering",
+                        "Reporting",
+                        "Enquiries"
+                      ],
+                      "description": "High-level business domain to which the event belongs.",
+                      "examples": [
+                        "Ordering"
+                      ]
+                    },
+                    "microservice": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100,
+                      "pattern": "^[a-zA-Z0-9-]+$",
+                      "description": "The name of the microservice generating the event, e.g. order-service",
+                      "examples": [
+                        "order-service"
+                      ]
+                    },
+                    "repositoryUrl": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "The URL of the repository containing the microservice codebase",
+                      "examples": [
+                        "https://github.com/nhsdigital/nhs-notify-standards"
+                      ]
+                    },
+                    "accountId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100,
+                      "pattern": "^[a-zA-Z0-9-]+$",
+                      "description": "The cloud account id where the microservice is deployed, for example the AWS account id",
+                      "examples": [
+                        "123456789012",
+                        "my-cloud-account"
+                      ]
+                    },
+                    "environment": {
+                      "type": "string",
+                      "enum": [
+                        "development",
+                        "testing",
+                        "staging",
+                        "production"
+                      ],
+                      "description": "The deployment environment of the microservice generating the event",
+                      "examples": [
+                        "production"
+                      ]
+                    },
+                    "instance": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100,
+                      "pattern": "^[a-zA-Z0-9-]+$",
+                      "description": "The specific instance name of the deployment, eg Notify Standard, or Notify Hot backup, or Notify Priority customers",
+                      "examples": [
+                        "primary",
+                        "hot-backup",
+                        "priority-customers"
+                      ]
+                    },
+                    "microserviceInstanceId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100,
+                      "pattern": "^[a-zA-Z0-9-]+$",
+                      "description": "The specific instance id of the microservice generating the event, for example the lambda id or pod name",
+                      "examples": [
+                        "lambda-1",
+                        "pod-1234"
+                      ]
+                    },
+                    "microserviceVersion": {
+                      "type": "string",
+                      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+                      "description": "Semantic version (SemVer 2.0.0) of the producing microservice at emit time. eg useful for blue green deployments.",
+                      "examples": [
+                        "1.3.0",
+                        "2.0.0-beta.1"
+                      ]
+                    },
+                    "commitSha": {
+                      "$ref": "#/properties/data/properties/notify-payload/properties/notify-metadata/allOf/0/%24defs/commitSha",
+                      "description": "Git commit SHA of the producing build (7-40 hex).",
+                      "examples": [
+                        "a1b2c3d",
+                        "d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2"
+                      ]
+                    },
+                    "buildTimestamp": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp the microservice build artifact was created (UTC).",
+                      "examples": [
+                        "2025-10-03T10:15:30.123Z"
+                      ]
+                    },
+                    "serviceTier": {
+                      "type": "string",
+                      "enum": [
+                        "critical",
+                        "standard",
+                        "experimental"
+                      ],
+                      "description": "Operational criticality tier of the service emitting the event.",
+                      "examples": [
+                        "critical"
+                      ]
+                    },
+                    "region": {
+                      "type": "string",
+                      "enum": [
+                        "eu-west-2",
+                        "eu-west-1",
+                        "eu-central-1"
+                      ],
+                      "description": "Deployment region / geography for the emitting instance.",
+                      "examples": [
+                        "eu-west-2"
+                      ]
+                    },
+                    "pseudonymisationLevel": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "tokenised",
+                        "pseudonymised",
+                        "anonymised"
+                      ],
+                      "description": "Degree of personal data transformation applied to the domain payload prior to emission.",
+                      "examples": [
+                        "none"
+                      ]
+                    },
+                    "replayIndicator": {
+                      "type": "boolean",
+                      "description": "True if this event is a replay/backfill of a previously emitted event (not a new business occurrence).",
+                      "examples": [
+                        false
+                      ]
+                    },
+                    "originalEventId": {
+                      "$ref": "#/properties/data/properties/notify-payload/properties/notify-metadata/allOf/0/%24defs/uuid",
+                      "description": "Identifier of the original event when replayIndicator=true.",
+                      "examples": [
+                        "6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111"
+                      ]
+                    },
+                    "integrityHash": {
+                      "$ref": "#/properties/data/properties/notify-payload/properties/notify-metadata/allOf/0/%24defs/sha256prefixed",
+                      "description": "Content integrity hash over the canonical notify-payload (stable key order), prefixed with 'sha256:'.",
+                      "examples": [
+                        "sha256:3f786850e387550fdab836ed7e6dc881de23001b1a2b3c4d5e6f7a8b9c0d1e2f"
+                      ]
+                    },
+                    "producedByType": {
+                      "type": "string",
+                      "enum": [
+                        "lambda",
+                        "container",
+                        "vm",
+                        "other"
+                      ],
+                      "description": "The type of compute resource producing the event.",
+                      "examples": [
+                        "lambda"
+                      ]
+                    }
+                  },
+                  "examples": [
+                    {
+                      "teamResponsible": "Team 1",
+                      "notifyDomain": "Ordering",
+                      "microservice": "order-service",
+                      "microserviceVersion": "1.3.0",
+                      "commitSha": "a1b2c3d",
+                      "buildTimestamp": "2025-10-03T10:15:30.123Z",
+                      "serviceTier": "critical",
+                      "region": "eu-west-2",
+                      "pseudonymisationLevel": "none",
+                      "replayIndicator": false,
+                      "integrityHash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    },
+                    {
+                      "teamResponsible": "Team 2",
+                      "notifyDomain": "Reporting",
+                      "microservice": "reporting-api",
+                      "microserviceVersion": "2.0.0",
+                      "commitSha": "deadbee",
+                      "serviceTier": "standard",
+                      "region": "eu-west-1",
+                      "pseudonymisationLevel": "pseudonymised",
+                      "replayIndicator": true,
+                      "originalEventId": "6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111",
+                      "integrityHash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                    }
+                  ]
+                }
               ]
             }
-          ]
+          }
         }
-      },
-      "required": [
-        "nhsNumber"
-      ],
-      "examples": [
-        {
-          "nhsNumber": "9434765919"
-        }
-      ]
+      }
     }
   },
   "required": [
@@ -650,32 +988,6 @@
     "source",
     "dataschema",
     "data"
-  ],
-  "examples": [
-    {
-      "specversion": "1.0",
-      "id": "6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111",
-      "type": "uk.nhs.notify.example.order.read.v1",
-      "source": "/data-plane/example",
-      "subject": "customer/920fca11-596a-4eca-9c47-99f624614658/order/769acdd4-6a47-496f-999f-76a6fd2c3959/item/4f5e17c0-ec57-4cee-9a86-14580cf5af7d",
-      "time": "2025-10-01T10:15:30.000Z",
-      "recordedtime": "2025-10-01T10:15:30.250Z",
-      "traceparent": "00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01",
-      "severitynumber": 1,
-      "severitytext": "DEBUG",
-      "dataschema": "https://nhsdigital.github.io/nhs-notify-standards/cloudevents/nhs-notify-example-event-data.schema.yaml",
-      "data": {
-        "notify-payload": {
-          "notify-data": {
-            "nhsNumber": "9434765919"
-          },
-          "notify-metadata": {
-            "teamResponsible": "Team 1",
-            "notifyDomain": "Ordering"
-          }
-        }
-      }
-    }
   ],
   "$comment": "Bundled schema (all external $ref inlined).",
   "$defs": {}
