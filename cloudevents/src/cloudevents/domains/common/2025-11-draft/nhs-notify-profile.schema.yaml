@@ -339,6 +339,19 @@ allOf:
           const: 5
       required:
         - severitynumber
+  - not:
+      allOf:
+        - properties:
+            data:
+              type: object
+          required:
+            - data
+        - properties:
+            data_base64:
+              type: string
+          required:
+            - data_base64
+      description: "CloudEvents spec: data and data_base64 are mutually exclusive. Only one can be present."
 examples:
   - pecversion: "1.0"
     id: 6f1c2a53-3d54-4a0a-9a0b-0e9ae2d4c111

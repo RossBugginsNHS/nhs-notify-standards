@@ -160,7 +160,7 @@ function processRefs(
         // If no baseUrl provided but it's a relative path, convert to file:// URI for CloudEvents compliance
         const [refPath, fragment] = constValue.split("#");
         const resolvedPath = path.resolve(sourceDir, refPath);
-        
+
         // Calculate the relative path from the output file location
         const sourceRelativePath = path.relative(
           path.join(process.cwd(), "src"),
@@ -174,7 +174,7 @@ function processRefs(
           "output",
           path.dirname(outputFileRelativePath)
         );
-        
+
         // Calculate where the referenced file will be in output
         const referencedRelativePath = path.relative(
           path.join(process.cwd(), "src"),
@@ -185,14 +185,14 @@ function processRefs(
           "output",
           referencedRelativePath.replace(/\.yaml$/, '.json').replace(/\.yml$/, '.json')
         );
-        
+
         let relativeRef = path
           .relative(fromOutputFile, toBuiltFile)
           .replace(/\\/g, "/");
         relativeRef = relativeRef.startsWith(".")
           ? relativeRef
           : `./${relativeRef}`;
-        
+
         // Convert to file:// URI for CloudEvents compliance
         constValue = fragment ? `file://${relativeRef}#${fragment}` : `file://${relativeRef}`;
       }
