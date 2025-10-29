@@ -4,7 +4,7 @@
   "type": "object",
   "allOf": [
     {
-      "$ref": "https://notify.nhs.uk/cloudevents/schemas/../domains/supplier-allocation/2025-12/supplier-allocation-profile.schema.json"
+      "$ref": "https://notify.nhs.uk/cloudevents/schemas/supplier-allocation/2025-12/supplier-allocation-profile.schema.json"
     }
   ],
   "properties": {
@@ -26,14 +26,14 @@
     },
     "dataschema": {
       "type": "string",
-      "const": "https://notify.nhs.uk/cloudevents/schemas/../domains/supplier-allocation/2025-12/data/file-data.schema.json",
+      "const": "https://notify.nhs.uk/cloudevents/schemas/supplier-allocation/2025-12/data/file-data.schema.json",
       "description": "Canonical URI of the example event's data schema.",
       "examples": [
         "file-data.schema.json"
       ]
     },
     "data": {
-      "$ref": "https://notify.nhs.uk/cloudevents/schemas/../domains/supplier-allocation/2025-12/data/file-data.schema.json",
+      "$ref": "https://notify.nhs.uk/cloudevents/schemas/supplier-allocation/2025-12/data/file-data.schema.json",
       "description": "Example payload wrapper containing notify-payload."
     }
   }

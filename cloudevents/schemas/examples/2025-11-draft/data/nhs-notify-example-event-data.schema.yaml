@@ -8,7 +8,7 @@ properties:
   weather:
     $ref: https://smart-data-models.github.io/dataModel.Weather/WeatherForecast/schema.json
   nhsNumber:
-    $ref: https://notify.nhs.uk/cloudevents/schemas/../domains/common/2025-10/defs/nhs-number.schema.json#/properties/nhsNumber
+    $ref: https://notify.nhs.uk/cloudevents/schemas/common/2025-10/defs/nhs-number.schema.json#/properties/nhsNumber
     description: Example patient's NHS Number (accepts canonical or formatted forms).
     examples:
       - "9434765919"

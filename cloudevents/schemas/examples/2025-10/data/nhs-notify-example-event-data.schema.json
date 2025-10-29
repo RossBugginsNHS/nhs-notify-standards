@@ -16,7 +16,7 @@
           "additionalProperties": false,
           "properties": {
             "nhsNumber": {
-              "$ref": "https://notify.nhs.uk/cloudevents/schemas/../domains/common/2025-10/defs/nhs-number.schema.json#/properties/nhsNumber",
+              "$ref": "https://notify.nhs.uk/cloudevents/schemas/common/2025-10/defs/nhs-number.schema.json#/properties/nhsNumber",
               "description": "Example patient's NHS Number (accepts canonical or formatted forms).",
               "examples": [
                 "9434765919",
@@ -34,7 +34,7 @@
           "description": "Example notify metadata section.",
           "allOf": [
             {
-              "$ref": "https://notify.nhs.uk/cloudevents/schemas/../domains/common/2025-10/defs/nhs-notify-metadata.schema.json"
+              "$ref": "https://notify.nhs.uk/cloudevents/schemas/common/2025-10/defs/nhs-notify-metadata.schema.json"
             }
           ]
         }
