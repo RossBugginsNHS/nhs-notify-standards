@@ -492,6 +492,33 @@
           "severitynumber"
         ]
       }
+    },
+    {
+      "not": {
+        "allOf": [
+          {
+            "properties": {
+              "data": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "data"
+            ]
+          },
+          {
+            "properties": {
+              "data_base64": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "data_base64"
+            ]
+          }
+        ],
+        "description": "CloudEvents spec: data and data_base64 are mutually exclusive. Only one can be present."
+      }
     }
   ],
   "examples": [
