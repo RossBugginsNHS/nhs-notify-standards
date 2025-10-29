@@ -1,24 +1,24 @@
 {
   "type": "uk.nhs.notify.supplier.allocation.file.printed.v1",
-  "source": "/nhs/england/notify/staging/secondary/data-plane/supplierallocation",
+  "source": "/nhs/england/notify/production/primary/data-plane/supplierallocation",
   "dataschema": "file://../data/file-data.schema.json",
   "specversion": "1.0",
-  "id": "9b7b5809-5aea-431d-af33-d0e9a9a414b6",
-  "subject": "customer/dc9e382a-ef91-f361-b6a3-2b919e4d1fba/e/a8/4ks/l7l-/a7/dn3jyv0dt/feb6eaa0-aadd-0ffb-a93c-3b2bd3ba76bf/7c1f1406-2f2f-aebe-68af-1efcadfc59ef",
-  "time": "2025-10-29T17:14:36.677Z",
+  "id": "675ae6bf-7ea1-49a6-aafd-55151b2ce1ca",
+  "subject": "customer/9ab4c78a-bc2b-0427-aaeb-95c0cedfe6b8/d0effbee-08b5-d56c-fad2-7a2ad68793a4/8ejwi6wheb/86256004-5f94-d652-a488-c906bd24de70",
+  "time": "2025-10-29T17:21:40.457Z",
   "datacontenttype": "application/json",
-  "traceparent": "00-83f2572236ade907bbaff8cb0fdef3dc-a5a7c0146d4aea56-01",
-  "tracestate": "velit deserunt mollit",
-  "partitionkey": "customer-dc9e382a",
-  "recordedtime": "2025-10-29T17:14:37.677Z",
+  "traceparent": "00-77de9a99224dc422efff74451039f233-7de99d9f5d702be0-01",
+  "tracestate": "consectetur consequat enim sunt ullamco",
+  "partitionkey": "customer-9ab4c78a",
+  "recordedtime": "2025-10-29T17:21:41.457Z",
   "sampledrate": 1,
-  "sequence": "00000000000345902010",
-  "severitytext": "INFO",
-  "severitynumber": 2,
+  "sequence": "00000000000510823327",
+  "severitytext": "DEBUG",
+  "severitynumber": 1,
   "dataclassification": "confidential",
-  "dataregulation": "HIPAA",
-  "datacategory": "sensitive",
+  "dataregulation": "GDPR",
+  "datacategory": "special-category",
   "data": {
-    "something": "anim Ut sunt"
+    "something": "adipisicing et ut sed voluptate"
   }
 }
