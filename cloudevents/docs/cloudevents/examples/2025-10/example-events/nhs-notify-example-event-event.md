@@ -2,13 +2,13 @@
 
 **Event Type:** `uk.nhs.notify.example.order.read.v1`
 
-**Source:** `/nhs/england/notify/uat/secondary/data-plane/example`
+**Source:** `/nhs/england/notify/staging/secondary/data-plane/example`
 
-**Subject:** `customer/27375fdd-2b70-eecc-b9de-dc58b82fb7f0/order/34de7d7e-c28a-4f86-c8db-5c49bedd7baf/item/feab2abe-eeea-8abc-2b9f-a60dc46898bf`
+**Subject:** `customer/383cbca1-b6ae-0d1f-6bdb-73f3e2a2c85c/order/8b5bbac5-ecca-7806-f24c-86115f28c2a0/item/fe6d3c8e-8c7d-8e7f-7a25-fdb65b2bff46`
 
-**Event ID:** `cf522750-2036-4f35-8e9b-edee0ad8c299`
+**Event ID:** `3de14275-5015-4f22-a8b9-c6a244d5847f`
 
-**Timestamp:** 2025-10-29T16:22:39.655Z
+**Timestamp:** 2025-10-29T16:25:21.949Z
 
 ## Related Schema Documentation
 
@@ -21,8 +21,8 @@
 ```json
 {
   "type": "uk.nhs.notify.example.order.read.v1",
-  "source": "/nhs/england/notify/uat/secondary/data-plane/example",
-  "subject": "customer/27375fdd-2b70-eecc-b9de-dc58b82fb7f0/order/34de7d7e-c28a-4f86-c8db-5c49bedd7baf/item/feab2abe-eeea-8abc-2b9f-a60dc46898bf",
+  "source": "/nhs/england/notify/staging/secondary/data-plane/example",
+  "subject": "customer/383cbca1-b6ae-0d1f-6bdb-73f3e2a2c85c/order/8b5bbac5-ecca-7806-f24c-86115f28c2a0/item/fe6d3c8e-8c7d-8e7f-7a25-fdb65b2bff46",
   "dataschema": "file://../data/nhs-notify-example-event-data.schema.json",
   "data": {
     "notify-payload": {
@@ -30,23 +30,23 @@
         "nhsNumber": "9434765919"
       },
       "notify-metadata": {
-        "teamResponsible": "Team 1",
+        "teamResponsible": "Team 3",
         "notifyDomain": "Reporting",
-        "microservice": "VBGhyV1S",
-        "repositoryUrl": "https://BaKQGJvRANZwARPiASjhj.wzzyGR6UVAOhCUK",
-        "accountId": "f6g",
-        "environment": "development",
-        "instance": "UmDTU8I",
-        "microserviceInstanceId": "aOG",
-        "microserviceVersion": "0.0.0-0.0.5812562477.7905634.5064599.295725333zySFjQ6WcE.5413301017.0.7983NI-.0.26U8Epe5Kq+uKJJEFWR.PEa0tL.sk.p2.lgQDZh3-F",
-        "commitSha": "7a8000b58b3cabd9438b22577ca739d6a",
-        "buildTimestamp": "1922-02-08T03:16:55.0Z",
-        "serviceTier": "experimental",
-        "region": "eu-west-1",
-        "pseudonymisationLevel": "none",
+        "microservice": "0YmUgj",
+        "repositoryUrl": "https://yKkeRnOMERzFHqVrnyMXpi.ttgl22GVeUI7fU1V0DRa06Ev6gy19nqY3uwssZLlyCfnWpHA",
+        "accountId": "PRCKkMCqKLa",
+        "environment": "production",
+        "instance": "dsKe9ijvIT",
+        "microserviceInstanceId": "ahlGc9Xy7",
+        "microserviceVersion": "22793044.20553.41803308-159780985MKQ.0.79967491.0.0.56348382443.92096550882.82070926ZkBjNZjT9.72769shAawL.9546",
+        "commitSha": "db9e3390a7a876dd3ae7d0d2056042e0676f1213",
+        "buildTimestamp": "1913-01-02T14:36:36.0Z",
+        "serviceTier": "critical",
+        "region": "eu-west-2",
+        "pseudonymisationLevel": "anonymised",
         "replayIndicator": true,
-        "originalEventId": "fc1b3a58-20cb-4a47-8d4b-db3c77c2449f",
-        "integrityHash": "sha256:276aeb9e19f871105bf76530acf57583e0bba49103a35f1f08f21afec2439290",
+        "originalEventId": "4b67ed03-1e83-4edc-b3d0-504cbca2199d",
+        "integrityHash": "sha256:5caab8879c0a1337f54085f7c0532e75d7d126f88af1a3000db5114fa935ba57",
         "producedByType": "other"
       }
     }
@@ -54,19 +54,19 @@
   "profileversion": "1.0.0",
   "profilepublished": "2025-10",
   "specversion": "1.0",
-  "id": "cf522750-2036-4f35-8e9b-edee0ad8c299",
-  "time": "2025-10-29T16:22:39.655Z",
+  "id": "3de14275-5015-4f22-a8b9-c6a244d5847f",
+  "time": "2025-10-29T16:25:21.949Z",
   "datacontenttype": "application/json",
-  "traceparent": "00-e4ccc3f4d893af5751164992022ba506-c028847e1a2cfa00-01",
-  "tracestate": "ut ut incididunt dolore ullamco",
-  "partitionkey": "customer-27375fdd",
-  "recordedtime": "2025-10-29T16:22:40.655Z",
+  "traceparent": "00-798cae8402f82918d3bee5549127b892-ff7431064df5e7ec-01",
+  "tracestate": "Excepteur enim",
+  "partitionkey": "customer-383cbca1",
+  "recordedtime": "2025-10-29T16:25:22.949Z",
   "sampledrate": 1,
-  "sequence": "00000000000803805163",
-  "severitytext": "WARN",
-  "severitynumber": 3,
-  "dataclassification": "restricted",
-  "dataregulation": "HIPAA",
-  "datacategory": "special-category"
+  "sequence": "00000000000248939062",
+  "severitytext": "ERROR",
+  "severitynumber": 4,
+  "dataclassification": "confidential",
+  "dataregulation": "ISO-27001",
+  "datacategory": "sensitive"
 }
 ```
