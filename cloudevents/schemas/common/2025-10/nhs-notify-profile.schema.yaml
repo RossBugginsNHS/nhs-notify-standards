@@ -144,7 +144,7 @@ properties:
       - notify-payload
     properties:
       notify-payload:
-        $ref: https://notify.nhs.uk/cloudevents/schemas/../domains/common/2025-10/defs/nhs-notify-payload.schema.json
+        $ref: https://notify.nhs.uk/cloudevents/schemas/common/2025-10/defs/nhs-notify-payload.schema.json
         description: Structured Notify payload containing domain data (notify-data) and metadata (notify-metadata).
     description: Container object wrapping the structured Notify payload.
   traceparent:
