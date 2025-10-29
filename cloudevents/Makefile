@@ -3,7 +3,7 @@ include scripts/init.mk
 
 PUBLISH_VERSION = all
 CLOUDEVENTS_BASE_PATH = ./src/cloudevents
-
+CLOUDEVENTS_JEKYLL_DOCS_BASE_PATH = ./src/cloudeventjekylldocs
 
 config:: _install-dependencies version # Configure development environment (main) @Configuration
 	npm install
@@ -11,6 +11,7 @@ config:: _install-dependencies version # Configure development environment (main
 
 deploy:
 	$(MAKE) -C $(CLOUDEVENTS_BASE_PATH) deploy PUBLISH_VERSION=$(PUBLISH_VERSION)
+	$(MAKE) -C $(CLOUDEVENTS_JEKYLL_DOCS_BASE_PATH) build
 
 version:
 	@echo "=== Creating version files ==="

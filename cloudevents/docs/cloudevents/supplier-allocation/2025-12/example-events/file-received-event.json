@@ -1,0 +1,24 @@
+{
+  "type": "uk.nhs.notify.supplier.allocation.file.received.v1",
+  "source": "/nhs/england/notify/staging/dev-30603665/data-plane/supplierallocation",
+  "dataschema": "file://../data/file-data.schema.json",
+  "specversion": "1.0",
+  "id": "fbdbe4c3-a0cf-4de2-bbdf-36a07df8e386",
+  "subject": "customer/188a442a-912a-d9fc-0679-3b8b74399dad/4cbz1nf0/h0/c3rf80/lm/8kvjg5/3/z/e9de6dff-eedc-a3a6-0bcf-a013aec0ffd8",
+  "time": "2025-10-29T16:22:54.338Z",
+  "datacontenttype": "application/json",
+  "traceparent": "00-08e19ffedfde7bd3e9701c0c83994956-4046db0fda07b38f-01",
+  "tracestate": "cillum cupidatat fugiat",
+  "partitionkey": "customer-188a442a",
+  "recordedtime": "2025-10-29T16:22:55.338Z",
+  "sampledrate": 1,
+  "sequence": "00000000000559203134",
+  "severitytext": "WARN",
+  "severitynumber": 3,
+  "dataclassification": "restricted",
+  "dataregulation": "NIST-800-53",
+  "datacategory": "non-sensitive",
+  "data": {
+    "something": "Excepteur nostrud laboris in labore"
+  }
+}
