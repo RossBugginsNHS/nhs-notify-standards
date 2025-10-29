@@ -1,4 +1,4 @@
-$id: https://notify.nhs.uk/cloudevents/schemas/common/2025-10/defs/nhs-notify-metadata.schema.json
+$id: https://notify.nhs.uk/cloudevents/schemas/cloudevents/domains/common/2025-10/defs/nhs-notify-metadata.schema.json
 $schema: https://json-schema.org/draft/2020-12/schema
 title: NHS Notify Metadata
 type: object

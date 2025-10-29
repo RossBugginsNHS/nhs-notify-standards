@@ -1,0 +1,72 @@
+# uk.nhs.notify.example.order.read.v1
+
+**Event Type:** `uk.nhs.notify.example.order.read.v1`
+
+**Source:** `/nhs/england/notify/staging/secondary/data-plane/example`
+
+**Subject:** `customer/383cbca1-b6ae-0d1f-6bdb-73f3e2a2c85c/order/8b5bbac5-ecca-7806-f24c-86115f28c2a0/item/fe6d3c8e-8c7d-8e7f-7a25-fdb65b2bff46`
+
+**Event ID:** `3de14275-5015-4f22-a8b9-c6a244d5847f`
+
+**Timestamp:** 2025-10-29T16:25:21.949Z
+
+## Related Schema Documentation
+
+- [Event Schema](../nhs-notify-example-event.schema.md)
+- [Event Schema (Bundled)](../nhs-notify-example-event.bundle.schema.md)
+- [Event Schema (Flattened)](../nhs-notify-example-event.flattened.schema.md)
+
+## Complete Event Instance
+
+```json
+{
+  "type": "uk.nhs.notify.example.order.read.v1",
+  "source": "/nhs/england/notify/staging/secondary/data-plane/example",
+  "subject": "customer/383cbca1-b6ae-0d1f-6bdb-73f3e2a2c85c/order/8b5bbac5-ecca-7806-f24c-86115f28c2a0/item/fe6d3c8e-8c7d-8e7f-7a25-fdb65b2bff46",
+  "dataschema": "file://../data/nhs-notify-example-event-data.schema.json",
+  "data": {
+    "notify-payload": {
+      "notify-data": {
+        "nhsNumber": "9434765919"
+      },
+      "notify-metadata": {
+        "teamResponsible": "Team 3",
+        "notifyDomain": "Reporting",
+        "microservice": "0YmUgj",
+        "repositoryUrl": "https://yKkeRnOMERzFHqVrnyMXpi.ttgl22GVeUI7fU1V0DRa06Ev6gy19nqY3uwssZLlyCfnWpHA",
+        "accountId": "PRCKkMCqKLa",
+        "environment": "production",
+        "instance": "dsKe9ijvIT",
+        "microserviceInstanceId": "ahlGc9Xy7",
+        "microserviceVersion": "22793044.20553.41803308-159780985MKQ.0.79967491.0.0.56348382443.92096550882.82070926ZkBjNZjT9.72769shAawL.9546",
+        "commitSha": "db9e3390a7a876dd3ae7d0d2056042e0676f1213",
+        "buildTimestamp": "1913-01-02T14:36:36.0Z",
+        "serviceTier": "critical",
+        "region": "eu-west-2",
+        "pseudonymisationLevel": "anonymised",
+        "replayIndicator": true,
+        "originalEventId": "4b67ed03-1e83-4edc-b3d0-504cbca2199d",
+        "integrityHash": "sha256:5caab8879c0a1337f54085f7c0532e75d7d126f88af1a3000db5114fa935ba57",
+        "producedByType": "other"
+      }
+    }
+  },
+  "profileversion": "1.0.0",
+  "profilepublished": "2025-10",
+  "specversion": "1.0",
+  "id": "3de14275-5015-4f22-a8b9-c6a244d5847f",
+  "time": "2025-10-29T16:25:21.949Z",
+  "datacontenttype": "application/json",
+  "traceparent": "00-798cae8402f82918d3bee5549127b892-ff7431064df5e7ec-01",
+  "tracestate": "Excepteur enim",
+  "partitionkey": "customer-383cbca1",
+  "recordedtime": "2025-10-29T16:25:22.949Z",
+  "sampledrate": 1,
+  "sequence": "00000000000248939062",
+  "severitytext": "ERROR",
+  "severitynumber": 4,
+  "dataclassification": "confidential",
+  "dataregulation": "ISO-27001",
+  "datacategory": "sensitive"
+}
+```

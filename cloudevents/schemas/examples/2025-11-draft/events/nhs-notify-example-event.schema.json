@@ -1,12 +1,12 @@
 {
-  "$id": "https://notify.nhs.uk/cloudevents/schemas/examples/2025-11-draft/events/nhs-notify-example-event.schema.json",
+  "$id": "https://notify.nhs.uk/cloudevents/schemas/cloudevents/domains/examples/2025-11-draft/events/nhs-notify-example-event.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Example Event",
   "description": "Example  event",
   "type": "object",
   "allOf": [
     {
-      "$ref": "https://notify.nhs.uk/cloudevents/schemas/examples/2025-11-draft/example-profile.schema.json"
+      "$ref": "https://notify.nhs.uk/cloudevents/schemas/../domains/examples/2025-11-draft/example-profile.schema.json"
     }
   ],
   "properties": {
@@ -36,14 +36,14 @@
     },
     "dataschema": {
       "type": "string",
-      "const": "https://notify.nhs.uk/cloudevents/schemas/examples/2025-11-draft/data/nhs-notify-example-event-data.schema.json",
+      "const": "https://notify.nhs.uk/cloudevents/schemas/../domains/examples/2025-11-draft/data/nhs-notify-example-event-data.schema.json",
       "description": "Canonical URI of the example event's data schema.",
       "examples": [
         "nhs-notify-example-event-data.schema.json"
       ]
     },
     "data": {
-      "$ref": "https://notify.nhs.uk/cloudevents/schemas/examples/2025-11-draft/data/nhs-notify-example-event-data.schema.json",
+      "$ref": "https://notify.nhs.uk/cloudevents/schemas/../domains/examples/2025-11-draft/data/nhs-notify-example-event-data.schema.json",
       "description": "Example payload wrapper containing notify-payload."
     }
   },
