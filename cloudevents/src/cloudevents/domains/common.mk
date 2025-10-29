@@ -1,5 +1,11 @@
 # common.mk - Shared Makefile rules for domain schemas
 # Include this file in domain Makefiles with: include ../common.mk
+#
+# This Makefile uses dynamic dependency discovery to automatically determine
+# which profile schemas need to be validated against for each event schema.
+# Instead of hardcoding profile versions, it recursively follows allOf references
+# in the schema files to discover all dependencies, ensuring version mismatches
+# are avoided (e.g., supplier-allocation 2025-12 correctly uses common 2025-11-draft).
 
 # Variables that must be set by the including Makefile:
 # - DOMAIN: The domain name (e.g., supplier-allocation, examples)
@@ -16,9 +22,6 @@ EVENTS_DIR = $(OUTPUT_DIR)/example-events
 SRC_DIR = $(ROOT_DIR)/src/cloudevents/domains/$(DOMAIN)/$(PUBLISH_VERSION)
 CLOUD_EVENTS_DIR = $(ROOT_DIR)/src/cloudevents
 
-# Profile schema paths for testing (from common domain)
-PROFILE_SCHEMA = $(ROOT_DIR)/output/common/$(PUBLISH_VERSION)/nhs-notify-profile.schema.json
-
 # Discover YAML schema files by category
 PROFILE_SCHEMAS = $(wildcard $(SRC_DIR)/*.schema.yaml)
 DATA_SCHEMAS = $(wildcard $(SRC_DIR)/data/*.schema*.yaml)
@@ -30,9 +33,6 @@ PROFILE_NAMES = $(sort $(patsubst %.schema.yaml,%,$(notdir $(PROFILE_SCHEMAS))))
 DATA_NAMES = $(sort $(patsubst %.yaml,%,$(notdir $(DATA_SCHEMAS))))
 DEFS_NAMES = $(sort $(patsubst %.yaml,%,$(notdir $(DEFS_SCHEMAS))))
 EVENT_NAMES = $(sort $(patsubst %.schema.yaml,%,$(notdir $(EVENT_SCHEMAS))))
-
-# Domain profile for testing events (use first profile schema if it exists, otherwise use domain name)
-DOMAIN_PROFILE = $(if $(PROFILE_NAMES),$(OUTPUT_DIR)/$(word 1,$(PROFILE_NAMES)).schema.json,$(OUTPUT_DIR)/$(DOMAIN).schema.json)
 
 .PHONY: build publish publish-json publish-yaml generate test deploy clean
 
@@ -163,14 +163,20 @@ test:
 		FAILED=0; \
 		for schema in $(EVENT_NAMES); do \
 			echo "Testing $$schema event..."; \
+			echo "Discovering schema dependencies for $$schema..."; \
+			SCHEMA_DEPS=$$(node $(ROOT_DIR)/src/cloudevents/tools/discover-schema-dependencies.js $(SRC_DIR)/events/$$schema.schema.yaml $(ROOT_DIR)/output 2>/dev/null); \
+			if [ $$? -ne 0 ]; then \
+				echo "❌ Failed to discover dependencies for $$schema"; \
+				FAILED=1; \
+				continue; \
+			fi; \
 			$(ROOT_DIR)/tests/run-validations.sh \
 				$(ROOT_DIR)/output \
 				$(EVENTS_DIR)/$$schema-event.json \
 				$(OUTPUT_DIR)/events/$$schema.schema.json \
 				$(OUTPUT_DIR)/events/$$schema.bundle.schema.json \
 				$(OUTPUT_DIR)/events/$$schema.flattened.schema.json \
-				$(DOMAIN_PROFILE) \
-				$(PROFILE_SCHEMA) || FAILED=1; \
+				$$SCHEMA_DEPS || FAILED=1; \
 		done; \
 		exit $$FAILED; \
 	fi

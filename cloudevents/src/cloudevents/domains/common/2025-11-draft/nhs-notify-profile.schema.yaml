@@ -8,6 +8,7 @@ $comment: |
   id includes the published date.
   CloudEvents allows arbitrary extension attributes.
   NHS profile: time (occurred-at) is mandatory though optional in CloudEvents spec.
+
 properties:
   specversion:
     type: string
@@ -251,6 +252,7 @@ dependentRequired:
   severitynumber:
     - severitytext
 allOf:
+  - $ref: https://raw.githubusercontent.com/cloudevents/spec/main/cloudevents/formats/cloudevents.json
   - if:
       properties:
         source:

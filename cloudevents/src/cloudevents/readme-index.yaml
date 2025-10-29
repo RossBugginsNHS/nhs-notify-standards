@@ -3,11 +3,21 @@
 # To regenerate, run: make update-readme
 # To customize labels and purposes, edit: readme-metadata.yaml
 
-generated: '2025-10-29T08:21:17.065Z'
+generated: '2025-10-29T09:35:25.054Z'
 common:
   versions:
     - version: 2025-10
       schemas:
+        - type: Nhs Notify Controlplane
+          category: definitions
+          source: src/common/2025-10/defs/nhs-notify-controlplane.schema.yaml
+          published: schemas/common/2025-10/defs/nhs-notify-controlplane.schema.json
+          docs: ../../docs/cloudevents/common/2025-10/defs/nhs-notify-controlplane.schema.md
+        - type: Nhs Notify Dataplane
+          category: definitions
+          source: src/common/2025-10/defs/nhs-notify-dataplane.schema.yaml
+          published: schemas/common/2025-10/defs/nhs-notify-dataplane.schema.json
+          docs: ../../docs/cloudevents/common/2025-10/defs/nhs-notify-dataplane.schema.md
         - type: NHS Notify Metadata
           category: definitions
           source: src/common/2025-10/defs/nhs-notify-metadata.schema.yaml
@@ -95,39 +105,39 @@ domains:
     displayName: Supplier Allocation
     purpose: Production domain for supplier allocation file processing events
     versions:
-      - version: 2025-10
+      - version: 2025-12
         schemas:
           - type: File Data
             category: data
-            source: src/supplier-allocation/2025-10/data/file-data.schema.yaml
-            published: schemas/supplier-allocation/2025-10/data/file-data.schema.json
-            docs: ../../docs/cloudevents/supplier-allocation/2025-10/data/file-data.schema.md
+            source: src/supplier-allocation/2025-12/data/file-data.schema.yaml
+            published: schemas/supplier-allocation/2025-12/data/file-data.schema.json
+            docs: ../../docs/cloudevents/supplier-allocation/2025-12/data/file-data.schema.md
           - type: Definitions
             category: definitions
-            source: src/supplier-allocation/2025-10/defs/someobject.schema.yaml
-            published: schemas/supplier-allocation/2025-10/defs/someobject.schema.json
-            docs: ../../docs/cloudevents/supplier-allocation/2025-10/defs/someobject.schema.md
+            source: src/supplier-allocation/2025-12/defs/someobject.schema.yaml
+            published: schemas/supplier-allocation/2025-12/defs/someobject.schema.json
+            docs: ../../docs/cloudevents/supplier-allocation/2025-12/defs/someobject.schema.md
           - type: File Printed Event
             category: events
-            source: src/supplier-allocation/2025-10/events/file-printed.schema.yaml
-            published: schemas/supplier-allocation/2025-10/events/file-printed.schema.json
-            docs: ../../docs/cloudevents/supplier-allocation/2025-10/events/file-printed.schema.md
+            source: src/supplier-allocation/2025-12/events/file-printed.schema.yaml
+            published: schemas/supplier-allocation/2025-12/events/file-printed.schema.json
+            docs: ../../docs/cloudevents/supplier-allocation/2025-12/events/file-printed.schema.md
           - type: File Received Event
             category: events
-            source: src/supplier-allocation/2025-10/events/file-received.schema.yaml
-            published: schemas/supplier-allocation/2025-10/events/file-received.schema.json
-            docs: ../../docs/cloudevents/supplier-allocation/2025-10/events/file-received.schema.md
+            source: src/supplier-allocation/2025-12/events/file-received.schema.yaml
+            published: schemas/supplier-allocation/2025-12/events/file-received.schema.json
+            docs: ../../docs/cloudevents/supplier-allocation/2025-12/events/file-received.schema.md
           - type: Profile
             category: profile
-            source: src/supplier-allocation/2025-10/supplier-allocation-profile.schema.yaml
-            published: schemas/supplier-allocation/2025-10/supplier-allocation-profile.schema.json
-            docs: ../../docs/cloudevents/supplier-allocation/2025-10/supplier-allocation-profile.schema.md
+            source: src/supplier-allocation/2025-12/supplier-allocation-profile.schema.yaml
+            published: schemas/supplier-allocation/2025-12/supplier-allocation-profile.schema.json
+            docs: ../../docs/cloudevents/supplier-allocation/2025-12/supplier-allocation-profile.schema.md
         exampleEvents:
           - name: File Printed
             filename: file-printed-event
-            json: ../../docs/cloudevents/supplier-allocation/2025-10/example-events/file-printed-event.json
-            markdown: ../../docs/cloudevents/supplier-allocation/2025-10/example-events/file-printed-event.md
+            json: ../../docs/cloudevents/supplier-allocation/2025-12/example-events/file-printed-event.json
+            markdown: ../../docs/cloudevents/supplier-allocation/2025-12/example-events/file-printed-event.md
           - name: File Received
             filename: file-received-event
-            json: ../../docs/cloudevents/supplier-allocation/2025-10/example-events/file-received-event.json
-            markdown: ../../docs/cloudevents/supplier-allocation/2025-10/example-events/file-received-event.md
+            json: ../../docs/cloudevents/supplier-allocation/2025-12/example-events/file-received-event.json
+            markdown: ../../docs/cloudevents/supplier-allocation/2025-12/example-events/file-received-event.md
