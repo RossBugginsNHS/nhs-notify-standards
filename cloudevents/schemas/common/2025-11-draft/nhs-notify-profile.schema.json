@@ -335,6 +335,9 @@
   },
   "allOf": [
     {
+      "$ref": "https://raw.githubusercontent.com/cloudevents/spec/main/cloudevents/formats/cloudevents.json"
+    },
+    {
       "if": {
         "properties": {
           "source": {

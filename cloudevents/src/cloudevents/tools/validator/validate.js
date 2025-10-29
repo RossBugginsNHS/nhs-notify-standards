@@ -129,7 +129,7 @@ const MAX_REQUESTS_PER_URI = 5; // Prevent infinite loops
 async function loadExternalSchema(uri) {
   // Detect metaschema self-references and block them
   const normalizedUri = uri.replace(/#$/, ''); // Remove trailing fragment
-  if (normalizedUri === 'http://json-schema.org/draft-07/schema' || 
+  if (normalizedUri === 'http://json-schema.org/draft-07/schema' ||
       normalizedUri === 'https://json-schema.org/draft-07/schema') {
     console.log(`[FETCH] BLOCKED: Metaschema self-reference detected for ${uri} - skipping to prevent infinite loop`);
     // Return a minimal schema that won't cause validation issues
@@ -184,7 +184,7 @@ async function loadExternalSchema(uri) {
 
           const req = protocol.get(options, (res) => {
             console.log(`[FETCH] Response ${res.statusCode} from ${currentUri}`);
-            
+
             // Handle redirects
             if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
               if (redirectCount >= maxRedirects) {
@@ -213,8 +213,8 @@ async function loadExternalSchema(uri) {
 
             let data = '';
             let bytesReceived = 0;
-            res.on('data', (chunk) => { 
-              data += chunk; 
+            res.on('data', (chunk) => {
+              data += chunk;
               bytesReceived += chunk.length;
               if (bytesReceived % 1024 === 0) {
                 console.log(`[FETCH] Received ${bytesReceived} bytes from ${currentUri}`);
@@ -227,11 +227,11 @@ async function loadExternalSchema(uri) {
                 console.log(`[FETCH] Parsing JSON schema from ${currentUri}`);
                 const schema = JSON.parse(data);
                 console.log(`[FETCH] Successfully parsed schema from ${uri} (request #${currentCount + 1})`);
-                
+
                 // Cache the schema
                 httpCache.set(uri, schema);
                 console.log(`[FETCH] Cached schema: ${uri}`);
-                
+
                 resolve(schema);
               } catch (e) {
                 console.error(`[FETCH] Failed to parse JSON from ${uri}: ${e.message}`);
