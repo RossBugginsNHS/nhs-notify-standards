@@ -9,6 +9,7 @@ import yaml from "js-yaml";
 function parseArgs() {
   const args = process.argv.slice(2);
   let rootDir: string | undefined;
+  let stripPrefix: string | undefined;
   const filtered: string[] = [];
 
   for (let i = 0; i < args.length; i++) {
@@ -16,20 +17,23 @@ function parseArgs() {
     if (a === '--root-dir' && i + 1 < args.length) {
       rootDir = args[i + 1];
       i++; // Skip the next argument as it's the root dir value
+    } else if (a === '--strip-prefix' && i + 1 < args.length) {
+      stripPrefix = args[i + 1];
+      i++; // Skip the next argument as it's the strip prefix value
     } else {
       filtered.push(a);
     }
   }
 
-  return { rootDir, filtered };
+  return { rootDir, stripPrefix, filtered };
 }
 
-const { rootDir, filtered } = parseArgs();
+const { rootDir, stripPrefix, filtered } = parseArgs();
 const [sourceSchemaPath, outputDir, baseUrl] = filtered;
 
 if (!sourceSchemaPath || !outputDir) {
   console.error(
-    "Usage: ts-node build-schema.ts [--root-dir <path>] <source-schema.json|yaml> <output-dir> [base-url]"
+    "Usage: ts-node build-schema.ts [--root-dir <path>] [--strip-prefix <prefix>] <source-schema.json|yaml> <output-dir> [base-url]"
   );
   console.error(
     "Example: ts-node build-schema.ts src/common/2025-10/nhs-notify-profile.schema.yaml output/common/2025-10"
@@ -39,6 +43,9 @@ if (!sourceSchemaPath || !outputDir) {
   );
   console.error(
     "With root: ts-node build-schema.ts --root-dir /path/to/repo src/common/2025-10/nhs-notify-profile.schema.yaml output/common/2025-10"
+  );
+  console.error(
+    "With strip prefix: ts-node build-schema.ts --strip-prefix cloudevents/domains src/common/2025-10/nhs-notify-profile.schema.yaml output/common/2025-10 https://schema.notify.nhs.uk"
   );
   process.exit(1);
 }
@@ -58,7 +65,8 @@ function processRefs(
   sourceDir: string,
   outputBaseDir: string,
   sourceSchemaPath: string,
-  baseUrl?: string
+  baseUrl?: string,
+  stripPrefix?: string
 ): any {
   if (typeof schema !== "object" || schema === null) {
     return schema;
@@ -66,7 +74,7 @@ function processRefs(
 
   if (Array.isArray(schema)) {
     return schema.map((item) =>
-      processRefs(item, sourceDir, outputBaseDir, sourceSchemaPath, baseUrl)
+      processRefs(item, sourceDir, outputBaseDir, sourceSchemaPath, baseUrl, stripPrefix)
     );
   }
 
@@ -104,7 +112,15 @@ function processRefs(
 
         if (baseUrl) {
           // Convert to URL (output will be .json)
-          const urlPath = outputRelativePath.replace(/\\/g, "/");
+          let urlPath = outputRelativePath.replace(/\\/g, "/");
+
+          // Strip the prefix if provided
+          if (stripPrefix && urlPath.startsWith(stripPrefix + '/')) {
+            urlPath = urlPath.substring(stripPrefix.length + 1);
+          } else if (stripPrefix && urlPath.startsWith(stripPrefix)) {
+            urlPath = urlPath.substring(stripPrefix.length);
+          }
+
           result[key] = fragment ? `${baseUrl}/${urlPath}#${fragment}` : `${baseUrl}/${urlPath}`;
         } else {
           // Keep as relative path but update to point to built location (output will be .json)
@@ -154,7 +170,15 @@ function processRefs(
           path.join(process.cwd(), "src"),
           resolvedPath
         );
-        const urlPath = relativePath.replace(/\\/g, "/");
+        let urlPath = relativePath.replace(/\\/g, "/");
+
+        // Strip the prefix if provided
+        if (stripPrefix && urlPath.startsWith(stripPrefix + '/')) {
+          urlPath = urlPath.substring(stripPrefix.length + 1);
+        } else if (stripPrefix && urlPath.startsWith(stripPrefix)) {
+          urlPath = urlPath.substring(stripPrefix.length);
+        }
+
         constValue = fragment ? `${baseUrl}/${urlPath}#${fragment}` : `${baseUrl}/${urlPath}`;
       } else if (constValue.startsWith("./") || constValue.startsWith("../")) {
         // If no baseUrl provided but it's a relative path, convert to file:// URI for CloudEvents compliance
@@ -211,7 +235,15 @@ function processRefs(
               path.join(process.cwd(), "src"),
               resolvedPath
             );
-            const urlPath = relativePath.replace(/\\/g, "/");
+            let urlPath = relativePath.replace(/\\/g, "/");
+
+            // Strip the prefix if provided
+            if (stripPrefix && urlPath.startsWith(stripPrefix + '/')) {
+              urlPath = urlPath.substring(stripPrefix.length + 1);
+            } else if (stripPrefix && urlPath.startsWith(stripPrefix)) {
+              urlPath = urlPath.substring(stripPrefix.length);
+            }
+
             exampleValue = `${baseUrl}/${urlPath}`;
           }
 
@@ -220,7 +252,7 @@ function processRefs(
         return example;
       });
     } else if (typeof value === "object") {
-      result[key] = processRefs(value, sourceDir, outputBaseDir, sourceSchemaPath, baseUrl);
+      result[key] = processRefs(value, sourceDir, outputBaseDir, sourceSchemaPath, baseUrl, stripPrefix);
     } else {
       result[key] = value;
     }
@@ -235,7 +267,8 @@ function processRefs(
 function buildSchema(
   sourceSchemaPath: string,
   outputDir: string,
-  baseUrl?: string
+  baseUrl?: string,
+  stripPrefix?: string
 ): void {
   // Read source schema
   const sourceAbsolutePath = path.resolve(sourceSchemaPath);
@@ -268,9 +301,17 @@ function buildSchema(
       path.join(repoRoot, "src"),
       sourceAbsolutePath
     );
-    const jsonRelativePath = relativePath
+    let jsonRelativePath = relativePath
       .replace(/\.yaml$/, '.json')
       .replace(/\.yml$/, '.json');
+
+    // Strip the prefix if provided
+    if (stripPrefix && jsonRelativePath.startsWith(stripPrefix + '/')) {
+      jsonRelativePath = jsonRelativePath.substring(stripPrefix.length + 1);
+    } else if (stripPrefix && jsonRelativePath.startsWith(stripPrefix)) {
+      jsonRelativePath = jsonRelativePath.substring(stripPrefix.length);
+    }
+
     schemaId = `${baseUrl}/${jsonRelativePath.replace(/\\/g, "/")}`;
   } else {
     // Use relative path from output root with leading /
@@ -284,7 +325,7 @@ function buildSchema(
   // Process the schema: add $id and transform $refs
   const builtSchema = {
     $id: schemaId,
-    ...processRefs(schema, sourceDir, outputDir, sourceAbsolutePath, baseUrl),
+    ...processRefs(schema, sourceDir, outputDir, sourceAbsolutePath, baseUrl, stripPrefix),
   };
 
   // Write the built schema
@@ -297,7 +338,7 @@ function buildSchema(
 
 // Run the build
 try {
-  buildSchema(sourceSchemaPath, outputDir, baseUrl);
+  buildSchema(sourceSchemaPath, outputDir, baseUrl, stripPrefix);
 } catch (error) {
   console.error("Error building schema:", error);
   process.exit(1);

@@ -1,5 +1,5 @@
 {
-  "$id": "https://notify.nhs.uk/cloudevents/schemas/cloudevents/domains/supplier-allocation/2025-12/events/file-printed.schema.json",
+  "$id": "https://notify.nhs.uk/cloudevents/schemas/supplier-allocation/2025-12/events/file-printed.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "allOf": [

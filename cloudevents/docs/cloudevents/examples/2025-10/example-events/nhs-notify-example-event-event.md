@@ -2,13 +2,13 @@
 
 **Event Type:** `uk.nhs.notify.example.order.read.v1`
 
-**Source:** `/nhs/england/notify/staging/secondary/data-plane/example`
+**Source:** `/nhs/england/notify/production/secondary/data-plane/example`
 
-**Subject:** `customer/383cbca1-b6ae-0d1f-6bdb-73f3e2a2c85c/order/8b5bbac5-ecca-7806-f24c-86115f28c2a0/item/fe6d3c8e-8c7d-8e7f-7a25-fdb65b2bff46`
+**Subject:** `customer/4de8f264-e04f-0bcd-eebd-6d5498c4fabc/order/66004aab-dfce-60da-98e1-aad678cb7d69/item/b7ff0810-97cf-725c-918a-8e031afb1ab6`
 
-**Event ID:** `3de14275-5015-4f22-a8b9-c6a244d5847f`
+**Event ID:** `ac37053c-fad3-4a88-9496-7fab540874b9`
 
-**Timestamp:** 2025-10-29T16:25:21.949Z
+**Timestamp:** 2025-10-29T17:00:00.773Z
 
 ## Related Schema Documentation
 
@@ -21,8 +21,8 @@
 ```json
 {
   "type": "uk.nhs.notify.example.order.read.v1",
-  "source": "/nhs/england/notify/staging/secondary/data-plane/example",
-  "subject": "customer/383cbca1-b6ae-0d1f-6bdb-73f3e2a2c85c/order/8b5bbac5-ecca-7806-f24c-86115f28c2a0/item/fe6d3c8e-8c7d-8e7f-7a25-fdb65b2bff46",
+  "source": "/nhs/england/notify/production/secondary/data-plane/example",
+  "subject": "customer/4de8f264-e04f-0bcd-eebd-6d5498c4fabc/order/66004aab-dfce-60da-98e1-aad678cb7d69/item/b7ff0810-97cf-725c-918a-8e031afb1ab6",
   "dataschema": "file://../data/nhs-notify-example-event-data.schema.json",
   "data": {
     "notify-payload": {
@@ -30,42 +30,42 @@
         "nhsNumber": "9434765919"
       },
       "notify-metadata": {
-        "teamResponsible": "Team 3",
-        "notifyDomain": "Reporting",
-        "microservice": "0YmUgj",
-        "repositoryUrl": "https://yKkeRnOMERzFHqVrnyMXpi.ttgl22GVeUI7fU1V0DRa06Ev6gy19nqY3uwssZLlyCfnWpHA",
-        "accountId": "PRCKkMCqKLa",
-        "environment": "production",
-        "instance": "dsKe9ijvIT",
-        "microserviceInstanceId": "ahlGc9Xy7",
-        "microserviceVersion": "22793044.20553.41803308-159780985MKQ.0.79967491.0.0.56348382443.92096550882.82070926ZkBjNZjT9.72769shAawL.9546",
-        "commitSha": "db9e3390a7a876dd3ae7d0d2056042e0676f1213",
-        "buildTimestamp": "1913-01-02T14:36:36.0Z",
+        "teamResponsible": "Team 2",
+        "notifyDomain": "Ordering",
+        "microservice": "PE4",
+        "repositoryUrl": "https://btgyc.dwkAXPs9LqXtfHfJMZaEUM+W3,5ajm2An",
+        "accountId": "kK8JAbxN",
+        "environment": "development",
+        "instance": "yEYtVAa5k",
+        "microserviceInstanceId": "k9UeW-PF",
+        "microserviceVersion": "0.9350776.0",
+        "commitSha": "48e0bcee9d1518729d20ec32d1cc1410e753ac5",
+        "buildTimestamp": "1964-05-18T22:09:01.0Z",
         "serviceTier": "critical",
         "region": "eu-west-2",
-        "pseudonymisationLevel": "anonymised",
-        "replayIndicator": true,
-        "originalEventId": "4b67ed03-1e83-4edc-b3d0-504cbca2199d",
-        "integrityHash": "sha256:5caab8879c0a1337f54085f7c0532e75d7d126f88af1a3000db5114fa935ba57",
-        "producedByType": "other"
+        "pseudonymisationLevel": "tokenised",
+        "replayIndicator": false,
+        "originalEventId": "b3d30bd8-ff41-4287-819b-71fcdb32c610",
+        "integrityHash": "sha256:f92d763e4a738b260e392e86421f64d17483ee6e6f470a80449bac256b227017",
+        "producedByType": "container"
       }
     }
   },
   "profileversion": "1.0.0",
   "profilepublished": "2025-10",
   "specversion": "1.0",
-  "id": "3de14275-5015-4f22-a8b9-c6a244d5847f",
-  "time": "2025-10-29T16:25:21.949Z",
+  "id": "ac37053c-fad3-4a88-9496-7fab540874b9",
+  "time": "2025-10-29T17:00:00.773Z",
   "datacontenttype": "application/json",
-  "traceparent": "00-798cae8402f82918d3bee5549127b892-ff7431064df5e7ec-01",
-  "tracestate": "Excepteur enim",
-  "partitionkey": "customer-383cbca1",
-  "recordedtime": "2025-10-29T16:25:22.949Z",
+  "traceparent": "00-99af83f56fb11d93215d318abd09fb11-d09fdcf7fb27a5ef-01",
+  "tracestate": "voluptate et",
+  "partitionkey": "customer-4de8f264",
+  "recordedtime": "2025-10-29T17:00:01.773Z",
   "sampledrate": 1,
-  "sequence": "00000000000248939062",
-  "severitytext": "ERROR",
-  "severitynumber": 4,
-  "dataclassification": "confidential",
+  "sequence": "00000000000869289521",
+  "severitytext": "TRACE",
+  "severitynumber": 0,
+  "dataclassification": "public",
   "dataregulation": "ISO-27001",
   "datacategory": "sensitive"
 }
